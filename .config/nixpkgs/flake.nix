@@ -8,13 +8,20 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    plugin-foreign-env = {
+      url = "github:oh-my-fish/plugin-foreign-env";
+      flake = false;
+    };
+
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
+  outputs = { nixpkgs, home-manager, plugin-foreign-env, ... }:
     let
       system = "x86_64-darwin";
       pkgs = nixpkgs.legacyPackages.${system};
-    in {
+    in
+    {
       homeConfigurations.john = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
@@ -24,6 +31,9 @@
 
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
+        extraSpecialArgs = {
+          inherit plugin-foreign-env;
+        };
       };
     };
 }
