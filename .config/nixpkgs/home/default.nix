@@ -2,12 +2,17 @@
 
 {
   home.packages = with pkgs; [
+    dos2unix
     kind
     kubectl
     (google-cloud-sdk.withExtraComponents (with google-cloud-sdk.components; [ cloud_sql_proxy gke-gcloud-auth-plugin ]))
     watchman
     yadm
   ];
+
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
 
   programs.autojump.enable = true;
 
@@ -32,6 +37,23 @@
           source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
       end
     '';
+  };
+
+  programs.git.enable = true;
+  programs.git = {
+    userName = "John Hampton";
+    userEmail = "john.hampton@stanfordalumni.org";
+
+    extraConfig = {
+      credential = { helper = "osxkeychain"; };
+      pull = { ff = "only"; };
+      init = { defaultBranch = "master"; };
+      "mergetool \"nvim\"" = {
+        cmd = "nvim -f -c \"Gdiffsplit!\" \"$MERGED\"";
+      };
+      mergetool = { prompt = false; };
+      merge = { tool = "nvim"; };
+    };
   };
 
   programs.just.enable = true;

@@ -37,13 +37,13 @@
       homeManagerStateVersion = "22.05";
       homeManagerCommonConfig = {
         imports = [
-          ./home.nix
+          ./home
           { home.stateVersion = homeManagerStateVersion; }
         ];
       };
 
       nixDarwinCommonModules = [
-        ./darwin.nix
+        ./darwin
         home-manager.darwinModules.home-manager
         (
           { config, lib, pkgs, ... }:

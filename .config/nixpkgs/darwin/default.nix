@@ -4,6 +4,7 @@
     substituters = [
       "https://cache.nixos.org/"
       "https://hydra.iohk.io"
+      "https://cache.iog.io"
     ];
     trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
@@ -23,6 +24,7 @@
 
     keep-outputs = true;
     keep-derivations = true;
+    access-tokens = [ "github.com=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" ];
 
     extra-platforms = lib.mkIf (pkgs.system == "aarch64-darwin") [ "x86_64-darwin" "aarch64-darwin" ];
   };
