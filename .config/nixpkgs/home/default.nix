@@ -2,9 +2,14 @@
 
 {
   home.packages = with pkgs; [
+
+    argocd
+    colima
+    docker-client
     dos2unix
     kind
     kubectl
+    kubectx
     (google-cloud-sdk.withExtraComponents (with google-cloud-sdk.components; [ cloud_sql_proxy gke-gcloud-auth-plugin ]))
     watchman
     yadm
