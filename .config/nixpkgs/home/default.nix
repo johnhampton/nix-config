@@ -4,6 +4,7 @@
   home.packages = with pkgs; [
 
     argocd
+    argocd-autopilot
     colima
     docker-client
     dos2unix
@@ -17,6 +18,7 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
+    USE_GKE_GCLOUD_AUTH_PLUGIN = "True";
   };
 
   programs.autojump.enable = true;
@@ -58,6 +60,18 @@
       };
       mergetool = { prompt = false; };
       merge = { tool = "nvim"; };
+    };
+  };
+
+  programs.gh.enable = true;
+  programs.gh = {
+    settings = {
+      git_protocol = "https";
+      aliases = {
+        co = "pr checkout";
+        tc = "repo clone topagentnetwork/$1";
+      };
+
     };
   };
 
