@@ -1,7 +1,15 @@
 { pkgs, ... }:
 
 let
+  pluginWithDeps = plugin: deps: plugin.overrideAttrs (_: { dependencies = deps; }); 
 
+  pluginWithConfig = { plugin, optional ? true, extraConfig ? "", deps ? [] }: {
+    inherit plugin;
+    type = "lua";
+    config = ''
+      require('johnhampton.' .. string.gsub('${plugin.pname}', '%.', '-'))
+    '';
+  };
 
 in
 
@@ -12,19 +20,23 @@ in
     vimAlias = true;
   };
 
-  home.file.".config/nvim/lua/johnhampton/init.lua".source = ./neovim/lua/johnhampton/init.lua;
-
-  home.file.".config/nvim/lua/johnhampton/colorscheme.lua".source = ./neovim/lua/johnhampton/colorscheme.lua;
-  home.file.".config/nvim/lua/johnhampton/keymaps.lua".source = ./neovim/lua/johnhampton/keymaps.lua;
-  home.file.".config/nvim/lua/johnhampton/options.lua".source = ./neovim/lua/johnhampton/options.lua;
-  home.file.".config/nvim/lua/johnhampton/settings.lua".source = ./neovim/lua/johnhampton/settings.lua;
+  xdg.configFile."nvim/lua".source = ./neovim/lua;
+  xdg.configFile."nvim/lua".recursive = true;
 
   programs.neovim.extraConfig = ''
     lua require('johnhampton')
   '';
 
   programs.neovim.plugins = with pkgs.vimPlugins; [
-  	onenord-nvim
+    # colorscheme
+  	(pluginWithConfig {plugin= onenord-nvim; })
+
+    # treesitter
+    (pluginWithConfig {plugin= nvim-treesitter.withAllGrammars;})
+
+    # Comment
+    nvim-ts-context-commentstring
+    (pluginWithConfig {plugin= comment-nvim; })
   ];
 
 }

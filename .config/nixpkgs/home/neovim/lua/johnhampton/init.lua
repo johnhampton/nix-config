@@ -1,7 +1,7 @@
 require("johnhampton.options")
 require("johnhampton.settings")
 require("johnhampton.keymaps")
-require("johnhampton.colorscheme")
+-- require("johnhampton.colorscheme")
 -- require("johnhampton.plugins")
 -- require("johnhampton.cmp")
 -- require("johnhampton.lsp")
