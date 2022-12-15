@@ -1,6 +1,10 @@
 { config, pkgs, plugin-foreign-env, ... }:
 
 {
+
+  imports = [
+  	./neovim.nix
+  ];
   home.packages = with pkgs; [
 
     argocd
