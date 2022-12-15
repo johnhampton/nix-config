@@ -36,11 +36,22 @@
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
 
-
   system.stateVersion = 4;
 
-
-
+  programs.bash.enable = true;
   programs.fish.enable = true;
   programs.zsh.enable = true;
+
+  users.users.john = {
+    name = "john";
+    description = "John Hampton";
+    home = "/Users/john";
+    shell = pkgs.fish;
+  };
+
+  environment.shells = with pkgs; [
+    bashInteractive
+    fish
+    zsh
+  ];
 }
