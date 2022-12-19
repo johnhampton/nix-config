@@ -31,12 +31,16 @@ in
     # colorscheme
   	(pluginWithConfig {plugin= onenord-nvim; })
 
+    # which-key
+    (pluginWithConfig {plugin=which-key-nvim; optional=false; })
+
     # treesitter
     (pluginWithConfig {plugin= nvim-treesitter.withAllGrammars;})
 
     # Comment
     nvim-ts-context-commentstring
     (pluginWithConfig {plugin= comment-nvim; })
+
   ];
 
 }
