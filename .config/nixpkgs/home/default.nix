@@ -12,6 +12,7 @@
     colima
     docker-client
     dos2unix
+    just
     kind
     kubectl
     kubectx
@@ -78,8 +79,6 @@
 
     };
   };
-
-  programs.just.enable = true;
 
   # https://starship.rs/config/
   programs.starship.enable = true;
