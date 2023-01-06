@@ -1,14 +1,11 @@
-local status_ok, nvim_tree = pcall(require, "nvim-tree")
-if not status_ok then
-	return
-end
+vim.cmd "packadd nvim-tree.lua"
 
-local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
-if not config_status_ok then
-	return
-end
+local nvim_tree = require "nvim-tree"
+local nvim_tree_config = require "nvim-tree.config"
 
 local tree_cb = nvim_tree_config.nvim_tree_callback
+
+local wk = require('which-key')
 
 nvim_tree.setup({
 	disable_netrw = true,
@@ -129,3 +126,17 @@ nvim_tree.setup({
 		require_confirm = true,
 	},
 })
+
+local opts = {
+	mode = "n", -- NORMAL mode
+	prefix = "<leader>",
+	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+	silent = true, -- use `silent` when creating keymaps
+	noremap = true, -- use `noremap` when creating keymaps
+	nowait = true, -- use `nowait` when creating keymaps
+}
+
+wk.register({
+	e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+	E = { "<cmd>NvimTreeFindFile<cr>", "Explore file" },
+}, opts)

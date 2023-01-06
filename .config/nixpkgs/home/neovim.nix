@@ -3,8 +3,9 @@
 let
   pluginWithDeps = plugin: deps: plugin.overrideAttrs (_: { dependencies = deps; }); 
 
-  pluginWithConfig = { plugin, optional ? true, extraConfig ? "", deps ? [] }: {
-    inherit plugin;
+  pluginWithConfig = { plugin, optional ? true, extraConfig ? "", deps ? [] }: 
+    let plugin' = if deps == [] then plugin else pluginWithDeps plugin deps;  in {
+    plugin = plugin';
     type = "lua";
     config = ''
       require('johnhampton.' .. string.gsub('${plugin.pname}', '%.', '-'))
@@ -40,6 +41,9 @@ in
     # Comment
     nvim-ts-context-commentstring
     (pluginWithConfig {plugin= comment-nvim; })
+
+    # nvim-tree
+    (pluginWithConfig {plugin=nvim-tree-lua; deps = [nvim-web-devicons];})
 
   ];
 
