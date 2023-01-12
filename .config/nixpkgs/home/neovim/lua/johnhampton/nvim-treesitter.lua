@@ -1,5 +1,3 @@
-vim.cmd "packadd nvim-treesitter"
-
 local configs = require "nvim-treesitter.configs"
 
 configs.setup {

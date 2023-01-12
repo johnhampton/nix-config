@@ -1,5 +1,3 @@
-vim.cmd "packadd nvim-tree.lua"
-
 local nvim_tree = require "nvim-tree"
 local nvim_tree_config = require "nvim-tree.config"
 
