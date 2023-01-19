@@ -123,10 +123,7 @@ M.on_attach = function(client, bufnr)
 	lsp_codelens_refresh(client)
 end
 
-local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not status_ok then
-	return
-end
+cmp_nvim_lsp = require "cmp_nvim_lsp"
 
 M.capabilities = cmp_nvim_lsp.default_capabilities()
 

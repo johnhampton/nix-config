@@ -1,7 +1,4 @@
-local status_ok, lspconfig = pcall(require, "lspconfig")
-if not status_ok then
-	return
-end
+lspconfig = require "lspconfig"
 
 local hls_opts = require("johnhampton.lsp.settings.hls")
 local json_opts = require("johnhampton.lsp.settings.jsonls")

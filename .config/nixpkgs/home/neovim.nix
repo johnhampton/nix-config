@@ -1,21 +1,22 @@
 { pkgs, ... }:
 
 let
-  pluginWithDeps = plugin: deps: plugin.overrideAttrs (_: { dependencies = deps; }); 
+  pluginWithDeps = plugin: deps: plugin.overrideAttrs (_: { dependencies = deps; });
 
-  pluginWithConfig = { plugin, optional ? false, jjextraConfig ? "", deps ? [] }: 
-    let plugin' = if deps == [] then plugin else pluginWithDeps plugin deps;  in {
-    plugin = plugin';
-    type = "lua";
-    config = ''
-      require('johnhampton.' .. string.gsub('${plugin.pname}', '%.', '-'))
-    '';
-  };
+  pluginWithConfig = { plugin, optional ? false, jjextraConfig ? "", deps ? [ ] }:
+    let plugin' = if deps == [ ] then plugin else pluginWithDeps plugin deps; in
+    {
+      plugin = plugin';
+      type = "lua";
+      config = ''
+        require('johnhampton.' .. string.gsub('${plugin.pname}', '%.', '-'))
+      '';
+    };
 
 in
 
-{ 
-  home.packages = with pkgs; [ fd ];
+{
+  home.packages = with pkgs; [ fd rnix-lsp sumneko-lua-language-server ];
 
   programs.neovim = {
     enable = true;
@@ -27,29 +28,62 @@ in
   xdg.configFile."nvim/lua".recursive = true;
 
   programs.neovim.extraConfig = ''
-    lua require('johnhampton')
+    lua << EOF
+
+    require("johnhampton.options")
+    require("johnhampton.settings")
+    require("johnhampton.keymaps")
+
+    require('johnhampton.onenord-nvim')
+    require('johnhampton.cmp')
+    require('johnhampton.lsp')
+
+    require('johnhampton.which-key-nvim')
+
+    require('johnhampton.nvim-treesitter')
+
+    require('johnhampton.comment-nvim')
+
+    require('johnhampton.nvim-tree-lua')
+
+    require('johnhampton.telescope-nvim')
+
+    EOF
   '';
 
   programs.neovim.plugins = with pkgs.vimPlugins; [
     # colorscheme
-  	(pluginWithConfig {plugin= onenord-nvim; })
+    { plugin = onenord-nvim; }
 
     # which-key
-    (pluginWithConfig {plugin=which-key-nvim; })
+    { plugin = which-key-nvim; }
 
     # treesitter
-    (pluginWithConfig {plugin= nvim-treesitter.withAllGrammars;})
+    { plugin = nvim-treesitter.withAllGrammars; }
 
     # Comment
-    {plugin=nvim-ts-context-commentstring; }
-    (pluginWithConfig {plugin= comment-nvim; })
+    { plugin = nvim-ts-context-commentstring; }
+    { plugin = comment-nvim; }
+
+    # LSP
+    { plugin = nvim-lspconfig; }
+
+    nvim-cmp
+    cmp-buffer
+    cmp-path
+    cmp-cmdline
+    cmp_luasnip
+    cmp-nvim-lsp
+    cmp-nvim-lua
 
     # nvim-tree
-    (pluginWithConfig {plugin=nvim-tree-lua; deps = [nvim-web-devicons];})
+    { plugin = pluginWithDeps nvim-tree-lua [ nvim-web-devicons ]; }
 
     # telescope
-    (pluginWithConfig {plugin=telescope-nvim;})
-    {plugin=telescope-ui-select-nvim; }
-    {plugin=telescope-fzf-native-nvim;}
+    { plugin = telescope-nvim; }
+    { plugin = telescope-ui-select-nvim; }
+    { plugin = telescope-fzf-native-nvim; }
+
+    vim-kitty-navigator
   ];
 }
