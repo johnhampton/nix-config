@@ -3,7 +3,7 @@
 {
 
   imports = [
-  	./neovim.nix
+    ./neovim.nix
   ];
   home.packages = with pkgs; [
 
@@ -27,6 +27,14 @@
   };
 
   programs.autojump.enable = true;
+
+  programs.bat.enable = true;
+  programs.bat = {
+    config = {
+
+      theme = "Nord";
+    };
+  };
 
   # Direnv, load and unload environment variables depending on the current directory.
   # https://direnv.net
