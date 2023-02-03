@@ -45,6 +45,7 @@ in
     require('johnhampton.comment-nvim')
 
     require('johnhampton.nvim-tree-lua')
+    require('johnhampton.project')
 
     require('johnhampton.telescope-nvim')
 
@@ -75,6 +76,8 @@ in
     cmp_luasnip
     cmp-nvim-lsp
     cmp-nvim-lua
+
+    project-nvim
 
     # nvim-tree
     { plugin = pluginWithDeps nvim-tree-lua [ nvim-web-devicons ]; }
