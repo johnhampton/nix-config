@@ -18,6 +18,7 @@
     kubectx
     kustomize
     (google-cloud-sdk.withExtraComponents (with google-cloud-sdk.components; [ cloud_sql_proxy gke-gcloud-auth-plugin ]))
+    terraform-ls
     watchman
     yadm
   ];
