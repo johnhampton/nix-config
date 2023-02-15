@@ -68,6 +68,7 @@ in
 
     # LSP
     { plugin = nvim-lspconfig; }
+    null-ls-nvim
 
     nvim-cmp
     cmp-buffer
