@@ -32,7 +32,6 @@
         config = { allowUnfree = true; };
       };
 
-
       homeManagerStateVersion = "22.05";
       homeManagerCommonConfig = {
         imports = [
@@ -72,6 +71,13 @@
           modules = nixDarwinCommonModules ++ [
             ./machines/ava.nix
           ];
+          inputs = { inherit home-manager; };
+        };
+
+        "Johns-MacBook-Pro" = darwinSystem {
+          system = "aarch64-darwin";
+          modules = nixDarwinCommonModules;
+          inputs = { inherit home-manager; };
         };
       };
 
