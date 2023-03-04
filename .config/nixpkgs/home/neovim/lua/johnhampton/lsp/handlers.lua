@@ -44,9 +44,12 @@ M.setup = function()
 	})
 end
 
-local function lsp_highlight_document(client)
+local function lsp_highlight_document(client, bufnr)
 	-- Set autocommands conditional on server_capabilities
-	if client.server_capabilities.documentHighlightProvider then
+	if
+		client.server_capabilities.documentHighlightProvider
+		and vim.api.nvim_buf_get_option(bufnr, "filetype") ~= "cabal"
+	then
 		vim.api.nvim_exec(
 			[[
       augroup lsp_document_highlight
@@ -119,11 +122,11 @@ M.on_attach = function(client, bufnr)
 	end
 
 	lsp_keymaps(bufnr)
-	lsp_highlight_document(client)
+	lsp_highlight_document(client, bufnr)
 	lsp_codelens_refresh(client)
 end
 
-cmp_nvim_lsp = require "cmp_nvim_lsp"
+local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
 M.capabilities = cmp_nvim_lsp.default_capabilities()
 

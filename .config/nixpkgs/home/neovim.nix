@@ -45,7 +45,10 @@ in
     require('johnhampton.comment-nvim')
 
     require('johnhampton.nvim-tree-lua')
+    require("johnhampton.bufferline")
+    require('johnhampton.lualine')
     require('johnhampton.project')
+    require('johnhampton.impatient')
 
     require('johnhampton.telescope-nvim')
 
@@ -53,6 +56,8 @@ in
   '';
 
   programs.neovim.plugins = with pkgs.vimPlugins; [
+    vim-bbye
+    bufferline-nvim
     # colorscheme
     { plugin = onenord-nvim; }
 
@@ -70,6 +75,9 @@ in
     { plugin = nvim-lspconfig; }
     null-ls-nvim
 
+    lualine-nvim
+    lualine-lsp-progress
+
     nvim-cmp
     cmp-buffer
     cmp-path
@@ -78,7 +86,11 @@ in
     cmp-nvim-lsp
     cmp-nvim-lua
 
+    luasnip
+    friendly-snippets
+
     project-nvim
+    impatient-nvim
 
     # nvim-tree
     { plugin = pluginWithDeps nvim-tree-lua [ nvim-web-devicons ]; }

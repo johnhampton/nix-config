@@ -44,6 +44,7 @@
 
       nixDarwinCommonModules = [
         ./darwin
+        # ./darwin/darwin-builder.nix
         home-manager.darwinModules.home-manager
         (
           { config, lib, pkgs, ... }:

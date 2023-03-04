@@ -10,6 +10,7 @@ local opts = {
 }
 
 local lsps = {
+  gopls = {},
   hls = hls_opts,
   jsonls = json_opts,
   ocamllsp = {},

@@ -21,6 +21,12 @@
     terraform-ls
     watchman
     yadm
+    (haskell-language-server.override { supportedGhcVersions = [ "944" "8107" ]; })
+    haskell.compiler.ghc944
+    # haskell.compiler.ghc8107
+    haskellPackages.cabal-fmt
+
+
   ];
 
   home.sessionVariables = {
@@ -92,4 +98,7 @@
 
   # https://starship.rs/config/
   programs.starship.enable = true;
+  programs.starship.settings = {
+    command_timeout = 1000;
+  };
 }

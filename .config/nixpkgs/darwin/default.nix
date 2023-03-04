@@ -29,6 +29,16 @@
     extra-platforms = lib.mkIf (pkgs.system == "aarch64-darwin") [ "x86_64-darwin" "aarch64-darwin" ];
   };
 
+
+  # nix.distributedBuilds = true;
+  # nix.buildMachines = [{
+  #   hostName = "ssh-ng://builder@localhost";
+  #   system = "x86_64-linux";
+  #   maxJobs = 4;
+  #   publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUpCV2N4Yi9CbGFxdDFhdU90RStGOFFVV3JVb3RpQzVxQkorVXVFV2RWQ2Igcm9vdEBuaXhvcwo=";
+  #   sshKey = "/etc/nix/builder_ed25519";
+  #
+  # }];
   nix.configureBuildUsers = true;
 
   nix.package = pkgs.nixUnstable;
