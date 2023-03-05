@@ -52,6 +52,13 @@
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
 
+  programs.exa.enable = true;
+  programs.exa = {
+    enableAliases = true;
+    icons = true;
+    git = true;
+  };
+
   programs.fish.enable = true;
   programs.fish = {
     plugins = [
