@@ -1,8 +1,8 @@
-lspconfig = require "lspconfig"
+local lspconfig = require "lspconfig"
 
 local hls_opts = require("johnhampton.lsp.settings.hls")
 local json_opts = require("johnhampton.lsp.settings.jsonls")
-local sumneko_opts = require("johnhampton.lsp.settings.sumneko_lua")
+local lua_opts = require("johnhampton.lsp.settings.lua_ls")
 
 local opts = {
   on_attach = require("johnhampton.lsp.handlers").on_attach,
@@ -15,7 +15,7 @@ local lsps = {
   jsonls = json_opts,
   ocamllsp = {},
   rnix = {},
-  sumneko_lua = sumneko_opts,
+  lua_ls = lua_opts,
   terraformls = {},
   tsserver = {},
 }
