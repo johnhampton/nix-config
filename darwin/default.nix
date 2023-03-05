@@ -1,5 +1,7 @@
 { inputs, config, pkgs, lib, ... }:
 {
+
+  imports = [ ./homebrew.nix ];
   nix.settings = {
     substituters = [
       "https://cache.nixos.org/"
