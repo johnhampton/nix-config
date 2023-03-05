@@ -150,6 +150,22 @@
         "type": "github"
       }
     },
+    "one-nord": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1675662646,
+        "narHash": "sha256-xFIQdAuLo8rVxUWo8ByiPorJIgFzieh20aNlRG7A1F0=",
+        "owner": "rmehri01",
+        "repo": "onenord.nvim",
+        "rev": "71bdcdf105a8feb16cd5248b40e44c88832f75ca",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rmehri01",
+        "repo": "onenord.nvim",
+        "type": "github"
+      }
+    },
     "plugin-foreign-env": {
       "flake": false,
       "locked": {
@@ -177,6 +193,7 @@
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "one-nord": "one-nord",
         "plugin-foreign-env": "plugin-foreign-env"
       }
     },

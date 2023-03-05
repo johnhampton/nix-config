@@ -20,10 +20,11 @@
     flake-compat = { url = "github:edolstra/flake-compat"; flake = false; };
     flake-utils.url = "github:numtide/flake-utils";
 
+    one-nord = { url = "github:rmehri01/onenord.nvim"; flake = false; };
     plugin-foreign-env = { url = "github:oh-my-fish/plugin-foreign-env"; flake = false; };
   };
 
-  outputs = { self, nixpkgs, darwin, home-manager, flake-utils, plugin-foreign-env, ... }@inputs:
+  outputs = { self, nixpkgs, darwin, home-manager, flake-utils, one-nord, plugin-foreign-env, ... }@inputs:
     let
       inherit (darwin.lib) darwinSystem;
       inherit (inputs.nixpkgs-unstable.lib) attrValues makeOverridable optionalAttrs singleton;
@@ -58,6 +59,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.users.${primaryUser} = homeManagerCommonConfig;
             home-manager.extraSpecialArgs = {
+              inherit one-nord;
               inherit plugin-foreign-env;
             };
           }
