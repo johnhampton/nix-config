@@ -3,6 +3,7 @@
 {
 
   imports = [
+    ./kitty.nix
     ./neovim.nix
   ];
   home.packages = with pkgs; [
@@ -18,6 +19,7 @@
     kubectx
     kustomize
     (google-cloud-sdk.withExtraComponents (with google-cloud-sdk.components; [ cloud_sql_proxy gke-gcloud-auth-plugin ]))
+    nerdfonts
     terraform-ls
     watchman
     yadm
