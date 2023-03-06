@@ -69,6 +69,13 @@
     owner = "john";
     group = "staff";
   };
+  age.secrets.gh = {
+    file = ../secrets/hosts.yml.age;
+    path = "/Users/john/.config/gh/hosts.yml";
+    mode = "700";
+    owner = "john";
+    group = "staff";
+  };
 
   environment.shells = with pkgs; [
     bashInteractive

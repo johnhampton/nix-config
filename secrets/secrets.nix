@@ -3,4 +3,5 @@ let
 in
 {
   "netrc.age".publicKeys = [ john ];
+  "hosts.yml.age".publicKeys = [ john ];
 }
