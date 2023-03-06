@@ -61,7 +61,6 @@
     home = "/Users/john";
     shell = pkgs.fish;
   };
-  age.identityPaths = [ "/Users/john/.ssh/id_ed25519" ];
   age.secrets.netrc = {
     file = ../secrets/netrc.age;
     path = "/Users/john/.netrc";
