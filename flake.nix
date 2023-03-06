@@ -44,8 +44,23 @@
       inherit (darwin.lib) darwinSystem;
       inherit (inputs.nixpkgs-unstable.lib) attrValues makeOverridable optionalAttrs singleton;
 
-      nixpkgsConfig = {
+      nixpkgsConfig = rec {
         config = { allowUnfree = true; };
+        overlays = [
+          (final: prev: {
+            pkgs-master = import inputs.nixpkgs-master {
+              inherit (prev.stdenv) system;
+              inherit config;
+            };
+          })
+
+          # We need to use the gcloud package from master until the following
+          # PR gets merged into unstable
+          # https://github.com/NixOS/nixpkgs/pull/219376
+          (final: prev: {
+            inherit (prev.pkgs-master) google-cloud-sdk;
+          })
+        ];
       };
 
       homeManagerStateVersion = "22.05";

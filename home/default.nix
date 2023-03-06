@@ -14,23 +14,17 @@
     colima
     docker-client
     dos2unix
+    (google-cloud-sdk.withExtraComponents (with google-cloud-sdk.components; [ cloud_sql_proxy gke-gcloud-auth-plugin ]))
     just
     kind
     kubectl
     kubectx
     kustomize
-    (google-cloud-sdk.withExtraComponents (with google-cloud-sdk.components; [ cloud_sql_proxy gke-gcloud-auth-plugin ]))
     nerdfonts
     ripgrep
     terraform-ls
     watchman
     yadm
-    (haskell-language-server.override { supportedGhcVersions = [ "944" "8107" ]; })
-    haskell.compiler.ghc944
-    # haskell.compiler.ghc8107
-    haskellPackages.cabal-fmt
-
-
   ];
 
   sops.secrets.netrc = { };
