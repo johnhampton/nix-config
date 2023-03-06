@@ -1,11 +1,10 @@
-{ config, pkgs, plugin-foreign-env, sops-nix, ... }:
+{ config, pkgs, plugin-foreign-env, ... }:
 
 {
 
   imports = [
     ./kitty.nix
     ./neovim.nix
-    ./sops.nix
   ];
   home.packages = with pkgs; [
 
@@ -26,8 +25,6 @@
     watchman
     yadm
   ];
-
-  sops.secrets.netrc = { };
 
   home.sessionVariables = {
     EDITOR = "nvim";

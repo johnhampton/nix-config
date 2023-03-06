@@ -26,7 +26,7 @@
 
     keep-outputs = true;
     keep-derivations = true;
-    access-tokens = [ "github.com=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" ];
+    # access-tokens = [ "github.com=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" ];
 
     extra-platforms = lib.mkIf (pkgs.system == "aarch64-darwin") [ "x86_64-darwin" "aarch64-darwin" ];
   };
@@ -60,6 +60,14 @@
     description = "John Hampton";
     home = "/Users/john";
     shell = pkgs.fish;
+  };
+  age.identityPaths = [ "/Users/john/.ssh/id_ed25519" ];
+  age.secrets.netrc = {
+    file = ../secrets/netrc.age;
+    path = "/Users/john/.netrc";
+    mode = "700";
+    owner = "john";
+    group = "staff";
   };
 
   environment.shells = with pkgs; [

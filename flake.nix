@@ -17,10 +17,10 @@
     home-manager.url = github:nix-community/home-manager;
     home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
-    # nix-sops
-    sops-nix.url = "github:Mic92/sops-nix";
-    sops-nix.inputs.nixpkgs.follows = "nixpkgs-unstable";
-    sops-nix.inputs.nixpkgs-stable.follows = "nixpkgs-stable";
+    # agenix
+    agenix.url = "github:ryantm/agenix";
+    agenix.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    agenix.inputs.darwin.follows = "darwin";
 
     flake-compat = { url = "github:edolstra/flake-compat"; flake = false; };
     flake-utils.url = "github:numtide/flake-utils";
@@ -32,12 +32,12 @@
   outputs =
     { self
     , nixpkgs
+    , agenix
     , darwin
     , home-manager
     , flake-utils
     , one-nord
     , plugin-foreign-env
-    , sops-nix
     , ...
     }@inputs:
     let
@@ -72,6 +72,7 @@
       };
 
       nixDarwinCommonModules = [
+        agenix.darwinModules.default
         ./darwin
         # ./darwin/darwin-builder.nix
         home-manager.darwinModules.home-manager
@@ -91,28 +92,31 @@
             home-manager.extraSpecialArgs = {
               inherit one-nord;
               inherit plugin-foreign-env;
-              inherit sops-nix;
             };
           }
         )
       ];
     in
     {
-
       darwinConfigurations = {
         Ava = darwinSystem {
           system = "x86_64-darwin";
           modules = nixDarwinCommonModules ++ [
             ./machines/ava.nix
           ];
-          inputs = { inherit home-manager sops-nix; };
+          inputs = { inherit home-manager; };
         };
 
         "Johns-MacBook-Pro" = darwinSystem {
           system = "aarch64-darwin";
           modules = nixDarwinCommonModules;
-          inputs = { inherit home-manager sops-nix; };
+          inputs = { inherit home-manager; };
         };
       };
-    };
+    } // flake-utils.lib.eachDefaultSystem (system: {
+      devShell = inputs.nixpkgs-unstable.legacyPackages.${system}.mkShell {
+        packages = [ agenix.packages.${system}.default ];
+      };
+
+    });
 }
