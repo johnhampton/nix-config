@@ -17,6 +17,11 @@
     home-manager.url = github:nix-community/home-manager;
     home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
+    # nix-sops
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    sops-nix.inputs.nixpkgs-stable.follows = "nixpkgs-stable";
+
     flake-compat = { url = "github:edolstra/flake-compat"; flake = false; };
     flake-utils.url = "github:numtide/flake-utils";
 
@@ -24,7 +29,17 @@
     plugin-foreign-env = { url = "github:oh-my-fish/plugin-foreign-env"; flake = false; };
   };
 
-  outputs = { self, nixpkgs, darwin, home-manager, flake-utils, one-nord, plugin-foreign-env, ... }@inputs:
+  outputs =
+    { self
+    , nixpkgs
+    , darwin
+    , home-manager
+    , flake-utils
+    , one-nord
+    , plugin-foreign-env
+    , sops-nix
+    , ...
+    }@inputs:
     let
       inherit (darwin.lib) darwinSystem;
       inherit (inputs.nixpkgs-unstable.lib) attrValues makeOverridable optionalAttrs singleton;
@@ -61,6 +76,7 @@
             home-manager.extraSpecialArgs = {
               inherit one-nord;
               inherit plugin-foreign-env;
+              inherit sops-nix;
             };
           }
         )
@@ -74,15 +90,14 @@
           modules = nixDarwinCommonModules ++ [
             ./machines/ava.nix
           ];
-          inputs = { inherit home-manager; };
+          inputs = { inherit home-manager sops-nix; };
         };
 
         "Johns-MacBook-Pro" = darwinSystem {
           system = "aarch64-darwin";
           modules = nixDarwinCommonModules;
-          inputs = { inherit home-manager; };
+          inputs = { inherit home-manager sops-nix; };
         };
       };
-
     };
 }
