@@ -49,6 +49,7 @@
   services.nix-daemon.enable = true;
 
   system.stateVersion = 4;
+  system.defaults.dock.autohide = true;
 
   programs.bash.enable = true;
   programs.fish.enable = true;
