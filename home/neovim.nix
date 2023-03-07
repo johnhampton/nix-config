@@ -99,6 +99,7 @@ in
     { plugin = telescope-nvim; }
     { plugin = telescope-ui-select-nvim; }
     { plugin = telescope-fzf-native-nvim; }
+    { plugin = telescope_hoogle; }
 
     vim-kitty-navigator
   ];
