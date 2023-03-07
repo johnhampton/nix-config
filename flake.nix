@@ -27,6 +27,7 @@
 
     one-nord = { url = "github:rmehri01/onenord.nvim"; flake = false; };
     plugin-foreign-env = { url = "github:oh-my-fish/plugin-foreign-env"; flake = false; };
+    telescope-hoogle-nvim = { url = "github:psiska/telescope-hoogle.nvim"; flake = false; };
   };
 
   outputs =
@@ -59,6 +60,17 @@
           # https://github.com/NixOS/nixpkgs/pull/219376
           (final: prev: {
             inherit (prev.pkgs-master) google-cloud-sdk;
+          })
+
+
+          (final: prev: {
+            vimPlugins = prev.vimPlugins.extend (super: self: {
+              "telescope-hoogle-nvim" = final.vimUtils.buildVimPluginFrom2Nix {
+                pname = "telescope-hoogle.nvim";
+                version = inputs.telescope-hoogle-nvim.lastModifiedDate;
+                src = inputs.telescope-hoogle-nvim;
+              };
+            });
           })
         ];
       };

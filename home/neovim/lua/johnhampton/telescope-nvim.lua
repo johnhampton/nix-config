@@ -85,7 +85,18 @@ telescope.setup({
       require("telescope.themes").get_dropdown({
         -- even more opts
       }),
-
+      hoogle = {
+        render = 'treesitter', -- Select the preview render engine: default|treesitter
+        -- default = simple approach to render the document
+        -- treesitter = render the document by utilizing treesitter's html parser
+        renders = {
+          -- Render specific options
+          treesitter = {
+            remove_wrap = true -- Remove hoogle's own text wrapping. E.g. if you uses neovim's buffer wrapping
+            -- (autocmd User TelescopePreviewerLoaded setlocal wrap)
+          }
+        }
+      }
       -- pseudo code / specification for writing custom displays, like the one
       -- for "codeactions"
       -- specific_opts = {
@@ -134,6 +145,7 @@ local mappings = {
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
     c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
     h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
+    H = { "<cmd>Telescope hoogle list<cr>", "Search Hoogle" },
     M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
     r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
     R = { "<cmd>Telescope registers<cr>", "Registers" },

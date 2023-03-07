@@ -218,7 +218,24 @@
         "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "one-nord": "one-nord",
-        "plugin-foreign-env": "plugin-foreign-env"
+        "plugin-foreign-env": "plugin-foreign-env",
+        "telescope-hoogle-nvim": "telescope-hoogle-nvim"
+      }
+    },
+    "telescope-hoogle-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1659904786,
+        "narHash": "sha256-7flswhLGPqLhnJY+O1Z7LKwBTGZhllqmACRdxDoMHgk=",
+        "owner": "psiska",
+        "repo": "telescope-hoogle.nvim",
+        "rev": "e138b719bbf29935108eb602f179daa18f0d938b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "psiska",
+        "repo": "telescope-hoogle.nvim",
+        "type": "github"
       }
     },
     "utils": {
