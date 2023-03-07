@@ -15,6 +15,7 @@
       "raindropio"
       "raycast"
       "slack"
+      "tuple"
       "zoom"
     ];
     masApps = {
