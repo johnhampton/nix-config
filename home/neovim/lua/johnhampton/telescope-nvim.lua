@@ -114,11 +114,6 @@ telescope.setup({
   },
 })
 
-telescope.load_extension("hoogle")
-telescope.load_extension("fzf")
-telescope.load_extension("ui-select")
-
-
 local opts = {
   mode = "n",     -- NORMAL mode
   prefix = "<leader>",
@@ -127,6 +122,14 @@ local opts = {
   noremap = true, -- use `noremap` when creating keymaps
   nowait = true,  -- use `nowait` when creating keymaps
 }
+
+if vim.fn.executable 'hoogle' ~= 0 then
+  telescope.load_extension("hoogle")
+  wk.register({ ["sH"] = { "<cmd>Telescope hoogle list<cr>", "Search Hoogle" } }, opts)
+end
+telescope.load_extension("fzf")
+telescope.load_extension("ui-select")
+
 
 
 local mappings = {
@@ -145,7 +148,6 @@ local mappings = {
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
     c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
     h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
-    H = { "<cmd>Telescope hoogle list<cr>", "Search Hoogle" },
     M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
     r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
     R = { "<cmd>Telescope registers<cr>", "Registers" },
