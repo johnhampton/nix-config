@@ -86,6 +86,7 @@
     userName = "John Hampton";
     userEmail = "john.hampton@stanfordalumni.org";
 
+
     extraConfig = {
       credential = { helper = "osxkeychain"; };
       pull = { ff = "only"; };
@@ -95,8 +96,18 @@
       };
       mergetool = { prompt = false; };
       merge = { tool = "nvim"; };
+
+      user.signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG4wlxsjNK5Qwk4jSR6p2zQH3/OX9xppmu5FpnmGThzm john.hampton@stanfordalumni.org";
+      gpg.format = "ssh";
+      gpg.ssh.allowedSignersFile = "${config.xdg.configHome}/git/allowed_signers";
+      commit.gpgsign = true;
+      tag.gpgsign = true;
     };
   };
+  xdg.configFile."git/allowed_signers".text = ''
+    john@topagentnetwork.com  ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG4wlxsjNK5Qwk4jSR6p2zQH3/OX9xppmu5FpnmGThzm john.hampton@stanfordalumni.org
+    john.hampton@stanfordalumni.org ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG4wlxsjNK5Qwk4jSR6p2zQH3/OX9xppmu5FpnmGThzm john.hampton@stanfordalumni.org
+  '';
 
   programs.gh.enable = true;
   programs.gh = {
@@ -104,7 +115,7 @@
       git_protocol = "https";
       aliases = {
         co = "pr checkout";
-        tc = "repo clone topagentnetwork/$1";
+        tc = "repo clone topagentnetwork/$1 -- -c 'user.email=john@topagentnetwork.com'";
       };
 
     };
