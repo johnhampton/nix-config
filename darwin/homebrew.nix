@@ -23,6 +23,7 @@
       "Notion Web Clipper" = 1559269364;
       "Save to Raindrop.io" = 1549370672;
       Xcode = 497799835;
+      LimeChat = 414030210;
     };
   };
 }
