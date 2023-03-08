@@ -1,7 +1,7 @@
 { inputs, config, pkgs, lib, ... }:
 {
 
-  imports = [ ./homebrew.nix ];
+  imports = [ ./homebrew.nix ./nixbuild.nix ];
   nix.settings = {
     substituters = [
       "https://cache.nixos.org/"
@@ -23,6 +23,7 @@
       "nix-command"
       "flakes"
     ];
+    builders-use-substitutes = true;
 
     keep-outputs = true;
     keep-derivations = true;
@@ -74,6 +75,15 @@
     mode = "700";
     owner = "john";
     group = "staff";
+  };
+  age.secrets.access_token = {
+    file = ../secrets/access_tokens.conf.age;
+    mode = "700";
+    owner = "john";
+    group = "staff";
+  };
+  age.secrets.ssh_key = {
+    file = ../secrets/id_ed25519.age;
   };
 
   environment.shells = with pkgs; [

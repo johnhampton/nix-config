@@ -1,4 +1,4 @@
-{ config, pkgs, plugin-foreign-env, ... }:
+{ config, pkgs, plugin-foreign-env, access_token, ... }:
 
 {
 
@@ -25,6 +25,10 @@
     watchman
     yadm
   ];
+
+  nix.extraOptions = ''
+    !include ${access_token.path}
+  '';
 
   home.sessionVariables = {
     EDITOR = "nvim";

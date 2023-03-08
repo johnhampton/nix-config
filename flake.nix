@@ -104,6 +104,7 @@
             home-manager.extraSpecialArgs = {
               inherit one-nord;
               inherit plugin-foreign-env;
+              inherit (config.age.secrets) access_token;
             };
           }
         )
