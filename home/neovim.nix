@@ -49,6 +49,7 @@ in
     require('johnhampton.lualine')
     require('johnhampton.project')
     require('johnhampton.impatient')
+    require('johnhampton.gitsigns')
 
     require('johnhampton.telescope-nvim')
 
@@ -85,6 +86,8 @@ in
     cmp_luasnip
     cmp-nvim-lsp
     cmp-nvim-lua
+
+    gitsigns-nvim
 
     luasnip
     friendly-snippets

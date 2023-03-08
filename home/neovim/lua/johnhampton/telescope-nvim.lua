@@ -1,6 +1,5 @@
 local telescope = require "telescope"
 local actions = require("telescope.actions")
-local wk = require("which-key")
 
 telescope.setup({
   defaults = {
@@ -123,9 +122,10 @@ local opts = {
   nowait = true,  -- use `nowait` when creating keymaps
 }
 
+local W = require('johnhampton.which-key-nvim')
 if vim.fn.executable 'hoogle' ~= 0 then
   telescope.load_extension("hoogle")
-  wk.register({ ["sH"] = { "<cmd>Telescope hoogle list<cr>", "Search Hoogle" } }, opts)
+  W.which_key.register({ ["sH"] = { "<cmd>Telescope hoogle list<cr>", "Search Hoogle" } }, W.default_opts)
 end
 telescope.load_extension("fzf")
 telescope.load_extension("ui-select")
@@ -141,6 +141,9 @@ local mappings = {
     "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
     "Find files",
   },
+  go = { "<cmd>Telescope git_status<cr>", "Open changed file" },
+  gb = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
+  gc = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
       ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
       ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
   s = {
@@ -156,4 +159,4 @@ local mappings = {
   },
 }
 
-wk.register(mappings, opts)
+W.which_key.register(mappings, W.default_opts)
