@@ -66,6 +66,10 @@
       }
     ];
 
+    shellAliases = {
+      cloud_sql_proxy_all = "cloud_sql_proxy -projects tan-ng,tan-ng-prod -dir /tmp";
+    };
+
     shellInit = ''
       # nix
       if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish

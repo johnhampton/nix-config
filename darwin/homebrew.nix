@@ -3,7 +3,12 @@
   homebrew.enable = true;
   homebrew = {
     onActivation.cleanup = "uninstall";
-
+    taps = [
+      "txn2/tap"
+    ];
+    brews = [
+      "txn2/tap/kubefwd"
+    ];
     casks = [
       "1password"
       "1password-cli"
@@ -15,6 +20,7 @@
       "raindropio"
       "raycast"
       "slack"
+      "tableplus"
       "tuple"
       "zoom"
     ];

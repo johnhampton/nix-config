@@ -32,6 +32,8 @@
     extra-platforms = lib.mkIf (pkgs.system == "aarch64-darwin") [ "x86_64-darwin" "aarch64-darwin" ];
   };
 
+  services.lorri.enable = true;
+  services.lorri.logFile = "/var/tmp/lorri.log";
 
   # nix.distributedBuilds = true;
   # nix.buildMachines = [{
