@@ -89,8 +89,9 @@
   programs.git = {
     userName = "John Hampton";
     userEmail = "john.hampton@stanfordalumni.org";
-
-
+    aliases = {
+      fix-commit = "commit --edit --file=.git/COMMIT_EDITMSG";
+    };
     extraConfig = {
       credential = { helper = "osxkeychain"; };
       pull = { ff = "only"; };
