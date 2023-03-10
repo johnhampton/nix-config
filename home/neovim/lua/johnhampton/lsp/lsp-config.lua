@@ -14,7 +14,15 @@ local lsps = {
   hls = hls_opts,
   jsonls = json_opts,
   ocamllsp = {},
-  rnix = {},
+  nil_ls = {
+    settings = {
+          ["nil"] = {
+        formatting = {
+          command = { "nixpkgs-fmt" },
+        },
+      },
+    },
+  },
   lua_ls = lua_opts,
   terraformls = {},
   tsserver = {},

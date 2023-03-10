@@ -16,7 +16,12 @@ let
 in
 
 {
-  home.packages = with pkgs; [ fd rnix-lsp sumneko-lua-language-server ];
+  home.packages = with pkgs; [
+    fd
+    nil
+    nixpkgs-fmt
+    sumneko-lua-language-server
+  ];
 
   programs.neovim = {
     enable = true;
@@ -103,7 +108,7 @@ in
     { plugin = telescope-ui-select-nvim; }
     { plugin = telescope-fzf-native-nvim; }
     { plugin = telescope-hoogle-nvim; }
-
+    direnv-vim
     vim-kitty-navigator
   ];
 }
