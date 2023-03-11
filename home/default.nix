@@ -5,6 +5,7 @@
   imports = [
     ./kitty.nix
     ./neovim.nix
+    ./ssh.nix
   ];
   home.packages = with pkgs; [
 
