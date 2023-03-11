@@ -126,6 +126,8 @@
     };
   };
 
+  programs.jq.enable = true;
+
   # https://starship.rs/config/
   programs.starship.enable = true;
   programs.starship.settings = {
