@@ -84,6 +84,10 @@
         eval "$(/usr/local/bin/brew shellenv)"
       end
     '';
+
+    loginShellInit = ''
+      ssh-add --apple-load-keychain -q
+    '';
   };
 
   programs.git.enable = true;
