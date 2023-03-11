@@ -6,15 +6,15 @@
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Package sets
-    nixpkgs-unstable.url = github:NixOS/nixpkgs/nixpkgs-unstable;
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
-    nixpkgs-stable.url = github:NixOS/nixpkgs/nixpkgs-22.05-darwin;
-    nixos-stable.url = github:NixOS/nixpkgs/nixos-22.05;
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixpkgs-22.05-darwin";
+    nixos-stable.url = "github:NixOS/nixpkgs/nixos-22.05";
 
     # Environment/system management
-    darwin.url = github:LnL7/nix-darwin;
+    darwin.url = "github:LnL7/nix-darwin";
     darwin.inputs.nixpkgs.follows = "nixpkgs-unstable";
-    home-manager.url = github:nix-community/home-manager;
+    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     # agenix
@@ -80,10 +80,20 @@
         imports = [
           ./home
           { home.stateVersion = homeManagerStateVersion; }
+          (args: {
+            xdg.configFile."nix/inputs/nixpkgs".source = inputs.nixpkgs-unstable.outPath;
+            home.sessionVariables.NIX_PATH = "nixpkgs=${args.config.xdg.configHome}/nix/inputs/nixpkgs$\{NIX_PATH:+:$NIX_PATH}";
+            nix.registry.nixpkgs.flake = inputs.nixpkgs-unstable;
+          })
         ];
       };
 
       nixDarwinCommonModules = [
+        {
+          environment.etc."nix/inputs/nixpkgs".source = inputs.nixpkgs-unstable.outPath;
+          nix.nixPath = [ "nixpkgs=/etc/nix/inputs/nixpkgs" ];
+          nix.registry.nixpkgs.flake = inputs.nixpkgs-unstable;
+        }
         agenix.darwinModules.default
         ./darwin
         # ./darwin/darwin-builder.nix
