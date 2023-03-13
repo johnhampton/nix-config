@@ -12,6 +12,7 @@
     casks = [
       "1password"
       "1password-cli"
+      "adobe-creative-cloud"
       "artisan"
       "dropbox"
       "insomnia"
