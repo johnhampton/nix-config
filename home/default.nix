@@ -69,6 +69,7 @@
 
     shellAliases = {
       cloud_sql_proxy_all = "cloud_sql_proxy -projects tan-ng,tan-ng-prod -dir /tmp";
+      pf-argcd = "kubectl port-forward -n argocd svc/argocd-server 8080:80";
     };
 
     shellInit = ''
