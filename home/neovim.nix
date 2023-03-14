@@ -110,5 +110,6 @@ in
     { plugin = telescope-hoogle-nvim; }
     direnv-vim
     vim-kitty-navigator
+    b64-nvim
   ];
 }
