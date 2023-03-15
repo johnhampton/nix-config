@@ -111,5 +111,6 @@ in
     direnv-vim
     vim-kitty-navigator
     b64-nvim
+    vim-surround
   ];
 }
