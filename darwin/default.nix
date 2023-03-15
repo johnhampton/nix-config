@@ -71,6 +71,13 @@
     owner = "john";
     group = "staff";
   };
+  age.secrets.npmrc = {
+    file = ../secrets/npmrc.age;
+    path = "/Users/john/.npmrc";
+    mode = "700";
+    owner = "john";
+    group = "staff";
+  };
   age.secrets.gh = {
     file = ../secrets/hosts.yml.age;
     path = "/Users/john/.config/gh/hosts.yml";

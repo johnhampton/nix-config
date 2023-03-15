@@ -9,4 +9,5 @@ in
   "hosts.yml.age".publicKeys = [ john ava mbp ];
   "access_tokens.conf.age".publicKeys = [ john ava mbp ];
   "id_ed25519.age".publicKeys = [ john ava mbp ];
+  "npmrc.age".publicKeys = [ john ava mbp ];
 }
