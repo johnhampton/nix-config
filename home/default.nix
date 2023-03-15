@@ -97,6 +97,7 @@
     userEmail = "john.hampton@stanfordalumni.org";
     aliases = {
       fix-commit = "commit --edit --file=.git/COMMIT_EDITMSG";
+      use-tan-email = "config user.email \"john@topagentnetwork.com\"";
     };
     extraConfig = {
       credential = { helper = "osxkeychain"; };
