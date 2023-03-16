@@ -2,22 +2,16 @@
 
 let
   pluginWithDeps = plugin: deps: plugin.overrideAttrs (_: { dependencies = deps; });
-
-  pluginWithConfig = { plugin, optional ? false, jjextraConfig ? "", deps ? [ ] }:
-    let plugin' = if deps == [ ] then plugin else pluginWithDeps plugin deps; in
-    {
-      plugin = plugin';
-      type = "lua";
-      config = ''
-        require('johnhampton.' .. string.gsub('${plugin.pname}', '%.', '-'))
-      '';
-    };
-
 in
 
 {
   home.packages = with pkgs; [
     fd
+    htop
+    lazygit
+    # NDCU doesn't install because zig is marked as broken. Revisit when 
+    # we upgrade our flakes
+    # ncdu
     nil
     nixpkgs-fmt
     sumneko-lua-language-server
@@ -57,6 +51,7 @@ in
     require('johnhampton.gitsigns')
 
     require('johnhampton.telescope-nvim')
+    require('johnhampton.toggleterm')
 
     EOF
   '';
@@ -112,5 +107,6 @@ in
     vim-kitty-navigator
     b64-nvim
     vim-surround
+    toggleterm-nvim
   ];
 }
