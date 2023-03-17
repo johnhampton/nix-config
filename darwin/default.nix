@@ -53,7 +53,7 @@
 
   system.stateVersion = 4;
   system.defaults.dock.autohide = true;
-
+  system.defaults.NSGlobalDomain."com.apple.keyboard.fnState" = true;
   programs.bash.enable = true;
   programs.fish.enable = true;
   programs.zsh.enable = true;
