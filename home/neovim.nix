@@ -53,6 +53,7 @@ in
     require('johnhampton.telescope-nvim')
     require('johnhampton.toggleterm')
     require('johnhampton.focus')
+    require('johnhampton.indentline')
     EOF
   '';
 
@@ -109,5 +110,6 @@ in
     vim-surround
     toggleterm-nvim
     focus-nvim
+    indent-blankline-nvim
   ];
 }
