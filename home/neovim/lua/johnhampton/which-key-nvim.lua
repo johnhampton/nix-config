@@ -85,16 +85,6 @@ local mappings = {
   --   name = "Git",
   --   g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
   -- },
-  -- w = {
-  --   name = "Window",
-  --   n = { "<cmd>FocusSplitNicely<cr>", "New Split" },
-  --   h = { "<cmd>FocusSplitLeft<cr>", "Split Left" },
-  --   j = { "<cmd>FocusSplitDown<cr>", "Split Down" },
-  --   k = { "<cmd>FocusSplitUp<cr>", "Split Up" },
-  --   l = { "<cmd>FocusSplitRight<cr>", "Split Right" },
-  --   o = { "<cmd>FocusMaximise<cr>", "Maximize" },
-  --       ["="] = { "<cmd>FocusEqualise<cr>", "Equalize" },
-  -- },
 }
 
 which_key.setup(setup)

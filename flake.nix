@@ -25,6 +25,7 @@
     flake-compat = { url = "github:edolstra/flake-compat"; flake = false; };
     flake-utils.url = "github:numtide/flake-utils";
 
+    focus-nvim = { url = "github:beauwilliams/focus.nvim"; flake = false; };
     one-nord = { url = "github:rmehri01/onenord.nvim"; flake = false; };
     plugin-foreign-env = { url = "github:oh-my-fish/plugin-foreign-env"; flake = false; };
     telescope-hoogle-nvim = { url = "github:psiska/telescope-hoogle.nvim"; flake = false; };
@@ -69,6 +70,12 @@
                 pname = "telescope-hoogle.nvim";
                 version = inputs.telescope-hoogle-nvim.lastModifiedDate;
                 src = inputs.telescope-hoogle-nvim;
+              };
+
+              "focus-nvim" = final.vimUtils.buildVimPluginFrom2Nix {
+                pname = "focus-nvim";
+                version = inputs.focus-nvim.lastModifiedDate;
+                src = inputs.focus-nvim;
               };
             });
           })

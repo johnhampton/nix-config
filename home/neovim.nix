@@ -52,7 +52,7 @@ in
 
     require('johnhampton.telescope-nvim')
     require('johnhampton.toggleterm')
-
+    require('johnhampton.focus')
     EOF
   '';
 
@@ -108,5 +108,6 @@ in
     b64-nvim
     vim-surround
     toggleterm-nvim
+    focus-nvim
   ];
 }
