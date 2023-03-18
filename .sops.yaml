@@ -1,0 +1,11 @@
+keys:
+   - &admin_john age1stq425283tespjml4a6w28g582jl8a5wdnl97akjnhu2cufayfjst4xvyh
+creation_rules:
+   - path_regex: sops-secrets/[^/]+\.yaml$
+     key_groups:
+     - age:
+       - *admin_john
+   - path_regex: sops-secrets/john/[^/]+\.yaml$
+     key_groups:
+     - age:
+       - *admin_john

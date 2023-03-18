@@ -22,6 +22,9 @@
     agenix.inputs.nixpkgs.follows = "nixpkgs-unstable";
     agenix.inputs.darwin.follows = "darwin";
 
+    # sops-nix
+    sops-nix.url = "github:Mic92/sops-nix";
+
     flake-compat = { url = "github:edolstra/flake-compat"; flake = false; };
     flake-utils.url = "github:numtide/flake-utils";
 
@@ -122,6 +125,7 @@
               inherit one-nord;
               inherit plugin-foreign-env;
               inherit (config.age.secrets) access_token;
+              inherit (inputs) sops-nix;
             };
           }
         )

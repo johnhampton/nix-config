@@ -6,6 +6,7 @@
     ./kitty.nix
     ./neovim.nix
     ./ssh.nix
+    ./sops.nix
   ];
   home.packages = with pkgs; [
 
