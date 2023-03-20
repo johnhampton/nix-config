@@ -242,15 +242,15 @@
     "telescope-hoogle-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1659904786,
-        "narHash": "sha256-7flswhLGPqLhnJY+O1Z7LKwBTGZhllqmACRdxDoMHgk=",
-        "owner": "psiska",
+        "lastModified": 1679276449,
+        "narHash": "sha256-TmcvK4YiVQ9hREbURvYhaJn6bqy/C32q2ExXAzLGVoo=",
+        "owner": "johnhampton",
         "repo": "telescope-hoogle.nvim",
-        "rev": "e138b719bbf29935108eb602f179daa18f0d938b",
+        "rev": "47bb26531eb0d24a9e24ea11e3c969cd8478fb69",
         "type": "github"
       },
       "original": {
-        "owner": "psiska",
+        "owner": "johnhampton",
         "repo": "telescope-hoogle.nvim",
         "type": "github"
       }

@@ -28,7 +28,7 @@
     focus-nvim = { url = "github:beauwilliams/focus.nvim"; flake = false; };
     one-nord = { url = "github:rmehri01/onenord.nvim"; flake = false; };
     plugin-foreign-env = { url = "github:oh-my-fish/plugin-foreign-env"; flake = false; };
-    telescope-hoogle-nvim = { url = "github:psiska/telescope-hoogle.nvim"; flake = false; };
+    telescope-hoogle-nvim = { url = "github:johnhampton/telescope-hoogle.nvim"; flake = false; };
   };
 
   outputs =
