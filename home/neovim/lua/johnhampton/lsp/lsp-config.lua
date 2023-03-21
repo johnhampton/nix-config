@@ -13,6 +13,15 @@ local lsps = {
   gopls = {},
   hls = hls_opts,
   jsonls = json_opts,
+  ocamlls = {
+    -- settings = {
+    --       ["reason"] = {
+    --     codelens = {
+    --       enabled = false
+    --     },
+    --   }
+    -- }
+  },
   ocamllsp = {},
   nil_ls = {
     settings = {
