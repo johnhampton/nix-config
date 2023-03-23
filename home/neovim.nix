@@ -7,6 +7,7 @@ in
 {
   home.packages = with pkgs; [
     fd
+    glow
     htop
     lazygit
     # NDCU doesn't install because zig is marked as broken. Revisit when 
@@ -54,6 +55,7 @@ in
     require('johnhampton.toggleterm')
     require('johnhampton.focus')
     require('johnhampton.indentline')
+    require('johnhampton.glow')
     EOF
   '';
 
@@ -111,5 +113,6 @@ in
     toggleterm-nvim
     focus-nvim
     indent-blankline-nvim
+    glow-nvim
   ];
 }
