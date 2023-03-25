@@ -13,26 +13,27 @@ local lsps = {
   gopls = {},
   hls = hls_opts,
   jsonls = json_opts,
-  ocamlls = {
-    -- settings = {
-    --       ["reason"] = {
-    --     codelens = {
-    --       enabled = false
-    --     },
-    --   }
-    -- }
-  },
-  ocamllsp = {},
+  lua_ls = lua_opts,
   nil_ls = {
     settings = {
-          ["nil"] = {
+      ["nil"] = {
         formatting = {
           command = { "nixpkgs-fmt" },
         },
       },
     },
   },
-  lua_ls = lua_opts,
+  ocamlls = {},
+  ocamllsp = {},
+  rust_analyzer = {
+    settings = {
+      ["rust-analyzer"] = {
+        files = {
+          excludeDirs = { ".direnv", ".devenv" }
+        }
+      }
+    }
+  },
   terraformls = {},
   tsserver = {},
 }
