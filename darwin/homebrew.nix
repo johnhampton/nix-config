@@ -15,6 +15,7 @@
       "adobe-creative-cloud"
       "artisan"
       "dropbox"
+      "google-drive"
       "insomnia"
       "logseq"
       "mimestream"
