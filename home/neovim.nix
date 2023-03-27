@@ -15,6 +15,7 @@ in
     # ncdu
     nil
     nixpkgs-fmt
+    nodePackages.vscode-langservers-extracted
     sumneko-lua-language-server
   ];
 
