@@ -76,7 +76,7 @@
     };
 
     interactiveShellInit = ''
-      abbr --add --global flake-init --set-cursor 'nix flake init -t johnhampton/flake-templates#%'
+      abbr --add --global flake-init --set-cursor 'nix flake init -t github:johnhampton/flake-templates#%'
     '';
 
     shellInit = ''
