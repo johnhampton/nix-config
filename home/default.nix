@@ -73,6 +73,10 @@
       pf-argcd = "kubectl port-forward -n argocd svc/argocd-server 8080:80";
     };
 
+    interactiveShellInit = ''
+      abbr --add --global flake-init --set-cursor 'nix flake init -t johnhampton/flake-templates#%'
+    '';
+
     shellInit = ''
       # nix
       if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
