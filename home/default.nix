@@ -74,9 +74,12 @@
       cloud_sql_proxy_all = "cloud_sql_proxy -projects tan-ng,tan-ng-prod -dir /tmp";
       devenv-init = "nix flake init --template github:cachix/devenv";
       pf-argocd = "kubectl port-forward -n argocd svc/argocd-server 8080:80";
+      pf-staging = "sudo -E kubefwd svc -n test";
+      pf-prod = "sudo -E kubefwd svc -n prod";
     };
 
     interactiveShellInit = ''
+      # shellAbbrs doesn't support more complex abbreviations
       abbr --add --global flake-init --set-cursor 'nix flake init -t github:johnhampton/flake-templates#%'
     '';
 
