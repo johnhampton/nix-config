@@ -22,6 +22,7 @@
     kubectx
     kustomize
     nerdfonts
+    nix-index
     ripgrep
     terraform-ls
     watchman
