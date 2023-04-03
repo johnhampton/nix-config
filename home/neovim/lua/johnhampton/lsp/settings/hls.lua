@@ -1,5 +1,4 @@
 return {
-  cmd = { "haskell-language-server", "--lsp" },
   filetypes = { "haskell", "lhaskell" },
   settings = {
     haskell = {
