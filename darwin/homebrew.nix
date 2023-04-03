@@ -14,6 +14,7 @@
       "1password-cli"
       "adobe-creative-cloud"
       "artisan"
+      "brave-browser"
       "dropbox"
       "google-drive"
       "insomnia"
