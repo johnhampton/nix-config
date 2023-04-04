@@ -12,6 +12,7 @@
     argocd
     argocd-autopilot
     colima
+    comma
     docker-client
     dos2unix
     (google-cloud-sdk.withExtraComponents (with google-cloud-sdk.components; [ cloud_sql_proxy gke-gcloud-auth-plugin ]))
