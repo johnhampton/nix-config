@@ -24,7 +24,7 @@
       "ctrl+a>a" = "nth_window -1"; # previous pane
       "ctrl+a>q" = "focus_visible_window"; #visually select pane
       "ctrl+a>z" = "toggle_layout stack"; #toggle zoom
-      "ctrl+a>ctrl+a" = "send_text normal,application \\x01"; #send ctrl-a to the terminal
+      "ctrl+a>ctrl+a" = "send_text all \\x01"; #send ctrl-a to the terminal
 
       "ctrl+a>!" = "detach_window new-tab";
 
