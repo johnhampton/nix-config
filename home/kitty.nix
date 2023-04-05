@@ -20,9 +20,21 @@
       "ctrl+h" = "kitten pass_keys.py neighboring_window left   ctrl+h";
       "ctrl+l" = "kitten pass_keys.py neighboring_window right  ctrl+l";
 
-      "cmd+a>|" = "launch --cwd current --location vsplit";
-      "cmd+a>-" = "launch --cwd current --location hsplit";
-      "cmd+a>z" = "toggle_layout stack";
+      # tmux-like mappings 
+      "ctrl+a>a" = "nth_window -1"; # previous pane
+      "ctrl+a>q" = "focus_visible_window"; #visually select pane
+      "ctrl+a>z" = "toggle_layout stack"; #toggle zoom
+      "ctrl+a>ctrl+a" = "send_text normal,application \\x01"; #send ctrl-a to the terminal
+
+      # similate behavior from tmux-pain-control
+      # https://github.com/tmux-plugins/tmux-pain-control
+      # splitting
+      "ctrl+a>|" = "launch --cwd current --location vsplit";
+      "ctrl+a>\\" = "combine : launch --cwd current --location vsplit : layout_action move_to_screen_edge right";
+      "ctrl+a>-" = "launch --cwd current --location hsplit";
+      "ctrl+a>_" = "combine : launch --cwd current --location hsplit : layout_action move_to_screen_edge bottom";
+      # resizing
+      # TODO I'll need a kitten for resizing
     };
     extraConfig = ''
       include ${one-nord}/extras/kitty/onenord.conf
