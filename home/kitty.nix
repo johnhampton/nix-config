@@ -21,7 +21,7 @@
       "ctrl+l" = "kitten pass_keys.py neighboring_window right  ctrl+l";
 
       # tmux-like mappings 
-      "ctrl+a>a" = "nth_window -1"; # previous pane
+      "ctrl+a>;" = "nth_window -1"; # previous pane
       "ctrl+a>q" = "focus_visible_window"; #visually select pane
       "ctrl+a>z" = "toggle_layout stack"; #toggle zoom
       "ctrl+a>ctrl+a" = "send_text all \\x01"; #send ctrl-a to the terminal
@@ -35,7 +35,7 @@
       "ctrl+a>w" = "select_tab";
       "ctrl+a>n" = "next_tab";
       "ctrl+a>p" = "previous_tab";
-      "ctrl+a>l" = "goto_tab -1";
+      "ctrl+a>a" = "goto_tab -1";
       "ctrl+a>shift+." = "move_tab_forward";
       "ctrl+a>shift+," = "move_tab_backward";
 
