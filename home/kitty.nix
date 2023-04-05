@@ -26,7 +26,7 @@
       "ctrl+a>q" = "focus_visible_window"; #visually select pane
       "ctrl+a>z" = "toggle_layout stack"; #toggle zoom
       "ctrl+a>ctrl+a" = "send_text all \\x01"; #send ctrl-a to the terminal
-
+      "ctrl+a>x" = "close_window_with_confirmation ignore-shell";
       "ctrl+a>!" = "detach_window new-tab";
 
       "ctrl+a>shift+r" = "load_config_file";
@@ -39,6 +39,7 @@
       "ctrl+a>a" = "goto_tab -1";
       "ctrl+a>shift+." = "move_tab_forward";
       "ctrl+a>shift+," = "move_tab_backward";
+      "ctrl+a>shift+7" = "close_tab";
 
       "ctrl+a>1" = "goto_tab 1";
       "ctrl+a>2" = "goto_tab 2";
