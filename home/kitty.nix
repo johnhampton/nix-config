@@ -26,6 +26,19 @@
       "ctrl+a>z" = "toggle_layout stack"; #toggle zoom
       "ctrl+a>ctrl+a" = "send_text normal,application \\x01"; #send ctrl-a to the terminal
 
+      "ctrl+a>!" = "detach_window new-tab";
+
+      "ctrl+a>shift+r" = "load_config_file";
+
+      "ctrl+a>c" = "new_tab_with_cwd";
+      "ctrl+a>," = "set_tab_title";
+      "ctrl+a>w" = "select_tab";
+      "ctrl+a>n" = "next_tab";
+      "ctrl+a>p" = "previous_tab";
+      "ctrl+a>l" = "goto_tab -1";
+      "ctrl+a>shift+." = "move_tab_forward";
+      "ctrl+a>shift+," = "move_tab_backward";
+
       # similate behavior from tmux-pain-control
       # https://github.com/tmux-plugins/tmux-pain-control
       # splitting
