@@ -13,6 +13,7 @@
       macos_option_as_alt = "left";
       macos_quit_when_last_window_closed = "yes";
       tab_bar_style = "powerline";
+      tab_title_template = ''{index}:{title}{"*Z" if layout_name == "stack" else ""}'';
     };
     keybindings = {
       "ctrl+j" = "kitten pass_keys.py neighboring_window bottom ctrl+j";
@@ -38,6 +39,16 @@
       "ctrl+a>a" = "goto_tab -1";
       "ctrl+a>shift+." = "move_tab_forward";
       "ctrl+a>shift+," = "move_tab_backward";
+
+      "ctrl+a>1" = "goto_tab 1";
+      "ctrl+a>2" = "goto_tab 2";
+      "ctrl+a>3" = "goto_tab 3";
+      "ctrl+a>4" = "goto_tab 4";
+      "ctrl+a>5" = "goto_tab 5";
+      "ctrl+a>6" = "goto_tab 6";
+      "ctrl+a>7" = "goto_tab 7";
+      "ctrl+a>8" = "goto_tab 8";
+      "ctrl+a>9" = "goto_tab 9";
 
       # similate behavior from tmux-pain-control
       # https://github.com/tmux-plugins/tmux-pain-control
