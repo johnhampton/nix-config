@@ -15,6 +15,8 @@ null_ls.setup({
     formatting.cabal_fmt,
     diagnostics.eslint_d,
     -- diagnostics.flake8
+    diagnostics.yamllint,
+    formatting.yamlfmt
   },
   on_attach = require("johnhampton.lsp.handlers").on_attach,
 })
