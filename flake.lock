@@ -127,19 +127,6 @@
         "type": "github"
       }
     },
-    "nixpkgs": {
-      "locked": {
-        "lastModified": 1677852945,
-        "narHash": "sha256-liiVJjkBTuBTAkRW3hrI8MbPD2ImYzwUpa7kvteiKhM=",
-        "path": "/nix/store/cgfz9cycn82cwhvpaskq80bfw0k711gq-source",
-        "rev": "f5ffd5787786dde3a8bf648c7a1b5f78c4e01abb",
-        "type": "path"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "type": "indirect"
-      }
-    },
     "nixpkgs-master": {
       "locked": {
         "lastModified": 1679669765,
@@ -229,13 +216,13 @@
         "focus-nvim": "focus-nvim",
         "home-manager": "home-manager",
         "nixos-stable": "nixos-stable",
-        "nixpkgs": "nixpkgs",
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "one-nord": "one-nord",
         "plugin-foreign-env": "plugin-foreign-env",
-        "telescope-hoogle-nvim": "telescope-hoogle-nvim"
+        "telescope-hoogle-nvim": "telescope-hoogle-nvim",
+        "treesitter-just": "treesitter-just"
       }
     },
     "telescope-hoogle-nvim": {
@@ -251,6 +238,22 @@
       "original": {
         "owner": "johnhampton",
         "repo": "telescope-hoogle.nvim",
+        "type": "github"
+      }
+    },
+    "treesitter-just": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1679148267,
+        "narHash": "sha256-Qs0Klt9uj6Vgs4vJrjKXYD8nNe8KYdWCnADvogm4/l0=",
+        "owner": "IndianBoy42",
+        "repo": "tree-sitter-just",
+        "rev": "4e5f5f3ff37b12a1bbf664eb3966b3019e924594",
+        "type": "github"
+      },
+      "original": {
+        "owner": "IndianBoy42",
+        "repo": "tree-sitter-just",
         "type": "github"
       }
     },

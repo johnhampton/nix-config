@@ -70,7 +70,20 @@ in
     { plugin = which-key-nvim; }
 
     # treesitter
-    { plugin = nvim-treesitter.withAllGrammars; }
+    {
+      plugin = (nvim-treesitter.withPlugins (p: ([ pkgs.tree-sitter-grammars.tree-sitter-just ]
+        ++ nvim-treesitter.allGrammars)));
+    }
+    {
+      plugin = tree-sitter-just;
+      type = "lua";
+      config = ''
+        require('tree-sitter-just').setup({ 
+          ["local"] = true 
+        })
+      '';
+    }
+
 
     # Comment
     { plugin = nvim-ts-context-commentstring; }

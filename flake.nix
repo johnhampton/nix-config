@@ -28,13 +28,12 @@
     focus-nvim = { url = "github:beauwilliams/focus.nvim"; flake = false; };
     one-nord = { url = "github:rmehri01/onenord.nvim"; flake = false; };
     plugin-foreign-env = { url = "github:oh-my-fish/plugin-foreign-env"; flake = false; };
+    treesitter-just = { url = "github:IndianBoy42/tree-sitter-just"; flake = false; };
     telescope-hoogle-nvim = { url = "github:johnhampton/telescope-hoogle.nvim"; flake = false; };
   };
 
   outputs =
-    { self
-    , nixpkgs
-    , agenix
+    { agenix
     , darwin
     , home-manager
     , flake-utils
@@ -44,49 +43,24 @@
     }@inputs:
     let
       inherit (darwin.lib) darwinSystem;
-      inherit (inputs.nixpkgs-unstable.lib) attrValues makeOverridable optionalAttrs singleton;
 
       nixpkgsConfig = rec {
         config = { allowUnfree = true; };
         overlays = [
-          (final: prev: {
+          # We need to use the gcloud package from master until the following
+          # PR gets merged into unstable
+          # https://github.com/NixOS/nixpkgs/pull/219376
+          (final: prev: rec {
             pkgs-master = import inputs.nixpkgs-master {
               inherit (prev.stdenv) system;
               inherit config;
             };
+
+            inherit (pkgs-master) google-cloud-sdk;
           })
 
-          # We need to use the gcloud package from master until the following
-          # PR gets merged into unstable
-          # https://github.com/NixOS/nixpkgs/pull/219376
-          (final: prev: {
-            inherit (prev.pkgs-master) google-cloud-sdk;
-          })
-
-          (final: prev: {
-            vimPlugins = prev.vimPlugins.extend (vfinal: vprev: {
-              "telescope-hoogle-nvim" = final.vimUtils.buildVimPluginFrom2Nix {
-                pname = "telescope-hoogle.nvim";
-                version = inputs.telescope-hoogle-nvim.lastModifiedDate;
-                src = inputs.telescope-hoogle-nvim;
-              };
-
-              "focus-nvim" = final.vimUtils.buildVimPluginFrom2Nix {
-                pname = "focus-nvim";
-                version = inputs.focus-nvim.lastModifiedDate;
-                src = inputs.focus-nvim;
-              };
-              # We temporarily need this. Remove at a later date.
-              "nvim-tree-lua" = vprev.nvim-tree-lua.overrideAttrs (finalAttrs: prevAttrs: {
-                src = final.fetchFromGitHub {
-                  owner = "nvim-tree";
-                  repo = "nvim-tree.lua";
-                  rev = "a38f9a55a4b55b0aa18af7abfde2c17a30959bdf";
-                  sha256 = "sha256-YC+/+u1UD4eOf0SXTRTmAQe3M9hjAVbTUv0gqkrXGSc=";
-                };
-              });
-            });
-          })
+          (import ./overlays/tree-sitter.nix { inherit inputs; })
+          (import ./overlays/vimPlugins.nix { inherit inputs; })
         ];
       };
 
@@ -151,10 +125,16 @@
           inputs = { inherit home-manager; };
         };
       };
-    } // flake-utils.lib.eachDefaultSystem (system: {
-      devShell = inputs.nixpkgs-unstable.legacyPackages.${system}.mkShell {
+    } // flake-utils.lib.eachDefaultSystem (system:
+    let
+      pkgs =
+        import inputs.nixpkgs-unstable { inherit (nixpkgsConfig) config overlays; inherit system; };
+    in
+    {
+      legacyPackages = pkgs;
+
+      devShell = pkgs.mkShell {
         packages = [ agenix.packages.${system}.default ];
       };
-
     });
 }
