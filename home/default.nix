@@ -118,6 +118,8 @@
 
   programs.jq.enable = true;
 
+  programs.navi.enable = true;
+
   # https://starship.rs/config/
   programs.starship.enable = true;
   programs.starship.settings = {
