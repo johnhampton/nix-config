@@ -122,7 +122,6 @@ in
     { plugin = telescope-ui-select-nvim; }
     { plugin = telescope-fzf-native-nvim; }
     { plugin = telescope-hoogle-nvim; }
-    direnv-vim
     b64-nvim
     vim-surround
     toggleterm-nvim
