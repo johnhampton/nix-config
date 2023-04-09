@@ -29,6 +29,8 @@
       bind-key -T copy-mode-vi 'y' send-keys -X copy-selection-and-cancel
 
       bind-key a last-window
+      bind-key C-a send-prefix
+      
       bind-key C-p previous-window
       bind-key C-n next-window
     '';
