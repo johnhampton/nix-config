@@ -14,6 +14,7 @@
       macos_quit_when_last_window_closed = "yes";
       tab_bar_style = "powerline";
       tab_title_template = ''{index}:{title}{"*Z" if layout_name == "stack" else ""}'';
+      update_check_interval = 0;
     };
     keybindings = {
       "ctrl+j" = "kitten pass_keys.py neighboring_window bottom ctrl+j";
