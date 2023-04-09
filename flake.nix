@@ -26,7 +26,6 @@
     flake-utils.url = "github:numtide/flake-utils";
 
     focus-nvim = { url = "github:beauwilliams/focus.nvim"; flake = false; };
-    one-nord = { url = "github:rmehri01/onenord.nvim"; flake = false; };
     plugin-foreign-env = { url = "github:oh-my-fish/plugin-foreign-env"; flake = false; };
     treesitter-just = { url = "github:IndianBoy42/tree-sitter-just"; flake = false; };
     telescope-hoogle-nvim = { url = "github:johnhampton/telescope-hoogle.nvim"; flake = false; };
@@ -37,7 +36,6 @@
     , darwin
     , home-manager
     , flake-utils
-    , one-nord
     , plugin-foreign-env
     , ...
     }@inputs:
@@ -101,7 +99,6 @@
             home-manager.useGlobalPkgs = true;
             home-manager.users.${primaryUser} = homeManagerCommonConfig;
             home-manager.extraSpecialArgs = {
-              inherit one-nord;
               inherit plugin-foreign-env;
               inherit (config.age.secrets) access_token;
             };

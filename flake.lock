@@ -175,22 +175,6 @@
         "type": "github"
       }
     },
-    "one-nord": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1678554741,
-        "narHash": "sha256-uQh7M4SKRWQvV+8pCmXWwUWveN4wUG4Y66XKWaIVBRw=",
-        "owner": "rmehri01",
-        "repo": "onenord.nvim",
-        "rev": "9a59d47db81e566d4e254904479f129cfffe5f21",
-        "type": "github"
-      },
-      "original": {
-        "owner": "rmehri01",
-        "repo": "onenord.nvim",
-        "type": "github"
-      }
-    },
     "plugin-foreign-env": {
       "flake": false,
       "locked": {
@@ -219,7 +203,6 @@
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-unstable": "nixpkgs-unstable",
-        "one-nord": "one-nord",
         "plugin-foreign-env": "plugin-foreign-env",
         "telescope-hoogle-nvim": "telescope-hoogle-nvim",
         "treesitter-just": "treesitter-just"

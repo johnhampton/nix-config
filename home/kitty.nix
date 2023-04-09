@@ -1,4 +1,4 @@
-{ pkgs, one-nord, ... }:
+{ pkgs, ... }:
 {
   programs.kitty.enable = true;
   programs.kitty = {
@@ -62,7 +62,7 @@
       # TODO I'll need a kitten for resizing
     };
     extraConfig = ''
-      include ${one-nord}/extras/kitty/onenord.conf
+      include ${pkgs.vimPlugins.onenord-nvim.src}/extras/kitty/onenord.conf
     '';
   };
 
