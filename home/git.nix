@@ -38,6 +38,9 @@
       "Network Trash Folder"
       "Temporary Items"
       ".apdisk"
+
+      ".direnv"
+      ".devenv"
     ];
     extraConfig = {
       credential = { helper = "osxkeychain"; };
