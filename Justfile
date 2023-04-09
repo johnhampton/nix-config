@@ -8,10 +8,6 @@ FLAKE := trim_end_match(HOSTNAME, ".local")
 SYSTEM := "darwinConfigurations." + FLAKE + ".system"
 export NIXPKGS_ALLOW_UNFREE := "1"
 
-# Show this list of recipes
-help:
-    @just --list --unsorted
-
 # Switch to a new generation and clean up
 switch *args='': (rebuild-switch args) clean
 
