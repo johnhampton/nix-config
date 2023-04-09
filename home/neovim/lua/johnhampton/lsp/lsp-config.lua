@@ -23,6 +23,7 @@ local lsps = {
       },
     },
   },
+  pyright = {},
   ocamlls = {},
   ocamllsp = {},
   rust_analyzer = {
