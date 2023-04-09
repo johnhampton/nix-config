@@ -5,6 +5,8 @@ let
 in
 
 {
+  imports = [ ./neovim/navigator.nix ];
+
   home.packages = with pkgs; [
     fd
     glow
@@ -121,7 +123,6 @@ in
     { plugin = telescope-fzf-native-nvim; }
     { plugin = telescope-hoogle-nvim; }
     direnv-vim
-    vim-kitty-navigator
     b64-nvim
     vim-surround
     toggleterm-nvim
