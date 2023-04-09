@@ -5,7 +5,7 @@
     ./alacritty.nix
     ./git.nix
     ./kitty.nix
-    ./neovim.nix
+    ./neovim
     ./ssh.nix
     ./tmux.nix
   ];

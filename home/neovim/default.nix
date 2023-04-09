@@ -5,7 +5,7 @@ let
 in
 
 {
-  imports = [ ./neovim/navigator.nix ];
+  imports = [ ./navigator.nix ];
 
   home.packages = with pkgs; [
     fd
@@ -27,7 +27,7 @@ in
     vimAlias = true;
   };
 
-  xdg.configFile."nvim/lua".source = ./neovim/lua;
+  xdg.configFile."nvim/lua".source = ./lua;
   xdg.configFile."nvim/lua".recursive = true;
 
   programs.neovim.extraConfig = ''
