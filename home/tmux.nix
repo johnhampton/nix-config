@@ -1,10 +1,11 @@
 { pkgs, ... }: {
   # We need this in order to 
-  home.packages = [ pkgs.ncurses5 ];
+  home.packages = [ pkgs.ansifilter pkgs.ncurses5 ];
+
   programs.tmux.enable = true;
   programs.tmux = {
     baseIndex = 1;
-    historyLimit = 10000;
+    historyLimit = 50000;
     keyMode = "vi";
     mouse = true;
     sensibleOnTop = true;
@@ -12,6 +13,7 @@
     terminal = "tmux-256color";
 
     plugins = [
+      pkgs.tmuxPlugins.logging
       pkgs.tmuxPlugins.nord
       pkgs.tmuxPlugins.pain-control
       pkgs.tmuxPlugins.sessionist
@@ -74,7 +76,7 @@
 
       set-option -g display-panes-time 2000
 
-      set -g status-right-length 25
+      set -g status-left-length 25
     '';
   };
 

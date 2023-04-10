@@ -9,7 +9,7 @@
       return s == nil or s == '''
     end
 
-    if isempty(vim.env.KITTY_WINDOW_ID) then
+    if isempty(vim.env.KITTY_WINDOW_ID) or not isempty(vim.env.TMUX) then
       vim.cmd "packadd vim-tmux-navigator"
     else 
       vim.cmd "packadd vim-kitty-navigator"

@@ -1,5 +1,38 @@
 { pkgs, ... }:
+let
+  font_features = (features: builtins.concatStringsSep "\n" (map (f: "font_features ${f} ${features}")
+    [
+      "IosevkaNerdFontComplete-Bold"
+      "IosevkaNerdFontComplete-BoldItalic"
+      "IosevkaNerdFontComplete-ObliqueBold"
+      "IosevkaNerdFontComplete-ExtraBold"
+      "IosevkaNerdFontComplete-ExtraBoldItalic"
+      "IosevkaNerdFontComplete-ExtraBoldOblique"
+      "IosevkaNerdFontComplete-ExtraLight"
+      "IosevkaNerdFontComplete-ExtraLightItalic"
+      "IosevkaNerdFontComplete-ExtraLightOblique"
+      "IosevkaNerdFontComplete-Heavy"
+      "IosevkaNerdFontComplete-HeavyItalic"
+      "IosevkaNerdFontComplete-HeavyOblique"
+      "IosevkaNerdFontComplete-Italic"
+      "IosevkaNerdFontComplete-Light"
+      "IosevkaNerdFontComplete-LightItalic"
+      "IosevkaNerdFontComplete-LightOblique"
+      "IosevkaNerdFontComplete-Medium"
+      "IosevkaNerdFontComplete-MediumItalic"
+      "IosevkaNerdFontComplete-MediumOblique"
+      "IosevkaNerdFontComplete-Oblique"
+      "IosevkaNerdFontComplete"
+      "IosevkaNerdFontComplete-SemiBold"
+      "IosevkaNerdFontComplete-SemiBoldItalic"
+      "IosevkaNerdFontComplete-SemiBoldOblique"
+      "IosevkaNerdFontComplete-Thin"
+      "IosevkaNerdFontComplete-ThinItalic"
+      "IosevkaNerdFontComplete-ThinOblique"
+    ]));
+in
 {
+
   programs.kitty.enable = true;
   programs.kitty = {
     font = {
@@ -16,53 +49,9 @@
       tab_title_template = ''{index}:{title}{"*Z" if layout_name == "stack" else ""}'';
       update_check_interval = 0;
     };
-    keybindings = {
-      "ctrl+j" = "kitten pass_keys.py neighboring_window bottom ctrl+j";
-      "ctrl+k" = "kitten pass_keys.py neighboring_window top    ctrl+k";
-      "ctrl+h" = "kitten pass_keys.py neighboring_window left   ctrl+h";
-      "ctrl+l" = "kitten pass_keys.py neighboring_window right  ctrl+l";
-
-      # tmux-like mappings 
-      "ctrl+a>;" = "nth_window -1"; # previous pane
-      "ctrl+a>q" = "focus_visible_window"; #visually select pane
-      "ctrl+a>z" = "toggle_layout stack"; #toggle zoom
-      "ctrl+a>ctrl+a" = "send_text all \\x01"; #send ctrl-a to the terminal
-      "ctrl+a>x" = "close_window_with_confirmation ignore-shell";
-      "ctrl+a>!" = "detach_window new-tab";
-
-      "ctrl+a>shift+r" = "load_config_file";
-
-      "ctrl+a>c" = "new_tab_with_cwd";
-      "ctrl+a>," = "set_tab_title";
-      "ctrl+a>w" = "select_tab";
-      "ctrl+a>n" = "next_tab";
-      "ctrl+a>p" = "previous_tab";
-      "ctrl+a>a" = "goto_tab -1";
-      "ctrl+a>shift+." = "move_tab_forward";
-      "ctrl+a>shift+," = "move_tab_backward";
-      "ctrl+a>shift+7" = "close_tab";
-
-      "ctrl+a>1" = "goto_tab 1";
-      "ctrl+a>2" = "goto_tab 2";
-      "ctrl+a>3" = "goto_tab 3";
-      "ctrl+a>4" = "goto_tab 4";
-      "ctrl+a>5" = "goto_tab 5";
-      "ctrl+a>6" = "goto_tab 6";
-      "ctrl+a>7" = "goto_tab 7";
-      "ctrl+a>8" = "goto_tab 8";
-      "ctrl+a>9" = "goto_tab 9";
-
-      # similate behavior from tmux-pain-control
-      # https://github.com/tmux-plugins/tmux-pain-control
-      # splitting
-      "ctrl+a>|" = "launch --cwd current --location vsplit";
-      "ctrl+a>\\" = "combine : launch --cwd current --location vsplit : layout_action move_to_screen_edge right";
-      "ctrl+a>-" = "launch --cwd current --location hsplit";
-      "ctrl+a>_" = "combine : launch --cwd current --location hsplit : layout_action move_to_screen_edge bottom";
-      # resizing
-      # TODO I'll need a kitten for resizing
-    };
     extraConfig = ''
+      ${font_features "-calt +HSKL"}
+
       include ${pkgs.vimPlugins.onenord-nvim.src}/extras/kitty/onenord.conf
     '';
   };
