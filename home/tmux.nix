@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, config, ... }: {
   # We need this in order to 
   home.packages = [ pkgs.ansifilter pkgs.ncurses5 ];
 
@@ -72,11 +72,16 @@
       set-option -w -g automatic-rename off
 
       # I don't think we need reattach-to-user-namespace anymore
-      set-option -g default-command ""
+      set-option -gu default-command
 
       set-option -g display-panes-time 2000
 
       set -g status-left-length 25
+
+      # tmux-logging
+      set-option -g "@logging-path" ${config.home.homeDirectory}/Documents/TMUX 
+      set-option -g "@screen-capture-path" ${config.home.homeDirectory}/Documents/TMUX 
+      set-option -g "@save-complete-history-path" ${config.home.homeDirectory}/Documents/TMUX 
     '';
   };
 
