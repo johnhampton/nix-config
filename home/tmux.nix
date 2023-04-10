@@ -6,6 +6,7 @@
     baseIndex = 1;
     historyLimit = 10000;
     keyMode = "vi";
+    mouse = true;
     sensibleOnTop = true;
     shortcut = "a";
     terminal = "tmux-256color";
