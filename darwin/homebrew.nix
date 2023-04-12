@@ -20,6 +20,7 @@
       "insomnia"
       "logseq"
       "mimestream"
+      "obsidian"
       "notion"
       "raindropio"
       "raycast"
