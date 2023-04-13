@@ -4,9 +4,15 @@ let inherit (pkgs.tmuxPlugins) t-smart-tmux-session-manager; in {
     inherit (pkgs) fd fzf zoxide;
   };
 
-  programs.tmux.plugins = [
-    t-smart-tmux-session-manager
-  ];
+  programs.tmux = {
+    plugins = [
+      t-smart-tmux-session-manager
+    ];
+
+    extraConfig = ''
+      set -g @t-fzf-prompt '  '
+    '';
+  };
 
   programs.fish = {
     shellAbbrs = {
@@ -17,7 +23,7 @@ let inherit (pkgs.tmuxPlugins) t-smart-tmux-session-manager; in {
     '';
   };
 
-  programs.tmux.extraConfig = ''
-    set -g @t-fzf-prompt '  '
-  '';
+  programs.kitty.keybindings = {
+    "cmd+j" = "send_text all \\x01T";
+  };
 }
