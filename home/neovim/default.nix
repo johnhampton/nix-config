@@ -8,7 +8,6 @@ in
   imports = [ ./navigator.nix ];
 
   home.packages = with pkgs; [
-    fd
     glow
     htop
     lazygit

@@ -17,7 +17,7 @@
     comma
     docker-client
     dos2unix
-    fzf
+    fd
     (google-cloud-sdk.withExtraComponents (with google-cloud-sdk.components; [ cloud_sql_proxy gke-gcloud-auth-plugin ]))
     graphite-cli
     just
@@ -41,8 +41,6 @@
     EDITOR = "nvim";
     USE_GKE_GCLOUD_AUTH_PLUGIN = "True";
   };
-
-  programs.autojump.enable = true;
 
   programs.bat.enable = true;
   programs.bat = {
@@ -106,6 +104,12 @@
       ssh-add --apple-load-keychain -q
     '';
   };
+
+  programs.fzf.enable = true;
+  programs.fzf = {
+    tmux.enableShellIntegration = true;
+  };
+  programs.zoxide.enable = true;
 
   programs.gh.enable = true;
   programs.gh = {

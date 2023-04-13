@@ -78,10 +78,18 @@
 
       set -g status-left-length 25
 
+      bind-key -n M-g if-shell -F '#{==:#{session_name},scratch}' {
+        detach-client
+      } {
+        display-popup -E "tmux new-session -A -s scratch"
+      }
+
       # tmux-logging
       set-option -g "@logging-path" ${config.home.homeDirectory}/Documents/TMUX 
       set-option -g "@screen-capture-path" ${config.home.homeDirectory}/Documents/TMUX 
       set-option -g "@save-complete-history-path" ${config.home.homeDirectory}/Documents/TMUX 
+
+      set-option -g detach-on-destroy off
     '';
   };
 
