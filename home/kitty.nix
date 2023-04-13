@@ -35,6 +35,9 @@ in
 
   programs.kitty.enable = true;
   programs.kitty = {
+    keybindings = {
+      "cmd+j" = "send_text all \\x01T";
+    };
     font = {
       name = "Iosevka Nerd Font";
       size = 14;
