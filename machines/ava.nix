@@ -8,6 +8,5 @@
       "iPhone USB"
       "Thunderbolt Bridge"
     ];
-
   };
 }
