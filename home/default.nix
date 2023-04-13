@@ -7,7 +7,7 @@
     ./kitty.nix
     ./neovim
     ./ssh.nix
-    ./tmux.nix
+    ./tmux
   ];
   home.packages = with pkgs; [
 

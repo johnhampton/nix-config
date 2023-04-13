@@ -204,8 +204,25 @@
         "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "plugin-foreign-env": "plugin-foreign-env",
+        "t-smart-tmux-session-manager": "t-smart-tmux-session-manager",
         "telescope-hoogle-nvim": "telescope-hoogle-nvim",
         "treesitter-just": "treesitter-just"
+      }
+    },
+    "t-smart-tmux-session-manager": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1679506672,
+        "narHash": "sha256-N6r4br06bs5WA6gkY+avX/lMRUEZjxSXawJOgzhHQOw=",
+        "owner": "joshmedeski",
+        "repo": "t-smart-tmux-session-manager",
+        "rev": "15dbdcfd9cff0ee16456bdfaad4d2cc2a8f8fc20",
+        "type": "github"
+      },
+      "original": {
+        "owner": "joshmedeski",
+        "repo": "t-smart-tmux-session-manager",
+        "type": "github"
       }
     },
     "telescope-hoogle-nvim": {

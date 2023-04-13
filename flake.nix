@@ -29,6 +29,7 @@
     plugin-foreign-env = { url = "github:oh-my-fish/plugin-foreign-env"; flake = false; };
     treesitter-just = { url = "github:IndianBoy42/tree-sitter-just"; flake = false; };
     telescope-hoogle-nvim = { url = "github:johnhampton/telescope-hoogle.nvim"; flake = false; };
+    t-smart-tmux-session-manager = { url = "github:joshmedeski/t-smart-tmux-session-manager"; flake = false; };
   };
 
   outputs =
@@ -58,6 +59,7 @@
           })
 
           (import ./overlays/tree-sitter.nix { inherit inputs; })
+          (import ./overlays/tmuxPlugins.nix { inherit inputs; })
           (import ./overlays/vimPlugins.nix { inherit inputs; })
         ];
       };

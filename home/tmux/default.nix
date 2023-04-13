@@ -1,4 +1,5 @@
 { pkgs, config, ... }: {
+  imports = [ ./t-smart-tmux-session-manager.nix ];
   # We need this in order to 
   home.packages = [ pkgs.ansifilter pkgs.ncurses5 ];
 
