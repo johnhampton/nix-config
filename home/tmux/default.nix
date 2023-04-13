@@ -91,6 +91,9 @@
       set-option -g "@save-complete-history-path" ${config.home.homeDirectory}/Documents/TMUX 
 
       set-option -g detach-on-destroy off
+
+      set-option -sa terminal-features ',xterm-kitty:RGB'
+      set-option -sg escape-time 10
     '';
   };
 
