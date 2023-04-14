@@ -151,6 +151,10 @@ local mappings = {
     "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
     "Find files",
   },
+  r = {
+    "<cmd>lua require('telescope.builtin').resume()<cr>",
+    "Open the previous picker",
+  },
   go = { "<cmd>Telescope git_status<cr>", "Open changed file" },
   gb = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
   gc = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
