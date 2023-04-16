@@ -27,6 +27,7 @@
 
     focus-nvim = { url = "github:beauwilliams/focus.nvim"; flake = false; };
     plugin-foreign-env = { url = "github:oh-my-fish/plugin-foreign-env"; flake = false; };
+    pragmata-pro = { url = "github:johnhampton/pragmata-pro"; };
     treesitter-just = { url = "github:IndianBoy42/tree-sitter-just"; flake = false; };
     telescope-hoogle-nvim = { url = "github:johnhampton/telescope-hoogle.nvim"; flake = false; };
     t-smart-tmux-session-manager = { url = "github:joshmedeski/t-smart-tmux-session-manager"; flake = false; };
@@ -57,7 +58,7 @@
 
             inherit (pkgs-master) google-cloud-sdk;
           })
-
+          inputs.pragmata-pro.overlays.default
           (import ./overlays/tree-sitter.nix { inherit inputs; })
           (import ./overlays/tmuxPlugins.nix { inherit inputs; })
           (import ./overlays/vimPlugins.nix { inherit inputs; })
@@ -103,6 +104,7 @@
             home-manager.extraSpecialArgs = {
               inherit plugin-foreign-env;
               inherit (config.age.secrets) access_token;
+              inherit inputs;
             };
           }
         )

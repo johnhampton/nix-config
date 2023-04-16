@@ -1,4 +1,4 @@
-{ pkgs, config, plugin-foreign-env, access_token, ... }:
+{ pkgs, config, plugin-foreign-env, access_token, inputs, ... }:
 
 {
   imports = [
@@ -26,6 +26,7 @@
     kubectx
     kustomize
     nerdfonts
+    pragmata-pro
     nix-index
     ripgrep
     terraform-ls

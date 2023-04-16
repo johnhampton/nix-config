@@ -36,7 +36,7 @@ in
   programs.kitty.enable = true;
   programs.kitty = {
     font = {
-      name = "Iosevka Nerd Font";
+      name = "PragmataPro Liga";
       size = 14;
     };
     settings = {
