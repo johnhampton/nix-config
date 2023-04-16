@@ -1,4 +1,4 @@
-{ pkgs, config, plugin-foreign-env, access_token, inputs, ... }:
+{ pkgs, config, access_token, ... }:
 
 {
   imports = [
@@ -18,6 +18,7 @@
     docker-client
     dos2unix
     fd
+    fishPlugins.foreign-env
     (google-cloud-sdk.withExtraComponents (with google-cloud-sdk.components; [ cloud_sql_proxy gke-gcloud-auth-plugin ]))
     graphite-cli
     just
@@ -66,10 +67,6 @@
   programs.fish.enable = true;
   programs.fish = {
     plugins = [
-      {
-        name = "plugin-foreign-env";
-        src = plugin-foreign-env;
-      }
     ];
 
     shellAliases = { };

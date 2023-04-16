@@ -38,7 +38,6 @@
     , darwin
     , home-manager
     , flake-utils
-    , plugin-foreign-env
     , ...
     }@inputs:
     let
@@ -59,6 +58,7 @@
             inherit (pkgs-master) google-cloud-sdk;
           })
           inputs.pragmata-pro.overlays.default
+          (import ./overlays/fishPlugins.nix { inherit inputs; })
           (import ./overlays/tree-sitter.nix { inherit inputs; })
           (import ./overlays/tmuxPlugins.nix { inherit inputs; })
           (import ./overlays/vimPlugins.nix { inherit inputs; })
@@ -102,7 +102,6 @@
             home-manager.useGlobalPkgs = true;
             home-manager.users.${primaryUser} = homeManagerCommonConfig;
             home-manager.extraSpecialArgs = {
-              inherit plugin-foreign-env;
               inherit (config.age.secrets) access_token;
               inherit inputs;
             };
