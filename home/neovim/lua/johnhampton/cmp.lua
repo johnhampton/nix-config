@@ -4,6 +4,12 @@ local luasnip = require "luasnip"
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
+-- A different fix for unpredictable cursor behavior in LuaSnip
+-- https://github.com/nvim-lua/kickstart.nvim/issues/109#issuecomment-1368266535
+luasnip.config.set_config {
+  region_check_events = 'InsertEnter'
+}
+
 local check_backspace = function()
   local col = vim.fn.col(".") - 1
   return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
@@ -121,18 +127,4 @@ cmp.setup({
     ghost_text = false,
     native_menu = false,
   },
-})
-
--- Fix issue with unpredictable LuaSnip cursor behavior
--- https://github.com/L3MON4D3/LuaSnip/issues/258
-vim.api.nvim_create_autocmd('ModeChanged', {
-  pattern = '*',
-  callback = function()
-    if ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
-        and require('luasnip').session.current_nodes[vim.api.nvim_get_current_buf()]
-        and not require('luasnip').session.jump_active
-    then
-      require('luasnip').unlink_current()
-    end
-  end
 })
