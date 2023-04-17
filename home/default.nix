@@ -3,6 +3,7 @@
 {
   imports = [
     ./alacritty.nix
+    ./amethyst.nix
     ./git.nix
     ./kitty.nix
     ./neovim
@@ -10,7 +11,6 @@
     ./tmux
   ];
   home.packages = with pkgs; [
-
     argocd
     argocd-autopilot
     colima
