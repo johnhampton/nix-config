@@ -1,5 +1,8 @@
 { pkgs, config, ... }: {
-  imports = [ ./t-smart-tmux-session-manager.nix ];
+  imports = [
+    ./t-smart-tmux-session-manager.nix
+    ./lazygit.nix
+  ];
   # We need this in order to 
   home.packages = [ pkgs.ansifilter pkgs.ncurses5 ];
 
