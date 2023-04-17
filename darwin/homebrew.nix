@@ -13,6 +13,7 @@
       "1password"
       "1password-cli"
       "adobe-creative-cloud"
+      "amethyst"
       "artisan"
       "brave-browser"
       "dropbox"
