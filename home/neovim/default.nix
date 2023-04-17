@@ -54,7 +54,6 @@ in
     require('johnhampton.gitsigns')
 
     require('johnhampton.telescope-nvim')
-    require('johnhampton.toggleterm')
     require('johnhampton.focus')
     require('johnhampton.indentline')
     require('johnhampton.glow')
@@ -123,7 +122,6 @@ in
     { plugin = telescope-hoogle-nvim; }
     b64-nvim
     vim-surround
-    toggleterm-nvim
     focus-nvim
     indent-blankline-nvim
     glow-nvim
