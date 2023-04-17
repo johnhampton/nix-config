@@ -1,36 +1,4 @@
 { pkgs, ... }:
-let
-  font_features = (features: builtins.concatStringsSep "\n" (map (f: "font_features ${f} ${features}")
-    [
-      "IosevkaNerdFontComplete-Bold"
-      "IosevkaNerdFontComplete-BoldItalic"
-      "IosevkaNerdFontComplete-ObliqueBold"
-      "IosevkaNerdFontComplete-ExtraBold"
-      "IosevkaNerdFontComplete-ExtraBoldItalic"
-      "IosevkaNerdFontComplete-ExtraBoldOblique"
-      "IosevkaNerdFontComplete-ExtraLight"
-      "IosevkaNerdFontComplete-ExtraLightItalic"
-      "IosevkaNerdFontComplete-ExtraLightOblique"
-      "IosevkaNerdFontComplete-Heavy"
-      "IosevkaNerdFontComplete-HeavyItalic"
-      "IosevkaNerdFontComplete-HeavyOblique"
-      "IosevkaNerdFontComplete-Italic"
-      "IosevkaNerdFontComplete-Light"
-      "IosevkaNerdFontComplete-LightItalic"
-      "IosevkaNerdFontComplete-LightOblique"
-      "IosevkaNerdFontComplete-Medium"
-      "IosevkaNerdFontComplete-MediumItalic"
-      "IosevkaNerdFontComplete-MediumOblique"
-      "IosevkaNerdFontComplete-Oblique"
-      "IosevkaNerdFontComplete"
-      "IosevkaNerdFontComplete-SemiBold"
-      "IosevkaNerdFontComplete-SemiBoldItalic"
-      "IosevkaNerdFontComplete-SemiBoldOblique"
-      "IosevkaNerdFontComplete-Thin"
-      "IosevkaNerdFontComplete-ThinItalic"
-      "IosevkaNerdFontComplete-ThinOblique"
-    ]));
-in
 {
 
   programs.kitty.enable = true;
@@ -50,8 +18,6 @@ in
       update_check_interval = 0;
     };
     extraConfig = ''
-      ${font_features "-calt +HSKL"}
-
       include ${pkgs.vimPlugins.onenord-nvim.src}/extras/kitty/onenord.conf
     '';
   };
