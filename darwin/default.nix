@@ -1,7 +1,11 @@
 { inputs, config, pkgs, lib, ... }:
 {
+  imports = [
+    ../builders
+    ./homebrew.nix
+    ./hotkeys.nix
+  ];
 
-  imports = [ ./homebrew.nix ../builders ];
   nix.settings = {
     substituters = [
       "https://cache.nixos.org/"
@@ -32,7 +36,7 @@
     extra-platforms = lib.mkIf (pkgs.system == "aarch64-darwin") [ "x86_64-darwin" "aarch64-darwin" ];
   };
 
-  services.lorri.enable = true;
+  services.lorri.enable = false;
   services.lorri.logFile = "/var/tmp/lorri.log";
 
   # nix.distributedBuilds = true;
@@ -53,6 +57,7 @@
 
   system.stateVersion = 4;
   system.defaults.dock.autohide = true;
+  system.defaults.dock.mru-spaces = false;
   system.defaults.NSGlobalDomain."com.apple.keyboard.fnState" = true;
   programs.bash.enable = true;
   programs.fish.enable = true;
