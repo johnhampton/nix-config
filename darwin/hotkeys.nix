@@ -8,6 +8,10 @@
         "120" = 20; # ^3 to switch to Desktop 3
         "121" = 21; # ^4 to switch to Desktop 4
         "122" = 23; # ^5 to switch to Desktop 5
+        "123" = 22;
+        "124" = 26;
+        "125" = 28;
+        "126" = 25;
       };
 
       enableHotKeysCommands = builtins.map
