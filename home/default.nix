@@ -9,6 +9,7 @@
     ./neovim
     ./ssh.nix
     ./tmux
+    ./wezterm.nix
   ];
   home.packages = with pkgs; [
     argocd
