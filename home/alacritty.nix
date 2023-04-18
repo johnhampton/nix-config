@@ -3,7 +3,7 @@
   programs.alacritty.settings = {
     font = {
       normal = {
-        family = "Iosevka Nerd Font";
+        family = "PragmataPro Liga";
       };
 
       size = 14;
