@@ -68,5 +68,10 @@
     ctrl + shift + alt - 6 : yabai -m window --space 6;
     ctrl + shift + alt - 8 : yabai -m window --space 8;
     ctrl + shift + alt - 9 : yabai -m window --space 9;
+
+    # stop/start/restart yabai
+    # ctrl + alt - q : brew services stop yabai
+    # ctrl + alt - s : brew services start yabai
+    ctrl + alt - r : launchctl kickstart -k gui/$(id -u)/org.nixos.yabai
   '';
 }

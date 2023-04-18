@@ -3,7 +3,7 @@
   programs.alacritty.settings = {
     font = {
       normal = {
-        family = "PragmataPro Liga";
+        family = "PragmataPro Mono Liga";
       };
 
       size = 14;

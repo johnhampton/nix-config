@@ -4,7 +4,7 @@
   programs.kitty.enable = true;
   programs.kitty = {
     font = {
-      name = "PragmataPro Liga";
+      name = "PragmataPro Mono Liga";
       size = 14;
     };
     settings = {
