@@ -4,6 +4,7 @@
     ../builders
     ./homebrew.nix
     ./hotkeys.nix
+    ./yabai.nix
   ];
 
   nix.settings = {

@@ -5,6 +5,7 @@ let
       "com.apple.finder"
       "com.apple.systempreferences"
       "com.adobe.acc.AdobeCreativeCloud"
+      "com.apple.Music"
     ];
     layouts = [
       "tall"
