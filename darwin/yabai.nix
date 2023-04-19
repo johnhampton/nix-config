@@ -70,8 +70,8 @@
     ctrl + shift + alt - 9 : yabai -m window --space 9;
 
     # stop/start/restart yabai
-    # ctrl + alt - q : brew services stop yabai
-    # ctrl + alt - s : brew services start yabai
+    ctrl + alt - q : launchctl unload -w $HOME/Library/LaunchAgents/org.nixos.yabai.plist
+    ctrl + alt - s : launchctl load -w $HOME/Library/LaunchAgents/org.nixos.yabai.plist
     ctrl + alt - r : launchctl kickstart -k gui/$(id -u)/org.nixos.yabai
   '';
 }
