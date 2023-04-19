@@ -7,6 +7,7 @@
 
     local config = {}
 
+    config.use_cap_height_to_scale_fallback_fonts = true;
     config.font = wezterm.font 'PragmataPro Mono Liga'
     config.font_size = 14.0
 
