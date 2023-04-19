@@ -1,7 +1,7 @@
 { ... }:
 {
   programs.tmux.extraConfig = ''
-    bind-key G new-window -c "#{pane_current_path}" lazygit
+    bind-key G new-window -n lazygit -c "#{pane_current_path}" direnv exec . lazygit
   '';
 
   programs.kitty.keybindings = {
