@@ -1,20 +1,27 @@
 { ... }:
 {
   services.yabai.enable = true;
-  services.yabai.config = {
-    layout = "bsp";
-    window_placement = "second_child";
+  services.yabai = {
+    config = {
+      layout = "bsp";
+      window_placement = "second_child";
 
-    top_padding = 6;
-    bottom_padding = 6;
-    left_padding = 6;
-    right_padding = 6;
-    window_gap = 6;
+      top_padding = 6;
+      bottom_padding = 6;
+      left_padding = 6;
+      right_padding = 6;
+      window_gap = 6;
 
-    mouse_modifier = "fn";
-    mouse_action1 = "move";
-    mouse_action2 = "resize";
+      mouse_modifier = "fn";
+      mouse_action1 = "move";
+      mouse_action2 = "resize";
+    };
+    extraConfig = ''
+      yabai -m rule --add app="^System Settings$" manage=off
+      yabai -m rule --add app="^Creative Cloud$" manage=off
+    '';
   };
+
 
   services.skhd.enable = true;
   services.skhd.skhdConfig = ''
