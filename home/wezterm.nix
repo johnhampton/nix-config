@@ -16,6 +16,21 @@
 
     config.hide_tab_bar_if_only_one_tab = true
 
+    config.mouse_bindings = {
+       -- and make CTRL-Click open hyperlinks
+      {
+        event={Up={streak=1, button="Left"}},
+        mods="CTRL",
+        action="OpenLinkAtMouseCursor",
+      },
+      -- Disable the 'Down' event of CTRL-Click to avoid weird program behaviors
+      {
+        event = { Down = { streak = 1, button = 'Left' } },
+        mods = 'CTRL',
+        action = act.Nop,
+      },
+    }
+
     config.keys = {
       {
         key = 'j',
