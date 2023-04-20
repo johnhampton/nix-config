@@ -19,6 +19,7 @@
     extraConfig = ''
       yabai -m rule --add app="^System Settings$" manage=off
       yabai -m rule --add app="^Creative Cloud$" manage=off
+      yabai -m rule --add app="^zoom\.us$" manage=off
     '';
   };
 
