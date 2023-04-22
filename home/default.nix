@@ -16,6 +16,7 @@
     argocd-autopilot
     colima
     comma
+    darwin.trash
     docker-client
     dos2unix
     fd
