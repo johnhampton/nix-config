@@ -21,6 +21,9 @@ rebuild-switch *args='': (build args)
     @echo -e "{{ GREEN }}Switching to new generation...{{ CLEAR }}"
     ./result/sw/bin/darwin-rebuild switch --flake .#{{ FLAKE }} --impure $@
 
+upgrade:
+  nix flake update
+
 clean:
     @echo -e "{{ GREEN }}Cleaning up...{{ CLEAR }}"
     rm -rf ./result
