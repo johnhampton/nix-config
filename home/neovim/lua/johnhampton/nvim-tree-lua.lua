@@ -1,9 +1,4 @@
 local nvim_tree = require "nvim-tree"
-local nvim_tree_config = require "nvim-tree.config"
-
-local tree_cb = nvim_tree_config.nvim_tree_callback
-
-local wk = require('which-key')
 
 local function on_attach(bufnr)
   local api = require('nvim-tree.api')
@@ -192,16 +187,5 @@ nvim_tree.setup({
   },
 })
 
-local opts = {
-  mode = "n",     -- NORMAL mode
-  prefix = "<leader>",
-  buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true,  -- use `silent` when creating keymaps
-  noremap = true, -- use `noremap` when creating keymaps
-  nowait = true,  -- use `nowait` when creating keymaps
-}
-
-wk.register({
-  e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-  E = { "<cmd>NvimTreeFindFile<cr>", "Explore file" },
-}, opts)
+vim.keymap.set('n', '<leader>e', "<cmd>NvimTreeToggle<cr>", { desc = "Explorer" })
+vim.keymap.set('n', '<leader>E', "<cmd>NvimTreeFindFile<cr>", { desc = "Explore file" })

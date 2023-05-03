@@ -52,7 +52,7 @@ local setup = {
     spacing = 3,                                                                -- spacing between columns
     align = "left",                                                             -- align columns left, center or right
   },
-  ignore_missing = true,                                                        -- enable this to hide mappings for which you didn't specify a label
+  ignore_missing = false,                                                       -- enable this to hide mappings for which you didn't specify a label
   hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
   show_help = true,                                                             -- show help message on the command line when the popup is visible
   triggers = "auto",                                                            -- automatically setup triggers
@@ -79,8 +79,8 @@ local mappings = {
   -- ["a"] = { "<cmd>Alpha<cr>", "Alpha" },
   -- ["w"] = { "<cmd>w!<CR>", "Save" },
   -- ["q"] = { "<cmd>q!<CR>", "Quit" },
-      ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
-      ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
+  ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
+  ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
   -- g = {
   --   name = "Git",
   --   g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
@@ -90,7 +90,7 @@ local mappings = {
 which_key.setup(setup)
 which_key.register(mappings, opts)
 which_key.register({
-      ["B"] = {
+  ["B"] = {
     name = "Base64",
     e = { "<cmd>lua require('b64').encode()<cr>", "encode" },
     d = { "<cmd>lua require('b64').decode()<cr>", "decode" }
