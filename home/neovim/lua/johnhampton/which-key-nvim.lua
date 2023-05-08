@@ -104,6 +104,8 @@ which_key.register({
   nowait = true,  -- use `nowait` when creating keymaps
 })
 
+which_key.register({ ["<leader>l"] = { name = "LSP" } })
+
 local M = {
   which_key = which_key,
   default_opts = opts

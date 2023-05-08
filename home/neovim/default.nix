@@ -5,7 +5,7 @@ let
 in
 
 {
-  imports = [ ./navigator.nix ];
+  imports = [ ./lsp ./navigator.nix ];
 
   home.packages = with pkgs; [
     glow
@@ -29,16 +29,16 @@ in
   xdg.configFile."nvim/lua".source = ./lua;
   xdg.configFile."nvim/lua".recursive = true;
 
-  programs.neovim.extraConfig = ''
-    lua << EOF
-
+  programs.neovim.extraLuaConfig = ''
     require("johnhampton.options")
     require("johnhampton.settings")
     require("johnhampton.keymaps")
 
     require('johnhampton.onenord-nvim')
-    require('johnhampton.cmp')
-    require('johnhampton.lsp')
+
+    -- TODO Remove
+    -- require('johnhampton.cmp')
+    -- require('johnhampton.lsp')
 
     require('johnhampton.which-key-nvim')
 
@@ -57,7 +57,6 @@ in
     require('johnhampton.focus')
     require('johnhampton.indentline')
     require('johnhampton.glow')
-    EOF
   '';
 
   programs.neovim.plugins = with pkgs.vimPlugins; [
@@ -96,18 +95,9 @@ in
     lualine-nvim
     lualine-lsp-progress
 
-    nvim-cmp
-    cmp-buffer
-    cmp-path
-    cmp-cmdline
-    cmp_luasnip
-    cmp-nvim-lsp
-    cmp-nvim-lua
 
     gitsigns-nvim
 
-    luasnip
-    friendly-snippets
 
     project-nvim
     impatient-nvim
