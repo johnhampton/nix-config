@@ -23,6 +23,12 @@
         type = "lua";
         config = builtins.readFile ./lsp.lua;
       }
+
+      {
+        plugin = p.lspsaga-nvim-original;
+        type = "lua";
+        config = builtins.readFile ./lspsaga.lua; 
+      }
     ];
   };
 }

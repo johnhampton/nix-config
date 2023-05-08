@@ -2,13 +2,22 @@ local function setup_lsp_zero()
   local lsp = require("lsp-zero").preset({})
 
   -- Global keymaps
-  vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", { desc = "Show diagnotics" })
-  vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", { desc = "Move to next diagnostic" })
-  vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", { desc = "Move to previous diagnostic" })
-  vim.keymap.set('n', '<leader>lq', "<cmd>lua vim.diagnostic.setloclist()<cr>", { desc = "Location list" })
+  vim.keymap.set("n", "gl", "<cmd>Lspsaga show_line_diagnostics ++unfocus<cr>", { desc = "Show diagnostics" })
 
-  vim.keymap.set("n", "<leader>ld", "<cmd>Telescope diagnostics bufnr=0<cr>", { desc = "Document diagnostics" })
-  vim.keymap.set("n", "<leader>lw", "<cmd>Telescope diagnostics<cr>", { desc = "Workspace diagnostics" })
+  vim.keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<cr>", { desc = "Move to previous diagnostic" })
+  vim.keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<cr>", { desc = "Move to next diagnostic" })
+  -- Diagnostic jump with filters such as only jumping to an error
+  vim.keymap.set("n", "[e", function()
+    require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
+  end, { desc = "Move to prev error" })
+  vim.keymap.set("n", "]e", function()
+    require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
+  end, { desc = "Move to next error" })
+
+  vim.keymap.set('n', '<leader>lq', "<cmd>Lspsaga diagnostic_jump_prev<cr>", { desc = "Location list" })
+
+  vim.keymap.set("n", "<leader>ld", "<cmd>Lspsaga show_buf_diagnostics<cr>", { desc = "Document diagnostics" })
+  vim.keymap.set("n", "<leader>lw", "<cmd>Lspsaga show_workspace_diagnostics<cr>", { desc = "Workspace diagnostics" })
   vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>", { desc = "LSP info" })
 
   lsp.on_attach(function(_, bufnr)
@@ -18,18 +27,30 @@ local function setup_lsp_zero()
       vim.keymap.set(mode, key, cmd, { buffer = bufnr, desc = desc })
     end
 
-    bind("n", "gd", "<cmd>Telescope lsp_definitions<cr>", "Goto definition")
-    bind("n", "gi", "<cmd>Telescope lsp_implementations<cr>", "Goto implementation")
-    bind("n", "go", "<cmd>Telescope lsp_type_definitions<cr>", "Goto type definition")
-    bind("n", "gr", "<cmd>Telescope lsp_references<cr>", "References")
+    bind("n", "K", "<cmd>Lspsaga hover_doc<cr>", "Hover doc")
 
-    bind({ "n", "v" }, "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action")
+    bind("n", "gd", "<cmd>Lspsaga goto_definition<cr>", "Goto definition")
+    bind("n", "gh", "<cmd>Lspsaga lsp_finder<cr>", "Usage")
+    bind("n", "gp", "<cmd>Lspsaga peek_definition<cr>", "Peek definition")
+    bind('n', 'gr', '<cmd>Telescope lsp_references<cr>', "References")
+
+    bind("n", "go", "<cmd>Lspsaga goto_type_definition<cr>", "Goto type definition")
+    bind("n", "gt", "<cmd>Lspsaga peek_type_definition<cr>", "Peek type definition")
+
+    bind({ "n", "v" }, "<leader>la", "<cmd>Lspsaga code_action<cr>", "Code Action")
     bind({ 'n', 'x' }, '<leader>lf', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', "Format")
-    bind("n", "<leader>lc", "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action")
-    bind("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename")
+    bind("n", "<leader>ll", "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action")
+
+    bind("n", "<leader>lr", "<cmd>Lspsaga rename<cr>", "Rename")
+    bind("n", "<F2>", "<cmd>Lspsaga rename<cr>", "Rename")
+
+    bind("n", "<leader>lo", "<cmd>Lspsaga outline<cr>", "Outline")
 
     bind("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>", "Document symbols")
     bind("n", "<leader>lS", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace symbols")
+
+    bind("n", "<Leader>lci", "<cmd>Lspsaga incoming_calls<cr>", "Incoming calls")
+    bind("n", "<Leader>lco", "<cmd>Lspsaga outgoing_calls<cr>", "Outgoing calls")
   end)
 
   lsp.set_sign_icons({
