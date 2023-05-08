@@ -3,6 +3,10 @@
   programs.neovim = {
     plugins = let p = pkgs.vimPlugins; in [
 
+      p.nvim-lspconfig
+
+      p.null-ls-nvim
+
       p.nvim-cmp
       p.cmp-buffer
       p.cmp-path

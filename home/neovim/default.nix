@@ -88,16 +88,10 @@ in
     { plugin = nvim-ts-context-commentstring; }
     { plugin = comment-nvim; }
 
-    # LSP
-    { plugin = nvim-lspconfig; }
-    null-ls-nvim
-
     lualine-nvim
     lualine-lsp-progress
 
-
     gitsigns-nvim
-
 
     project-nvim
     impatient-nvim
