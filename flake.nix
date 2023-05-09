@@ -102,7 +102,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.users.${primaryUser} = homeManagerCommonConfig;
             home-manager.extraSpecialArgs = {
-              inherit (config.age.secrets) access_token;
+              inherit (config) age;
               inherit inputs;
             };
           }

@@ -1,9 +1,10 @@
-{ pkgs, config, access_token, ... }:
+{ pkgs, config, age, ... }:
 
 {
   imports = [
     ./alacritty.nix
     ./amethyst.nix
+    ./cachix
     ./git.nix
     ./kitty.nix
     ./neovim
@@ -38,7 +39,7 @@
   ];
 
   nix.extraOptions = ''
-    !include ${access_token.path}
+    !include ${age.secrets.access_token.path}
   '';
 
   home.sessionVariables = {
