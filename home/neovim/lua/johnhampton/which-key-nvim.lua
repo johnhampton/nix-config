@@ -11,7 +11,7 @@ local setup = {
     -- the presets plugin, adds help for a bunch of default keybindings in Neovim
     -- No actual key bindings are created
     presets = {
-      operators = false,   -- adds help for operators like d, y, ... and registers them for motion / text object completion
+      operators = true,    -- adds help for operators like d, y, ... and registers them for motion / text object completion
       motions = true,      -- adds help for motions
       text_objects = true, -- help for text objects triggered after entering an operator
       windows = true,      -- default bindings on <c-w>
@@ -22,7 +22,7 @@ local setup = {
   },
   -- add operators that will trigger motion and text object completion
   -- to enable all native operators, set the preset / operators plugin above
-  -- operators = { gc = "Comments" },
+  operators = { gc = "Comments", gb = "Block comments" },
   key_labels = {
     -- override the label used to display some keys. It doesn't effect WK in any other way.
     -- For example:
@@ -104,7 +104,7 @@ which_key.register({
   nowait = true,  -- use `nowait` when creating keymaps
 })
 
-which_key.register({ ["<leader>l"] = { name = "LSP" } })
+which_key.register({ ["<leader>l"] = { name = "LSP" } }, { mode = { "v", "n" } })
 
 local M = {
   which_key = which_key,
