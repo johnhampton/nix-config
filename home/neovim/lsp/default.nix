@@ -6,6 +6,7 @@
       p.nvim-lspconfig
 
       p.null-ls-nvim
+      p.haskell-tools-nvim
 
       p.nvim-cmp
       p.cmp-buffer
