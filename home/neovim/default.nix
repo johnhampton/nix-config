@@ -47,7 +47,6 @@ in
     require('johnhampton.comment-nvim')
 
     require('johnhampton.nvim-tree-lua')
-    require("johnhampton.bufferline")
     require('johnhampton.lualine')
     require('johnhampton.project')
     require('johnhampton.impatient')
@@ -61,7 +60,6 @@ in
 
   programs.neovim.plugins = with pkgs.vimPlugins; [
     vim-bbye
-    bufferline-nvim
     # colorscheme
     { plugin = onenord-nvim; }
 
