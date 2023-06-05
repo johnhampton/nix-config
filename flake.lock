@@ -170,6 +170,26 @@
         "type": "github"
       }
     },
+    "nix-index-database": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1697946153,
+        "narHash": "sha256-7k7qIwWLaYPgQ4fxmEdew3yCffhK6rM4I4Jo3X/79DA=",
+        "owner": "Mic92",
+        "repo": "nix-index-database",
+        "rev": "5a2006282caaf32663cdcd582c5b18809c7d7d8d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "nix-index-database",
+        "type": "github"
+      }
+    },
     "nixos-stable": {
       "locked": {
         "lastModified": 1685573264,
@@ -291,6 +311,7 @@
         "focus-nvim": "focus-nvim",
         "home-manager": "home-manager_2",
         "lsp-zero-nvim": "lsp-zero-nvim",
+        "nix-index-database": "nix-index-database",
         "nixos-stable": "nixos-stable",
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-stable": "nixpkgs-stable",

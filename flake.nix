@@ -22,6 +22,10 @@
     agenix.inputs.nixpkgs.follows = "nixpkgs-unstable";
     agenix.inputs.darwin.follows = "darwin";
 
+    # nix-index
+    nix-index-database.url = "github:Mic92/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
     flake-compat = { url = "github:edolstra/flake-compat"; flake = false; };
     flake-utils.url = "github:numtide/flake-utils";
 

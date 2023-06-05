@@ -1,7 +1,10 @@
-{ pkgs, config, age, ... }:
+{ pkgs, config, age, inputs, ... }:
 
 {
   imports = [
+    inputs.nix-index-database.hmModules.nix-index
+    { programs.nix-index-database.comma.enable = true; }
+
     ./alacritty.nix
     ./amethyst.nix
     ./cachix
@@ -16,7 +19,6 @@
     argocd
     argocd-autopilot
     colima
-    comma
     darwin.trash
     docker-client
     dos2unix
@@ -31,7 +33,6 @@
     kustomize
     nerdfonts
     pragmata-pro
-    nix-index
     ripgrep
     terraform-ls
     watchman
