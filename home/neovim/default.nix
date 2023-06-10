@@ -3,7 +3,6 @@
 let
   pluginWithDeps = plugin: deps: plugin.overrideAttrs (_: { dependencies = deps; });
 in
-
 {
   imports = [ ./lsp ./navigator.nix ];
 
@@ -93,6 +92,13 @@ in
 
     project-nvim
     impatient-nvim
+    { 
+      plugin = direnv-vim; 
+      type = "lua";
+      config = ''
+        vim.g.direnv_auto = 0
+      '';
+    }
 
     # nvim-tree
     { plugin = pluginWithDeps nvim-tree-lua [ nvim-web-devicons ]; }
