@@ -57,6 +57,8 @@ in
     require('johnhampton.glow')
   '';
 
+  programs.neovim.extraPackages = [ pkgs.tree-sitter ];
+
   programs.neovim.plugins = with pkgs.vimPlugins; [
     vim-bbye
     # colorscheme
@@ -79,7 +81,6 @@ in
         })
       '';
     }
-
 
     # Comment
     { plugin = nvim-ts-context-commentstring; }

@@ -146,7 +146,8 @@ local function setup_lsp_zero()
       on_attach = function(_, bufnr)
         -- haskell-language-server relies heavily on codeLenses,
         -- so auto-refresh (see advanced configuration) is enabled by default
-        vim.keymap.set('n', '<leader>lhs', haskell_tools.hoogle.hoogle_signature, { desc = "Hoogle symbol", buffer = bufnr })
+        vim.keymap.set('n', '<leader>lhs', haskell_tools.hoogle.hoogle_signature,
+          { desc = "Hoogle symbol", buffer = bufnr })
         vim.keymap.set('n', '<leader>lea', haskell_tools.lsp.buf_eval_all, { desc = "Evaluate all", buffer = bufnr })
       end
     }
@@ -186,6 +187,9 @@ local function setup_lsp_zero()
   require('luasnip.loaders.from_vscode').lazy_load()
 
   cmp.setup({
+    completion = {
+      autocomplete = false,
+    },
     formatting = {
       format = lspkind.cmp_format({
         mode = 'symbol',       -- show only symbol annotations
@@ -198,11 +202,29 @@ local function setup_lsp_zero()
     mapping = {
       -- `Enter` key to confirm completion
       ['<CR>'] = cmp.mapping.confirm({ select = false }),
+
       -- Supertab
-      ['<Tab>'] = cmp_action.luasnip_supertab(),
+      ['<Tab>'] = cmp.mapping(function(fallback)
+        local luasnip = require('luasnip')
+        local col = vim.fn.col('.') - 1
+
+        if require("copilot.suggestion").is_visible() then
+          require("copilot.suggestion").accept()
+        elseif cmp.visible() then
+          cmp.select_next_item()
+        elseif luasnip.expand_or_jumpable() then
+          luasnip.expand_or_jump()
+        elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+          fallback()
+        else
+          cmp.complete()
+        end
+      end, { 'i', 's' }),
       ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
+
       -- Ctrl+Space to trigger completion menu
       ['<C-Space>'] = cmp.mapping.complete(),
+
       -- Navigate between snippet placeholder
       ['<C-f>'] = cmp_action.luasnip_jump_forward(),
       ['<C-b>'] = cmp_action.luasnip_jump_backward(),
@@ -215,6 +237,18 @@ local function setup_lsp_zero()
       { name = "luasnip", keyword_length = 2 },
     }
   })
+
+  cmp.event:on("menu_opened", function()
+    vim.b.copilot_suggestion_hidden = true
+    if require("copilot.suggestion").is_visible() then
+      require("copilot.suggestion").dismiss()
+    end
+  end)
+
+  cmp.event:on("menu_closed", function()
+    vim.b.copilot_suggestion_hidden = false
+  end)
 end
+
 
 setup_lsp_zero()

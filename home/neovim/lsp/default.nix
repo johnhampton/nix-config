@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   programs.neovim = {
+    withNodeJs = true;
     plugins = let p = pkgs.vimPlugins; in [
 
       p.nvim-lspconfig
@@ -28,7 +29,13 @@
       {
         plugin = p.lspsaga-nvim-original;
         type = "lua";
-        config = builtins.readFile ./lspsaga.lua; 
+        config = builtins.readFile ./lspsaga.lua;
+      }
+
+      {
+        plugin = p.copilot-lua;
+        type = "lua";
+        config = builtins.readFile ./copilot.lua;
       }
     ];
   };
