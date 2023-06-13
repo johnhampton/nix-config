@@ -1,0 +1,14 @@
+diff --git a/lua/chatgpt/code_edits.lua b/lua/chatgpt/code_edits.lua
+index 3692188..4011429 100644
+--- a/lua/chatgpt/code_edits.lua
++++ b/lua/chatgpt/code_edits.lua
+@@ -88,6 +88,9 @@ M.edit_with_instructions = function(output_lines, bufnr, selection, ...)
+   local settings_panel = Settings.get_settings_panel("edits", openai_params)
+   input_window = Popup(Config.options.popup_window)
+   output_window = Popup(Config.options.popup_window)
++  vim.api.nvim_buf_set_name(input_window.bufnr, "ChatGPTInput")
++  vim.api.nvim_buf_set_name(output_window.bufnr, "ChatGPTOutput")
++
+   instructions_input = ChatInput(Config.options.popup_input, {
+     prompt = Config.options.popup_input.prompt,
+     on_close = function()

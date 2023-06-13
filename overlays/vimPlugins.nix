@@ -11,6 +11,10 @@
       version = inputs.focus-nvim.lastModifiedDate;
       src = inputs.focus-nvim;
     };
+
+    "ChatGPT-nvim" = vprev.ChatGPT-nvim.overrideAttrs (old: {
+      patches = old.patches or [ ] ++ [ ./ChatGPT-nvim.patch ];
+    });
   });
 })
 
