@@ -3,7 +3,13 @@ local M = {}
 -- Setup chatgpt with default options
 local function setup_chatgpt(default_options)
   local chatgpt = require("chatgpt")
-  local opts = {}
+  local opts = {
+    edit_with_instructions = {
+      keymaps = {
+        use_output_as_input = "<C-n>"
+      }
+    }
+  }
 
   chatgpt.setup(vim.tbl_deep_extend("keep", opts, default_options))
 
@@ -19,7 +25,7 @@ local function setup_chatgpt(default_options)
     chatgpt.openChat()
   end), { desc = "Chat" })
 
-  bind_key({ "n", "v"}, "<leader>ae", (function()
+  bind_key({ "n", "v" }, "<leader>ae", (function()
     chatgpt.edit_with_instructions()
   end), { desc = "Edit with Instructions" })
 end
