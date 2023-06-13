@@ -4,7 +4,7 @@ let
   pluginWithDeps = plugin: deps: plugin.overrideAttrs (_: { dependencies = deps; });
 in
 {
-  imports = [ ./lsp ./navigator.nix ];
+  imports = [ ./chatgpt.nix ./lsp ./navigator.nix ];
 
   home.packages = with pkgs; [
     glow

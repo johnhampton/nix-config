@@ -81,6 +81,12 @@
       owner = "john";
       group = "staff";
     };
+    chatgpt = {
+      file = ../secrets/chatgpt.age;
+      mode = "700";
+      owner = "john";
+      group = "staff";
+    };
     gh = {
       file = ../secrets/hosts.yml.age;
       path = "/Users/john/.config/gh/hosts.yml";
