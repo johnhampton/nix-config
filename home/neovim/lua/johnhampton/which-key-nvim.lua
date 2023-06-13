@@ -88,6 +88,7 @@ local mappings = {
 }
 
 which_key.setup(setup)
+which_key.register({ ["<leader>a"] = { name = "AI" } }, { mode = { "v", "n" } })
 which_key.register(mappings, opts)
 which_key.register({
   ["B"] = {
