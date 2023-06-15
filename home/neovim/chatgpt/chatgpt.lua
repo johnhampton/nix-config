@@ -6,8 +6,12 @@ local function setup_chatgpt(default_options)
   local opts = {
     edit_with_instructions = {
       keymaps = {
-        use_output_as_input = "<C-n>"
+        use_output_as_input = "<C-n>",
       }
+    },
+
+    openai_params = {
+      max_tokens = 500,
     }
   }
 
