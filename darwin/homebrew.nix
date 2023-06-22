@@ -2,13 +2,24 @@
 {
   homebrew.enable = true;
   homebrew = {
-    onActivation.cleanup = "uninstall";
+    onActivation = {
+      autoUpdate = false;
+      cleanup = "uninstall";
+      upgrade = true;
+    };
+
+    global = {
+      autoUpdate = false;
+    };
+
     taps = [
       "txn2/tap"
     ];
+
     brews = [
       "txn2/tap/kubefwd"
     ];
+
     casks = [
       "1password"
       "1password-cli"
@@ -30,6 +41,7 @@
       "tuple"
       "zoom"
     ];
+
     masApps = {
       "1Password for Safari" = 1569813296;
       "Kindle" = 405399194;
