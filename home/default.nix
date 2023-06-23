@@ -150,5 +150,8 @@
   programs.starship.enable = true;
   programs.starship.settings = {
     command_timeout = 1000;
+    aws = {
+      disabled = true;
+    };
   };
 }
