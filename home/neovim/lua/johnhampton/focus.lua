@@ -1,5 +1,4 @@
 local focus = require "focus"
-local wk = require("johnhampton.which-key-nvim")
 
 focus.setup({
   ui = {
@@ -34,15 +33,10 @@ vim.api.nvim_create_autocmd('FileType', {
     desc = 'Disable focus autoresize for FileType',
 })
 
-wk.which_key.register({
-  w = {
-    name = "Window",
-    n = { "<cmd>FocusSplitNicely<cr>", "New Split" },
-    h = { "<cmd>FocusSplitLeft<cr>", "Split Left" },
-    j = { "<cmd>FocusSplitDown<cr>", "Split Down" },
-    k = { "<cmd>FocusSplitUp<cr>", "Split Up" },
-    l = { "<cmd>FocusSplitRight<cr>", "Split Right" },
-    o = { "<cmd>FocusMaximise<cr>", "Maximize" },
-    ["="] = { "<cmd>FocusEqualise<cr>", "Equalize" },
-  }
-}, wk.default_opts)
+vim.keymap.set('n', '<leader>wn', '<cmd>FocusSplitNicely<cr>', { desc = "New Split" })
+vim.keymap.set('n', '<leader>wh', '<cmd>FocusSplitLeft<cr>', { desc = "Split Left" })
+vim.keymap.set('n', '<leader>wj', '<cmd>FocusSplitDown<cr>', { desc = "Split Down" })
+vim.keymap.set('n', '<leader>wk', '<cmd>FocusSplitUp<cr>', { desc = "Split Up" })
+vim.keymap.set('n', '<leader>wl', '<cmd>FocusSplitRight<cr>', { desc = "Split Right" })
+vim.keymap.set('n', '<leader>wo', '<cmd>FocusMaximise<cr>', { desc = "Maximize" })
+vim.keymap.set('n', '<leader>w=', '<cmd>FocusEqualise<cr>', { desc = "Equalize" })

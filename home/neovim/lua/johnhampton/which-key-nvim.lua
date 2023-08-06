@@ -106,6 +106,7 @@ which_key.register({
 })
 
 which_key.register({ ["<leader>l"] = { name = "LSP" } }, { mode = { "v", "n" } })
+which_key.register({ ["<leader>w"] = { name = "Window" } }, { mode = { "n" } })
 
 local M = {
   which_key = which_key,
