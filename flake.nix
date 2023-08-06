@@ -25,7 +25,7 @@
     flake-compat = { url = "github:edolstra/flake-compat"; flake = false; };
     flake-utils.url = "github:numtide/flake-utils";
 
-    focus-nvim = { url = "github:beauwilliams/focus.nvim"; flake = false; };
+    focus-nvim = { url = "github:nvim-focus/focus.nvim"; flake = false; };
     # Use the v2.x branch of lsp-zero. Nixpkgs is currently tracking main.
     lsp-zero-nvim = { url = "github:VonHeikemen/lsp-zero.nvim/v2.x"; flake = false; };
     plugin-foreign-env = { url = "github:oh-my-fish/plugin-foreign-env"; flake = false; };

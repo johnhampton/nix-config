@@ -101,13 +101,13 @@
       "locked": {
         "lastModified": 1690278973,
         "narHash": "sha256-B4V6O5/qcNtMmuqHEXQYoRPP2W3p0650ad9tkV4KBA4=",
-        "owner": "beauwilliams",
+        "owner": "nvim-focus",
         "repo": "focus.nvim",
         "rev": "a994282f957840ee3419ad62a36be9d4e155560c",
         "type": "github"
       },
       "original": {
-        "owner": "beauwilliams",
+        "owner": "nvim-focus",
         "repo": "focus.nvim",
         "type": "github"
       }

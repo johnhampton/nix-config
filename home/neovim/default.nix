@@ -35,10 +35,6 @@ in
 
     require('johnhampton.onenord-nvim')
 
-    -- TODO Remove
-    -- require('johnhampton.cmp')
-    -- require('johnhampton.lsp')
-
     require('johnhampton.which-key-nvim')
 
     require('johnhampton.nvim-treesitter')
