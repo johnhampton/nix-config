@@ -54,9 +54,9 @@ local function setup_lsp_zero()
   end)
 
   lsp.set_sign_icons({
-    error = " ",
+    error = "󰅚 ",
     warn = " ",
-    hint = " ",
+    hint = "󰌶 ",
     info = " "
   })
 

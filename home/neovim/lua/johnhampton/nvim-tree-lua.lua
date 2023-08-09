@@ -96,10 +96,10 @@ nvim_tree.setup({
   diagnostics = {
     enable = true,
     icons = {
-      hint = " ",
+      hint = "󰌶 ",
       info = " ",
       warning = " ",
-      error = " "
+      error = "󰅚 "
     },
   },
   update_focused_file = {
@@ -122,7 +122,7 @@ nvim_tree.setup({
     timeout = 500,
   },
   view = {
-    width = 30,
+    width = 50,
     --[[ height = 30, ]]
     hide_root_folder = false,
     side = "left",
