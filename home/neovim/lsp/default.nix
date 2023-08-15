@@ -27,7 +27,7 @@
       }
 
       {
-        plugin = p.lspsaga-nvim-original;
+        plugin = p.lspsaga-nvim;
         type = "lua";
         config = builtins.readFile ./lspsaga.lua;
       }
