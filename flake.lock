@@ -99,11 +99,11 @@
     "focus-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1690278973,
-        "narHash": "sha256-B4V6O5/qcNtMmuqHEXQYoRPP2W3p0650ad9tkV4KBA4=",
+        "lastModified": 1692567777,
+        "narHash": "sha256-3b25LPXAMp8dY8icUl5cewfCXlQtvLVx6/O/ptFHNus=",
         "owner": "nvim-focus",
         "repo": "focus.nvim",
-        "rev": "a994282f957840ee3419ad62a36be9d4e155560c",
+        "rev": "6528e90e001c292bc0de851280d62cb422964705",
         "type": "github"
       },
       "original": {
