@@ -24,6 +24,22 @@
         "type": "github"
       }
     },
+    "chatgpt-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1692164307,
+        "narHash": "sha256-Mzp0WWND9N9lLZjqWq/4ohxZjrsUwX8tR9qscfgBbZM=",
+        "owner": "jackMort",
+        "repo": "ChatGPT.nvim",
+        "rev": "fba5423b3ddf0b67ada2bbb4d5f66d9cf76c996a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jackMort",
+        "repo": "ChatGPT.nvim",
+        "type": "github"
+      }
+    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -285,6 +301,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "chatgpt-nvim": "chatgpt-nvim",
         "darwin": "darwin",
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils",
