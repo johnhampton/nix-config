@@ -25,9 +25,6 @@
     flake-compat = { url = "github:edolstra/flake-compat"; flake = false; };
     flake-utils.url = "github:numtide/flake-utils";
 
-    # 2023-08-22: Temporary remove in a few weeks
-    chatgpt-nvim = { url="github:jackMort/ChatGPT.nvim"; flake = false; };
-
     focus-nvim = { url = "github:nvim-focus/focus.nvim"; flake = false; };
     # Use the v2.x branch of lsp-zero. Nixpkgs is currently tracking main.
     lsp-zero-nvim = { url = "github:VonHeikemen/lsp-zero.nvim/v2.x"; flake = false; };

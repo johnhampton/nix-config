@@ -14,7 +14,6 @@
     };
 
     "ChatGPT-nvim" = vprev.ChatGPT-nvim.overrideAttrs (old: {
-      src = inputs.chatgpt-nvim;
       patches = old.patches or [ ] ++ [ ./ChatGPT-nvim.patch ];
     });
   });
