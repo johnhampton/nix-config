@@ -1,0 +1,14 @@
+diff --git a/lua/focus/modules/autocmd.lua b/lua/focus/modules/autocmd.lua
+index 974226f..b4e6326 100644
+--- a/lua/focus/modules/autocmd.lua
++++ b/lua/focus/modules/autocmd.lua
+@@ -201,6 +201,9 @@ function M.setup(config)
+             vim.api.nvim_create_autocmd({ 'BufEnter', 'WinEnter' }, {
+                 group = augroup,
+                 callback = function(_)
++                    if utils.is_disabled() then
++                        return
++                    end
+                     vim.wo.number = true
+                     vim.wo.relativenumber = true
+                 end,
