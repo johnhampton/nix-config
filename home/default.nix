@@ -154,4 +154,18 @@
       disabled = true;
     };
   };
+
+
+  xdg.configFile."process-compose/shortcuts.yaml".source = let yamlFormal = pkgs.formats.yaml { }; in yamlFormal.generate "shortcuts.yaml" {
+    shortcuts = {
+      process_stop = {
+        shortcut = "Ctrl-X";
+      };
+      quit = {
+        shortcut = "Ctrl-Q";
+      };
+
+    };
+  };
 }
+
