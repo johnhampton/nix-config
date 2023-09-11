@@ -60,8 +60,8 @@
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
 
-  programs.exa.enable = true;
-  programs.exa = {
+  programs.eza.enable = true;
+  programs.eza = {
     enableAliases = true;
     icons = true;
     git = true;
