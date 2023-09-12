@@ -60,6 +60,7 @@
             inherit (pkgs-master) google-cloud-sdk;
           })
           inputs.pragmata-pro.overlays.default
+          (import ./overlays/haskell-tools-nvim-lua.nix { inherit inputs; })
           (import ./overlays/fishPlugins.nix { inherit inputs; })
           (import ./overlays/lsp-zero.nix { inherit inputs; })
           (import ./overlays/tree-sitter.nix { inherit inputs; })

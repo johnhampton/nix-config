@@ -1,5 +1,5 @@
 local function setup_lsp_zero()
-  local lsp = require("lsp-zero").preset({})
+  local lsp_zero = require("lsp-zero").preset({})
 
   -- Global keymaps
   vim.keymap.set("n", "gl", "<cmd>Lspsaga show_line_diagnostics ++unfocus<cr>", { desc = "Show diagnostics" })
@@ -20,8 +20,8 @@ local function setup_lsp_zero()
   vim.keymap.set("n", "<leader>lw", "<cmd>Lspsaga show_workspace_diagnostics<cr>", { desc = "Workspace diagnostics" })
   vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>", { desc = "LSP info" })
 
-  lsp.on_attach(function(_, bufnr)
-    lsp.default_keymaps({ buffer = bufnr, preserve_mappings = false, omit = { "gl", "[d", "]d" } })
+  lsp_zero.on_attach(function(_, bufnr)
+    lsp_zero.default_keymaps({ buffer = bufnr, preserve_mappings = false, omit = { "gl", "[d", "]d" } })
 
     local function bind(mode, key, cmd, desc)
       vim.keymap.set(mode, key, cmd, { buffer = bufnr, desc = desc })
@@ -53,14 +53,14 @@ local function setup_lsp_zero()
     bind("n", "<Leader>lco", "<cmd>Lspsaga outgoing_calls<cr>", "Outgoing calls")
   end)
 
-  lsp.set_sign_icons({
+  lsp_zero.set_sign_icons({
     error = "󰅚 ",
     warn = " ",
     hint = "󰌶 ",
     info = " "
   })
 
-  lsp.setup_servers({
+  lsp_zero.setup_servers({
     "gopls",
     "ocamlls",
     "ocamllsp",
@@ -72,7 +72,7 @@ local function setup_lsp_zero()
   local lsp_config = require("lspconfig")
 
   -- Configure lua language server for neovim
-  lsp_config.lua_ls.setup(lsp.nvim_lua_ls())
+  lsp_config.lua_ls.setup(lsp_zero.nvim_lua_ls())
 
   lsp_config.jsonls.setup({
     settings = {
@@ -108,7 +108,7 @@ local function setup_lsp_zero()
     }
   })
 
-  lsp.setup()
+  lsp_zero.setup()
 
 
   local null_ls = require("null-ls")
@@ -135,21 +135,11 @@ local function setup_lsp_zero()
   ---
   -- Setup haskell LSP
   ---
-  local haskell_tools = require('haskell-tools')
-  local hls_lsp = require('lsp-zero').build_options('hls', {})
   local def_opts = { noremap = true, silent = true, }
 
-
-  local hls_config = {
+  vim.g.haskell_tools = {
     hls = {
-      capabilities = hls_lsp.capabilities,
-      on_attach = function(_, bufnr)
-        -- haskell-language-server relies heavily on codeLenses,
-        -- so auto-refresh (see advanced configuration) is enabled by default
-        vim.keymap.set('n', '<leader>lhs', haskell_tools.hoogle.hoogle_signature,
-          { desc = "Hoogle symbol", buffer = bufnr })
-        vim.keymap.set('n', '<leader>lea', haskell_tools.lsp.buf_eval_all, { desc = "Evaluate all", buffer = bufnr })
-      end
+      capabilities = lsp_zero.get_capabilities(),
     }
   }
 
@@ -159,15 +149,19 @@ local function setup_lsp_zero()
     group = hls_augroup,
     pattern = { 'haskell' },
     callback = function()
-      haskell_tools.start_or_attach(hls_config)
+      local haskell_tools = require('haskell-tools')
+      local bufnr = vim.api.nvim_get_current_buf()
+      local opts = { noremap = true, silent = true, buffer = bufnr } -- Toggle a GHCi repl for the current package
+
+      vim.keymap.set('n', '<leader>lhs', haskell_tools.hoogle.hoogle_signature,
+        { desc = "Hoogle symbol", buffer = bufnr })
+      vim.keymap.set('n', '<leader>lea', haskell_tools.lsp.buf_eval_all, { desc = "Evaluate all", buffer = bufnr })
 
       ---
       -- Suggested keymaps that do not depend on haskell-language-server:
       ---
 
-      local bufnr = vim.api.nvim_get_current_buf()
       -- set buffer = bufnr in ftplugin/haskell.lua
-      local opts = { noremap = true, silent = true, buffer = bufnr } -- Toggle a GHCi repl for the current package
       vim.keymap.set('n', '<leader>rr', haskell_tools.repl.toggle, opts)
 
       -- Toggle a GHCi repl for the current buffer
