@@ -35,7 +35,6 @@
     ripgrep
     terraform-ls
     watchman
-    yadm
   ];
 
   nix.extraOptions = ''
