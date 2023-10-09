@@ -12,7 +12,7 @@ in
   };
 
   vimPlugins = prev.vimPlugins.extend (vfinal: vprev: {
-    "tree-sitter-just" = final.vimUtils.buildVimPluginFrom2Nix {
+    "tree-sitter-just" = final.vimUtils.buildVimPlugin {
       inherit src version;
       pname = "tree-sitter-just";
     };
