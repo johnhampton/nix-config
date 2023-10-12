@@ -45,6 +45,7 @@
     ];
 
     masApps = {
+      "Todoist: To-Do List & Tasks" = 585829637;
       "1Password for Safari" = 1569813296;
       "Kindle" = 405399194;
       Magnet = 441258766;
