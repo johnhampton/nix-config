@@ -27,6 +27,7 @@
       "artisan"
       "brave-browser"
       "dropbox"
+      "element"
       "expressvpn"
       "google-drive"
       "insomnia"
