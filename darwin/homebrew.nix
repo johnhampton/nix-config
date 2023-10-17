@@ -38,6 +38,7 @@
       "obsidian"
       "raindropio"
       "raycast"
+      "skype"
       "slack"
       "tableplus"
       "tuple"
