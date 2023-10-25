@@ -24,6 +24,7 @@
       "1password"
       "1password-cli"
       "adobe-creative-cloud"
+      "anki"
       "artisan"
       "brave-browser"
       "dropbox"
