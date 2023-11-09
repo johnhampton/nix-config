@@ -47,14 +47,15 @@
     ];
 
     masApps = {
-      "Todoist: To-Do List & Tasks" = 585829637;
       "1Password for Safari" = 1569813296;
       "Amazon Kindle" = 302584613;
+      "Be Focused Pro - Focus Timer" = 961632517;
+      LimeChat = 414030210;
       Magnet = 441258766;
       "Notion Web Clipper" = 1559269364;
       "Save to Raindrop.io" = 1549370672;
+      "Todoist: To-Do List & Tasks" = 585829637;
       Xcode = 497799835;
-      LimeChat = 414030210;
     };
   };
 }
