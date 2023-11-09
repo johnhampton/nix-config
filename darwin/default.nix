@@ -55,9 +55,22 @@
   services.nix-daemon.enable = true;
 
   system.stateVersion = 4;
-  system.defaults.dock.autohide = true;
-  system.defaults.dock.mru-spaces = false;
-  system.defaults.NSGlobalDomain."com.apple.keyboard.fnState" = true;
+  system.defaults = {
+    NSGlobalDomain = {
+      "com.apple.keyboard.fnState" = true;
+    };
+
+    dock = {
+      autohide = true;
+      mru-spaces = false;
+    };
+
+    CustomUserPreferences = {
+      NSGlobalDomain = {
+        AppleSpacesSwitchOnActivate = 0;
+      };
+    };
+  };
   programs.bash.enable = true;
   programs.fish.enable = true;
   programs.zsh.enable = true;
