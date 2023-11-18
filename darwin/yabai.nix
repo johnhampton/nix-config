@@ -1,6 +1,6 @@
 { ... }:
 {
-  services.yabai.enable = true;
+  services.yabai.enable = false;
   services.yabai = {
     config = {
       layout = "bsp";
@@ -24,7 +24,7 @@
   };
 
 
-  services.skhd.enable = true;
+  services.skhd.enable = false;
   services.skhd.skhdConfig = ''
     # change window focus within space
     alt - j : yabai -m window --focus south
