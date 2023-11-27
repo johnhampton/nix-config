@@ -37,6 +37,7 @@ in
 
     require('johnhampton.which-key-nvim')
 
+    require('johnhampton.nvim-ts-context-commentstring')
     require('johnhampton.nvim-treesitter')
 
     require('johnhampton.comment-nvim')
