@@ -32,6 +32,7 @@
     kubectx
     kustomize
     nerdfonts
+    patchutils_0_4_2
     pragmata-pro
     ripgrep
     terraform-ls
