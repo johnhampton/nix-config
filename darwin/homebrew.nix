@@ -50,6 +50,7 @@
       "1Password for Safari" = 1569813296;
       "Amazon Kindle" = 302584613;
       "Be Focused Pro - Focus Timer" = 961632517;
+      "Evernote" = 406056744;
       LimeChat = 414030210;
       Magnet = 441258766;
       "Notion Web Clipper" = 1559269364;
