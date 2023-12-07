@@ -1,33 +1,53 @@
 { ... }:
 final: prev:
 let
-  packageOverrides = luaself: luaprev: {
-    haskell-tools-nvim = luaprev.haskell-tools-nvim.overrideAttrs (oa: {
+  packageOverrides = luaself: luaprev:
+    let
+      version = "3.0.2-1";
+      srcFile = "${builtins.elemAt (builtins.split "-" version) 0}.zip";
+    in
+    {
+      haskell-tools-nvim = luaprev.haskell-tools-nvim.overrideAttrs (oa: {
+        inherit version;
 
-      version = "2.1.0-1";
-      rockspecVersion = "2.1.0-1";
+        rockspecVersion = version;
 
-      knownRockspec = (final.fetchurl {
-        url = "https://luarocks.org/manifests/MrcJkb/haskell-tools.nvim-2.1.0-1.rockspec";
-        sha256 = "18z5jjmm82hrdslqadyb844icr8xc99qsyg3b785kyx69rjyng05";
-      }).outPath;
+        knownRockspec = (final.fetchurl {
+          url = "https://luarocks.org/manifests/MrcJkb/haskell-tools.nvim-${version}.rockspec";
+          sha256 = "Hdne5VOZ8e5sDhEie3KwuLr+hg3uby2PQOCiRVgjmr4=";
+        }).outPath;
 
-      src = final.fetchzip {
-        url = "https://github.com/mrcjkb/haskell-tools.nvim/archive/2.1.0.zip";
-        sha256 = "aQaXEmThShUHPavCqB/uiCVVp+i2lsAR4cJRRoLl6eY=";
-      };
-    });
-  };
-
-  lua = prev.lua.override { inherit packageOverrides; };
-  luaPackages = lua.pkgs;
+        src = final.fetchzip {
+          url = "https://github.com/mrcjkb/haskell-tools.nvim/archive/${srcFile}";
+          sha256 = "p/+lUSOzi2kGxYqF+5lrPOV/kodTGSCpMQj/qCjIYec=";
+        };
+      });
+    };
 
   luajit = prev.luajit.override { inherit packageOverrides; };
   luajitPackages = luajit.pkgs;
 
+  lua = prev.lua.override { inherit packageOverrides; };
+  luaPackages = lua.pkgs;
+
   lua5_1 = prev.lua5_1.override { inherit packageOverrides; };
   lua51Packages = lua5_1.pkgs;
+
+  lua5_2 = prev.lua5_2.override { inherit packageOverrides; };
+  lua52Packages = lua5_2.pkgs;
+
+  lua5_3 = prev.lua5_3.override { inherit packageOverrides; };
+  lua53Packages = lua5_3.pkgs;
+
+  lua5_4 = prev.lua5_4.override { inherit packageOverrides; };
+  lua54Packages = lua5_4.pkgs;
 in
 {
-  inherit lua luaPackages luajit luajitPackages lua5_1 lua51Packages;
+  inherit
+    luajit luajitPackages
+    lua luaPackages
+    lua5_1 lua51Packages
+    lua5_2 lua52Packages
+    lua5_3 lua53Packages
+    lua5_4 lua54Packages;
 }
