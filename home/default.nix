@@ -121,7 +121,7 @@
         co = "pr checkout";
         tc = "repo clone topagentnetwork/$1 -- -c 'user.email=john@topagentnetwork.com'";
       };
-
+      version = "1";
     };
   };
 
