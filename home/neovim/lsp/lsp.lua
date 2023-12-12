@@ -140,6 +140,22 @@ local function setup_lsp_zero()
   vim.g.haskell_tools = {
     hls = {
       capabilities = lsp_zero.get_capabilities(),
+      default_settings = {
+        haskell = {
+          formattingProvider = "ormolu",
+          plugin = {
+            refineImports = {
+              codeActionsOn = true,
+              codeLensOn = false,
+            },
+            rename = {
+              config = {
+                crossModule = true,
+              },
+            },
+          },
+        },
+      }
     }
   }
 
