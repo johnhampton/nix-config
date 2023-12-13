@@ -37,6 +37,9 @@
     treesitter-just = { url = "github:IndianBoy42/tree-sitter-just"; flake = false; };
     telescope-hoogle-nvim = { url = "github:johnhampton/telescope-hoogle.nvim"; flake = false; };
     t-smart-tmux-session-manager = { url = "github:joshmedeski/t-smart-tmux-session-manager"; flake = false; };
+
+    # TAN utilities
+    hchart.url = "github:topagentnetwork/hchart";
   };
 
   outputs =
