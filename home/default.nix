@@ -18,6 +18,7 @@
   home.packages = with pkgs; [
     argocd
     argocd-autopilot
+    chartmuseum
     colima
     darwin.trash
     docker-client
