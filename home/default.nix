@@ -28,6 +28,7 @@
     (google-cloud-sdk.withExtraComponents (with google-cloud-sdk.components; [ cloud_sql_proxy gke-gcloud-auth-plugin ]))
     graphite-cli
     inputs.hchart.packages.${pkgs.system}.default
+    (wrapHelm kubernetes-helm { plugins = [ kubernetes-helmPlugins.helm-mapkubeapis ]; })
     just
     kind
     kubectl

@@ -69,6 +69,7 @@
           inputs.pragmata-pro.overlays.default
           (import ./overlays/chartmuseum.nix { inherit inputs; })
           (import ./overlays/haskell-tools-nvim-lua.nix { inherit inputs; })
+          (import ./overlays/helm-mapkubeapis.nix { inherit inputs; })
           (import ./overlays/fishPlugins.nix { inherit inputs; })
           (import ./overlays/lsp-zero.nix { inherit inputs; })
           (import ./overlays/tree-sitter.nix { inherit inputs; })
