@@ -10,6 +10,7 @@
     ./cachix
     ./git.nix
     ./kitty.nix
+    ./navi.nix
     ./neovim
     ./ssh.nix
     ./tmux
@@ -130,25 +131,6 @@
 
   programs.jq.enable = true;
 
-  programs.navi.enable = true;
-  programs.navi = {
-    settings = {
-      cheats = {
-        paths =
-          let
-            configDir =
-              if pkgs.stdenv.isDarwin then
-                "${config.home.homeDirectory}/Library/Application Support"
-              else
-                config.xdg.configHome;
-          in
-          [
-            "${config.home.homeDirectory}/Code/me/cheats"
-            "${configDir}/navi/cheats"
-          ];
-      };
-    };
-  };
 
   # https://starship.rs/config/
   programs.starship.enable = true;
