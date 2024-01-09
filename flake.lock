@@ -32,11 +32,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1703990467,
-        "narHash": "sha256-LItEeQVwDfLnavNskwdfRnonbEdq8DYiJlWRtF+bwng=",
+        "lastModified": 1704277720,
+        "narHash": "sha256-meAKNgmh3goankLGWqqpw73pm9IvXjEENJloF0coskE=",
         "owner": "LnL7",
         "repo": "nix-darwin",
-        "rev": "1a41453cba42a3a1af2fff003be455ddbd75386c",
+        "rev": "0dd382b70c351f528561f71a0a7df82c9d2be9a4",
         "type": "github"
       },
       "original": {
@@ -175,11 +175,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1704100519,
-        "narHash": "sha256-SgZC3cxquvwTN07vrYYT9ZkfvuhS5Y1k1F4+AMsuflc=",
+        "lastModified": 1704809957,
+        "narHash": "sha256-Z8sBeoeeY2O+BNqh5C+4Z1h1F1wQ2mij7yPZ2GY397M=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "6e91c5df192395753d8e6d55a0352109cb559790",
+        "rev": "e13aa9e287b3365473e5897e3667ea80a899cdfb",
         "type": "github"
       },
       "original": {
@@ -191,11 +191,11 @@
     "lsp-zero-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1704208801,
-        "narHash": "sha256-qrjgHU3YZsBhCroRPWpWs493khahi8HnZTbrhGI4h3g=",
+        "lastModified": 1704724628,
+        "narHash": "sha256-+l2P/nC5QX2Tgw2sogeYKmN/bkWaQ6COaQQ4gxGNnxs=",
         "owner": "VonHeikemen",
         "repo": "lsp-zero.nvim",
-        "rev": "accbac5131df050ad9913115b5f618b232d6e8e4",
+        "rev": "433db11e818d07a5151e2c750ca8f09cc2aa3146",
         "type": "github"
       },
       "original": {
@@ -212,11 +212,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1703992163,
-        "narHash": "sha256-709CGmwU34dxv8DjSpRBZ+HibVJIVaFcA4JH+GFnhyM=",
+        "lastModified": 1704596958,
+        "narHash": "sha256-BK3Ohsz7m8X6qVKFxDtr8KVcHipfr5hYE9PDIJevHbQ=",
         "owner": "Mic92",
         "repo": "nix-index-database",
-        "rev": "d6510ce144f5da7dd9bac667ba3d5a4946c00d11",
+        "rev": "f46800ac5a6e9f892fe36e50821c5d85794ecc62",
         "type": "github"
       },
       "original": {
@@ -259,11 +259,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1704217330,
-        "narHash": "sha256-BBrXuHb5CuSEIKZY9BKEgr4Q7LtEUV3UvUeLAnEBhuA=",
+        "lastModified": 1704821393,
+        "narHash": "sha256-jFP4NUpuPrnZAOZuZST7fM1R9iuItRxKKNoiwI1klfg=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "9c56ece502191959e5dffcfbd0055c8ccc1a2f0a",
+        "rev": "a6671578ffa6336bfd1238f1b2a00662b5ab1b34",
         "type": "github"
       },
       "original": {
@@ -291,11 +291,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1704008649,
-        "narHash": "sha256-rGPSWjXTXTurQN9beuHdyJhB8O761w1Zc5BqSSmHvoM=",
+        "lastModified": 1704626572,
+        "narHash": "sha256-VwRTEKzK4wSSv64G+g3RLF3t6yBHrhR2VK3kZ5UWisU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "d44d59d2b5bd694cd9d996fd8c51d03e3e9ba7f7",
+        "rev": "24fe8bb4f552ad3926274d29e083b79d84707da6",
         "type": "github"
       },
       "original": {
@@ -423,11 +423,11 @@
     "t-smart-tmux-session-manager": {
       "flake": false,
       "locked": {
-        "lastModified": 1704212497,
-        "narHash": "sha256-DwjUBCyFjvlA1kSiElZKfG2XRyN01+QIopvggN6dkqM=",
+        "lastModified": 1704384682,
+        "narHash": "sha256-iEiTF4NPUCVDp+bIfrbRx8HE1NrTJtxd667fTk0EfEA=",
         "owner": "joshmedeski",
         "repo": "t-smart-tmux-session-manager",
-        "rev": "3fd8c7bc6220fb7dc661a096f0bf378bc23d6504",
+        "rev": "9a46c00ca4c83d4b2ce4fdae7cade69a31d0ab56",
         "type": "github"
       },
       "original": {
@@ -455,11 +455,11 @@
     "treesitter-just": {
       "flake": false,
       "locked": {
-        "lastModified": 1679148267,
-        "narHash": "sha256-Qs0Klt9uj6Vgs4vJrjKXYD8nNe8KYdWCnADvogm4/l0=",
+        "lastModified": 1704792694,
+        "narHash": "sha256-eyDTqiCsl6iC0yRnBpgDPlbLdZZY8aa6bxXO/S2hodE=",
         "owner": "IndianBoy42",
         "repo": "tree-sitter-just",
-        "rev": "4e5f5f3ff37b12a1bbf664eb3966b3019e924594",
+        "rev": "d016423ddf36689873f49889265306f90372912d",
         "type": "github"
       },
       "original": {
