@@ -22,7 +22,7 @@ rebuild-switch *args='': (build args)
     ./result/sw/bin/darwin-rebuild switch --flake .#{{ FLAKE }} --impure $@
 
 upgrade:
-  nix flake update --commit-lock-file
+    nix flake update --commit-lock-file
 
 clean:
     @echo -e "{{ GREEN }}Cleaning up...{{ CLEAR }}"
