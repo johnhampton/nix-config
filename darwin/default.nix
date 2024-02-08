@@ -19,7 +19,7 @@
       "john"
       "@admin"
     ];
-    auto-optimise-store = true;
+    auto-optimise-store = false;
 
     experimental-features = [
       "ca-derivations"
