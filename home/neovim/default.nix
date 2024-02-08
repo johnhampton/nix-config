@@ -64,19 +64,10 @@ in
     # which-key
     { plugin = which-key-nvim; }
 
+    { plugin = vim-just; }
     # treesitter
     {
-      plugin = (nvim-treesitter.withPlugins (p: ([ pkgs.tree-sitter-grammars.tree-sitter-just ]
-        ++ nvim-treesitter.allGrammars)));
-    }
-    {
-      plugin = tree-sitter-just;
-      type = "lua";
-      config = ''
-        require('tree-sitter-just').setup({ 
-          ["local"] = true 
-        })
-      '';
+      plugin = nvim-treesitter.withAllGrammars;
     }
 
     # Comment

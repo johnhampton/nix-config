@@ -34,7 +34,6 @@
     lsp-zero-nvim = { url = "github:VonHeikemen/lsp-zero.nvim/v3.x"; flake = false; };
     plugin-foreign-env = { url = "github:oh-my-fish/plugin-foreign-env"; flake = false; };
     pragmata-pro = { url = "github:johnhampton/pragmata-pro"; };
-    treesitter-just = { url = "github:IndianBoy42/tree-sitter-just"; flake = false; };
     telescope-hoogle-nvim = { url = "github:johnhampton/telescope-hoogle.nvim"; flake = false; };
     t-smart-tmux-session-manager = { url = "github:joshmedeski/t-smart-tmux-session-manager"; flake = false; };
 
@@ -72,7 +71,6 @@
           (import ./overlays/helm-mapkubeapis.nix { inherit inputs; })
           (import ./overlays/fishPlugins.nix { inherit inputs; })
           (import ./overlays/lsp-zero.nix { inherit inputs; })
-          (import ./overlays/tree-sitter.nix { inherit inputs; })
           (import ./overlays/tmuxPlugins.nix { inherit inputs; })
           (import ./overlays/vimPlugins.nix { inherit inputs; })
         ];

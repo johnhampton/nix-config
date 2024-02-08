@@ -371,8 +371,7 @@
         "plugin-foreign-env": "plugin-foreign-env",
         "pragmata-pro": "pragmata-pro",
         "t-smart-tmux-session-manager": "t-smart-tmux-session-manager",
-        "telescope-hoogle-nvim": "telescope-hoogle-nvim",
-        "treesitter-just": "treesitter-just"
+        "telescope-hoogle-nvim": "telescope-hoogle-nvim"
       }
     },
     "systems": {
@@ -449,22 +448,6 @@
       "original": {
         "owner": "johnhampton",
         "repo": "telescope-hoogle.nvim",
-        "type": "github"
-      }
-    },
-    "treesitter-just": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1705991102,
-        "narHash": "sha256-bxriZhRV/Gg+V+soplzCeREzLGWITTsQDbnqNXVbP3I=",
-        "owner": "IndianBoy42",
-        "repo": "tree-sitter-just",
-        "rev": "4f5d53b52a65771f9695df3f1a294d5c80b916fb",
-        "type": "github"
-      },
-      "original": {
-        "owner": "IndianBoy42",
-        "repo": "tree-sitter-just",
         "type": "github"
       }
     }
