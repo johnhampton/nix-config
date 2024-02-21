@@ -24,6 +24,12 @@ rebuild-switch *args='': (build args)
 upgrade:
     nix flake update --commit-lock-file
 
+alias optimise-store := optimize-store
+
+# Optimize the nix store
+optimize-store:
+    nix store optimise
+
 clean:
     @echo -e "{{ GREEN }}Cleaning up...{{ CLEAR }}"
     rm -rf ./result
