@@ -30,6 +30,7 @@
     graphite-cli
     inputs.hchart.packages.${pkgs.system}.default
     (wrapHelm kubernetes-helm { plugins = [ kubernetes-helmPlugins.helm-mapkubeapis ]; })
+    hurl
     just
     kind
     kubectl
