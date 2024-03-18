@@ -68,7 +68,6 @@
 
   programs.eza.enable = true;
   programs.eza = {
-    enableAliases = true;
     icons = true;
     git = true;
   };
