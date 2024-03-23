@@ -49,7 +49,9 @@
   # }];
   nix.configureBuildUsers = true;
 
-  nix.package = pkgs.nixUnstable;
+  # Pin nix version to 2.19 to avoid bug 
+  # https://github.com/NixOS/nix/issues/10238
+  nix.package = pkgs.nixVersions.nix_2_19;
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
