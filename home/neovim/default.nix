@@ -16,6 +16,7 @@ in
     nil
     nixpkgs-fmt
     nodePackages.vscode-langservers-extracted
+    pgformatter
     sumneko-lua-language-server
   ];
 

@@ -123,6 +123,7 @@ local function setup_lsp_zero()
       -- formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
       formatting.prettier,
       formatting.black.with({ extra_args = { "--fast" } }),
+      formatting.pg_format,
       formatting.stylua,
       formatting.cabal_fmt,
       diagnostics.eslint_d,
