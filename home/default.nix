@@ -12,6 +12,7 @@
     ./kitty.nix
     ./navi.nix
     ./neovim
+    ./postgres
     ./ssh.nix
     ./tmux
     ./wezterm.nix
