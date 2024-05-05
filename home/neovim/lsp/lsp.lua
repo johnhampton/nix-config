@@ -20,14 +20,16 @@ local function setup_lsp_zero()
   vim.keymap.set("n", "<leader>lw", "<cmd>Lspsaga show_workspace_diagnostics<cr>", { desc = "Workspace diagnostics" })
   vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>", { desc = "LSP info" })
 
-  lsp_zero.on_attach(function(_, bufnr)
+  lsp_zero.on_attach(function(client, bufnr)
     lsp_zero.default_keymaps({ buffer = bufnr, preserve_mappings = false, omit = { "gl", "[d", "]d" } })
 
     local function bind(mode, key, cmd, desc)
       vim.keymap.set(mode, key, cmd, { buffer = bufnr, desc = desc })
     end
 
-    bind("n", "K", "<cmd>Lspsaga hover_doc<cr>", "Hover doc")
+    if client.name ~= "haskell-tools.nvim" then
+      bind("n", "K", "<cmd>Lspsaga hover_doc<cr>", "Hover doc")
+    end
 
     bind("n", "gd", "<cmd>Lspsaga goto_definition<cr>", "Goto definition")
     bind("n", "gh", "<cmd>Lspsaga finder<cr>", "Usage")
