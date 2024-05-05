@@ -8,6 +8,7 @@ vim.api.nvim_create_autocmd("InsertEnter", {
         auto_trigger = true,
         keymap = {
           accept = false;
+          accept_line = "<M-m>";
         }
       }
     })
