@@ -30,7 +30,7 @@ local function setup_lsp_zero()
     bind("n", "K", "<cmd>Lspsaga hover_doc<cr>", "Hover doc")
 
     bind("n", "gd", "<cmd>Lspsaga goto_definition<cr>", "Goto definition")
-    bind("n", "gh", "<cmd>Lspsaga lsp_finder<cr>", "Usage")
+    bind("n", "gh", "<cmd>Lspsaga finder<cr>", "Usage")
     bind("n", "gp", "<cmd>Lspsaga peek_definition<cr>", "Peek definition")
     bind('n', 'gr', '<cmd>Telescope lsp_references<cr>', "References")
 
