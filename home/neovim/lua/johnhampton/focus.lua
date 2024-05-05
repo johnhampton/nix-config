@@ -7,7 +7,7 @@ focus.setup({
   },
 })
 
-local ignore_filetypes = { 'NvimTree' }
+local ignore_filetypes = { 'NvimTree', 'sagaoutline' }
 local ignore_buftypes = { 'nofile', 'prompt', 'popup' }
 
 local augroup =
