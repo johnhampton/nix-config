@@ -132,8 +132,8 @@
         };
 
         "Johns-MacBook-Pro" = darwinSystem {
-          system = "aarch64-darwin";
-          modules = nixDarwinCommonModules;
+          # system = "aarch64-darwin";
+          modules = [({...}: { nixpkgs.hostPlatform = "aarch64-darwin"; })] ++ nixDarwinCommonModules;
           inputs = { inherit home-manager; };
         };
       };
