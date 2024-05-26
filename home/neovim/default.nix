@@ -12,27 +12,53 @@ in
     };
 
     keymaps = [
-     {
-      mode = "n";
-      key = "<leader>e";
-      action = config.nixvim.helpers.mkRaw "MiniFiles.open";
-      options = {
-        desc = "Explore";
-      };
-     } 
+      {
+        mode = "n";
+        key = "<leader>e";
+        action = config.nixvim.helpers.mkRaw "MiniFiles.open";
+        options = {
+          desc = "Explore";
+        };
+      }
     ];
-    
+
     plugins = {
-      mini.enable = true;
+      lsp = {
+        enable = true;
+
+        servers = {
+          nil_ls = { enable = false; };
+          nixd = {
+            enable = true;
+            settings.formatting.command = [ "nixpkgs-fmt" ];
+          };
+        };
+
+        keymaps = {
+          lspBuf = {
+            "<leader>lf" = {
+              action = "format";
+              desc = "Format";
+            };
+          };
+        };
+      };
+
       mini = {
+        enable = true;
         modules = {
-        files = { };
-	};
+          files = { };
+        };
       };
 
       tmux-navigator.enable = true;
       treesitter.enable = true;
-      which-key.enable = true;
+      which-key = {
+        enable = true;
+        registrations = {
+          "<leader>l" = { name = "+LSP"; };
+        };
+      };
     };
 
     extraPlugins = [
