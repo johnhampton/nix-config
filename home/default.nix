@@ -15,6 +15,7 @@
     ./postgres
     ./ssh.nix
     ./tmux
+    ./vscode.nix
     ./wezterm.nix
   ];
   home.packages = with pkgs; [

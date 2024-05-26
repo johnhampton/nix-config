@@ -11,6 +11,11 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixpkgs-22.05-darwin";
     nixos-stable.url = "github:NixOS/nixpkgs/nixos-22.05";
 
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
     # Environment/system management
     darwin.url = "github:LnL7/nix-darwin";
     darwin.inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -80,6 +85,7 @@
       homeManagerStateVersion = "22.05";
       homeManagerCommonConfig = {
         imports = [
+          inputs.nixvim.homeManagerModules.nixvim
           ./home
           { home.stateVersion = homeManagerStateVersion; }
           (args: {
@@ -133,7 +139,7 @@
 
         "Johns-MacBook-Pro" = darwinSystem {
           # system = "aarch64-darwin";
-          modules = [({...}: { nixpkgs.hostPlatform = "aarch64-darwin"; })] ++ nixDarwinCommonModules;
+          modules = [ ({ ... }: { nixpkgs.hostPlatform = "aarch64-darwin"; }) ] ++ nixDarwinCommonModules;
           inputs = { inherit home-manager; };
         };
       };
