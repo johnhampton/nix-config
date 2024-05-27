@@ -2,6 +2,7 @@
 {
 
   imports = [
+    ./onenord.nix
     ./haskell-tools-nvim.nix
     ./mini.nix
   ];

@@ -1,4 +1,4 @@
-{ ... }:
+{pkgs, ... }:
 {
   programs.wezterm.enable = true;
   programs.wezterm.extraConfig = ''
@@ -11,7 +11,8 @@
     config.font = wezterm.font 'PragmataPro Mono Liga'
     config.font_size = 14.0
 
-    config.color_scheme = 'nordfox'
+    config.color_scheme = 'OneNord'
+    config.use_fancy_tab_bar = false
     config.window_decorations = 'RESIZE'
 
     config.hide_tab_bar_if_only_one_tab = true
@@ -52,4 +53,7 @@
 
     return config
   '';
+
+  xdg.configFile."wezterm/colors/onenord.toml".source = "${pkgs.vimPlugins.onenord-nvim.src}/extras/wezterm/onenord.toml";
+  xdg.configFile."wezterm/colors/onenord_light.toml".source = "${pkgs.vimPlugins.onenord-nvim.src}/extras/wezterm/onenord_light.toml";
 }
