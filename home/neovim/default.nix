@@ -8,7 +8,7 @@ in
     enable = true;
 
     globals = {
-      mapleader = " ";
+      # mapleader = " ";
     };
 
     keymaps = [
@@ -47,7 +47,34 @@ in
       mini = {
         enable = true;
         modules = {
+          basics = { };
           files = { };
+          jump = { };
+          surround = { };
+        };
+      };
+
+      telescope = {
+        enable = true;
+        extensions = {
+          fzf-native = {
+            enable = true;
+          };
+        };
+        keymaps = {
+          "<leader>ff" = {
+            action = "find_files";
+            options = {
+              desc = "Find files";
+            };
+          };
+
+          "<leader>fb" = {
+            action = "buffers";
+            options = {
+              desc = "Find buffers";
+            };
+          };
         };
       };
 
@@ -57,6 +84,7 @@ in
         enable = true;
         registrations = {
           "<leader>l" = { name = "+LSP"; };
+          "<leader>f" = { name = "+find"; };
         };
       };
     };

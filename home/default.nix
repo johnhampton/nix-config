@@ -11,7 +11,7 @@
     ./git.nix
     ./kitty.nix
     ./navi.nix
-    ./neovim
+    ./nixvim
     ./postgres
     ./ssh.nix
     ./tmux
