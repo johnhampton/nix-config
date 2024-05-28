@@ -25,7 +25,6 @@
         type = "lua";
         config = builtins.readFile ./lsp.lua;
       }
-
       {
         plugin = p.lspsaga-nvim;
         type = "lua";
