@@ -2,6 +2,10 @@
 {
   programs.nixvim = {
     extraPlugins = [ pkgs.vimPlugins.haskell-tools-nvim ];
+		extraPackages = [
+		  pkgs.haskellPackages.fast-tags
+			pkgs.haskellPackages.haskell-debug-adapter
+		];
 
     files = {
       "after/ftplugin/haskell.lua" = {

@@ -4,6 +4,8 @@
   imports = [
     ./onenord.nix
     ./haskell-tools-nvim.nix
+		./lualine.nix
+    ./lsp.nix
     ./mini.nix
   ];
 
@@ -11,35 +13,16 @@
     enable = true;
 
     opts = {
-      tabstop = 2;
+      cmdheight = 2;
+      relativenumber = true;
       shiftwidth = 2;
+      tabstop = 2;
     };
 
-    globals = {
-    };
+    globals = { };
 
     plugins = {
-      lsp = {
-        enable = true;
-
-        servers = {
-          nil_ls = { enable = false; };
-          nixd = {
-            enable = true;
-            settings.formatting.command = [ "nixpkgs-fmt" ];
-          };
-        };
-
-        keymaps = {
-          lspBuf = {
-            "<leader>lf" = {
-              action = "format";
-              desc = "Format";
-            };
-          };
-        };
-      };
-
+			dap.enable = true;
       telescope = {
         enable = true;
         extensions = {
@@ -78,15 +61,19 @@
         };
       };
 
-
       tmux-navigator.enable = true;
       treesitter.enable = true;
 
       which-key = {
         enable = true;
+				operators = {
+					# "gq" = "Format";
+				};
         registrations = {
+          "<leader>c" = { name = "+Code"; };
+          "<leader>f" = { name = "+Find"; };
           "<leader>l" = { name = "+LSP"; };
-          "<leader>f" = { name = "+find"; };
+					"gq" = { name = "Format"; };
         };
       };
     };
