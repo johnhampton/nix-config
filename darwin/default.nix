@@ -8,17 +8,11 @@
   ];
 
   nix.settings = {
-    substituters = [
-      "https://cache.iog.io"
-    ];
-    trusted-public-keys = [
-      "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
-    ];
-
     trusted-users = [
       "john"
       "@admin"
     ];
+
     auto-optimise-store = false;
 
     experimental-features = [
@@ -38,15 +32,6 @@
   services.lorri.enable = false;
   services.lorri.logFile = "/var/tmp/lorri.log";
 
-  # nix.distributedBuilds = true;
-  # nix.buildMachines = [{
-  #   hostName = "ssh-ng://builder@localhost";
-  #   system = "x86_64-linux";
-  #   maxJobs = 4;
-  #   publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUpCV2N4Yi9CbGFxdDFhdU90RStGOFFVV3JVb3RpQzVxQkorVXVFV2RWQ2Igcm9vdEBuaXhvcwo=";
-  #   sshKey = "/etc/nix/builder_ed25519";
-  #
-  # }];
   nix.configureBuildUsers = true;
 
   # Pin nix version to 2.19 to avoid bug 
