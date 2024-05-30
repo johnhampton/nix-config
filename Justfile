@@ -9,17 +9,17 @@ SYSTEM := "darwinConfigurations." + FLAKE + ".system"
 export NIXPKGS_ALLOW_UNFREE := "1"
 
 # Switch to a new generation and clean up
-switch *args='': (rebuild-switch args) clean
+switch: (rebuild-switch) clean
 
 # Build the nix-darwin configuration
-build *args='':
+build:
     @echo -e "{{ GREEN }}Starting...{{ CLEAR }}"
-    nix --experimental-features 'nix-command flakes' build .#{{ SYSTEM }} --impure $@
+    darwin-rebuild build --flake .
 
 # Switch to a new generation
-rebuild-switch *args='': (build args)
+rebuild-switch:
     @echo -e "{{ GREEN }}Switching to new generation...{{ CLEAR }}"
-    ./result/sw/bin/darwin-rebuild switch --flake .#{{ FLAKE }} --impure $@
+    darwin-rebuild switch --flake .
 
 upgrade:
     nix flake update --commit-lock-file
