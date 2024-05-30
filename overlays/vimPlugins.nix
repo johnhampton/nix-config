@@ -16,6 +16,10 @@
     "ChatGPT-nvim" = vprev.ChatGPT-nvim.overrideAttrs (old: {
       patches = old.patches or [ ] ++ [ ./ChatGPT-nvim.patch ];
     });
+
+		"haskell-tools-nvim" = vprev.haskell-tools-nvim.overrideAttrs(old: {
+			patches = old.patches or [ ] ++ [ ./haskell-tools.patch ];
+		});
   });
 })
 

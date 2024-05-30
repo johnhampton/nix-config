@@ -35,9 +35,6 @@
     flake-utils.url = "github:numtide/flake-utils";
 
     focus-nvim = { url = "github:nvim-focus/focus.nvim"; flake = false; };
-    haskell-tools-nvim = { url = "github:/mrcjkb/haskell-tools.nvim/3.1.9"; };
-    # Use the v2.x branch of lsp-zero. Nixpkgs is currently tracking main.
-    lsp-zero-nvim = { url = "github:VonHeikemen/lsp-zero.nvim/v3.x"; flake = false; };
     plugin-foreign-env = { url = "github:oh-my-fish/plugin-foreign-env"; flake = false; };
     pragmata-pro = { url = "github:johnhampton/pragmata-pro"; };
     telescope-hoogle-nvim = { url = "github:johnhampton/telescope-hoogle.nvim"; flake = false; };
@@ -72,7 +69,6 @@
             inherit (pkgs-master) google-cloud-sdk;
           })
           inputs.pragmata-pro.overlays.default
-          inputs.haskell-tools-nvim.overlays.default
           (import ./overlays/chartmuseum.nix { inherit inputs; })
           (import ./overlays/helm-mapkubeapis.nix { inherit inputs; })
           (import ./overlays/fishPlugins.nix { inherit inputs; })

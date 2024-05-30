@@ -2,6 +2,7 @@
 {
 
   imports = [
+	  ./cmp.nix
     ./onenord.nix
     ./haskell-tools-nvim.nix
 		./lualine.nix

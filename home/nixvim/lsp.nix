@@ -10,7 +10,7 @@
           settings.formatting.command = [ "nixpkgs-fmt" ];
         };
       };
-
+			
       keymaps = {
         diagnostic = {
           "gl" = {
