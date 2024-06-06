@@ -27,6 +27,7 @@
       "anki"
       "artisan"
       "brave-browser"
+      "chatgpt"
       "dropbox"
       "element"
       "expressvpn"
