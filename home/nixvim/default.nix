@@ -8,6 +8,7 @@
 		./lualine.nix
     ./lsp.nix
     ./mini.nix
+    ./telescope.nix
   ];
 
   programs.nixvim = {
@@ -24,43 +25,6 @@
 
     plugins = {
 			dap.enable = true;
-      telescope = {
-        enable = true;
-        extensions = {
-          fzf-native = {
-            enable = true;
-          };
-        };
-        keymaps = {
-          "<leader>ff" = {
-            action = "find_files";
-            options = {
-              desc = "Find files";
-            };
-          };
-
-          "<leader>fb" = {
-            action = "buffers";
-            options = {
-              desc = "Buffers";
-            };
-          };
-
-          "<leader>fg" = {
-            action = "live_grep";
-            options = {
-              desc = "Live Grep";
-            };
-          };
-
-          "<leader>fh" = {
-            action = "help_tags";
-            options = {
-              desc = "Help Tags";
-            };
-          };
-        };
-      };
 
       tmux-navigator.enable = true;
       treesitter.enable = true;
@@ -72,7 +36,7 @@
 				};
         registrations = {
           "<leader>c" = { name = "+Code"; };
-          "<leader>f" = { name = "+Find"; };
+          "<leader>F" = { name = "+Find"; };
           "<leader>l" = { name = "+LSP"; };
 					"gq" = { name = "Format"; };
         };
