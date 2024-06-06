@@ -2,6 +2,7 @@
 {
 
   imports = [
+	  ./copilot.nix	
 	  ./cmp.nix
     ./onenord.nix
     ./haskell-tools-nvim.nix
