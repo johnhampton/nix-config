@@ -4,7 +4,7 @@
       enable = true;
 
       servers = {
-        nil_ls = { enable = false; };
+        nil-ls = { enable = false; };
         nixd = {
           enable = true;
           settings.formatting.command = [ "nixpkgs-fmt" ];
