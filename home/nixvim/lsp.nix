@@ -1,5 +1,6 @@
-{ ... }: {
+{ pkgs, ... }: {
   programs.nixvim = {
+    extraPlugins = [ pkgs.vimPlugins.actions-preview-nvim ];
     plugins.lsp = {
       enable = true;
 
@@ -10,7 +11,7 @@
           settings.formatting.command = [ "nixpkgs-fmt" ];
         };
       };
-			
+
       keymaps = {
         diagnostic = {
           "gl" = {
@@ -23,35 +24,43 @@
             action = "format";
             desc = "Format";
           };
-
-          "<leader>ca" = {
-            action = "code_action";
-            desc = "Code Action";
-          };
         };
 
         extra = [
           {
-            key = "<leader>cr";
+            key ="<leader>ca";
+            action = "<cmd>lua require('actions-preview').code_actions()<cr>";
+            options = {
+              desc = "Code Actions";
+            };
+          }
+          {
+            key = "<leader>cl";
             action = "<cmd>lua vim.lsp.codelens.run()<cr>";
             options = {
               desc = "CodeLens Action";
             };
           }
-					{
-						key = "gd";
-						action = "<cmd>lua require'telescope.builtin'.lsp_definitions()<cr>";
-						options = {
-							 desc = "Goto Definition";
-						};
-					}
-					{
-						key = "gr";
-						action = "<cmd>lua require'telescope.builtin'.lsp_references()<cr>";
-						options = {
-							 desc = "List References";
-						};
-					}
+          { key = "<leader>cr";
+            action = "<cmd>lua vim.lsp.codelens.refresh()<cr>";
+            options = {
+              desc = "Refresh CodeLens";
+            };
+          }
+          {
+            key = "gd";
+            action = "<cmd>lua require'telescope.builtin'.lsp_definitions()<cr>";
+            options = {
+              desc = "Goto Definition";
+            };
+          }
+          {
+            key = "gr";
+            action = "<cmd>lua require'telescope.builtin'.lsp_references()<cr>";
+            options = {
+              desc = "List References";
+            };
+          }
           {
             key = "<leader>li";
             action = "<cmd>LspInfo<cr>";
