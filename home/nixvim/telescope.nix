@@ -1,49 +1,67 @@
-{ ... } : 
+{ ... }:
 {
-programs.nixvim.plugins.telescope = {
-        enable = true;
+  programs.nixvim = {
 
-        extensions = {
-          fzf-native = {
-            enable = true;
-          };
-        };
+    plugins.telescope = {
+      enable = true;
 
-        keymaps = {
-          "<leader>f" = {
-            action = "find_files";
-            options = {
-              desc = "Find files";
-            };
-          };
-
-          "<leader>b" = {
-            action = "buffers";
-            options = {
-              desc = "Buffers";
-            };
-          };
-
-          "<leader>/" = {
-            action = "live_grep";
-            options = {
-              desc = "Live Grep";
-            };
-          };
-
-          "<leader>Fh" = {
-            action = "help_tags";
-            options = {
-              desc = "Help Tags";
-            };
-          };
-
-          "<leader>Fk" = {
-            action = "keymaps";
-            options = {
-              desc = "Keymaps";
-            };
-          };
+      extensions = {
+        fzf-native = {
+          enable = true;
         };
       };
+
+      keymaps = {
+        "<leader>f" = {
+          action = "find_files";
+          options = {
+            desc = "Find files";
+          };
+        };
+
+        "<leader>b" = {
+          action = "buffers";
+          options = {
+            desc = "Buffers";
+          };
+        };
+
+        "<leader>/" = {
+          action = "live_grep";
+          options = {
+            desc = "Live Grep";
+          };
+        };
+
+        "<leader>Fh" = {
+          action = "help_tags";
+          options = {
+            desc = "Help Tags";
+          };
+        };
+
+        "<leader>Fk" = {
+          action = "keymaps";
+          options = {
+            desc = "Keymaps";
+          };
+        };
+
+				"<leader>FR" = {
+					action = "oldfiles";
+					options = {
+						desc = "Recent files (Global)";
+					};
+				};
+      };
+    };
+
+    keymaps = [{
+      key = "<leader>Fr";
+      action = "<cmd>Telescope oldfiles cwd_only=true<cr>";
+      options = {
+        desc = "Recent files";
+      };
+    }];
+  };
 }
