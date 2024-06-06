@@ -61,29 +61,61 @@
               desc = "List References";
             };
           }
+
+          # LSP Diagnostics
           {
-            key = "<leader>li";
+            key = "<leader>ld";
+            action = "<cmd>lua require'telescope.builtin'.diagnostics({ bufnr = 0 })<cr>";
+            options = {
+              desc = "Document Diagnostics";
+            };
+          }
+          {
+            key = "<leader>lw";
+            action = "<cmd>lua require'telescope.builtin'.diagnostics()<cr>";
+            options = {
+              desc = "Workspace Diagnostics";
+            };
+          }
+
+          # LSP Symbols
+          {
+            key = "<leader>ls";
+            action = "<cmd>lua require'telescope.builtin'.lsp_document_symbols()<cr>";
+            options = {
+              desc = "Document Symbols";
+            };
+          }
+          {
+            key = "<leader>lS";
+            action = "<cmd>lua require'telescope.builtin'.lsp_dynamic_workspace_symbols()<cr>";
+            options = {
+              desc = "Workspace Symbols";
+            };
+          }
+          {
+            key = "<leader>Li";
             action = "<cmd>LspInfo<cr>";
             options = {
               desc = "LSP info";
             };
           }
           {
-            key = "<leader>lx";
+            key = "<leader>Lx";
             action = "<cmd>LspStop<cr>";
             options = {
               desc = "Stop LSP";
             };
           }
           {
-            key = "<leader>ls";
+            key = "<leader>Ls";
             action = "<cmd>LspStart<cr>";
             options = {
               desc = "Start LSP";
             };
           }
           {
-            key = "<leader>lr";
+            key = "<leader>Lr";
             action = "<cmd>LspRestart<cr>";
             options = {
               desc = "Restart LSP";

@@ -2,11 +2,11 @@
 {
 
   imports = [
-	  ./copilot.nix	
-	  ./cmp.nix
+    ./copilot.nix
+    ./cmp.nix
     ./onenord.nix
     ./haskell-tools-nvim.nix
-		./lualine.nix
+    ./lualine.nix
     ./lsp.nix
     ./mini.nix
     ./telescope.nix
@@ -20,27 +20,28 @@
       relativenumber = true;
       shiftwidth = 2;
       tabstop = 2;
-			expandtab = true;
+      expandtab = true;
     };
 
     globals = { };
 
     plugins = {
-			dap.enable = true;
+      dap.enable = true;
 
       tmux-navigator.enable = true;
       treesitter.enable = true;
 
       which-key = {
         enable = true;
-				operators = {
-					# "gq" = "Format";
-				};
+        operators = {
+          # "gq" = "Format";
+        };
         registrations = {
           "<leader>c" = { name = "+Code"; };
           "<leader>F" = { name = "+Find"; };
           "<leader>l" = { name = "+LSP"; };
-					"gq" = { name = "Format"; };
+          "<leader>L" = { name = "LSP Control"; };
+          "gq" = { name = "Format"; };
         };
       };
     };
