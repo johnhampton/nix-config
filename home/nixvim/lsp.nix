@@ -1,6 +1,11 @@
-{ pkgs, ... }: {
+{ ... }: {
   programs.nixvim = {
-    extraPlugins = [ pkgs.vimPlugins.actions-preview-nvim ];
+    plugins.nvim-lightbulb = {
+      enable = true;
+      settings = {
+        autocmd.enabled = true;
+      };
+    };
     plugins.lsp = {
       enable = true;
 
@@ -24,16 +29,13 @@
             action = "format";
             desc = "Format";
           };
+          "<leader>ca" = {
+            action = "code_action";
+            desc = "Code Action";
+          };
         };
 
         extra = [
-          {
-            key ="<leader>ca";
-            action = "<cmd>lua require('actions-preview').code_actions()<cr>";
-            options = {
-              desc = "Code Actions";
-            };
-          }
           {
             key = "<leader>cl";
             action = "<cmd>lua vim.lsp.codelens.run()<cr>";
@@ -41,7 +43,8 @@
               desc = "CodeLens Action";
             };
           }
-          { key = "<leader>cr";
+          {
+            key = "<leader>cr";
             action = "<cmd>lua vim.lsp.codelens.refresh()<cr>";
             options = {
               desc = "Refresh CodeLens";
