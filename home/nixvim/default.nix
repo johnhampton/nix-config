@@ -37,10 +37,11 @@
           # "gq" = "Format";
         };
         registrations = {
-          "<leader>c" = { name = "+Code"; };
-          "<leader>F" = { name = "+Find"; };
-          "<leader>l" = { name = "+LSP"; };
-          "<leader>L" = { name = "LSP Control"; };
+          "<leader>a" = { name = "+AI"; mode = ["n" "v"]; };
+          "<leader>c" = { name = "+Code"; mode = ["n" "v"]; };
+          "<leader>F" = { name = "+Find"; mode = ["n" "v"]; };
+          "<leader>l" = { name = "+LSP"; mode = ["n" "v"]; };
+          "<leader>L" = { name = "+LSP Control"; mode = ["n" "v"]; };
           "gq" = { name = "Format"; };
         };
       };

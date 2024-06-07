@@ -1,8 +1,4 @@
 { pkgs, config, ... }:
-
-let
-  pluginWithDeps = plugin: deps: plugin.overrideAttrs (_: { dependencies = deps; });
-in
 {
   programs.nixvim = {
     enable = true;
