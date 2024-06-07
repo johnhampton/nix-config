@@ -33,6 +33,10 @@
             action = "code_action";
             desc = "Code Action";
           };
+          "<F2>" = {
+            action = "rename";
+            desc = "Rename";
+          };
         };
 
         extra = [
