@@ -9,6 +9,7 @@
     ./lualine.nix
     ./lsp.nix
     ./mini.nix
+    ./neotest.nix
     ./telescope.nix
   ];
 
