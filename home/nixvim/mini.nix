@@ -1,13 +1,20 @@
 { ... }:
 {
-  programs. nixvim = {
+  programs.nixvim = {
     plugins.mini = {
       enable = true;
       modules = {
         basics = { };
+        bufremove = { };
         files = { };
         jump = { };
         surround = { };
+      };
+    };
+
+    plugins.which-key = {
+      registrations = {
+        "<leader>b" = { name = "Buffer"; };
       };
     };
 
@@ -27,8 +34,8 @@
       }
     ];
 
-
     keymaps = [
+      # File explorer
       {
         mode = "n";
         key = "<leader>e";
@@ -57,6 +64,32 @@
         action = "<cmd>lua MiniFiles.open(nil, false)<cr>";
         options = {
           desc = "Fresh explorer";
+        };
+      }
+
+      # Buffer remove
+      {
+        mode = "n";
+        key = "<leader>bd";
+        action = "<cmd>lua MiniBufRemove.delete()<cr>";
+        options = {
+          desc = "Delete buffer";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>bw";
+        action = "<cmd>lua MiniBufRemove.wipeout()<cr>";
+        options = {
+          desc = "Wipeout buffer";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>bh";
+        action = "<cmd>lua MiniBufRemove.unshow()<cr>";
+        options = {
+          desc = "Hide buffer";
         };
       }
     ];
