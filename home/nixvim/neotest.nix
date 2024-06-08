@@ -6,6 +6,12 @@
       adapters.haskell.enable = true;
     };
 
+    plugins.which-key = {
+      registrations = {
+        "<leader>t" = { name = "Test"; };
+      };
+    };
+
     keymaps = [
       {
         key = "<leader>tt";
