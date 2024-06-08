@@ -11,6 +11,23 @@
       };
     };
 
+    autoCmd = [
+      {
+        event = "User";
+        pattern = "MiniFilesBufferCreate";
+        callback = {
+          __raw = ''
+            function(args)
+              local buf_id = args.data.buf_id
+
+              vim.keymap.set('n', '-', MiniFiles.go_out, { buffer = buf_id, desc = "Go out" })
+            end
+          '';
+        };
+      }
+    ];
+
+
     keymaps = [
       {
         mode = "n";
