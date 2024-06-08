@@ -71,7 +71,7 @@
       {
         mode = "n";
         key = "<leader>bd";
-        action = "<cmd>lua MiniBufRemove.delete()<cr>";
+        action = "<cmd>lua MiniBufremove.delete()<cr>";
         options = {
           desc = "Delete buffer";
         };
@@ -79,7 +79,7 @@
       {
         mode = "n";
         key = "<leader>bw";
-        action = "<cmd>lua MiniBufRemove.wipeout()<cr>";
+        action = "<cmd>lua MiniBufremove.wipeout()<cr>";
         options = {
           desc = "Wipeout buffer";
         };
@@ -87,7 +87,7 @@
       {
         mode = "n";
         key = "<leader>bh";
-        action = "<cmd>lua MiniBufRemove.unshow()<cr>";
+        action = "<cmd>lua MiniBufremove.unshow()<cr>";
         options = {
           desc = "Hide buffer";
         };
