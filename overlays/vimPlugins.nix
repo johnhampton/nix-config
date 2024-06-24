@@ -27,9 +27,6 @@
       };
       version = "2024-05-31";
     });
-    "haskell-tools-nvim" = vprev.haskell-tools-nvim.overrideAttrs (old: {
-      patches = old.patches or [ ] ++ [ ./haskell-tools.patch ];
-    });
   });
 })
 
