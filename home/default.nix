@@ -9,6 +9,7 @@
     ./amethyst.nix
     ./cachix
     ./git.nix
+    ./haskell.nix
     ./kitty.nix
     ./navi.nix
     ./nixvim
@@ -17,6 +18,7 @@
     ./tmux
     ./vscode.nix
     ./wezterm.nix
+
   ];
   home.packages = with pkgs; [
     argocd
