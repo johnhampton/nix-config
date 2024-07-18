@@ -114,6 +114,13 @@
       owner = "john";
       group = "staff";
     };
+    pgpass = {
+      file = ../secrets/pgpass.age;
+      path = "/Users/john/.pgpass";
+      mode = "600";
+      owner = "john";
+      group = "staff";
+    };
     ssh_key = {
       file = ../secrets/id_ed25519.age;
     };
