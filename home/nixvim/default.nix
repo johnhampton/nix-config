@@ -30,21 +30,28 @@
       dap.enable = true;
 
       tmux-navigator.enable = true;
-      treesitter.enable = true;
+      treesitter = { 
+        enable = true;
+        settings = {
+          highlight = {
+            enable = true;
+          };
+        };
+      };
 
       which-key = {
         enable = true;
         operators = {
           # "gq" = "Format";
         };
-        registrations = {
-          "<leader>a" = { name = "+AI"; mode = ["n" "v"]; };
-          "<leader>c" = { name = "+Code"; mode = ["n" "v"]; };
-          "<leader>F" = { name = "+Find"; mode = ["n" "v"]; };
-          "<leader>l" = { name = "+LSP"; mode = ["n" "v"]; };
-          "<leader>L" = { name = "+LSP Control"; mode = ["n" "v"]; };
-          "gq" = { name = "Format"; };
-        };
+        settings.spec = [
+          { "<leader>a" = { name = "+AI"; mode = [ "n" "v" ]; }; }
+          { "<leader>c" = { name = "+Code"; mode = [ "n" "v" ]; }; }
+          { "<leader>F" = { name = "+Find"; mode = [ "n" "v" ]; }; }
+          { "<leader>l" = { name = "+LSP"; mode = [ "n" "v" ]; }; }
+          { "<leader>L" = { name = "+LSP Control"; mode = [ "n" "v" ]; }; }
+          { "gq" = { name = "Format"; }; }
+        ];
       };
     };
 

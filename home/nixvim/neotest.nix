@@ -7,9 +7,9 @@
     };
 
     plugins.which-key = {
-      registrations = {
+      settings.spec = [{
         "<leader>t" = { name = "Test"; };
-      };
+      }];
     };
 
     keymaps = [

@@ -13,10 +13,10 @@
       telescope.enabledExtensions = [
         "hoogle"
       ];
-      which-key.registrations = {
-        "<leader>h" = { name = "Haskell"; };
-        "<leader>hr" = { name = "REPL"; };
-      };
+      which-key.settings.spec = [
+        { "<leader>h" = { name = "Haskell"; }; }
+        { "<leader>hr" = { name = "REPL"; }; }
+      ];
     };
     files = {
       "after/ftplugin/haskell.lua" = {

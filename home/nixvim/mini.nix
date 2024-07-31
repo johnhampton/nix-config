@@ -15,13 +15,13 @@
     };
 
     plugins.which-key = {
-      registrations = {
-        "<leader>b" = { name = "Buffer"; };
-        "<leader>g" = { name = "Git"; };
+      settings = {
+        spec = [
+          { "<leader>b" = { name = "Buffer"; }; }
+          { "<leader>g" = { name = "Git"; }; }
+        ];
       };
     };
-
-
 
     autoCmd = [
       {
