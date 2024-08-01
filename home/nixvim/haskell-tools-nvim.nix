@@ -14,8 +14,8 @@
         "hoogle"
       ];
       which-key.settings.spec = [
-        { "<leader>h" = { name = "Haskell"; }; }
-        { "<leader>hr" = { name = "REPL"; }; }
+        { __unkeyed-1 = "<leader>h"; group = "Haskell"; }
+        { __unkeyed-1 = "<leader>hr"; group = "REPL"; }
       ];
     };
     files = {

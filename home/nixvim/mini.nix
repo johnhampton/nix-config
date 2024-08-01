@@ -17,8 +17,8 @@
     plugins.which-key = {
       settings = {
         spec = [
-          { "<leader>b" = { name = "Buffer"; }; }
-          { "<leader>g" = { name = "Git"; }; }
+          { __unkeyed-1 = "<leader>b"; group = "Buffer"; }
+          { __unkeyed-1 = "<leader>g"; group = "Git"; }
         ];
       };
     };

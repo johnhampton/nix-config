@@ -8,7 +8,8 @@
 
     plugins.which-key = {
       settings.spec = [{
-        "<leader>t" = { name = "Test"; };
+        __unkeyed-1 = "<leader>t";
+        group = "Test";
       }];
     };
 

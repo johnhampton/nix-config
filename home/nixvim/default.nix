@@ -30,7 +30,7 @@
       dap.enable = true;
 
       tmux-navigator.enable = true;
-      treesitter = { 
+      treesitter = {
         enable = true;
         settings = {
           highlight = {
@@ -44,13 +44,14 @@
         operators = {
           # "gq" = "Format";
         };
+
         settings.spec = [
-          { "<leader>a" = { name = "+AI"; mode = [ "n" "v" ]; }; }
-          { "<leader>c" = { name = "+Code"; mode = [ "n" "v" ]; }; }
-          { "<leader>F" = { name = "+Find"; mode = [ "n" "v" ]; }; }
-          { "<leader>l" = { name = "+LSP"; mode = [ "n" "v" ]; }; }
-          { "<leader>L" = { name = "+LSP Control"; mode = [ "n" "v" ]; }; }
-          { "gq" = { name = "Format"; }; }
+          { __unkeyed-1 = "<leader>a"; group = "+AI"; mode = [ "n" "v" ]; }
+          { __unkeyed-1 = "<leader>c"; group = "+Code"; mode = [ "n" "v" ]; }
+          { __unkeyed-1 = "<leader>F"; group = "+Find"; mode = [ "n" "v" ]; }
+          { __unkeyed-1 = "<leader>l"; group = "+LSP"; mode = [ "n" "v" ]; }
+          { __unkeyed-1 = "<leader>L"; group = "+LSP Control"; mode = [ "n" "v" ]; }
+          { __unkeyed-1 = "gq"; group = "Format"; }
         ];
       };
     };
