@@ -2,6 +2,7 @@
 {
 
   imports = [
+    ./conform.nix
     ./copilot.nix
     ./cmp.nix
     ./onenord.nix
@@ -34,6 +35,9 @@
         enable = true;
         settings = {
           highlight = {
+            enable = true;
+          };
+          incremental_selection = {
             enable = true;
           };
         };

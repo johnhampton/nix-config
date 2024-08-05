@@ -25,10 +25,6 @@
           };
         };
         lspBuf = {
-          "<leader>lf" = {
-            action = "format";
-            desc = "Format";
-          };
           "<leader>ca" = {
             action = "code_action";
             desc = "Code Action";
