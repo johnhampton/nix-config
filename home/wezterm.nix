@@ -15,6 +15,8 @@
     config.use_fancy_tab_bar = false
     config.window_decorations = 'RESIZE'
 
+    config.front_end = 'WebGpu'
+
     config.hide_tab_bar_if_only_one_tab = true
 
     config.mouse_bindings = {
