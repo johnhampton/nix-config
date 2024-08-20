@@ -45,18 +45,21 @@
 
       which-key = {
         enable = true;
-        operators = {
-          # "gq" = "Format";
-        };
 
-        settings.spec = [
-          { __unkeyed-1 = "<leader>a"; group = "+AI"; mode = [ "n" "v" ]; }
-          { __unkeyed-1 = "<leader>c"; group = "+Code"; mode = [ "n" "v" ]; }
-          { __unkeyed-1 = "<leader>F"; group = "+Find"; mode = [ "n" "v" ]; }
-          { __unkeyed-1 = "<leader>l"; group = "+LSP"; mode = [ "n" "v" ]; }
-          { __unkeyed-1 = "<leader>L"; group = "+LSP Control"; mode = [ "n" "v" ]; }
-          { __unkeyed-1 = "gq"; group = "Format"; }
-        ];
+        settings = {
+          operators = {
+            # "gq" = "Format";
+          };
+
+          spec = [
+            { __unkeyed-1 = "<leader>a"; group = "+AI"; mode = [ "n" "v" ]; }
+            { __unkeyed-1 = "<leader>c"; group = "+Code"; mode = [ "n" "v" ]; }
+            { __unkeyed-1 = "<leader>F"; group = "+Find"; mode = [ "n" "v" ]; }
+            { __unkeyed-1 = "<leader>l"; group = "+LSP"; mode = [ "n" "v" ]; }
+            { __unkeyed-1 = "<leader>L"; group = "+LSP Control"; mode = [ "n" "v" ]; }
+            { __unkeyed-1 = "gq"; group = "Format"; }
+          ];
+        };
       };
     };
 
