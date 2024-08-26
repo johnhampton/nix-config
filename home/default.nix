@@ -1,4 +1,4 @@
-{ pkgs, config, age, inputs, ... }:
+{ pkgs, age, inputs, ... }:
 
 {
   imports = [
@@ -46,6 +46,7 @@
     ripgrep
     terraform-ls
     watchman
+    yq-go
   ];
 
   nix.extraOptions = ''
