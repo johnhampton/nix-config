@@ -10,7 +10,6 @@
     ./cachix
     ./git.nix
     ./haskell.nix
-    ./kitty.nix
     ./navi.nix
     ./nixvim
     ./postgres
