@@ -33,7 +33,7 @@
       "expressvpn"
       "google-drive"
       "insomnia"
-      "logi-options-plus"
+      "logi-options+"
       "logseq"
       "mimestream"
       "notion"
