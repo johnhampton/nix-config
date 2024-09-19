@@ -4,11 +4,13 @@
   programs.nixvim = {
     plugins.lualine = {
       enable = true;
-      sections = {
-        lualine_c = [
-          "filename"
-          "lsp_progress"
-        ];
+      settings = {
+        sections = {
+          lualine_c = [
+            "filename"
+            "lsp_progress"
+          ];
+        };
       };
     };
 

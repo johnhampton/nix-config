@@ -17,8 +17,12 @@
     };
 
     # Environment/system management
-    darwin.url = "github:LnL7/nix-darwin";
+    # TODO: Temporary work around until https://github.com/LnL7/nix-darwin/pull/1083 is merged
+    # or resolved
+    # darwin.url = "github:LnL7/nix-darwin";
+    darwin.url = "github:emilazy/nix-darwin/push-zovpmlzlzvvm";
     darwin.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
 

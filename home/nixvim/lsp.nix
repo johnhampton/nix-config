@@ -15,6 +15,17 @@
           enable = true;
           settings.formatting.command = [ "nixpkgs-fmt" ];
         };
+
+        rust-analyzer = {
+          enable = true;
+          installCargo = false;
+          installRustc = false;
+          settings = {
+            files = {
+              excludeDirs = [ ".direnv" ".devenv" ];
+            };
+          };
+        };
       };
 
       keymaps = {

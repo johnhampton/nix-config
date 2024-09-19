@@ -13,6 +13,6 @@
    
 
    plugins.lspsaga.ui.kind = helpers.mkRaw "require('onenord.integrations.lspsaga').custom_kind()";
-   plugins.lualine.theme = "onenord";
+   plugins.lualine.settings.theme = "onenord";
   };
 }
