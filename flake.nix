@@ -77,6 +77,7 @@
           (import ./overlays/helm-mapkubeapis.nix { inherit inputs; })
           (import ./overlays/fishPlugins.nix { inherit inputs; })
           (import ./overlays/lsp-zero.nix { inherit inputs; })
+          (import ./overlays/rainfrog.nix { inherit inputs; })
           (import ./overlays/tmuxPlugins.nix { inherit inputs; })
           (import ./overlays/vimPlugins.nix { inherit inputs; })
         ];

@@ -42,6 +42,7 @@
     nerdfonts
     patchutils_0_4_2
     pragmata-pro
+    rainfrog
     ripgrep
     terraform-ls
     watchman
