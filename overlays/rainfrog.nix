@@ -18,16 +18,10 @@ in
     };
 
     nativeBuildInputs = [
-
-      # pkgs.cmake
-      # pkgs.pkg-config
-      # pkgs.perl
-      # pkgs.protobuf
     ];
 
     buildInputs = [
       final.darwin.apple_sdk.frameworks.Cocoa
-      # pkgs.libcxxabi
     ];
   };
 }
