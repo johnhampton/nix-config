@@ -41,6 +41,7 @@
     kustomize
     nerdfonts
     patchutils_0_4_2
+    pgcli
     pragmata-pro
     rainfrog
     ripgrep
