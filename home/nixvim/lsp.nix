@@ -16,6 +16,8 @@
           settings.formatting.command = [ "nixpkgs-fmt" ];
         };
 
+        ocamllsp = { enable = true; };
+
         rust-analyzer = {
           enable = true;
           installCargo = false;
