@@ -34,6 +34,7 @@
       "google-drive"
       "insomnia"
       "logi-options+"
+      "logitune"
       "logseq"
       "mimestream"
       "notion"
