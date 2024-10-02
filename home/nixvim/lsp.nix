@@ -16,7 +16,7 @@
           settings.formatting.command = [ "nixpkgs-fmt" ];
         };
 
-        ocamllsp = { enable = true; };
+        ocamllsp = { enable = true; package = null; };
 
         rust-analyzer = {
           enable = true;
