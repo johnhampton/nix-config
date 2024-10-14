@@ -51,6 +51,7 @@
     masApps = {
       "1Password for Safari" = 1569813296;
       "Amazon Kindle" = 302584613;
+      "Balatro+" = 6502451661;
       "Be Focused Pro - Focus Timer" = 961632517;
       "Bear: Markdown Notes" = 1091189122;
       "Evernote" = 406056744;
