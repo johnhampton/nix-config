@@ -10,7 +10,7 @@
       enable = true;
 
       servers = {
-        nil-ls = { enable = false; };
+        nil_ls = { enable = false; };
         nixd = {
           enable = true;
           settings.formatting.command = [ "nixpkgs-fmt" ];
@@ -18,7 +18,7 @@
 
         ocamllsp = { enable = true; package = null; };
 
-        rust-analyzer = {
+        rust_analyzer = {
           enable = true;
           installCargo = false;
           installRustc = false;
