@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   programs.nixvim = {
     keymaps = [
       {
@@ -46,6 +46,11 @@
         options = { desc = "AI Prompt Actions"; };
       }
     ];
+
+    extraLuaPackages = p: [
+      p.tiktoken_core
+    ];
+
     plugins.copilot-chat = {
       enable = true;
       settings = {
@@ -91,6 +96,7 @@
         };
       };
     };
+
     plugins.copilot-lua = {
       enable = true;
       suggestion = {
