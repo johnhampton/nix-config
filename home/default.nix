@@ -74,7 +74,7 @@
 
   programs.eza.enable = true;
   programs.eza = {
-    icons = true;
+    icons = "auto";
     git = true;
   };
 
