@@ -27,6 +27,7 @@
     darwin.trash
     docker-client
     dos2unix
+    duckdb
     fd
     fishPlugins.foreign-env
     (google-cloud-sdk.withExtraComponents (with google-cloud-sdk.components; [ cloud_sql_proxy gke-gcloud-auth-plugin ]))
