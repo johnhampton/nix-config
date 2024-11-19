@@ -59,6 +59,7 @@
       Magnet = 441258766;
       "Notion Web Clipper" = 1559269364;
       "Save to Raindrop.io" = 1549370672;
+      "Session - Pomodoro Focus Timer" = 1521432881;
       "Todoist: To-Do List & Tasks" = 585829637;
       Xcode = 497799835;
     };
