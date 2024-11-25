@@ -26,6 +26,7 @@
       "adobe-creative-cloud"
       "anki"
       "artisan"
+      "backblaze"
       "brave-browser"
       "chatgpt"
       "dropbox"
