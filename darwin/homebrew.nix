@@ -33,6 +33,7 @@
       "element"
       "expressvpn"
       "google-drive"
+      "figma"
       "insomnia"
       "logi-options+"
       "logitune"
