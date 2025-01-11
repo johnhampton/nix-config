@@ -24,7 +24,6 @@
 
     keep-outputs = true;
     keep-derivations = true;
-    # access-tokens = [ "github.com=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" ];
 
     extra-platforms = lib.mkIf (pkgs.system == "aarch64-darwin") [ "x86_64-darwin" "aarch64-darwin" ];
   };
@@ -34,7 +33,7 @@
 
   nix.configureBuildUsers = true;
 
-  nix.package = pkgs.nixVersions.latest;
+  nix.package = pkgs.nixVersions.nix_2_24;
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
