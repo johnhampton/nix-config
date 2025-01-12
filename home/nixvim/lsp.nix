@@ -28,6 +28,10 @@
             };
           };
         };
+
+        terraformls = {
+          enable = true;
+        };
       };
 
       keymaps = {
