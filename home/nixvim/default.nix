@@ -12,6 +12,7 @@
     ./mini.nix
     ./neotest.nix
     ./telescope.nix
+    ./terraform.nix
   ];
 
   programs.nixvim = {
