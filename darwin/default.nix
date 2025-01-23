@@ -8,6 +8,7 @@
   ];
 
   nix.settings = {
+    download-buffer-size = 268435456;
     trusted-users = [
       "john"
       "@admin"
