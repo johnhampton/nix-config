@@ -21,7 +21,7 @@ in
 
         ldflags = [ "-s" "-w" "-X main.Version=${version}" ];
         subPackages = [ "cmd/mapkubeapis" ];
-        CGO_ENABLED = 0;
+        env.CGO_ENABLED = 0;
 
         # NOTE: Remove the install and upgrade hooks.
         postPatch = ''
