@@ -60,6 +60,7 @@
       LimeChat = 414030210;
       Magnet = 441258766;
       "MindNode - Classic" = 1289197285;
+      "NordVPN: VPN Fast & Secure" = 905953485;
       "Notion Web Clipper" = 1559269364;
       "Save to Raindrop.io" = 1549370672;
       "Session - Pomodoro Focus Timer" = 1521432881;
