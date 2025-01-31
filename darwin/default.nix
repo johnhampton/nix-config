@@ -85,6 +85,13 @@
       owner = "john";
       group = "staff";
     };
+    env = {
+      file = ../secrets/env.age;
+      path = "/Users/john/.env";
+      mode = "700";
+      owner = "john";
+      group = "staff";
+    };
     gh = {
       file = ../secrets/hosts.yml.age;
       path = "/Users/john/.config/gh/hosts.yml";

@@ -13,4 +13,5 @@ in
   "nix-netrc.age".publicKeys = [ john ava mbp ];
   "npmrc.age".publicKeys = [ john ava mbp ];
   "chatgpt.age".publicKeys = [ john ava mbp ];
+  "env.age".publicKeys = [ john ava mbp ];
 }
