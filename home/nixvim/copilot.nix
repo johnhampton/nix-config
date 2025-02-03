@@ -54,6 +54,7 @@
     plugins.copilot-chat = {
       enable = true;
       settings = {
+        chat_autocomplete = true;
         mappings = {
           complete = {
             insert = "";
@@ -121,8 +122,6 @@
         cmp.event:on("menu_closed", function()
           vim.b.copilot_suggestion_hidden = false
         end)
-
-        require("CopilotChat.integrations.cmp").setup()
       end
     '';
   };
