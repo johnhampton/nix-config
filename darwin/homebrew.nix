@@ -29,6 +29,10 @@
       "backblaze"
       "brave-browser"
       "chatgpt"
+      {
+        name = "chromium";
+        args = { no_quarantine = true; };
+      }
       "dropbox"
       "element"
       "expressvpn"
