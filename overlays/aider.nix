@@ -1,6 +1,6 @@
 { ... }: final: prev:
 let
-  # Add punkt tokenizer derivation
+  # NLTK data derivations
   punkt_tokenizer = prev.stdenv.mkDerivation {
     name = "nltk-punkt";
     src = prev.fetchurl {
@@ -9,9 +9,31 @@ let
     };
     buildInputs = [ prev.unzip ];
     installPhase = ''
-      mkdir -p $out/nltk_data/tokenizers
-      unzip $src -d $out/nltk_data/tokenizers/
+      mkdir -p $out/tokenizers
+      unzip $src -d $out/tokenizers/
     '';
+  };
+
+  stopwords = prev.stdenv.mkDerivation {
+    name = "nltk-stopwords";
+    src = prev.fetchurl {
+      url = "https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/corpora/stopwords.zip";
+      sha256 = "1l819c59j87356wrnw0z458dc9wzmf660rf2xldwl9bli1wl3j8m";
+    };
+    buildInputs = [ prev.unzip ];
+    installPhase = ''
+      mkdir -p $out/corpora
+      unzip $src -d $out/corpora/
+    '';
+  };
+
+  # Combined NLTK data directory
+  nltk_data = prev.symlinkJoin {
+    name = "nltk-data";
+    paths = [
+      punkt_tokenizer
+      stopwords
+    ];
   };
 
   extraDependencies = with prev.python3.pkgs; [
@@ -42,7 +64,7 @@ let
   addDeps = pkg: pkg.overridePythonAttrs (oldAttrs: {
     dependencies = oldAttrs.dependencies ++ extraDependencies;
     makeWrapperArgs = (oldAttrs.makeWrapperArgs or []) ++ [
-      "--set NLTK_DATA ${punkt_tokenizer}/nltk_data"
+      "--set NLTK_DATA ${nltk_data}"
     ];
   });
 in
