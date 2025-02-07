@@ -1,5 +1,5 @@
-{ inputs, ... }: final: prev: {
-  aider-chat = prev.aider-chat.overridePythonAttrs (oldAttrs: {
+{ ... }: final: prev: {
+  aider-chat = prev.aider-chat.withPlaywright.overridePythonAttrs (oldAttrs: {
     dependencies = oldAttrs.dependencies ++ (with prev.python3.pkgs; [
       dataclasses-json
       deprecated
