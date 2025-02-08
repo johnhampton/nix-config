@@ -87,12 +87,8 @@
             description = "AI Documentation";
           };
           Commit = {
-            prompt = "Write a concise commit message for the change using the commitizen convention. Ensure the title is no longer than 50 characters, and the body (if needed) is wrapped at 72 characters. Keep the message simple, clear, and to the point. Wrap the entire message in a code block with the language set to gitcommit.";
-          };
-          CommitStaged = {
             mapping = "<leader>ac";
             description = "AI Generate Commit";
-            prompt = "Write a concise commit message for the change using the commitizen convention. Ensure the title is no longer than 50 characters, and the body (if needed) is wrapped at 72 characters. Keep the message simple, clear, and to the point. Wrap the entire message in a code block with the language set to gitcommit.";
           };
         };
       };
