@@ -36,6 +36,7 @@ let
     ];
   };
 
+  version = "0.74.1";
   extraDependencies = with prev.python3.pkgs; [
     dataclasses-json
     deprecated
@@ -62,6 +63,13 @@ let
   ];
 
   addDeps = pkg: pkg.overridePythonAttrs (oldAttrs: {
+    inherit version;
+    src = prev.fetchFromGitHub {
+      owner = "paul-gauthier";
+      repo = "aider";
+      rev = "v${version}";
+      hash = "1z7b2ldhb64a57wcszz2zsjga8l7jmickbxjcsxpz3mvkbk0wy4s";
+    };
     dependencies = oldAttrs.dependencies ++ extraDependencies;
     makeWrapperArgs = (oldAttrs.makeWrapperArgs or []) ++ [
       "--set NLTK_DATA ${nltk_data}"
