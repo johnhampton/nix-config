@@ -68,7 +68,7 @@ let
       owner = "paul-gauthier";
       repo = "aider";
       rev = "v${version}";
-      hash = "1z7b2ldhb64a57wcszz2zsjga8l7jmickbxjcsxpz3mvkbk0wy4s";
+      hash = "sha256-JXzkvuSOOEUxNqF6l5USzIPftpnIW+CptEv/0yp0eGM=";
     };
     dependencies = oldAttrs.dependencies ++ extraDependencies;
     makeWrapperArgs = (oldAttrs.makeWrapperArgs or []) ++ [
@@ -77,5 +77,5 @@ let
   });
 in
 {
-  aider-chat = addDeps (addDeps prev.aider-chat).withPlaywright;
+  aider-chat = (addDeps prev.aider-chat.withPlaywright);
 }
