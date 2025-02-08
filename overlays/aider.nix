@@ -1,5 +1,7 @@
 { ... }: final: prev:
 let
+  version = "0.74.1";
+  
   # NLTK data derivations
   punkt_tokenizer = prev.stdenv.mkDerivation {
     name = "nltk-punkt";
@@ -36,7 +38,6 @@ let
     ];
   };
 
-  version = "0.74.1";
   extraDependencies = with prev.python3.pkgs; [
     dataclasses-json
     deprecated
@@ -63,13 +64,6 @@ let
   ];
 
   addDeps = pkg: pkg.overridePythonAttrs (oldAttrs: {
-    inherit version;
-    src = prev.fetchFromGitHub {
-      owner = "paul-gauthier";
-      repo = "aider";
-      rev = "v${version}";
-      hash = "sha256-JXzkvuSOOEUxNqF6l5USzIPftpnIW+CptEv/0yp0eGM=";
-    };
     dependencies = oldAttrs.dependencies ++ extraDependencies;
     makeWrapperArgs = (oldAttrs.makeWrapperArgs or []) ++ [
       "--set NLTK_DATA ${nltk_data}"
@@ -77,5 +71,22 @@ let
   });
 in
 {
-  aider-chat = (addDeps prev.aider-chat.withPlaywright);
+  aider-chat = let
+    basePackage = if prev ? aider-chat && builtins.compareVersions (builtins.parseDrvName prev.aider-chat.name).version version >= 0 
+      then 
+        builtins.trace "WARNING: nixpkgs version of aider-chat is now >= ${version}. This overlay can be removed."
+        prev.aider-chat.withPlaywright
+      else
+        builtins.trace "Using override for aider-chat ${version}"
+        (prev.aider-chat.withPlaywright.overridePythonAttrs (oldAttrs: {
+          inherit version;
+          src = prev.fetchFromGitHub {
+            owner = "paul-gauthier";
+            repo = "aider";
+            rev = "v${version}";
+            hash = "sha256-JXzkvuSOOEUxNqF6l5USzIPftpnIW+CptEv/0yp0eGM=";
+          };
+        }));
+  in
+    addDeps basePackage;
 }
