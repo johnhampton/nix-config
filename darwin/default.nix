@@ -32,6 +32,7 @@
   services.lorri.enable = false;
   services.lorri.logFile = "/var/tmp/lorri.log";
 
+  nix.enable = true;
   nix.package = pkgs.nixVersions.nix_2_24;
 
   system.stateVersion = 4;
