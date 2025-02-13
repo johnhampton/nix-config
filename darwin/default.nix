@@ -32,12 +32,7 @@
   services.lorri.enable = false;
   services.lorri.logFile = "/var/tmp/lorri.log";
 
-  nix.configureBuildUsers = true;
-
   nix.package = pkgs.nixVersions.nix_2_24;
-
-  # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
 
   system.stateVersion = 4;
   system.defaults = {
