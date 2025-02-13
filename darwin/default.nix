@@ -7,6 +7,8 @@
     ./yabai.nix
   ];
 
+  nix.enable = true;
+  nix.package = pkgs.nixVersions.nix_2_24;
   nix.settings = {
     download-buffer-size = 268435456;
     trusted-users = [
@@ -32,9 +34,6 @@
   services.lorri.enable = false;
   services.lorri.logFile = "/var/tmp/lorri.log";
 
-  nix.enable = true;
-  nix.package = pkgs.nixVersions.nix_2_24;
-
   system.stateVersion = 4;
   system.defaults = {
     NSGlobalDomain = {
@@ -52,6 +51,7 @@
       };
     };
   };
+
   programs.bash.enable = true;
   programs.fish.enable = true;
   programs.zsh.enable = true;
