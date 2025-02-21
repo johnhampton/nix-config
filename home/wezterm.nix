@@ -35,6 +35,12 @@
     }
 
     config.keys = {
+      -- Disable Alt+Enter default binding to allow pass-through
+      {
+        key = 'Enter',
+        mods = 'ALT',
+        action = act.DisableDefaultAssignment,
+      },
       {
         key = 'j',
         mods = 'CMD',
