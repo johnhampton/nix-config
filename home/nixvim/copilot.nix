@@ -61,6 +61,8 @@
           };
         };
 
+        model = "claude-3.5-sonnet";
+
         prompts = {
           Explain = {
             mapping = "<leader>ae";
