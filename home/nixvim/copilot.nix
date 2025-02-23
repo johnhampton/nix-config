@@ -50,6 +50,7 @@
     extraLuaPackages = p: [
       p.tiktoken_core
     ];
+    extraPackages = [ pkgs.lynx ];
 
     plugins.copilot-chat = {
       enable = true;
