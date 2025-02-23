@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   programs.vscode.enable = true;
-  programs.vscode = {
+  programs.vscode.profiles.default = {
     extensions =
       let
         v = pkgs.vscode-extensions;
