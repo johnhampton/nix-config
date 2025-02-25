@@ -6,6 +6,12 @@ in
   home.packages = with pkgs; [
     pandoc
   ];
+  # This configuration enables Claude 3.7 Sonnet's "thinking tokens" feature
+  # which allows the model to spend tokens on explicit thinking steps before
+  # providing its final answer. The thinking is captured separately and can
+  # be examined to understand the model's reasoning process.
+  # The budget_tokens value (32000) controls how many tokens the model can use 
+  # for thinking before providing its final response.
   home.file.".aider.model.settings.yml".source = yamlFormat.generate "aider-model-settings" [
     {
       name = "anthropic/claude-3-7-sonnet-20250219";
