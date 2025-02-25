@@ -20,7 +20,6 @@
 
   ];
   home.packages = with pkgs; [
-    aider-chat
     argocd
     argocd-autopilot
     chartmuseum

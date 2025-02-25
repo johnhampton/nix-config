@@ -18,6 +18,7 @@
 
     brews = [
       "txn2/tap/kubefwd"
+      "aider"
     ];
 
     casks = [
