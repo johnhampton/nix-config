@@ -5,6 +5,7 @@
     inputs.nix-index-database.hmModules.nix-index
     { programs.nix-index-database.comma.enable = true; }
 
+    ./aider.nix
     ./alacritty.nix
     ./amethyst.nix
     ./cachix
