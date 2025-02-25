@@ -3,6 +3,9 @@ let
   yamlFormat = pkgs.formats.yaml { };
 in
 {
+  home.packages = with pkgs; [
+    pandoc
+  ];
   home.file.".aider.model.settings.yml".source = yamlFormat.generate "aider-model-settings" [
     {
       name = "anthropic/claude-3-7-sonnet-20250219";
