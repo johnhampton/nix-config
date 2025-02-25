@@ -1,7 +1,7 @@
 { pkgs, lib, config, ... }:
 
 {
-  xdg.configFile."aider/model.settings.yml".source = let 
+  home.file.".aider.model.setting.yml".source = let 
     yamlFormat = pkgs.formats.yaml { };
   in yamlFormat.generate "aider-model-settings" [
     {
@@ -27,7 +27,7 @@
     }
   ];
 
-  xdg.configFile."aider/conf.yaml".source = let
+  home.file.".aider.conf.yml".source = let
     yamlFormat = pkgs.formats.yaml { };
   in yamlFormat.generate "aider-conf" {
     model = "anthropic/claude-3-7-sonnet-20250219";
