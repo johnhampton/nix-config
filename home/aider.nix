@@ -1,10 +1,9 @@
 { pkgs, lib, config, ... }:
-
 let
   yamlFormat = pkgs.formats.yaml { };
 in
 {
-  home.file.".aider.model.setting.yml".source = yamlFormat.generate "aider-model-settings" [
+  home.file.".aider.model.settings.yml".source = yamlFormat.generate "aider-model-settings" [
     {
       name = "anthropic/claude-3-7-sonnet-20250219";
       edit_format = "diff";
