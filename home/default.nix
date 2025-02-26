@@ -45,6 +45,7 @@
     pgcli
     pragmata-pro
     rainfrog
+    repomix
     ripgrep
     terraform-ls
     watchman
