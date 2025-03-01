@@ -24,6 +24,7 @@
     argocd
     argocd-autopilot
     chartmuseum
+    claude-code
     colima
     darwin.trash
     docker-client
