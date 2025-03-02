@@ -123,10 +123,13 @@
       fi
     '';
 
-    initExtra = ''
-      source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-    '';
-
+    plugins = [
+      {
+        name = "vi-mode";
+        src = pkgs.zsh-vi-mode;
+        file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+      }
+    ];
 
     loginExtra = ''
       # ssh keychain
@@ -136,6 +139,7 @@
 
   programs.fzf.enable = true;
   programs.fzf = {
+    enableZshIntegration = true;
     tmux.enableShellIntegration = true;
   };
   programs.zoxide.enable = true;
@@ -168,16 +172,23 @@
   };
 
   xdg.enable = true;
-  xdg.configFile."process-compose/shortcuts.yaml".source = let yamlFormal = pkgs.formats.yaml { }; in yamlFormal.generate "shortcuts.yaml" {
-    shortcuts = {
-      process_stop = {
-        shortcut = "Ctrl-X";
-      };
-      quit = {
-        shortcut = "Ctrl-Q";
-      };
+  xdg.configFile."process-compose/shortcuts.yaml".source =
+    let
+      yamlFormal = pkgs.formats.yaml
+        { };
+    in
+    yamlFormal.generate
+      "shortcuts.yaml"
+      {
+        shortcuts = {
+          process_stop = {
+            shortcut = "Ctrl-X";
+          };
+          quit = {
+            shortcut = "Ctrl-Q";
+          };
 
-    };
-  };
+        };
+      };
 }
 
