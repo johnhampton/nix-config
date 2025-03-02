@@ -30,7 +30,6 @@
     dos2unix
     duckdb
     fd
-    fishPlugins.foreign-env
     (google-cloud-sdk.withExtraComponents (with google-cloud-sdk.components; [ cloud_sql_proxy gke-gcloud-auth-plugin ]))
     graphite-cli
     inputs.hchart.packages.${pkgs.system}.default
@@ -61,14 +60,14 @@
     EDITOR = "nvim";
     USE_GKE_GCLOUD_AUTH_PLUGIN = "True";
   };
-  
+
   # See ./secrets/npmrc.age for configuration of prefix
   home.sessionPath = [
     "$HOME/.npm-global/bin"
   ];
-  
+
   home.activation = {
-    createNpmGlobalDir = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    createNpmGlobalDir = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       mkdir -p $HOME/.npm-global
     '';
   };
@@ -92,41 +91,44 @@
     git = true;
   };
 
-  programs.fish.enable = true;
-  programs.fish = {
-    plugins = [
-    ];
+  programs.fish.enable = false;
 
-    shellAliases = { };
+  programs.zsh.enable = true;
+  programs.zsh = {
+    autosuggestion.enable = true;
+    enableCompletion = true;
+    autocd = true;
 
-    shellAbbrs = {
+    shellAliases = {
       cloud_sql_proxy_all = "cloud_sql_proxy -projects tan-ng,tan-ng-prod -dir /tmp";
       devenv-init = "nix flake init --template github:cachix/devenv";
       pf-argocd = "kubectl port-forward -n argocd svc/argocd-server 8080:80";
       pf-staging = "sudo -E kubefwd svc -n test";
       pf-prod = "sudo -E kubefwd svc -n prod";
+      flake-init = "nix flake init -t github:johnhampton/flake-templates#";
     };
 
-    interactiveShellInit = ''
-      # shellAbbrs doesn't support more complex abbreviations
-      abbr --add --global flake-init --set-cursor 'nix flake init -t github:johnhampton/flake-templates#%'
-    '';
-
-    shellInit = ''
+    initExtraFirst = ''
       # nix
-      if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
-          source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
-      end
-
+      if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+        . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+      fi
+      
       # Homebrew
-      if test -e /opt/homebrew/bin/brew
+      if [ -e /opt/homebrew/bin/brew ]; then
         eval "$(/opt/homebrew/bin/brew shellenv)"
-      else if test -e /usr/local/bin/brew
+      elif [ -e /usr/local/bin/brew ]; then
         eval "$(/usr/local/bin/brew shellenv)"
-      end
+      fi
     '';
 
-    loginShellInit = ''
+    initExtra = ''
+      source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+    '';
+
+
+    loginExtra = ''
+      # ssh keychain
       ssh-add --apple-load-keychain -q
     '';
   };
@@ -154,10 +156,13 @@
 
   # https://starship.rs/config/
   programs.starship.enable = true;
-  programs.starship.settings = {
-    command_timeout = 2000;
-    aws = {
-      disabled = true;
+  programs.starship = {
+    enableZshIntegration = true;
+    settings = {
+      command_timeout = 2000;
+      aws = {
+        disabled = true;
+      };
     };
   };
 
