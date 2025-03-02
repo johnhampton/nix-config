@@ -24,7 +24,6 @@
     argocd
     argocd-autopilot
     chartmuseum
-    claude-code
     colima
     darwin.trash
     docker-client
@@ -42,6 +41,7 @@
     kubectl
     kubectx
     kustomize
+    nodejs
     patchutils_0_4_2
     pgcli
     pragmata-pro
