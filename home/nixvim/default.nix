@@ -11,6 +11,7 @@
     ./lsp.nix
     ./mini.nix
     ./neotest.nix
+    ./nvim-aider.nix
     ./telescope.nix
     ./terraform.nix
   ];

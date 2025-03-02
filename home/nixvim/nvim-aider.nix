@@ -5,6 +5,9 @@
         pname = "nvim-aider";
         version = inputs.nvim-aider.lastModifiedDate;
         src = inputs.nvim-aider;
+        dependencies = [
+          pkgs.vimPlugins.snacks-nvim
+        ];
       })
     ];
 
@@ -59,22 +62,27 @@
           desc = "Add File as Read-Only";
         };
       }
-      {
-        key = "<leader>a+";
-        action = "<cmd>AiderTreeAddFile<cr>";
-        options = {
-          desc = "Add File from Tree to Aider";
-          ft = "NvimTree";
-        };
-      }
-      {
-        key = "<leader>a-";
-        action = "<cmd>AiderTreeDropFile<cr>";
-        options = {
-          desc = "Drop File from Tree from Aider";
-          ft = "NvimTree";
-        };
-      }
     ];
+
+    files = {
+      "after/ftplugin/NvimTree.lua" = {
+        keymaps = [
+          {
+            key = "<leader>a+";
+            action = "<cmd>AiderTreeAddFile<cr>";
+            options = {
+              desc = "Add File from Tree to Aider";
+            };
+          }
+          {
+            key = "<leader>a-";
+            action = "<cmd>AiderTreeDropFile<cr>";
+            options = {
+              desc = "Drop File from Tree from Aider";
+            };
+          }
+        ];
+      };
+    };
   };
 }
