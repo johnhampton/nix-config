@@ -1,4 +1,4 @@
-{ pkgs, age, inputs, ... }:
+{ pkgs, age, inputs, lib, ... }:
 
 {
   imports = [
@@ -60,6 +60,17 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     USE_GKE_GCLOUD_AUTH_PLUGIN = "True";
+  };
+  
+  # See ./secrets/npmrc.age for configuration of prefix
+  home.sessionPath = [
+    "$HOME/.npm-global/bin"
+  ];
+  
+  home.activation = {
+    createNpmGlobalDir = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      mkdir -p $HOME/.npm-global
+    '';
   };
 
   programs.bat.enable = true;
