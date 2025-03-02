@@ -12,6 +12,12 @@
       src = inputs.focus-nvim;
       patches = [ ./focus-nvim.patch ];
     };
+    
+    "nvim-aider" = final.vimUtils.buildVimPlugin {
+      pname = "nvim-aider";
+      version = inputs.nvim-aider.lastModifiedDate;
+      src = inputs.nvim-aider;
+    };
 
     "ChatGPT-nvim" = vprev.ChatGPT-nvim.overrideAttrs (old: {
       patches = old.patches or [ ] ++ [ ./ChatGPT-nvim.patch ];
