@@ -8,6 +8,9 @@
 - Clean up: `just clean`
 - Optimize store: `just optimize-store`
 
+## Project Rules
+- **Issues**: All GitHub issues should be filed against the `johnhampton/nix-config` repository by default, unless explicitly specified otherwise.
+
 ## Code Style Guidelines
 - **Nix Formatting**: Follow standard Nix formatting with 2-space indentation
 - **Imports**: Group imports logically (system, home-manager, tools, etc.)
@@ -24,3 +27,4 @@
 - Primary user: `john`
 - System: Darwin (macOS)
 - Default editor: neovim
+- Default shell: zsh
