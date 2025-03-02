@@ -40,6 +40,7 @@
     kubectl
     kubectx
     kustomize
+    mas
     nodejs
     patchutils_0_4_2
     pgcli
