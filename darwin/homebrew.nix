@@ -71,6 +71,7 @@
       "Session - Pomodoro Focus Timer" = 1521432881;
       "Todoist: To-Do List & Tasks" = 585829637;
       Xcode = 497799835;
+      "Raycast Companion" = 6738274497;
     };
   };
 }
