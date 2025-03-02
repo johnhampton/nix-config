@@ -38,5 +38,6 @@ in
 
   home.file.".aider.conf.yml".source = yamlFormat.generate "aider-conf" {
     model = "anthropic/claude-3-7-sonnet-20250219";
+    vim = true;
   };
 }
