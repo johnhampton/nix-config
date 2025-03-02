@@ -84,5 +84,9 @@
         ];
       };
     };
+    plugins.snacks.enable = true;
+    extraConfigLua = ''
+      require("nvim_aider").setup({});
+    '';
   };
 }
