@@ -14,12 +14,12 @@ let inherit (pkgs.tmuxPlugins) t-smart-tmux-session-manager; in {
     '';
   };
 
-  programs.fish = {
-    shellAbbrs = {
-      "tn" = "tmux new -s (pwd | sed 's/.*\\///g')";
+  programs.zsh = {
+    shellAliases = {
+      "tn" = "tmux new -s $(basename $PWD)";
     };
-    shellInit = ''
-      fish_add_path ${t-smart-tmux-session-manager}/share/tmux-plugins/t-smart-tmux-session-manager/bin
+    initExtra = ''
+      export PATH="$PATH:${t-smart-tmux-session-manager}/share/tmux-plugins/t-smart-tmux-session-manager/bin"
     '';
   };
 

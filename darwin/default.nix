@@ -60,7 +60,7 @@
     name = "john";
     description = "John Hampton";
     home = "/Users/john";
-    shell = pkgs.fish;
+    shell = pkgs.zsh;
   };
   age.secrets = {
     access_token = {

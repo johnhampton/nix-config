@@ -36,7 +36,6 @@
     flake-utils.url = "github:numtide/flake-utils";
 
     focus-nvim = { url = "github:nvim-focus/focus.nvim"; flake = false; };
-    plugin-foreign-env = { url = "github:oh-my-fish/plugin-foreign-env"; flake = false; };
     pragmata-pro = { url = "github:johnhampton/pragmata-pro"; };
     telescope-hoogle-nvim = { url = "github:johnhampton/telescope-hoogle.nvim"; flake = false; };
     t-smart-tmux-session-manager = { url = "github:joshmedeski/t-smart-tmux-session-manager"; flake = false; };
@@ -72,7 +71,6 @@
           inputs.pragmata-pro.overlays.default
           (import ./overlays/chartmuseum.nix { inherit inputs; })
           (import ./overlays/helm-mapkubeapis.nix { inherit inputs; })
-          (import ./overlays/fishPlugins.nix { inherit inputs; })
           (import ./overlays/lsp-zero.nix { inherit inputs; })
           (import ./overlays/rainfrog.nix { inherit inputs; })
           (import ./overlays/tmuxPlugins.nix { inherit inputs; })
