@@ -84,7 +84,11 @@
   # https://direnv.net
   # https://rycee.gitlab.io/home-manager/options.html#opt-programs.direnv.enable
   programs.direnv.enable = true;
-  programs.direnv.nix-direnv.enable = true;
+  programs.direnv = {
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
+    silent = true;
+  };
 
   programs.eza.enable = true;
   programs.eza = {
