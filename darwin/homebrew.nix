@@ -34,6 +34,7 @@
         name = "chromium";
         args = { no_quarantine = true; };
       }
+      "discord"
       "dropbox"
       "element"
       "expressvpn"
