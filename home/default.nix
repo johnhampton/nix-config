@@ -127,6 +127,12 @@
       fi
     '';
 
+    initExtra = ''
+      autoload -Uz edit-command-line
+      zle -N edit-command-line
+      bindkey '^X^E' edit-command-line
+    '';
+
     loginExtra = ''
       # ssh keychain
       ssh-add --apple-load-keychain -q
