@@ -45,6 +45,7 @@
     patchutils_0_4_2
     pgcli
     pragmata-pro
+    (python3.withPackages (p: [p.pip]))
     rainfrog
     repomix
     ripgrep
@@ -99,6 +100,7 @@
   programs.fish.enable = false;
 
   programs.zsh.enable = true;
+  # add `~/.local/bin` to PATH AI!
   programs.zsh = {
     autosuggestion.enable = true;
     enableCompletion = true;
