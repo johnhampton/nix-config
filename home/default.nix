@@ -100,7 +100,6 @@
   programs.fish.enable = false;
 
   programs.zsh.enable = true;
-  # add `~/.local/bin` to PATH AI!
   programs.zsh = {
     autosuggestion.enable = true;
     enableCompletion = true;
@@ -127,6 +126,9 @@
       elif [ -e /usr/local/bin/brew ]; then
         eval "$(/usr/local/bin/brew shellenv)"
       fi
+
+      # Add ~/.local/bin to PATH
+      export PATH="$HOME/.local/bin:$PATH"
     '';
 
     initExtra = ''
