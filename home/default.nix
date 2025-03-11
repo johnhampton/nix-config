@@ -66,6 +66,7 @@
   # See ./secrets/npmrc.age for configuration of prefix
   home.sessionPath = [
     "$HOME/.npm-global/bin"
+    "$HOME/.local/bin"
   ];
 
   home.activation = {
@@ -126,9 +127,6 @@
       elif [ -e /usr/local/bin/brew ]; then
         eval "$(/usr/local/bin/brew shellenv)"
       fi
-
-      # Add ~/.local/bin to PATH
-      export PATH="$HOME/.local/bin:$PATH"
     '';
 
     initExtra = ''

@@ -14,6 +14,7 @@
     config.color_scheme = 'OneNord'
     config.use_fancy_tab_bar = false
     config.window_decorations = 'RESIZE'
+    config.warn_about_missing_glyphs = false
 
     config.front_end = 'WebGpu'
 

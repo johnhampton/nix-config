@@ -1,9 +1,5 @@
 { pkgs, config, ... }:
 {
-  home.sessionVariables = {
-    NAVI_CONFIG = "${config.home.homeDirectory}/Library/Application Support/navi/config.yaml";
-  };
-
   programs.navi.enable = true;
   programs.navi = {
     settings = {
