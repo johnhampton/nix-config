@@ -67,11 +67,12 @@
       "MindNode - Classic" = 1289197285;
       "NordVPN: VPN Fast & Secure" = 905953485;
       "Notion Web Clipper" = 1559269364;
+      "Raycast Companion" = 6738274497;
       "Save to Raindrop.io" = 1549370672;
       "Session - Pomodoro Focus Timer" = 1521432881;
+      "TickTick:To-Do List, Calendar" = 966085870;
       "Todoist: To-Do List & Tasks" = 585829637;
       Xcode = 497799835;
-      "Raycast Companion" = 6738274497;
     };
   };
 }
