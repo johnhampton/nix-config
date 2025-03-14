@@ -98,7 +98,7 @@
     netrc = {
       file = ../secrets/netrc.age;
       path = "/Users/john/.netrc";
-      mode = "700";
+      mode = "600";
       owner = "john";
       group = "staff";
     };
