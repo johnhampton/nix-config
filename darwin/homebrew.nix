@@ -33,6 +33,7 @@
         name = "chromium";
         args = { no_quarantine = true; };
       }
+      "claude"
       "discord"
       "dropbox"
       "element"
