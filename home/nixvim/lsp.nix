@@ -18,6 +18,11 @@
 
         ocamllsp = { enable = true; package = null; };
 
+        rescriptls = {
+          enable = true;
+          package = null;
+        };
+
         rust_analyzer = {
           enable = true;
           installCargo = false;
