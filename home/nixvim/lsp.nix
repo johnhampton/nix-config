@@ -10,6 +10,7 @@
       enable = true;
 
       servers = {
+        eslint = { enable = true; };
         nil_ls = { enable = false; };
         nixd = {
           enable = true;
