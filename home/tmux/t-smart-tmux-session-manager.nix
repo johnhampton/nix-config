@@ -18,7 +18,7 @@ let inherit (pkgs.tmuxPlugins) t-smart-tmux-session-manager; in {
     shellAliases = {
       "tn" = "tmux new -s $(basename $PWD)";
     };
-    initExtra = ''
+    initContent = ''
       export PATH="$PATH:${t-smart-tmux-session-manager}/share/tmux-plugins/t-smart-tmux-session-manager/bin"
     '';
   };
