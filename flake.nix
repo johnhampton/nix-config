@@ -73,7 +73,6 @@
           (import ./overlays/chartmuseum.nix { inherit inputs; })
           (import ./overlays/helm-mapkubeapis.nix { inherit inputs; })
           (import ./overlays/lsp-zero.nix { inherit inputs; })
-          (import ./overlays/rainfrog.nix { inherit inputs; })
           (import ./overlays/tmuxPlugins.nix { inherit inputs; })
           (import ./overlays/vimPlugins.nix { inherit inputs; })
           (import ./overlays/aider.nix { inherit inputs; })
