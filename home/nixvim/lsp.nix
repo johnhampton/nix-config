@@ -63,6 +63,7 @@
         };
 
         extra = [
+          # LSP CodeLens
           {
             key = "<leader>cl";
             action = "<cmd>lua vim.lsp.codelens.run()<cr>";
@@ -77,6 +78,8 @@
               desc = "Refresh CodeLens";
             };
           }
+
+          # LSP Navigation
           {
             key = "gd";
             action = "<cmd>lua require'telescope.builtin'.lsp_definitions()<cr>";
@@ -85,10 +88,17 @@
             };
           }
           {
-            key = "gr";
+            key = "gD";
+            action = "<cmd>lua vim.lsp.buf.type_definition()<cr>";
+            options = {
+              desc = "Goto Type Definition";
+            };
+          }
+          {
+            key = "grr";
             action = "<cmd>lua require'telescope.builtin'.lsp_references()<cr>";
             options = {
-              desc = "List References";
+              desc = "Find References";
             };
           }
 
