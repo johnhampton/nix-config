@@ -3,24 +3,43 @@ final: prev:
 let
   packageOverrides = luaself: luaprev:
     let
-      version = "6.0.0-1";
-      srcFile = "v${builtins.elemAt (builtins.split "-" version) 0}.zip";
-    in
-    {
-      haskell-tools-nvim = luaprev.haskell-tools-nvim.overrideAttrs (oa: {
-        inherit version;
+      overlayVersion = "6.0.0-1";
+      srcFile = "v${builtins.elemAt (builtins.split "-" overlayVersion) 0}.zip";
 
-        rockspecVersion = version;
+      # Helper function to extract major version for comparison (6.0.0-1 -> 6.0.0)
+      baseVersion = v: builtins.elemAt (builtins.split "-" v) 0;
+
+      # Check if nixpkgs version is >= 6.0.0
+      nixpkgsPackage = luaprev.haskell-tools-nvim or null;
+      nixpkgsVersion = nixpkgsPackage.version or "0.0.0";
+      nixpkgsMeetsVersion =
+        nixpkgsPackage != null &&
+        builtins.compareVersions (baseVersion nixpkgsVersion) "6.0.0" >= 0;
+
+      # Define the derivation just once
+      overlayDerivation = luaprev.haskell-tools-nvim.overrideAttrs (oa: {
+        version = overlayVersion;
+        rockspecVersion = overlayVersion;
         knownRockspec = (final.fetchurl {
-          url = "https://luarocks.org/manifests/mrcjkb/haskell-tools.nvim-${version}.rockspec";
+          url = "https://luarocks.org/manifests/mrcjkb/haskell-tools.nvim-${overlayVersion}.rockspec";
           sha256 = "sha256-FBd4xlnpnTSs2XN3yvSSw5Mav3CGmM0n22xtli78hb8=";
         }).outPath;
-
         src = final.fetchzip {
           url = "https://github.com/mrcjkb/haskell-tools.nvim/archive/${srcFile}";
           sha256 = "sha256-GFItbi6arFylOsRCKCEJKlH9Udv1cGpVWDUK316PrZY=";
         };
       });
+
+      # Add trace warning only when condition is met
+      haskell-tools-with-warning =
+        if nixpkgsMeetsVersion
+        then
+          builtins.trace "WARNING: haskell-tools-nvim version ${nixpkgsVersion} in nixpkgs is >= 6.0.0. Consider removing this overlay."
+            overlayDerivation
+        else overlayDerivation;
+    in
+    {
+      haskell-tools-nvim = haskell-tools-with-warning;
     };
 
   luajit = prev.luajit.override { inherit packageOverrides; };
