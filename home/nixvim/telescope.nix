@@ -67,12 +67,26 @@
           };
         };
 
-				"<leader>FR" = {
-					action = "oldfiles";
-					options = {
-						desc = "Recent files (Global)";
-					};
-				};
+        "<leader>F." = {
+          action = "resume";
+          options = {
+            desc = "Resume last picker";
+          };
+        };
+
+        "<leader>Fg" = {
+          action = "git_files";
+          options = {
+            desc = "Git files";
+          };
+        };
+
+        "<leader>FR" = {
+          action = "oldfiles";
+          options = {
+            desc = "Recent files (Global)";
+          };
+        };
       };
     };
 
