@@ -5,6 +5,23 @@
     plugins.telescope = {
       enable = true;
 
+      settings = {
+        defaults = {
+          mappings = {
+            n = {
+              "<M-p>" = {
+                __raw = "require('telescope.actions.layout').toggle_preview";
+              };
+            };
+            i = {
+              "<M-p>" = {
+                __raw = "require('telescope.actions.layout').toggle_preview";
+              };
+            };
+          };
+        };
+      };
+
       extensions = {
         fzf-native = {
           enable = true;
