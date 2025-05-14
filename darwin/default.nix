@@ -126,9 +126,15 @@
       file = ../secrets/id_ed25519.age;
     };
   };
+
   environment.shells = with pkgs; [
     bashInteractive
     fish
     zsh
+  ];
+
+  # System-wide packages
+  environment.systemPackages = with pkgs; [
+    nodejs
   ];
 }
