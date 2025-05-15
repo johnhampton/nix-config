@@ -47,6 +47,7 @@
       "mimestream"
       "notion"
       "obsidian"
+      "parallels"
       "raindropio"
       "raycast"
       "skype"
