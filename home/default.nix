@@ -51,6 +51,7 @@
     repomix
     ripgrep
     terraform-ls
+    uv
     watchman
     yq-go
   ];
