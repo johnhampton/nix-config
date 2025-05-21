@@ -46,13 +46,17 @@
               local map_split = function(buf_id, lhs, direction)
                 local rhs = function()
                   -- Make new window and set it as target
-                  local new_target_window
-                  vim.api.nvim_win_call(MiniFiles.get_target_window(), function()
+                  local cur_target = MiniFiles.get_explorer_state().target_window
+                  local new_target = vim.api.nvim_win_call(cur_target, function()
                     vim.cmd(direction .. ' split')
-                    new_target_window = vim.api.nvim_get_current_win()
+                    return vim.api.nvim_get_current_win()
                   end)
 
-                  MiniFiles.set_target_window(new_target_window)
+                  MiniFiles.set_target_window(new_target)
+
+                  -- This intentionally doesn't act on file under cursor in favor of
+                  -- explicit "go in" action (`l` / `L`). To immediately open file,
+                  -- add appropriate `MiniFiles.go_in()` call instead of this comment.
                 end
 
                 -- Adding `desc` will result into `show_help` entries
@@ -61,10 +65,11 @@
               end
 
               local buf_id = args.data.buf_id
-
+              
               -- Tweak keys to your liking
-              map_split(buf_id, 'gs', 'belowright horizontal')
-              map_split(buf_id, 'gv', 'belowright vertical')
+              map_split(buf_id, '<C-x>', 'belowright horizontal')
+              map_split(buf_id, '<C-v>', 'belowright vertical')
+              map_split(buf_id, '<C-t>', 'tab')
             end
           '';
         };
