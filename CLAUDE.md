@@ -26,15 +26,30 @@ This repository manages macOS (Darwin) system configuration using nix-darwin and
 - **home-manager**: Manages user-level configuration and dotfiles
 - **agenix**: Handles encrypted secrets
 - **nixvim**: Manages neovim configuration
+- **justfile**: Task runner for common operations
 
 ## Working with Secrets
 - Secrets are encrypted with agenix (age-encryption)
 - Never modify secret files directly, use agenix to edit them
 
-## Project Rules
-- **Issues**: All GitHub issues should be filed against the `johnhampton/nix-config` repository by default
+## Neovim Configuration
+The Neovim setup is managed through nixvim and includes:
+- LSP support for multiple languages
+- Telescope for fuzzy finding
+- Autocompletion with nvim-cmp
+- Git integration
+- Testing integration with neotest
+- AI assistance with Copilot and Aider
+- Haskell-specific tools
 
-## Code Style Guidelines
+See `/docs/neovim-keybindings.md` for comprehensive keybinding documentation.
+
+## Common Development Tasks
+- Adding a new package to home environment: Edit `/home/default.nix` and add to `home.packages`
+- Adding Homebrew packages: Edit `/darwin/homebrew.nix`
+- Modifying Neovim config: Edit files in `/home/nixvim/`
+
+## Nix Configuration Guidelines
 - **Nix Formatting**: Follow standard Nix formatting with 2-space indentation
 - **Imports**: Group imports logically (system, home-manager, tools, etc.)
 - **Organization**: 
