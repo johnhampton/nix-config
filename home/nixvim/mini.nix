@@ -74,6 +74,46 @@
           '';
         };
       }
+      {
+        event = "User";
+        pattern = "MiniFilesBufferCreate";
+        callback = {
+          __raw = ''
+            function(args)
+              -- Set focused directory as current working directory
+              local set_cwd = function()
+                local path = (MiniFiles.get_fs_entry() or {}).path
+                if path == nil then return vim.notify('Cursor is not on valid entry') end
+                vim.fn.chdir(vim.fs.dirname(path))
+              end
+
+              -- Yank in register relative path of entry under cursor
+              local yank_relative_path = function()
+                local path = (MiniFiles.get_fs_entry() or {}).path
+                if path == nil then return vim.notify('Cursor is not on valid entry') end
+                local rel_path = vim.fn.fnamemodify(path, ":~:.")
+                vim.fn.setreg(vim.v.register, rel_path)
+              end
+
+              -- Yank in register full path of entry under cursor
+              local yank_full_path = function()
+                local path = (MiniFiles.get_fs_entry() or {}).path
+                if path == nil then return vim.notify('Cursor is not on valid entry') end
+                vim.fn.setreg(vim.v.register, path)
+              end
+
+              -- Open path with system default handler (useful for non-text files)
+              local ui_open = function() vim.ui.open(MiniFiles.get_fs_entry().path) end
+
+              local b = args.data.buf_id
+              vim.keymap.set('n', 'g~', set_cwd,           { buffer = b, desc = 'Set cwd' })
+              vim.keymap.set('n', 'gX', ui_open,           { buffer = b, desc = 'OS open' })
+              vim.keymap.set('n', 'gy', yank_relative_path, { buffer = b, desc = 'Yank relative path' })
+              vim.keymap.set('n', 'gY', yank_full_path,     { buffer = b, desc = 'Yank full path' })
+            end
+          '';
+        };
+      }
     ];
 
     keymaps = [
