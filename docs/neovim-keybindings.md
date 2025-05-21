@@ -9,6 +9,7 @@ This document provides a comprehensive overview of all keybindings configured in
 - [File Management](#file-management)
 - [Telescope (Fuzzy Finding)](#telescope-fuzzy-finding)
 - [Git Integration](#git-integration)
+- [General Operations](#general-operations)
 - [Code Manipulation](#code-manipulation)
 - [Autocompletion](#autocompletion)
 - [AI and Copilot](#ai-and-copilot)
@@ -82,8 +83,13 @@ Standard Vim navigation keys apply (h,j,k,l, etc.)
 | `<leader>E`   | Open fresh explorer                         |
 | Inside explorer: |                                          |
 | `-`           | Go up to parent directory                   |
-| `gs`          | Split horizontally                          |
-| `gv`          | Split vertically                            |
+| `<C-x>`       | Split horizontally                          |
+| `<C-v>`       | Split vertically                            |
+| `<C-t>`       | Open in new tab                             |
+| `g~`          | Set current working directory               |
+| `gX`          | Open file with system default application   |
+| `gy`          | Yank relative path of entry under cursor    |
+| `gY`          | Yank full path of entry under cursor        |
 
 ### Buffer Management
 
@@ -116,6 +122,12 @@ Standard Vim navigation keys apply (h,j,k,l, etc.)
 | `<leader>gs`    | Show at cursor        |
 | `<leader>gf`    | Changed files         |
 | `<leader>gb`    | Branches              |
+
+## General Operations
+
+| Keybinding      | Description                              |
+|-----------------|------------------------------------------|
+| `<leader>y`     | Copy unnamed register to system clipboard|
 
 ## Code Manipulation
 
