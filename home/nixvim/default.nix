@@ -28,6 +28,18 @@
     };
 
     globals = { };
+    
+    keymaps = [
+      {
+        mode = "n";
+        key = "<leader>y";
+        action = '':let @+ = @" | echo "Copied to system clipboard"<CR>'';
+        options = {
+          desc = "Copy unnamed register to system clipboard";
+          silent = true;
+        };
+      }
+    ];
 
     plugins = {
       dap.enable = true;
