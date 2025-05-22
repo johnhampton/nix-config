@@ -1,6 +1,5 @@
 { ... }: {
-  system.activationScripts.extraUserActivation.enable = true;
-  system.activationScripts.extraUserActivation.text =
+  system.activationScripts.extraActivation.text =
     let
       keys = {
         "118" = 18; # ^1 to switch to Desktop 1
@@ -17,7 +16,7 @@
       enableHotKeysCommands = builtins.map
         (key:
           let value = keys.${key}; in ''
-                defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add ${key} '
+                sudo -u john defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add ${key} '
             		<dict>
             			<key>enabled</key>
             			<true/>

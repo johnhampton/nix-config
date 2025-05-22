@@ -76,7 +76,6 @@
           (import ./overlays/tmuxPlugins.nix { inherit inputs; })
           (import ./overlays/vimPlugins.nix { inherit inputs; })
           (import ./overlays/aider.nix { inherit inputs; })
-          (import ./overlays/haskell-tools-nvim.nix { inherit inputs; })
         ];
       };
 

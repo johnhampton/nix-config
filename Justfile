@@ -19,7 +19,7 @@ build:
 # Switch to a new generation
 rebuild-switch:
     @echo -e "{{ GREEN }}Switching to new generation...{{ CLEAR }}"
-    darwin-rebuild switch --flake .
+    sudo darwin-rebuild switch --flake .
 
 upgrade:
     nix flake update --commit-lock-file

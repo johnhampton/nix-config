@@ -34,6 +34,7 @@
   services.lorri.enable = false;
   services.lorri.logFile = "/var/tmp/lorri.log";
 
+  system.primaryUser = "john";
   system.stateVersion = 4;
   system.defaults = {
     NSGlobalDomain = {
