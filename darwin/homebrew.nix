@@ -38,6 +38,7 @@
       "dropbox"
       "element"
       "expressvpn"
+      "google-chrome"
       "google-drive"
       "figma"
       "insomnia"
