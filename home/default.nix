@@ -60,6 +60,12 @@
     !include ${age.secrets.access_token.path}
   '';
 
+  nix.gc = {
+    automatic = true;
+    frequency = "weekly"; # Runs weekly
+    options = "--delete-older-than 30d";
+  };
+
   home.sessionVariables = {
     EDITOR = "nvim";
     USE_GKE_GCLOUD_AUTH_PLUGIN = "True";
@@ -177,6 +183,8 @@
       };
     };
   };
+
+  targets.darwin.defaults."com.apple.finder".FXRemoveOldTrashItems = true;
 
   xdg.enable = true;
   xdg.configFile."process-compose/shortcuts.yaml".source =
