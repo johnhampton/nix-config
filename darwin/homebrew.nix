@@ -55,6 +55,7 @@
       "slack"
       "tableplus"
       "tuple"
+      "wezterm"
       "zoom"
     ];
 

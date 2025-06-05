@@ -17,7 +17,7 @@
     ./ssh.nix
     ./tmux
     ./vscode.nix
-    ./wezterm.nix
+    ./wezterm
 
   ];
   home.packages = with pkgs; [
