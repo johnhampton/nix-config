@@ -87,6 +87,9 @@
       set-option -sa terminal-features ',xterm-kitty:RGB'
       set-option -sg escape-time 10
 
+      # Allow terminal-specific escape sequences to pass through tmux
+      set-option -g allow-passthrough on
+
 
       # Smart pane switching with awareness of Vim splits.
       # See: https://github.com/christoomey/vim-tmux-navigator
