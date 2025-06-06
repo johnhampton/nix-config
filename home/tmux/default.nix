@@ -84,7 +84,6 @@
 
       set-option -g detach-on-destroy off
 
-      set-option -sa terminal-features ',xterm-kitty:RGB'
       set-option -sg escape-time 10
 
       # Allow terminal-specific escape sequences to pass through tmux
