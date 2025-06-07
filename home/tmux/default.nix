@@ -143,6 +143,7 @@
       # Configure extrakto
       set -g @extrakto_popup_size "50%,50%"
       set -g @extrakto_popup_position "C"
+      set -g @extrakto_editor "nvim"
       
       # Configure resurrect
       set -g @resurrect-dir '${config.xdg.stateHome}/tmux/resurrect'
