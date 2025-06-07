@@ -42,6 +42,7 @@
     nvim-aider = { url = "github:GeorgesAlkhouri/nvim-aider"; flake = false; };
     tmux-resurrect = { url = "github:tmux-plugins/tmux-resurrect"; flake = false; };
     tmux-continuum = { url = "github:tmux-plugins/tmux-continuum"; flake = false; };
+    tmux-prefix-highlight = { url = "github:tmux-plugins/tmux-prefix-highlight"; flake = false; };
 
     # TAN utilities
     hchart.url = "github:topagentnetwork/hchart";

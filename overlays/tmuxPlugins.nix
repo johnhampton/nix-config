@@ -23,5 +23,11 @@
       src = inputs.tmux-continuum;
       version = inputs.tmux-continuum.shortRev;
     };
+    prefix-highlight = final.tmuxPlugins.mkTmuxPlugin {
+      pluginName = "prefix-highlight";
+      rtpFilePath = "prefix_highlight.tmux";
+      src = inputs.tmux-prefix-highlight;
+      version = inputs.tmux-prefix-highlight.shortRev;
+    };
   };
 })

@@ -469,6 +469,7 @@
         "t-smart-tmux-session-manager": "t-smart-tmux-session-manager",
         "telescope-hoogle-nvim": "telescope-hoogle-nvim",
         "tmux-continuum": "tmux-continuum",
+        "tmux-prefix-highlight": "tmux-prefix-highlight",
         "tmux-resurrect": "tmux-resurrect"
       }
     },
@@ -592,6 +593,22 @@
       "original": {
         "owner": "tmux-plugins",
         "repo": "tmux-continuum",
+        "type": "github"
+      }
+    },
+    "tmux-prefix-highlight": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1740831683,
+        "narHash": "sha256-wkMm2Myxau24E0fbXINPuL2dc8E4ZYe5Pa6A0fWhiw4=",
+        "owner": "tmux-plugins",
+        "repo": "tmux-prefix-highlight",
+        "rev": "06cbb4ecd3a0a918ce355c70dc56d79debd455c7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tmux-plugins",
+        "repo": "tmux-prefix-highlight",
         "type": "github"
       }
     },

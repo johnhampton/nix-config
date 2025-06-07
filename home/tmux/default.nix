@@ -138,6 +138,9 @@
       # ============================================= #
       # Plugin configuration                          #
       # --------------------------------------------- #
+
+      # Configure prefix-highlight
+      set -g @prefix_highlight_show_copy_mode 'on'
       
       # Configure resurrect
       set -g @resurrect-dir '${config.xdg.dataHome}/tmux/resurrect'
@@ -158,6 +161,7 @@
       # --------------------------------------------- #
       
       run-shell ${pkgs.tmuxPlugins.nord}/share/tmux-plugins/nord/nord.tmux
+      run-shell ${pkgs.tmuxPlugins.prefix-highlight}/share/tmux-plugins/prefix-highlight/prefix_highlight.tmux
       run-shell ${pkgs.tmuxPlugins.sessionist}/share/tmux-plugins/sessionist/sessionist.tmux
       run-shell ${pkgs.tmuxPlugins.resurrect}/share/tmux-plugins/resurrect/resurrect.tmux
       run-shell ${pkgs.tmuxPlugins.continuum}/share/tmux-plugins/continuum/continuum.tmux
