@@ -230,7 +230,7 @@
       }
       {
         mode = "n";
-        key = "<leader>sl";
+        key = "<leader>so";
         action = "<cmd>lua MiniSessions.select()<cr>";
         options = {
           desc = "Select session (interactive)";
@@ -242,6 +242,39 @@
         action = "<cmd>lua MiniSessions.write('Session.vim')<cr>";
         options = {
           desc = "Write local session";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>sn";
+        action = {
+          __raw = ''
+            function()
+              local name = vim.fn.input('Session name: ')
+              if name ~= "" then
+                MiniSessions.write(name)
+              end
+            end
+          '';
+        };
+        options = {
+          desc = "New session with name";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>sW";
+        action = "<cmd>lua MiniSessions.select('write')<cr>";
+        options = {
+          desc = "Write session (interactive)";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>sd";
+        action = "<cmd>lua MiniSessions.select('delete')<cr>";
+        options = {
+          desc = "Delete session (interactive)";
         };
       }
       {
