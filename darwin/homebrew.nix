@@ -42,6 +42,7 @@
       "google-drive"
       "figma"
       "insomnia"
+      "karabiner-elements"
       "logi-options+"
       "logitune"
       "logseq"
