@@ -143,14 +143,14 @@
       set -g @prefix_highlight_show_copy_mode 'on'
       
       # Configure resurrect
-      set -g @resurrect-dir '${config.xdg.dataHome}/tmux/resurrect'
+      set -g @resurrect-dir '${config.xdg.stateHome}/tmux/resurrect'
       set -g @resurrect-capture-pane-contents 'on'
       set -g @resurrect-strategy-vim 'session'
       set -g @resurrect-strategy-nvim 'session'
       set -g @resurrect-processes 'vim nvim man less more tail top htop ssh psql mysql'
       
       # Fix for Nix store paths - clean up saved commands to just the binary name
-      set -g @resurrect-hook-post-save-all 'target=$(readlink -f ${config.xdg.dataHome}/tmux/resurrect/last); sed -E "s|/nix/store/[^/]+/bin/||g; s| --cmd .*||g" $target | ${pkgs.moreutils}/bin/sponge $target'
+      set -g @resurrect-hook-post-save-all 'target=$(readlink -f ${config.xdg.stateHome}/tmux/resurrect/last); sed -E "s|/nix/store/[^/]+/bin/||g; s| --cmd .*||g" $target | ${pkgs.moreutils}/bin/sponge $target'
       
       # Configure continuum
       set -g @continuum-restore 'on'
