@@ -17,7 +17,7 @@
     terminal = "tmux-256color";
     focusEvents = true;
 
-    plugins = [];
+    plugins = [ ];
 
     extraConfig = ''
       # https://gist.github.com/andersevenrud/015e61af2fd264371032763d4ed965b6
@@ -33,6 +33,24 @@
       
       bind-key C-p previous-window
       bind-key C-n next-window
+      
+      # Send literal Ctrl-l when prefix C-l is pressed (useful for clearing terminal)
+      bind-key C-l send-keys 'C-l'
+
+      # Window movement bindings (from pain-control)
+      bind-key -r "<" swap-window -d -t -1
+      bind-key -r ">" swap-window -d -t +1
+
+      # Pane split bindings (from pain-control)
+      bind-key "|" split-window -h -c "#{pane_current_path}"
+      bind-key "\\" split-window -fh -c "#{pane_current_path}"
+      bind-key "-" split-window -v -c "#{pane_current_path}"
+      bind-key "_" split-window -fv -c "#{pane_current_path}"
+      bind-key "%" split-window -h -c "#{pane_current_path}"
+      bind-key '"' split-window -v -c "#{pane_current_path}"
+
+      # Improve new window binding (from pain-control)
+      bind-key "c" new-window -c "#{pane_current_path}"
 
       # https://github.com/wincent/wincent/blob/main/aspects/dotfiles/files/.tmux.conf
       unbind-key -T copy-mode-vi MouseDragEnd1Pane
@@ -140,7 +158,6 @@
       # --------------------------------------------- #
       
       run-shell ${pkgs.tmuxPlugins.nord}/share/tmux-plugins/nord/nord.tmux
-      run-shell ${pkgs.tmuxPlugins.pain-control}/share/tmux-plugins/pain-control/pain_control.tmux
       run-shell ${pkgs.tmuxPlugins.sessionist}/share/tmux-plugins/sessionist/sessionist.tmux
       run-shell ${pkgs.tmuxPlugins.resurrect}/share/tmux-plugins/resurrect/resurrect.tmux
       run-shell ${pkgs.tmuxPlugins.continuum}/share/tmux-plugins/continuum/continuum.tmux
