@@ -11,6 +11,7 @@
     ./cachix
     ./git.nix
     ./haskell.nix
+    ./karabiner
     ./navi.nix
     ./nixvim
     ./postgres
@@ -205,13 +206,5 @@
 
         };
       };
-
-  # Karabiner-Elements configuration
-  home.file.".config/karabiner/karabiner.json" = {
-    source = ./karabiner/karabiner.json;
-    onChange = ''
-      /bin/launchctl kickstart -k gui/$(id -u)/org.pqrs.service.agent.karabiner_console_user_server
-    '';
-  };
 }
 
