@@ -22,6 +22,8 @@
       pkgs.tmuxPlugins.nord
       pkgs.tmuxPlugins.pain-control
       pkgs.tmuxPlugins.sessionist
+      pkgs.tmuxPlugins.resurrect
+      pkgs.tmuxPlugins.continuum
     ];
 
     extraConfig = ''
@@ -126,6 +128,20 @@
       bind-key -n 'M-j' if -F "#{@pane-is-vim}" 'send-keys M-j' 'resize-pane -D 3'
       bind-key -n 'M-k' if -F "#{@pane-is-vim}" 'send-keys M-k' 'resize-pane -U 3'
       bind-key -n 'M-l' if -F "#{@pane-is-vim}" 'send-keys M-l' 'resize-pane -R 3'
+
+      # tmux-resurrect configuration
+      set -g @resurrect-dir '${config.xdg.dataHome}/tmux/resurrect'
+      set -g @resurrect-capture-pane-contents 'on'
+      set -g @resurrect-strategy-vim 'session'
+      set -g @resurrect-strategy-nvim 'session'
+      set -g @resurrect-processes 'vim nvim man less more tail top htop ssh psql mysql'
+
+      # tmux-continuum configuration
+      set -g @continuum-restore 'on'
+      set -g @continuum-save-interval '15'
+
+      # Fix for Nix store paths - clean up saved commands to just the binary name
+      set -g @resurrect-hook-post-save-all 'target=$(readlink -f ${config.xdg.dataHome}/tmux/resurrect/last); sed -E "s|/nix/store/[^/]+/bin/||g; s| --cmd .*||g" $target | ${pkgs.moreutils}/bin/sponge $target'
     '';
   };
 }
