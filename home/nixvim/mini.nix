@@ -10,6 +10,7 @@
         files = { };
         git = { };
         jump = { };
+        sessions = { };
         surround = { };
       };
     };
@@ -19,6 +20,7 @@
         spec = [
           { __unkeyed-1 = "<leader>b"; group = "Buffer"; }
           { __unkeyed-1 = "<leader>g"; group = "Git"; }
+          { __unkeyed-1 = "<leader>s"; group = "Session"; }
         ];
       };
     };
@@ -206,6 +208,67 @@
         action = "<cmd>Telescope git_branches<cr>";
         options = {
           desc = "Branches";
+        };
+      }
+
+      # Sessions
+      {
+        mode = "n";
+        key = "<leader>ss";
+        action = "<cmd>lua MiniSessions.write()<cr>";
+        options = {
+          desc = "Save/update current session";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>sr";
+        action = "<cmd>lua MiniSessions.read()<cr>";
+        options = {
+          desc = "Read default session";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>sl";
+        action = "<cmd>lua MiniSessions.select()<cr>";
+        options = {
+          desc = "Select session (interactive)";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>sw";
+        action = "<cmd>lua MiniSessions.write('Session.vim')<cr>";
+        options = {
+          desc = "Write local session";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>sD";
+        action = "<cmd>lua MiniSessions.delete(nil, { force = true })<cr>";
+        options = {
+          desc = "Delete the current session";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>si";
+        action = {
+          __raw = ''
+            function()
+              local latest = MiniSessions.get_latest()
+              if latest then
+                vim.notify("Latest session: " .. latest, vim.log.levels.INFO)
+              else
+                vim.notify("No sessions found", vim.log.levels.WARN)
+              end
+            end
+          '';
+        };
+        options = {
+          desc = "Show latest session info";
         };
       }
     ];
