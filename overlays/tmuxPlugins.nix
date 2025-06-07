@@ -29,5 +29,11 @@
       src = inputs.tmux-prefix-highlight;
       version = inputs.tmux-prefix-highlight.shortRev;
     };
+    extrakto = final.tmuxPlugins.mkTmuxPlugin {
+      pluginName = "extrakto";
+      rtpFilePath = "extrakto.tmux";
+      src = inputs.tmux-extrakto;
+      version = inputs.tmux-extrakto.shortRev;
+    };
   };
 })

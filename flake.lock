@@ -469,6 +469,7 @@
         "t-smart-tmux-session-manager": "t-smart-tmux-session-manager",
         "telescope-hoogle-nvim": "telescope-hoogle-nvim",
         "tmux-continuum": "tmux-continuum",
+        "tmux-extrakto": "tmux-extrakto",
         "tmux-prefix-highlight": "tmux-prefix-highlight",
         "tmux-resurrect": "tmux-resurrect"
       }
@@ -593,6 +594,22 @@
       "original": {
         "owner": "tmux-plugins",
         "repo": "tmux-continuum",
+        "type": "github"
+      }
+    },
+    "tmux-extrakto": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1734509803,
+        "narHash": "sha256-pzinDE6zRne470Hid5Y53e5ZmUjieCsD/6xghBO3898=",
+        "owner": "laktak",
+        "repo": "extrakto",
+        "rev": "3eb7eb498a493e06edbe898bc70c7b87bf1a630e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "laktak",
+        "repo": "extrakto",
         "type": "github"
       }
     },

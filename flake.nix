@@ -43,6 +43,7 @@
     tmux-resurrect = { url = "github:tmux-plugins/tmux-resurrect"; flake = false; };
     tmux-continuum = { url = "github:tmux-plugins/tmux-continuum"; flake = false; };
     tmux-prefix-highlight = { url = "github:tmux-plugins/tmux-prefix-highlight"; flake = false; };
+    tmux-extrakto = { url = "github:laktak/extrakto"; flake = false; };
 
     # TAN utilities
     hchart.url = "github:topagentnetwork/hchart";

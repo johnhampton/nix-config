@@ -17,8 +17,6 @@
     terminal = "tmux-256color";
     focusEvents = true;
 
-    plugins = [ ];
-
     extraConfig = ''
       # https://gist.github.com/andersevenrud/015e61af2fd264371032763d4ed965b6
       set -as terminal-features ",*:RGB"
@@ -142,6 +140,10 @@
       # Configure prefix-highlight
       set -g @prefix_highlight_show_copy_mode 'on'
       
+      # Configure extrakto
+      set -g @extrakto_popup_size "50%,50%"
+      set -g @extrakto_popup_position "C"
+      
       # Configure resurrect
       set -g @resurrect-dir '${config.xdg.stateHome}/tmux/resurrect'
       set -g @resurrect-capture-pane-contents 'on'
@@ -163,6 +165,7 @@
       run-shell ${pkgs.tmuxPlugins.nord}/share/tmux-plugins/nord/nord.tmux
       run-shell ${pkgs.tmuxPlugins.prefix-highlight}/share/tmux-plugins/prefix-highlight/prefix_highlight.tmux
       run-shell ${pkgs.tmuxPlugins.sessionist}/share/tmux-plugins/sessionist/sessionist.tmux
+      run-shell ${pkgs.tmuxPlugins.extrakto}/share/tmux-plugins/extrakto/extrakto.tmux
       run-shell ${pkgs.tmuxPlugins.resurrect}/share/tmux-plugins/resurrect/resurrect.tmux
       run-shell ${pkgs.tmuxPlugins.continuum}/share/tmux-plugins/continuum/continuum.tmux
     '';
