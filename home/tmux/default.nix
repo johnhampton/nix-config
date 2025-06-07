@@ -15,9 +15,10 @@
     sensibleOnTop = true;
     shortcut = "a";
     terminal = "tmux-256color";
+    focusEvents = true;
 
     plugins = [
-      pkgs.tmuxPlugins.logging
+      # pkgs.tmuxPlugins.logging
       pkgs.tmuxPlugins.nord
       pkgs.tmuxPlugins.pain-control
       pkgs.tmuxPlugins.sessionist
@@ -63,10 +64,6 @@
       # - #T = pane title (~/.zshrc sets this to the last/current command)
       set-option -g set-titles-string "#S > #T"
 
-      # Needed as on tmux 1.9 and up (defaults to off).
-      # Added in tmux commit c7a121cfc0137c907b7bfb.
-      set-option -g focus-events on
-
       # But don't change tmux's own window titles.
       set-option -w -g automatic-rename off
 
@@ -89,22 +86,46 @@
       # Allow terminal-specific escape sequences to pass through tmux
       set-option -g allow-passthrough on
 
+      # Terminal bell configuration for proper pass-through to WezTerm
+      # This allows WezTerm to handle visual bells and notifications
 
-      # Smart pane switching with awareness of Vim splits.
-      # See: https://github.com/christoomey/vim-tmux-navigator
-      is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
-          | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?|fzf)(diff)?$'"
-      bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h'  'select-pane -L'
-      bind-key -n 'C-j' if-shell "$is_vim" 'send-keys C-j'  'select-pane -D'
-      bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k'  'select-pane -U'
-      bind-key -n 'C-l' if-shell "$is_vim" 'send-keys C-l'  'select-pane -R'
-      bind-key -n 'C-\' if-shell "$is_vim" 'send-keys C-\\' 'select-pane -l'
+      # Listen to bell events from all windows, not just the current one
+      # Options: none (ignore bells), current (only current window), any (all windows)
+      set -g bell-action any
+
+      # Enable monitoring for bell events in windows
+      # When on, tmux will mark windows with bell activity
+      set -g monitor-bell on
+
+      # Disable tmux's visual bell to let WezTerm handle visual feedback
+      # When off, tmux passes the bell through without its own visual indication
+      set -g visual-bell off
+
+      # Also disable visual notifications for activity and silence
+      # This prevents tmux from interfering with terminal bell handling
+      set -g visual-activity off
+      set -g visual-silence off
+
+      # Smart pane switching with awareness of Vim splits using smart-splits.nvim
+      # See: https://github.com/mrjones2014/smart-splits.nvim
+      # Smart-splits.nvim sets the @pane-is-vim variable
+      bind-key -n 'C-h' if -F "#{@pane-is-vim}" 'send-keys C-h' 'select-pane -L'
+      bind-key -n 'C-j' if -F "#{@pane-is-vim}" 'send-keys C-j' 'select-pane -D'
+      bind-key -n 'C-k' if -F "#{@pane-is-vim}" 'send-keys C-k' 'select-pane -U'
+      bind-key -n 'C-l' if -F "#{@pane-is-vim}" 'send-keys C-l' 'select-pane -R'
+      bind-key -n 'C-\' if -F "#{@pane-is-vim}" 'send-keys C-\\' 'select-pane -l'
 
       bind-key -T copy-mode-vi 'C-h' select-pane -L
       bind-key -T copy-mode-vi 'C-j' select-pane -D
       bind-key -T copy-mode-vi 'C-k' select-pane -U
       bind-key -T copy-mode-vi 'C-l' select-pane -R
       bind-key -T copy-mode-vi 'C-\' select-pane -l
+
+      # Resize panes with Alt + h/j/k/l (smart-splits compatible)
+      bind-key -n 'M-h' if -F "#{@pane-is-vim}" 'send-keys M-h' 'resize-pane -L 3'
+      bind-key -n 'M-j' if -F "#{@pane-is-vim}" 'send-keys M-j' 'resize-pane -D 3'
+      bind-key -n 'M-k' if -F "#{@pane-is-vim}" 'send-keys M-k' 'resize-pane -U 3'
+      bind-key -n 'M-l' if -F "#{@pane-is-vim}" 'send-keys M-l' 'resize-pane -R 3'
     '';
   };
 }

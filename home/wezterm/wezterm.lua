@@ -60,4 +60,16 @@ config.keys = {
   },
 }
 
+-- Bell notification handler
+-- Triggers a system notification when a bell character is received
+wezterm.on('bell', function(window, pane)
+  local title = pane:get_title()
+  window:toast_notification(
+    'Terminal Bell', 
+    'Bell from: ' .. title, 
+    nil, 
+    4000
+  )
+end)
+
 return config

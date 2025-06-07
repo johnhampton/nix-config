@@ -12,6 +12,7 @@
     ./mini.nix
     ./neotest.nix
     ./nvim-aider.nix
+    ./smart-splits.nix
     ./telescope.nix
     ./terraform.nix
   ];
@@ -44,7 +45,6 @@
     plugins = {
       dap.enable = true;
 
-      tmux-navigator.enable = true;
       treesitter = {
         enable = true;
         settings = {
