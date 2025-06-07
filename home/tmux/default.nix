@@ -17,39 +17,7 @@
     terminal = "tmux-256color";
     focusEvents = true;
 
-    plugins = [
-      # {
-      #   plugin = pkgs.tmuxPlugins.logging;
-      #   extraConfig = ''
-      #     set-option -g "@logging-path" ${config.home.homeDirectory}/Documents/TMUX 
-      #     set-option -g "@screen-capture-path" ${config.home.homeDirectory}/Documents/TMUX 
-      #     set-option -g "@save-complete-history-path" ${config.home.homeDirectory}/Documents/TMUX 
-      #   '';
-      # }
-      pkgs.tmuxPlugins.nord
-      pkgs.tmuxPlugins.pain-control
-      pkgs.tmuxPlugins.sessionist
-      {
-        plugin = pkgs.tmuxPlugins.resurrect;
-        extraConfig = ''
-          set -g @resurrect-dir '${config.xdg.dataHome}/tmux/resurrect'
-          set -g @resurrect-capture-pane-contents 'on'
-          set -g @resurrect-strategy-vim 'session'
-          set -g @resurrect-strategy-nvim 'session'
-          set -g @resurrect-processes 'vim nvim man less more tail top htop ssh psql mysql'
-          
-          # Fix for Nix store paths - clean up saved commands to just the binary name
-          set -g @resurrect-hook-post-save-all 'target=$(readlink -f ${config.xdg.dataHome}/tmux/resurrect/last); sed -E "s|/nix/store/[^/]+/bin/||g; s| --cmd .*||g" $target | ${pkgs.moreutils}/bin/sponge $target'
-        '';
-      }
-      {
-        plugin = pkgs.tmuxPlugins.continuum;
-        extraConfig = ''
-          set -g @continuum-restore 'on'
-          set -g @continuum-save-interval '15'
-        '';
-      }
-    ];
+    plugins = [];
 
     extraConfig = ''
       # https://gist.github.com/andersevenrud/015e61af2fd264371032763d4ed965b6
@@ -148,6 +116,34 @@
       bind-key -n 'M-j' if -F "#{@pane-is-vim}" 'send-keys M-j' 'resize-pane -D 3'
       bind-key -n 'M-k' if -F "#{@pane-is-vim}" 'send-keys M-k' 'resize-pane -U 3'
       bind-key -n 'M-l' if -F "#{@pane-is-vim}" 'send-keys M-l' 'resize-pane -R 3'
+
+      # ============================================= #
+      # Plugin configuration                          #
+      # --------------------------------------------- #
+      
+      # Configure resurrect
+      set -g @resurrect-dir '${config.xdg.dataHome}/tmux/resurrect'
+      set -g @resurrect-capture-pane-contents 'on'
+      set -g @resurrect-strategy-vim 'session'
+      set -g @resurrect-strategy-nvim 'session'
+      set -g @resurrect-processes 'vim nvim man less more tail top htop ssh psql mysql'
+      
+      # Fix for Nix store paths - clean up saved commands to just the binary name
+      set -g @resurrect-hook-post-save-all 'target=$(readlink -f ${config.xdg.dataHome}/tmux/resurrect/last); sed -E "s|/nix/store/[^/]+/bin/||g; s| --cmd .*||g" $target | ${pkgs.moreutils}/bin/sponge $target'
+      
+      # Configure continuum
+      set -g @continuum-restore 'on'
+      set -g @continuum-save-interval '15'
+      
+      # ============================================= #
+      # Load all plugins at the very end             #
+      # --------------------------------------------- #
+      
+      run-shell ${pkgs.tmuxPlugins.nord}/share/tmux-plugins/nord/nord.tmux
+      run-shell ${pkgs.tmuxPlugins.pain-control}/share/tmux-plugins/pain-control/pain_control.tmux
+      run-shell ${pkgs.tmuxPlugins.sessionist}/share/tmux-plugins/sessionist/sessionist.tmux
+      run-shell ${pkgs.tmuxPlugins.resurrect}/share/tmux-plugins/resurrect/resurrect.tmux
+      run-shell ${pkgs.tmuxPlugins.continuum}/share/tmux-plugins/continuum/continuum.tmux
     '';
   };
 }

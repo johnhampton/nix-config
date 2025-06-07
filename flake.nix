@@ -40,6 +40,8 @@
     telescope-hoogle-nvim = { url = "github:johnhampton/telescope-hoogle.nvim"; flake = false; };
     t-smart-tmux-session-manager = { url = "github:joshmedeski/t-smart-tmux-session-manager"; flake = false; };
     nvim-aider = { url = "github:GeorgesAlkhouri/nvim-aider"; flake = false; };
+    tmux-resurrect = { url = "github:tmux-plugins/tmux-resurrect"; flake = false; };
+    tmux-continuum = { url = "github:tmux-plugins/tmux-continuum"; flake = false; };
 
     # TAN utilities
     hchart.url = "github:topagentnetwork/hchart";

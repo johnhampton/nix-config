@@ -467,7 +467,9 @@
         "nvim-aider": "nvim-aider",
         "pragmata-pro": "pragmata-pro",
         "t-smart-tmux-session-manager": "t-smart-tmux-session-manager",
-        "telescope-hoogle-nvim": "telescope-hoogle-nvim"
+        "telescope-hoogle-nvim": "telescope-hoogle-nvim",
+        "tmux-continuum": "tmux-continuum",
+        "tmux-resurrect": "tmux-resurrect"
       }
     },
     "systems": {
@@ -574,6 +576,38 @@
       "original": {
         "owner": "johnhampton",
         "repo": "telescope-hoogle.nvim",
+        "type": "github"
+      }
+    },
+    "tmux-continuum": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1705754277,
+        "narHash": "sha256-W71QyLwC/MXz3bcLR2aJeWcoXFI/A3itjpcWKAdVFJY=",
+        "owner": "tmux-plugins",
+        "repo": "tmux-continuum",
+        "rev": "0698e8f4b17d6454c71bf5212895ec055c578da0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tmux-plugins",
+        "repo": "tmux-continuum",
+        "type": "github"
+      }
+    },
+    "tmux-resurrect": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1678098022,
+        "narHash": "sha256-FcSjYyWjXM1B+WmiK2bqUNJYtH7sJBUsY2IjSur5TjY=",
+        "owner": "tmux-plugins",
+        "repo": "tmux-resurrect",
+        "rev": "cff343cf9e81983d3da0c8562b01616f12e8d548",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tmux-plugins",
+        "repo": "tmux-resurrect",
         "type": "github"
       }
     }
