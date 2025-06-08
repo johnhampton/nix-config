@@ -1,0 +1,26 @@
+From 421f0cdd9a3086c5761f77b44d5b2d9716f02f39 Mon Sep 17 00:00:00 2001
+From: Siarhei Akhramenia <siarhei.akhramenia@gmail.com>
+Date: Mon, 24 Mar 2025 19:54:26 +0300
+Subject: [PATCH] fix `kill_session_prompt.sh`
+
+Script doesn't process non-zero exit codes producing artifact messages on the screen.
+
+fix `kill_session_prompt.sh`
+---
+ scripts/kill_session_prompt.sh | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/scripts/kill_session_prompt.sh b/scripts/kill_session_prompt.sh
+index 62d9e7c..a98c48e 100755
+--- a/scripts/kill_session_prompt.sh
++++ b/scripts/kill_session_prompt.sh
+@@ -8,5 +8,9 @@ CURRENT_SESSION_ID="$2"
+ 
+ main() {
+ 	tmux confirm -p "kill-session ${CURRENT_SESSION_NAME}? (y/n)" "run '$CURRENT_DIR/kill_session.sh \'$CURRENT_SESSION_ID''"
++
++	if [ $? -ne 0 ]; then
++		return # do nothing
++	fi
+ }
+ main

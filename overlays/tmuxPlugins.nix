@@ -1,6 +1,18 @@
 { inputs }: (final: prev: {
 
   tmuxPlugins = prev.tmuxPlugins // {
+    sessionist = final.tmuxPlugins.mkTmuxPlugin {
+      pluginName = "sessionist";
+      rtpFilePath = "sessionist.tmux";
+      version = "unstable-2023-05-02";
+      src = final.fetchFromGitHub {
+        owner = "tmux-plugins";
+        repo = "tmux-sessionist";
+        rev = "a315c423328d9bdf5cf796435ce7075fa5e1bffb";
+        sha256 = "sha256-iC8NvuLujTXw4yZBaenHJ+2uM+HA9aW5b2rQTA8e69s=";
+      };
+      patches = [ ./sessionist-pr35.patch ];
+    };
     t-smart-tmux-session-manager = final.tmuxPlugins.mkTmuxPlugin {
       pluginName = "t-smart-tmux-session-manager";
       rtpFilePath = "t-smart-tmux-session-manager.tmux";
