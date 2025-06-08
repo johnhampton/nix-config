@@ -68,9 +68,6 @@
       # For those times when C-c and q are not enough.
       bind-key -T copy-mode-vi Escape send-keys -X cancel
 
-      # Toggle synchronized panes - type in all panes simultaneously
-      bind-key e setw synchronize-panes
-
       # Dynamically update iTerm tab and window titles.
       set-option -g set-titles on
 
@@ -173,6 +170,9 @@
       run-shell ${pkgs.tmuxPlugins.extrakto}/share/tmux-plugins/extrakto/extrakto.tmux
       run-shell ${pkgs.tmuxPlugins.resurrect}/share/tmux-plugins/resurrect/resurrect.tmux
       run-shell ${pkgs.tmuxPlugins.continuum}/share/tmux-plugins/continuum/continuum.tmux
+
+      # Toggle synchronized panes - type in all panes simultaneously
+      bind-key S setw synchronize-panes
     '';
   };
 }

@@ -64,8 +64,8 @@
       echo >&2 "disabling spotlight shortcuts..."
       ${builtins.concatStringsSep "\n" disableSpotlightCommands}
       
-      echo >&2 "activating settings..."
-      sudo -u john /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+      # echo >&2 "activating settings..."
+      # sudo -u john /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
     '';
 
 }
