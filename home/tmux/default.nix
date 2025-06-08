@@ -68,6 +68,9 @@
       # For those times when C-c and q are not enough.
       bind-key -T copy-mode-vi Escape send-keys -X cancel
 
+      # Toggle synchronized panes - type in all panes simultaneously
+      bind-key e setw synchronize-panes
+
       # Dynamically update iTerm tab and window titles.
       set-option -g set-titles on
 
@@ -139,6 +142,7 @@
 
       # Configure prefix-highlight
       set -g @prefix_highlight_show_copy_mode 'on'
+      set -g @prefix_highlight_show_sync_mode 'on'
       
       # Configure extrakto
       set -g @extrakto_popup_size "50%,50%"
