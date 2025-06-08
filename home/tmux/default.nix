@@ -156,7 +156,7 @@
       set -g @resurrect-hook-post-save-all 'target=$(readlink -f ${config.xdg.stateHome}/tmux/resurrect/last); sed -E "s|/nix/store/[^/]+/bin/||g; s| --cmd .*||g" $target | ${pkgs.moreutils}/bin/sponge $target'
       
       # Configure continuum
-      set -g @continuum-restore 'on'
+      set -g @continuum-restore 'off'
       set -g @continuum-save-interval '15'
       
       # ============================================= #
