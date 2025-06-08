@@ -47,7 +47,7 @@ config.keys = {
     mods = 'CMD',
     action = act.Multiple {
       act.SendKey { key = 'a', mods='CTRL' },
-      act.SendKey { key = 'T' },
+      act.SendKey { key = 'j' },
     },
   },
   {

@@ -1,6 +1,6 @@
 { pkgs, config, ... }: {
   imports = [
-    ./t-smart-tmux-session-manager.nix
+    ./sesh.nix
     ./lazygit.nix
   ];
   # We need this in order to 

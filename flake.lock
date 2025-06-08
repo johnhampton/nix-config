@@ -466,7 +466,6 @@
         "nixvim": "nixvim",
         "nvim-aider": "nvim-aider",
         "pragmata-pro": "pragmata-pro",
-        "t-smart-tmux-session-manager": "t-smart-tmux-session-manager",
         "telescope-hoogle-nvim": "telescope-hoogle-nvim",
         "tmux-continuum": "tmux-continuum",
         "tmux-extrakto": "tmux-extrakto",
@@ -546,22 +545,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
-        "type": "github"
-      }
-    },
-    "t-smart-tmux-session-manager": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1705612422,
-        "narHash": "sha256-AMeYo3HVtRP1w8gQpok+/9fvNCXiMEzZ9ct+gUoL2V4=",
-        "owner": "joshmedeski",
-        "repo": "t-smart-tmux-session-manager",
-        "rev": "3726950525ac9966412ea3f2093bf2ffe06aa023",
-        "type": "github"
-      },
-      "original": {
-        "owner": "joshmedeski",
-        "repo": "t-smart-tmux-session-manager",
         "type": "github"
       }
     },
