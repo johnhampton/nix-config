@@ -9,6 +9,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Upgrade packages: `just upgrade` (updates flake inputs and commits lock file)
 - Clean up: `just clean` (removes ./result directory)
 - Optimize store: `just optimize-store` (runs `nix store optimise`)
+- **NOTE**: Don't try to run `just switch` it requires sudo priveledges. 
 
 ## Architecture Overview
 This repository manages macOS (Darwin) system configuration using nix-darwin and home-manager:
