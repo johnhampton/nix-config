@@ -58,6 +58,13 @@
       NSGlobalDomain = {
         AppleSpacesSwitchOnActivate = 0;
       };
+      "net.shinyfrog.bear" = {
+        NSUserKeyEquivalents = {
+          "Show Editor Only" = "^$1";
+          "Show Notes and Editor" = "^$2";
+          "Show Tags, Notes and Editor" = "^$3";
+        };
+      };
     };
   };
 
