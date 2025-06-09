@@ -81,7 +81,7 @@
       # I don't think we need reattach-to-user-namespace anymore
       set-option -gu default-command
 
-      set-option -g display-panes-time 2000
+      set-option -g display-panes-time 2500
 
       set -g status-left-length 25
 
