@@ -19,6 +19,7 @@
     ./tmux
     ./vscode.nix
     ./wezterm
+    ./yazi.nix
 
   ];
   home.packages = with pkgs; [

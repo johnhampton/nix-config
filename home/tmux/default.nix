@@ -91,6 +91,8 @@
 
       # Allow terminal-specific escape sequences to pass through tmux
       set-option -g allow-passthrough on
+      set -ga update-environment TERM
+      set -ga update-environment TERM_PROGRAM
 
       # Terminal bell configuration for proper pass-through to WezTerm
       # This allows WezTerm to handle visual bells and notifications
