@@ -6,6 +6,7 @@
     aliases = {
       fix-commit = "commit --edit --file=.git/COMMIT_EDITMSG";
       use-tan-email = "config user.email \"john@topagentnetwork.com\"";
+      diff-side-by-side = "-c delta.features=side-by-side diff";
     };
     delta.enable = true;
     delta.options = {
