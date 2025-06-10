@@ -33,6 +33,7 @@ The configuration has multiple keybinding groups organized under leader-based pr
 | `<leader>l` | LSP operations               |
 | `<leader>L` | LSP control                  |
 | `<leader>t` | Testing (Neotest)            |
+| `<leader>y` | Yank/Copy operations         |
 
 ## Navigation
 
@@ -127,7 +128,8 @@ Standard Vim navigation keys apply (h,j,k,l, etc.)
 
 | Keybinding      | Description                              |
 |-----------------|------------------------------------------|
-| `<leader>y`     | Copy unnamed register to system clipboard|
+| `<leader>yc`    | Copy unnamed register to system clipboard|
+| `<leader>yp`    | Copy relative path to system clipboard   |
 
 ## Code Manipulation
 
