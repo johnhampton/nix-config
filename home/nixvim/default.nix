@@ -33,11 +33,20 @@
     keymaps = [
       {
         mode = "n";
-        key = "<leader>y";
+        key = "<leader>yc";
         action = '':let @+ = @" | echo "Copied to system clipboard"<CR>'';
         options = {
           desc = "Copy unnamed register to system clipboard";
-          silent = true;
+          silent = false;
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>yp";
+        action = '':let @+ = expand('%') | echo "Copied path to system clipboard: " . @+<CR>'';
+        options = {
+          desc = "Copy relative path to system clipboard";
+          silent = false;
         };
       }
     ];
@@ -73,6 +82,7 @@
             { __unkeyed-1 = "<leader>F"; group = "+Find"; mode = [ "n" "v" ]; }
             { __unkeyed-1 = "<leader>l"; group = "+LSP"; mode = [ "n" "v" ]; }
             { __unkeyed-1 = "<leader>L"; group = "+LSP Control"; mode = [ "n" "v" ]; }
+            { __unkeyed-1 = "<leader>y"; group = "+Yank/Copy"; mode = [ "n" "v" ]; }
             { __unkeyed-1 = "gq"; group = "Format"; }
           ];
         };
