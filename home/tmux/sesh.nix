@@ -6,7 +6,7 @@
     enable = true;
     tmuxKey = "j"; # Use prefix + j instead of default prefix + s
     # enableAlias = true; # default, provides 's' shell alias
-    # enableTmuxIntegration = true; # default
+    enableTmuxIntegration = false; # default
     # icons = true; # default
   };
 
