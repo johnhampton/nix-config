@@ -20,8 +20,9 @@
     ./vscode.nix
     ./wezterm
     ./yazi.nix
-
+    ./zsh.nix
   ];
+
   home.packages = with pkgs; [
     argocd
     argocd-autopilot
@@ -48,7 +49,7 @@
     patchutils_0_4_2
     pgcli
     pragmata-pro
-    (python3.withPackages (p: [p.pip]))
+    (python3.withPackages (p: [ p.pip ]))
     rainfrog
     repomix
     ripgrep
@@ -92,16 +93,6 @@
     };
   };
 
-  # Direnv, load and unload environment variables depending on the current directory.
-  # https://direnv.net
-  # https://rycee.gitlab.io/home-manager/options.html#opt-programs.direnv.enable
-  programs.direnv.enable = true;
-  programs.direnv = {
-    enableZshIntegration = true;
-    nix-direnv.enable = true;
-    silent = true;
-  };
-
   programs.eza.enable = true;
   programs.eza = {
     icons = "auto";
@@ -109,55 +100,6 @@
   };
 
   programs.fish.enable = false;
-
-  programs.zsh.enable = true;
-  programs.zsh = {
-    autosuggestion.enable = true;
-    enableCompletion = true;
-    autocd = true;
-
-    shellAliases = {
-      cloud_sql_proxy_all = "cloud_sql_proxy -projects tan-ng,tan-ng-prod -dir /tmp";
-      devenv-init = "nix flake init --template github:cachix/devenv";
-      pf-argocd = "kubectl port-forward -n argocd svc/argocd-server 8080:80";
-      pf-staging = "sudo -E kubefwd svc -n test";
-      pf-prod = "sudo -E kubefwd svc -n prod";
-      flake-init = "nix flake init -t github:johnhampton/flake-templates#";
-    };
-
-    initContent = lib.mkMerge [
-      (lib.mkBefore ''
-        # nix
-        if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-          . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-        fi
-        
-        # Homebrew
-        if [ -e /opt/homebrew/bin/brew ]; then
-          eval "$(/opt/homebrew/bin/brew shellenv)"
-        elif [ -e /usr/local/bin/brew ]; then
-          eval "$(/usr/local/bin/brew shellenv)"
-        fi
-      '')
-      ''
-        autoload -Uz edit-command-line
-        zle -N edit-command-line
-        bindkey '^X^E' edit-command-line
-      ''
-    ];
-
-    loginExtra = ''
-      # ssh keychain
-      ssh-add --apple-load-keychain -q
-    '';
-  };
-
-  programs.fzf.enable = true;
-  programs.fzf = {
-    enableZshIntegration = true;
-    tmux.enableShellIntegration = true;
-  };
-  programs.zoxide.enable = true;
 
   programs.gh.enable = true;
   programs.gh = {
@@ -172,19 +114,6 @@
   };
 
   programs.jq.enable = true;
-
-
-  # https://starship.rs/config/
-  programs.starship.enable = true;
-  programs.starship = {
-    enableZshIntegration = true;
-    settings = {
-      command_timeout = 2000;
-      aws = {
-        disabled = true;
-      };
-    };
-  };
 
   targets.darwin.defaults."com.apple.finder".FXRemoveOldTrashItems = true;
 
