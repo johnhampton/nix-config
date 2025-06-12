@@ -187,6 +187,14 @@
         };
       }
       {
+        mode = "n";
+        key = "<leader>ga";
+        action = "<cmd>Git add %<cr>";
+        options = {
+          desc = "Stage current file";
+        };
+      }
+      {
         mode = [ "n" "x" ];
         key = "<leader>gs";
         action = "<cmd>lua MiniGit.show_at_cursor()<cr>";
