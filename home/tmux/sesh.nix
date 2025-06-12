@@ -8,6 +8,12 @@
     # enableAlias = true; # default, provides 's' shell alias
     enableTmuxIntegration = false; # default
     # icons = true; # default
+
+    settings = {
+      default_session = {
+        preview_command = "eza --all --git --icons --color=always {}";
+      };
+    };
   };
 
   programs.tmux.extraConfig = lib.mkAfter ''
