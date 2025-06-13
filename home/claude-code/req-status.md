@@ -73,34 +73,34 @@ Provide contextual tips based on current phase:
 
 **Phase 1 - Foundation:**
 ```
-💡 **Foundation Phase Tips:**
-- Focus on getting the basic structure right before moving on
-- Use sub-agents to validate database design and architecture decisions
-- Don't skip dependency setup - it saves time later
+💡 **Foundation Focus:**
+- Get the basic structure solid before moving forward
+- Architecture decisions made now affect everything later
+- Don't rush dependency setup - it saves time in later phases
 ```
 
 **Phase 2 - Core Logic:**
 ```
-💡 **Core Logic Phase Tips:**
-- This is usually the most complex phase - break tasks into smaller pieces
-- Use sub-agents to verify business logic and edge cases
-- Test core functionality before integrating with APIs
+💡 **Core Logic Focus:**
+- This is typically the most complex phase - break large tasks down
+- Test core functionality thoroughly before adding integrations
+- Business logic bugs are hardest to fix later
 ```
 
 **Phase 3 - API & Integration:**
 ```
-💡 **API & Integration Phase Tips:**
-- Use sub-agents for security review of endpoints
-- Test API responses thoroughly before UI integration
-- Document API changes as you go
+💡 **Integration Focus:**
+- Security is critical - don't skip authentication/authorization
+- Test API responses and error handling extensively
+- Document API changes as you implement them
 ```
 
 **Phase 4 - Testing & Polish:**
 ```
-💡 **Testing & Polish Phase Tips:**
-- Use sub-agents to review test coverage and identify gaps
-- Focus on edge cases and error scenarios
-- Prepare deployment and monitoring considerations
+💡 **Testing Focus:**
+- Focus on edge cases and error scenarios now
+- Performance issues are easier to catch before deployment
+- Prepare monitoring and deployment considerations early
 ```
 
 ### 5. Health Check Warnings

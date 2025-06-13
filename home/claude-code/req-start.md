@@ -59,18 +59,20 @@ Please add these tasks to the todo list so we can track progress on the foundati
 1. Work through the todo list tasks
 2. When Phase 1 is complete, run: /user:req-continue [filename]
 3. Use /user:req-add-task "description" to add any discovered tasks
-
-💡 **Implementation Tips:**
-- Focus on one todo item at a time. The spec file has all the details you need.
-- Consider using sub-agents for quality assurance and specialized tasks
-- Use "spawn a sub-agent to [specific task]" for parallel investigation or validation
-
-**Sub-Agent Usage Examples:**
-- "Spawn a sub-agent focused on security review to validate the authentication logic"
-- "Use a sub-agent to investigate the best approach for handling CSV encoding issues"  
-- "Have a sub-agent review the database migration for potential performance issues"
-- "Spawn a sub-agent to verify the API design follows project conventions"
 ```
+
+**AI Implementation Guidance:**
+During Phase 1 implementation, automatically suggest sub-agents when:
+- User creates database schemas or migrations (offer architecture validation sub-agent)
+- User makes authentication/security decisions (suggest security review sub-agent)
+- User adds new dependencies or frameworks (recommend compatibility analysis sub-agent)
+- User designs API structures (offer design pattern validation sub-agent)
+
+**Proactive Sub-Agent Triggers:**
+- When user mentions "database," "schema," or "migration" → suggest design review
+- When user implements authentication logic → offer security validation
+- When user encounters technical decisions → spawn investigation sub-agent
+- When user reports complexity or uncertainty → offer specialized analysis
 
 ### 5. Update Spec File with Progress Tracking
 Append a progress tracking section to the requirements file:

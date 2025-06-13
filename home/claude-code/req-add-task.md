@@ -14,63 +14,104 @@ If $ARGUMENTS is empty:
 
 ## Process
 
-### 1. Find Active Requirements File
-Look for the most recent requirements-*.md file with active progress tracking:
-- Check scratch/, tmp/, docs/, current directory
-- Find files with "Implementation Progress" sections
-- Identify the one with current phase marked as "STARTED" or "IN PROGRESS"
+### 1. Find Requirements File
+Look for the most recent requirements-*.md file in common directories (scratch/, tmp/, docs/, current directory):
+- Check for files with "Implementation Progress" sections
+- Use the most recently modified requirements file
+- If multiple files found, use the one with most recent "Last Updated" timestamp
 
-If no active file found:
+If no requirements file found:
 ```
-❌ **No active implementation found**
+❌ **No requirements file found**
 
-🔍 **Available requirements files:**
-[List any requirements-*.md files found]
-
-💡 **To start implementation:** /user:req-start [filename]
-📝 **Or specify file:** /user:req-add-task "task" [filename]
+🔍 **Looking in:** scratch/, tmp/, docs/, current directory
+📝 **Create one with:** /user:req-gather "feature description"
 ```
 
-### 2. Add Task to Todo List
-Add the new task to Claude Code's built-in todo list:
+### 2. Read Current Phase (NEVER MODIFY PHASE STATUS)
+**CRITICAL: This command NEVER advances phases or modifies phase status**
+
+Read the requirements file "Implementation Progress" section:
+- Find the "Current Phase:" field and use exactly as written
+- Identify which phase is marked as active/started
+- **DO NOT interpret, modify, or advance phase status**
+- Phase advancement ONLY happens via /user:req-continue with explicit user confirmation
+
+If no progress section found:
+```
+❌ **No progress tracking found in requirements file**
+
+💡 **Start implementation first:** /user:req-start [filename]
+```
+
+### 3. Add Task to Claude Code Todo List
+Add the new task(s) to Claude Code's built-in todo list:
 
 ```
-I'm adding this task to your current todo list:
+I'm adding task(s) to your todo list:
 
-- $ARGUMENTS
+[List the task(s) to be added]
 
-Please add this task to the todo list so we can track it with your other implementation work.
+Please add these tasks to the todo list so we can track them with your other implementation work.
 ```
 
-### 3. Update Requirements File
-Add the new task to the progress tracking section:
+### 4. MANDATORY FILE UPDATE - DO NOT SKIP
+**CRITICAL: File modification is required, not optional**
 
-Find the "Current Todo Items" section and append:
+**Step-by-step file update process:**
+1. Open the requirements file for modification
+2. Locate the exact line "### Current Todo Items"  
+3. **Analyze $ARGUMENTS and create appropriate todo item(s):**
+   - If $ARGUMENTS describes one task: add single todo item
+   - If $ARGUMENTS describes multiple logical tasks: create separate todo items for each
+   - Use clear, actionable descriptions for each task
+   - Format each as: "- [ ] [task description]"
+4. Add the new todo item(s) after existing todo items
+5. Update the "**Last Updated:**" line with current date
+6. Save the file
+
+**File modification example:**
 ```markdown
 ### Current Todo Items
 - [ ] [Existing task 1]
 - [ ] [Existing task 2]
-- [ ] $ARGUMENTS
+- [ ] [New task from $ARGUMENTS]
+- [ ] [Another new task if $ARGUMENTS contained multiple tasks]
 
 **Last Updated:** [current date]
 ```
 
-### 4. Confirmation Message
-```
-✅ **Task Added Successfully**
+### 5. Verify File Update Completed
+**Mandatory verification step:**
+After modifying the file, confirm:
+- The new task(s) appear in the requirements file
+- The "Last Updated" timestamp was updated
+- File was saved successfully
 
-**New Task:** $ARGUMENTS
+If verification fails:
+```
+❌ **File update failed**
+- File location: [requirements file path]
+- New task(s) that should be added manually: $ARGUMENTS
+- Please add these tasks to the "Current Todo Items" section
+```
+
+### 6. Confirmation Message
+```
+✅ **Task(s) Added Successfully**
+
+**New Task(s):** [List tasks added]
 **Added to:** [requirements filename]
-**Current Phase:** [Phase N: Phase Name]
+**Current Phase:** [Phase N: Phase Name] (unchanged)
 
 **Your updated todo list now has:** [N] tasks
 
-🎯 **Current Focus:** Continue working through Phase [N] tasks
+🎯 **Current Focus:** Continue working through [current phase] tasks
 💡 **When phase complete:** /user:req-continue [filename]
 📊 **Check progress:** /user:req-status [filename]
 ```
 
-### 5. Smart Suggestions
+### 7. Smart Suggestions
 Based on the task description, provide relevant suggestions:
 
 **For database-related tasks:**
@@ -100,30 +141,58 @@ Consider also adding:
 - Integration test scenarios
 ```
 
-## Advanced Usage
-
-### Adding Tasks with Context
-```bash
-# Add task to specific file
-/user:req-add-task "validate user permissions" scratch/requirements-auth-system.md
-
-# Add urgent task (gets added to top of todo list)
-/user:req-add-task "URGENT: fix authentication bug" 
-
-# Add task with phase specification
-/user:req-add-task "performance testing for imports [Phase 4]"
+**For multi-step tasks:**
+```
+💡 **Complex Task Detected**
+I've broken this into [N] separate todo items for better tracking.
+Consider using sub-agents to help with investigation and validation.
 ```
 
 ## Error Handling
 
-**Task already exists:**
+**Multiple requirements files found:**
 ```
-⚠️ **Similar task already exists:** [existing task]
-Add anyway? This might be a duplicate. (yes/no)
+⚠️ **Multiple requirements files found:**
+[List files with timestamps]
+
+Using most recent: [filename]
+💡 **To specify different file:** Include filename in your task description
 ```
 
-**Invalid requirements file:**
+**File modification permissions:**
 ```
-❌ **Requirements file has no progress tracking:** [filename]
-💡 **Start implementation first:** /user:req-start [filename]
+❌ **Cannot modify requirements file:** [filename]
+- Check file permissions
+- Ensure file is not open in another application
+- Task added to Claude Code todo list only
 ```
+
+**Corrupted progress section:**
+```
+⚠️ **Requirements file progress section appears corrupted**
+- Task added to Claude Code todo list
+- Please manually add to requirements file: $ARGUMENTS
+- Consider running: /user:req-review [filename]
+```
+
+## Advanced Usage Examples
+
+**Single task:**
+```bash
+/user:req-add-task "add input validation for email field"
+# Creates: - [ ] add input validation for email field
+```
+
+**Complex multi-step task:**
+```bash
+/user:req-add-task "compare column counts between new and legacy tables using MCP, then check for 100% null columns"
+# Creates: 
+# - [ ] compare column counts between new projection tables and legacy tables using database MCP
+# - [ ] check nullable columns in new tables for 100% null values and report findings
+```
+
+**Important Reminders:**
+- This command NEVER advances phases - only adds tasks to current phase
+- File modification is mandatory, not optional
+- Complex tasks can be intelligently broken down into multiple todo items
+- Phase advancement only happens via /user:req-continue with user confirmation
