@@ -57,8 +57,14 @@ Please add these tasks to the todo list so we can track progress on the foundati
 
 **Next Steps:**
 1. Work through the todo list tasks
-2. When Phase 1 is complete, run: /user:req-continue [filename]
+2. When Phase 1 is complete, run: /user:req-next [filename]
 3. Use /user:req-add-task "description" to add any discovered tasks
+
+**Command Reference:**
+- **After compaction/new session:** /user:req-resume [filename]
+- **Ready to advance phases:** /user:req-next [filename]
+- **Add discovered tasks:** /user:req-add-task "task description"
+- **Check progress:** /user:req-status [filename]
 ```
 
 **AI Implementation Guidance:**

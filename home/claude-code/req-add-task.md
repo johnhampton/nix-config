@@ -35,7 +35,7 @@ Read the requirements file "Implementation Progress" section:
 - Find the "Current Phase:" field and use exactly as written
 - Identify which phase is marked as active/started
 - **DO NOT interpret, modify, or advance phase status**
-- Phase advancement ONLY happens via /user:req-continue with explicit user confirmation
+- Phase advancement ONLY happens via /user:req-next with explicit user confirmation
 
 If no progress section found:
 ```
@@ -107,7 +107,10 @@ If verification fails:
 **Your updated todo list now has:** [N] tasks
 
 🎯 **Current Focus:** Continue working through [current phase] tasks
-💡 **When phase complete:** /user:req-continue [filename]
+
+**Command Reference:**
+💡 **After compaction/new session:** /user:req-resume [filename]
+💡 **When phase complete:** /user:req-next [filename]
 📊 **Check progress:** /user:req-status [filename]
 ```
 
@@ -195,4 +198,4 @@ Using most recent: [filename]
 - This command NEVER advances phases - only adds tasks to current phase
 - File modification is mandatory, not optional
 - Complex tasks can be intelligently broken down into multiple todo items
-- Phase advancement only happens via /user:req-continue with user confirmation
+- Phase advancement only happens via /user:req-next with user confirmation

@@ -61,7 +61,8 @@ If no progress section found:
 ### ⚡ Quick Actions
 **Next Steps:**
 - Continue working on current phase todos
-- When current phase complete: `/user:req-continue [filename]`
+- Reload AI guidance: `/user:req-resume [filename]`
+- When current phase complete: `/user:req-next [filename]`
 - Add discovered tasks: `/user:req-add-task "task description"`
 - Review specification: `/user:req-review [filename]`
 
@@ -115,7 +116,7 @@ Consider breaking down remaining tasks or moving to next phase if ready.
 **Stale progress:**
 ```
 ⚠️ **No progress updates in [X] days**
-Run `/user:req-continue [filename]` to advance or `/user:req-add-task` to add new work.
+Run `/user:req-next [filename]` to advance or `/user:req-add-task` to add new work.
 ```
 
 **Missing critical tasks:**
@@ -124,4 +125,14 @@ Run `/user:req-continue [filename]` to advance or `/user:req-add-task` to add ne
 - Database migration testing
 - Error handling validation  
 - Performance benchmarking
+```
+
+### 6. Command Reference
+```
+📋 **Available Commands:**
+- `/user:req-resume [filename]` - Reload AI guidance for current phase
+- `/user:req-next [filename]` - Advance to next phase when ready
+- `/user:req-add-task "description"` - Add tasks discovered during work
+- `/user:req-review [filename]` - Validate specification quality
+- `/user:req-status [filename]` - Check progress (this command)
 ```
