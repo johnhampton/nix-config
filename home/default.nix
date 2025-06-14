@@ -40,6 +40,7 @@
     (wrapHelm kubernetes-helm { plugins = [ kubernetes-helmPlugins.helm-mapkubeapis ]; })
     hurl
     just
+    k9s
     kind
     kubectl
     kubectx

@@ -16,6 +16,7 @@
     shortcut = "a";
     terminal = "tmux-256color";
     focusEvents = true;
+    tmuxinator.enable = true;
 
     extraConfig = ''
       # https://gist.github.com/andersevenrud/015e61af2fd264371032763d4ed965b6

@@ -2,26 +2,23 @@
   system.activationScripts.extraActivation.text =
     let
       keys = {
-        "118" = 18; # ^1 to switch to Desktop 1
-        "119" = 19; # ^2 to switch to Desktop 2
-        "120" = 20; # ^3 to switch to Desktop 3
-        "121" = 21; # ^4 to switch to Desktop 4
-        "122" = 23; # ^5 to switch to Desktop 5
-        "123" = 22; # ^6 to switch to Desktop 6
-        "124" = 26; # ^7 to switch to Desktop 7
-        "125" = 28; # ^8 to switch to Desktop 8
-        "126" = 25; # ^9 to switch to Desktop 9
-        "27" = 8; # Hyper+C to move focus to next window
+        "118" = { keyCode = 18; asciiCode = 49; }; # ⌘⌥1 to switch to Desktop 1
+        "119" = { keyCode = 19; asciiCode = 50; }; # ⌘⌥2 to switch to Desktop 2
+        "120" = { keyCode = 20; asciiCode = 51; }; # ⌘⌥3 to switch to Desktop 3
+        "79" = { keyCode = 123; asciiCode = 65535; }; # ⌘⌥← to move left a space
+        "81" = { keyCode = 124; asciiCode = 65535; }; # ⌘⌥→ to move right a space
+        "27" = { keyCode = 8; asciiCode = 99; }; # Hyper+C to move focus to next window
       };
 
       enableHotKeysCommands = builtins.map
         (key:
           let
-            value = keys.${key};
-            # Use Hyper modifier for key 27, Control modifier for others
-            modifier = if key == "27" then "1966080" else "262144";
-            # Use ASCII code 99 for 'c' on key 27, 65535 for Control+number shortcuts
-            asciiCode = if key == "27" then "99" else "65535";
+            keyInfo = keys.${key};
+            # Use different modifiers based on key type:
+            # - Hyper (1966080) for key 27
+            # - Cmd+Option (1572864) for desktop switching and arrow keys
+            modifier = if key == "27" then "1966080" else "1572864";
+            asciiCode = toString keyInfo.asciiCode;
           in
           ''
                 sudo -u john defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add ${key} '
@@ -33,7 +30,7 @@
             				<key>parameters</key>
             				<array>
             					<integer>${asciiCode}</integer>
-            					<integer>${toString value}</integer>
+            					<integer>${toString keyInfo.keyCode}</integer>
             					<integer>${modifier}</integer>
             				</array>
             				<key>type</key>
@@ -55,6 +52,20 @@
         ''
       ];
 
+      # Disable unused desktop switching shortcuts (4-9)
+      disableUnusedDesktopCommands = builtins.map
+        (key: ''
+          sudo -u john defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add ${key} '<dict><key>enabled</key><false/></dict>'
+        '')
+        ["121" "122" "123" "124" "125" "126"];
+
+      # Disable alternate space navigation shortcuts (Control+Option+Arrow)
+      disableAlternateSpaceCommands = builtins.map
+        (key: ''
+          sudo -u john defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add ${key} '<dict><key>enabled</key><false/></dict>'
+        '')
+        ["80" "82"];
+
     in
     ''
        echo >&2 "configuring hotkeys..."
@@ -63,6 +74,12 @@
       
       echo >&2 "disabling spotlight shortcuts..."
       ${builtins.concatStringsSep "\n" disableSpotlightCommands}
+      
+      echo >&2 "disabling unused desktop shortcuts..."
+      ${builtins.concatStringsSep "\n" disableUnusedDesktopCommands}
+      
+      echo >&2 "disabling alternate space navigation shortcuts..."
+      ${builtins.concatStringsSep "\n" disableAlternateSpaceCommands}
       
       # echo >&2 "activating settings..."
       # sudo -u john /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
