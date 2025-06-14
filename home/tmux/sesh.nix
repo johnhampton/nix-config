@@ -11,13 +11,14 @@
 
     settings = {
       default_session = {
+        # startup_command = "tmux rename-window 'main'; clear";
         preview_command = "eza --all --git --icons --color=always {}";
       };
       session = [
         {
           name = "Cheatsheets 📝";
           path = "~/Code/me/cheats";
-          startup_command = "nvim .";
+          startup_command = "nvim -c 'Telescope find_files'";
         }
         {
           name = "Downloads 📥";

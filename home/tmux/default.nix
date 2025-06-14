@@ -29,6 +29,7 @@
 
       bind-key a last-window
       bind-key C-a send-prefix
+      bind-key C-k send-keys C-k
       
       bind-key C-p previous-window
       bind-key C-n next-window
@@ -135,6 +136,8 @@
       bind-key -n 'M-j' if -F "#{@pane-is-vim}" 'send-keys M-j' 'resize-pane -D 3'
       bind-key -n 'M-k' if -F "#{@pane-is-vim}" 'send-keys M-k' 'resize-pane -U 3'
       bind-key -n 'M-l' if -F "#{@pane-is-vim}" 'send-keys M-l' 'resize-pane -R 3'
+
+      set-hook -g session-created 'if-shell "[[ #{window_name} == \"zsh\" ]]" "rename-window -t $SESSION:1 \"main\""'
 
       # ============================================= #
       # Plugin configuration                          #
