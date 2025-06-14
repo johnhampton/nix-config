@@ -88,6 +88,9 @@
   programs.fzf = {
     enableZshIntegration = true;
     tmux.enableShellIntegration = true;
+    defaultOptions = [
+      "--walker-skip=.direnv"
+    ];
   };
 
   # Smarter cd command
