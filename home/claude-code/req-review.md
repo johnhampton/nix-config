@@ -1,17 +1,18 @@
 # File: .claude/commands/req-review.md
 
-Review and validate the requirements document: $ARGUMENTS
+Review and validate requirements against current implementation: $ARGUMENTS
 
-Analyzes the specification against current codebase for completeness, feasibility, and potential issues.
+Compares the specification with actual codebase to identify gaps, mismatches, and needed updates based on implementation discoveries.
 
 If $ARGUMENTS is empty, look for the most recent requirements-*.md file in common directories.
 
 ## Process
 
-### 1. Load Requirements File
-- Verify the file exists and is readable
-- Parse the specification content
-- Check for implementation progress if available
+### 1. Load Requirements and Implementation Status
+- Read the requirements specification
+- Check implementation progress section
+- Identify current phase and completed work
+- Analyze codebase changes since implementation started
 
 If file not found:
 ```
@@ -23,164 +24,230 @@ If file not found:
 📝 **Usage:** /user:req-review [filename]
 ```
 
-### 2. Codebase Compatibility Analysis
-Analyze the requirements against current project state:
-- Check if referenced models/entities exist
-- Validate proposed API endpoints don't conflict
-- Assess database schema changes for compatibility
-- Review authentication/permission assumptions
-- Identify potential integration conflicts
+### 2. Spec vs Reality Analysis
+**Compare planned vs actual implementation:**
 
-### 3. Completeness Assessment
-Review specification sections for completeness:
+**Database & Schema:**
+- Check if implemented schema matches spec requirements
+- Identify additional tables/columns added during implementation
+- Note any schema decisions that differ from original plan
 
-**Technical Implementation:**
-- [ ] Data flow clearly defined
-- [ ] Integration points specified
-- [ ] Database changes documented
-- [ ] API design included (if applicable)
-- [ ] Security requirements addressed
-- [ ] Error handling strategy defined
+**API & Integration:**
+- Compare implemented endpoints with spec design
+- Check if authentication/authorization matches plan
+- Identify integration patterns that evolved during development
 
-**Implementation Planning:**
-- [ ] Phases are appropriately scoped
-- [ ] Dependencies between phases identified
-- [ ] Success criteria are measurable
-- [ ] Known risks documented
-- [ ] Resource estimates realistic
+**Business Logic:**
+- Validate core functionality against spec requirements
+- Note complexity discoveries that weren't anticipated
+- Check if error handling matches spec assumptions
 
-### 4. Review Report
+**Dependencies & Architecture:**
+- Compare actual dependencies with spec recommendations
+- Note architectural decisions made during implementation
+- Identify performance considerations discovered
+
+### 3. Implementation Discovery Analysis
+**Identify what you've learned during development:**
+
 ```
-📋 **Requirements Review: [Feature Name]**
+🔍 **Implementation Reality Check: [Feature Name]**
 
 **File:** [filename]
-**Reviewed:** [current date]
-**Specification Quality:** [Excellent/Good/Needs Work]
+**Current Phase:** [Phase N: Phase Name]
+**Review Date:** [current date]
 
-### ✅ **Strengths**
-- [List well-defined aspects]
-- [Clear technical specifications]
-- [Comprehensive error handling]
+### 📊 Spec vs Implementation Alignment
 
-### ⚠️ **Needs Clarification**
-- [Specific items needing more detail]
-- [Ambiguous requirements]
-- [Missing technical specifications]
+**✅ Matches Specification:**
+- [List areas where implementation follows spec exactly]
+- [Database design as planned]
+- [API structure as specified]
 
-### 🚨 **Potential Issues**
-- [Technical conflicts with existing code]
-- [Performance concerns]
-- [Security gaps]
-- [Integration challenges]
+**⚠️ Implementation Differs from Spec:**
+- [Specific differences found]
+- [Architectural decisions that changed]
+- [Dependencies that were swapped/added]
+- [Error handling that became more complex]
 
-### 💡 **Recommendations**
+**🆕 Discovered During Implementation:**
+- [Edge cases not in original spec]
+- [Performance considerations not anticipated]
+- [Integration challenges not foreseen]
+- [Security requirements that emerged]
 
-**High Priority:**
-- [Critical improvements to make]
-- [Missing requirements to add]
+### 🔧 Gap Analysis
 
-**Medium Priority:**
-- [Enhancements to consider]
-- [Additional documentation needs]
+**Missing from Spec:**
+- [Features you built but weren't specified]
+- [Error scenarios you had to handle]
+- [Performance optimizations you added]
+- [Configuration options you needed]
 
-**Low Priority:**
-- [Nice-to-have improvements]
-- [Future iteration considerations]
+**Spec Items Not Yet Implemented:**
+- [Requirements still pending]
+- [Features that may no longer be needed]
+- [Designs that need updating based on learnings]
+
+**Changed Priorities:**
+- [Things that turned out easier/harder than expected]
+- [Features that became more/less important]
+- [Technical debt that needs addressing]
 ```
 
-### 5. Codebase Specific Analysis
+### 4. Impact on Remaining Phases
+**Analyze how discoveries affect future work:**
+
+**Phase Impact Assessment:**
+- Review remaining phase tasks against implementation learnings
+- Identify tasks that are no longer needed
+- Suggest new tasks based on discoveries
+- Assess if phase scope needs adjustment
+
+**Updated Effort Estimates:**
+- Note areas that are more/less complex than anticipated
+- Identify new risks discovered during implementation
+- Suggest timeline adjustments based on actual complexity
+
+### 5. Recommendations and Next Steps
 ```
-🔍 **Codebase Integration Analysis**
+💡 **Recommendations Based on Implementation Learnings**
 
-**Compatibility Check:**
-- [✅/⚠️/❌] Existing models support proposed changes
-- [✅/⚠️/❌] API patterns align with project conventions  
-- [✅/⚠️/❌] Database changes are migration-safe
-- [✅/⚠️/❌] Authentication approach matches current system
-- [✅/⚠️/❌] No conflicts with existing endpoints/routes
+### 🎯 High Priority Updates
+**Spec Changes Needed:**
+- [Critical updates to requirements based on reality]
+- [New error handling scenarios to document]
+- [Performance requirements that emerged]
 
-**Implementation Feasibility:**
-- **Complexity:** [Low/Medium/High]
-- **Risk Level:** [Low/Medium/High]  
-- **Estimated Effort:** [Small/Medium/Large/Epic]
-- **Dependencies:** [List external dependencies or prerequisites]
-```
+**Remaining Phase Adjustments:**
+- [Tasks to add to current phase]
+- [Tasks to remove from future phases]
+- [New phases needed for discovered work]
 
-### 6. Actionable Improvements
-Based on the review, suggest specific improvements:
+### 📋 Medium Priority Considerations
+**Documentation Updates:**
+- [API documentation that needs updating]
+- [Architecture decisions to document]
+- [Configuration guides needed]
 
-```
-📝 **Suggested Specification Updates**
+**Technical Debt:**
+- [Code quality issues to address]
+- [Refactoring opportunities identified]
+- [Performance optimizations to consider]
 
-**Add Missing Sections:**
-```markdown
-### [Section Name]
-[Specific content to add]
-```
-
-**Clarify Ambiguous Requirements:**
-- Change "[vague requirement]" to "[specific requirement]"
-- Add concrete examples for "[abstract concept]"
-
-**Address Technical Gaps:**
-- Specify error codes and handling for [scenario]
-- Define data validation rules for [field/entity]
-- Add performance requirements for [operation]
-```
-
-### 7. Auto-Update Option
-If significant improvements are needed:
-
-```
-🔄 **Auto-Update Specification?**
-
-I can update the requirements file with the recommended improvements.
-This will:
-- Add missing technical details
-- Clarify ambiguous requirements  
-- Include additional error handling scenarios
-- Update implementation phases based on complexity analysis
-
-Update specification file? (yes/no)
+### 🔮 Future Considerations
+**Lessons for Next Time:**
+- [Assumptions that proved wrong]
+- [Areas to investigate more thoroughly upfront]
+- [Patterns that worked well]
 ```
 
-If user confirms, update the requirements file with improvements and show a diff of changes made.
+### 6. Auto-Update Option
+If significant learnings are identified:
 
-### 8. Next Steps Guidance
+```
+🔄 **Update Requirements with Implementation Learnings?**
+
+I can update the requirements file to reflect:
+- Implementation differences discovered
+- New error handling scenarios
+- Performance considerations learned
+- Additional tasks needed for remaining phases
+
+This will help keep the spec aligned with reality for future reference.
+
+**Update specification file with learnings?** (yes/no)
+```
+
+If user confirms, update the requirements file with:
+- New sections for discovered requirements
+- Updated phase tasks based on learnings
+- Implementation notes section
+- Revised risk assessments
+
+### 7. Next Steps Guidance
 ```
 🚀 **Recommended Next Steps**
 
-**If specification is ready:**
-- Start implementation: `/user:req-start [filename]`
-- Check current status: `/user:req-status [filename]`
+**If major gaps found:**
+- Address critical spec misalignments first
+- Update remaining phase plans before proceeding
+- Consider adding tasks: `/user:req-add-task "task based on review findings"`
 
-**If needs refinement:**
-- Refine requirements: `/user:req-gather "[feature]" --refine`
-- Address specific issues: [list priority items]
+**If minor adjustments needed:**
+- Continue current phase with noted considerations
+- Plan to update documentation during polish phase
+- Monitor for additional discoveries
 
-**For ongoing work:**
-- Regular reviews: Run `/user:req-review [filename]` weekly during implementation
-- Update based on learnings: Add new insights as you discover them
+**For ongoing development:**
+- Run `/user:req-review [filename]` at end of each phase
+- Update spec when making significant implementation decisions
+- Use learnings to improve future project planning
+
+**Phase Management:**
+- Continue current phase: `/user:req-resume [filename]`
+- Ready to advance: `/user:req-next [filename]`
+- Add discovered tasks: `/user:req-add-task "description"`
 ```
 
-## Advanced Analysis Options
+## Advanced Implementation Analysis
 
-### Deep Technical Review
-For complex features, provide additional analysis:
-- Performance impact assessment
-- Security vulnerability analysis  
-- Scalability considerations
-- Maintenance burden evaluation
+### Code Pattern Recognition
+- Identify coding patterns that emerged during implementation
+- Note architectural decisions that proved effective
+- Document integration approaches that worked well
 
-### Team Collaboration Support
-- Generate review checklist for team discussions
-- Create GitHub issue templates from specification
-- Suggest code review focus areas
-- Identify knowledge sharing opportunities
+### Performance Reality Check
+- Compare assumed vs actual performance characteristics
+- Identify bottlenecks discovered during implementation
+- Note optimization opportunities found
 
-### Quality Metrics
-Track specification quality over time:
-- Completeness score (% of sections filled)
-- Implementation alignment (how well spec matches reality)
-- Change frequency (stability of requirements)
-- Success rate (features delivered as specified)
+### Security Implementation Review
+- Validate security measures against spec assumptions
+- Note additional security considerations discovered
+- Check if threat model assumptions proved accurate
+
+### User Experience Learnings
+- Compare planned vs actual user interaction patterns
+- Note usability insights gained during implementation
+- Identify UX improvements needed
+
+## Error Handling
+
+**No implementation progress found:**
+```
+⚠️ **No implementation progress detected**
+
+This appears to be a fresh specification. Use `/user:req-review` after:
+- Starting implementation with `/user:req-start [filename]`
+- Making progress through at least Phase 1
+- Discovering differences between plan and reality
+```
+
+**Codebase analysis issues:**
+```
+⚠️ **Cannot analyze current codebase changes**
+- Proceeding with specification-only review
+- For full implementation comparison, ensure access to project files
+- Manual comparison may be needed for some findings
+```
+
+## Usage Examples
+
+**Mid-implementation review:**
+```bash
+# After completing Phase 1, before starting Phase 2
+/user:req-review scratch/requirements-csv-import.md
+
+# After discovering complexity in Phase 2  
+/user:req-review
+
+# Before final phase to validate remaining work
+/user:req-review scratch/requirements-csv-import.md
+```
+
+**Important Notes:**
+- Most valuable when called mid-implementation, not immediately after req-gather
+- Helps evolve specifications based on implementation discoveries
+- Perfect for identifying scope creep and technical debt
+- Use regularly to keep plans aligned with development reality
