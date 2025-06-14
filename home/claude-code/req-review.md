@@ -1,18 +1,17 @@
 # File: .claude/commands/req-review.md
 
-Review and validate requirements against current implementation: $ARGUMENTS
+Quick implementation reality check: $ARGUMENTS
 
-Compares the specification with actual codebase to identify gaps, mismatches, and needed updates based on implementation discoveries.
+Provides a concise assessment of how implementation differs from spec and what to do next.
 
 If $ARGUMENTS is empty, look for the most recent requirements-*.md file in common directories.
 
 ## Process
 
-### 1. Load Requirements and Implementation Status
+### 1. Load Requirements and Current State
 - Read the requirements specification
 - Check implementation progress section
-- Identify current phase and completed work
-- Analyze codebase changes since implementation started
+- Analyze current codebase against spec assumptions
 
 If file not found:
 ```
@@ -24,230 +23,146 @@ If file not found:
 📝 **Usage:** /user:req-review [filename]
 ```
 
-### 2. Spec vs Reality Analysis
-**Compare planned vs actual implementation:**
+### 2. Quick Reality Check Analysis
+**Focus on the most important insights only:**
 
-**Database & Schema:**
-- Check if implemented schema matches spec requirements
-- Identify additional tables/columns added during implementation
-- Note any schema decisions that differ from original plan
+- What's working as planned vs what changed?
+- Are you ahead/behind schedule?
+- Any major discoveries that change the plan?
+- What should happen next?
 
-**API & Integration:**
-- Compare implemented endpoints with spec design
-- Check if authentication/authorization matches plan
-- Identify integration patterns that evolved during development
-
-**Business Logic:**
-- Validate core functionality against spec requirements
-- Note complexity discoveries that weren't anticipated
-- Check if error handling matches spec assumptions
-
-**Dependencies & Architecture:**
-- Compare actual dependencies with spec recommendations
-- Note architectural decisions made during implementation
-- Identify performance considerations discovered
-
-### 3. Implementation Discovery Analysis
-**Identify what you've learned during development:**
-
+### 3. Concise Report Format
 ```
-🔍 **Implementation Reality Check: [Feature Name]**
+🔍 **Reality Check: [Feature Name]**
 
-**File:** [filename]
-**Current Phase:** [Phase N: Phase Name]
-**Review Date:** [current date]
+**Bottom Line:** [One sentence summary of the key insight]
 
-### 📊 Spec vs Implementation Alignment
+**Key Findings:**
+✅ [One major thing going well]
+⚠️ [One key difference/challenge if any]
+📈 [One insight about progress/schedule]
 
-**✅ Matches Specification:**
-- [List areas where implementation follows spec exactly]
-- [Database design as planned]
-- [API structure as specified]
+**Recommendation:** [Clear, specific action to take]
 
-**⚠️ Implementation Differs from Spec:**
-- [Specific differences found]
-- [Architectural decisions that changed]
-- [Dependencies that were swapped/added]
-- [Error handling that became more complex]
+**Next Step:** [Exact command or action to run]
 
-**🆕 Discovered During Implementation:**
-- [Edge cases not in original spec]
-- [Performance considerations not anticipated]
-- [Integration challenges not foreseen]
-- [Security requirements that emerged]
-
-### 🔧 Gap Analysis
-
-**Missing from Spec:**
-- [Features you built but weren't specified]
-- [Error scenarios you had to handle]
-- [Performance optimizations you added]
-- [Configuration options you needed]
-
-**Spec Items Not Yet Implemented:**
-- [Requirements still pending]
-- [Features that may no longer be needed]
-- [Designs that need updating based on learnings]
-
-**Changed Priorities:**
-- [Things that turned out easier/harder than expected]
-- [Features that became more/less important]
-- [Technical debt that needs addressing]
+---
+**📋 Details** (expand if needed):
+- [Brief list of minor findings]
+- [Implementation notes worth remembering]
+- [Any tasks to add/remove from remaining phases]
 ```
 
-### 4. Impact on Remaining Phases
-**Analyze how discoveries affect future work:**
+### 4. Implementation Analysis Guidelines
 
-**Phase Impact Assessment:**
-- Review remaining phase tasks against implementation learnings
-- Identify tasks that are no longer needed
-- Suggest new tasks based on discoveries
-- Assess if phase scope needs adjustment
+**Focus Only On:**
+- Major deviations from spec that affect remaining work
+- Schedule impacts (ahead/behind/on track)
+- Blocking issues that need immediate attention
+- Key discoveries that change the approach
 
-**Updated Effort Estimates:**
-- Note areas that are more/less complex than anticipated
-- Identify new risks discovered during implementation
-- Suggest timeline adjustments based on actual complexity
+**Ignore:**
+- Minor naming differences
+- Implementation details that don't affect the plan
+- Technical decisions that worked out fine
+- Verbose comparisons of every small difference
 
-### 5. Recommendations and Next Steps
+### 5. Decision-Focused Recommendations
+
+**Provide Clear Next Actions:**
+
+**If ahead of schedule:**
 ```
-💡 **Recommendations Based on Implementation Learnings**
-
-### 🎯 High Priority Updates
-**Spec Changes Needed:**
-- [Critical updates to requirements based on reality]
-- [New error handling scenarios to document]
-- [Performance requirements that emerged]
-
-**Remaining Phase Adjustments:**
-- [Tasks to add to current phase]
-- [Tasks to remove from future phases]
-- [New phases needed for discovered work]
-
-### 📋 Medium Priority Considerations
-**Documentation Updates:**
-- [API documentation that needs updating]
-- [Architecture decisions to document]
-- [Configuration guides needed]
-
-**Technical Debt:**
-- [Code quality issues to address]
-- [Refactoring opportunities identified]
-- [Performance optimizations to consider]
-
-### 🔮 Future Considerations
-**Lessons for Next Time:**
-- [Assumptions that proved wrong]
-- [Areas to investigate more thoroughly upfront]
-- [Patterns that worked well]
+**Recommendation:** Skip ahead - some future phase work is already done
+**Next Step:** /user:req-next [filename] (will adjust phase tasks)
 ```
 
-### 6. Auto-Update Option
-If significant learnings are identified:
-
+**If major issues found:**
 ```
-🔄 **Update Requirements with Implementation Learnings?**
-
-I can update the requirements file to reflect:
-- Implementation differences discovered
-- New error handling scenarios
-- Performance considerations learned
-- Additional tasks needed for remaining phases
-
-This will help keep the spec aligned with reality for future reference.
-
-**Update specification file with learnings?** (yes/no)
+**Recommendation:** Address critical gaps before continuing
+**Next Step:** /user:req-add-task "[specific task to fix issue]"
 ```
 
-If user confirms, update the requirements file with:
-- New sections for discovered requirements
-- Updated phase tasks based on learnings
-- Implementation notes section
-- Revised risk assessments
-
-### 7. Next Steps Guidance
+**If on track:**
 ```
-🚀 **Recommended Next Steps**
-
-**If major gaps found:**
-- Address critical spec misalignments first
-- Update remaining phase plans before proceeding
-- Consider adding tasks: `/user:req-add-task "task based on review findings"`
-
-**If minor adjustments needed:**
-- Continue current phase with noted considerations
-- Plan to update documentation during polish phase
-- Monitor for additional discoveries
-
-**For ongoing development:**
-- Run `/user:req-review [filename]` at end of each phase
-- Update spec when making significant implementation decisions
-- Use learnings to improve future project planning
-
-**Phase Management:**
-- Continue current phase: `/user:req-resume [filename]`
-- Ready to advance: `/user:req-next [filename]`
-- Add discovered tasks: `/user:req-add-task "description"`
+**Recommendation:** Continue as planned with minor adjustments
+**Next Step:** Continue current phase work or /user:req-next when ready
 ```
 
-## Advanced Implementation Analysis
-
-### Code Pattern Recognition
-- Identify coding patterns that emerged during implementation
-- Note architectural decisions that proved effective
-- Document integration approaches that worked well
-
-### Performance Reality Check
-- Compare assumed vs actual performance characteristics
-- Identify bottlenecks discovered during implementation
-- Note optimization opportunities found
-
-### Security Implementation Review
-- Validate security measures against spec assumptions
-- Note additional security considerations discovered
-- Check if threat model assumptions proved accurate
-
-### User Experience Learnings
-- Compare planned vs actual user interaction patterns
-- Note usability insights gained during implementation
-- Identify UX improvements needed
-
-## Error Handling
-
-**No implementation progress found:**
+**If scope has grown:**
 ```
-⚠️ **No implementation progress detected**
-
-This appears to be a fresh specification. Use `/user:req-review` after:
-- Starting implementation with `/user:req-start [filename]`
-- Making progress through at least Phase 1
-- Discovering differences between plan and reality
+**Recommendation:** Plan for additional phase or extended work
+**Next Step:** /user:req-add-task "[new work needed]" or consider Phase 5
 ```
 
-**Codebase analysis issues:**
+### 6. Auto-Update Spec (Only for Major Changes)
+Only offer to update spec if there are **significant** changes:
+
 ```
-⚠️ **Cannot analyze current codebase changes**
-- Proceeding with specification-only review
-- For full implementation comparison, ensure access to project files
-- Manual comparison may be needed for some findings
+🔄 **Update spec with major learnings?** (yes/no)
+
+This will update the requirements file to reflect:
+- [Only list significant changes worth documenting]
 ```
+
+**Don't offer update for minor implementation details.**
+
+### 7. Keep It Short
+**Maximum length guidelines:**
+- Bottom line: 1 sentence
+- Key findings: 3 bullet points max
+- Recommendation: 1 clear action
+- Details section: 5 items max
+
+**If analysis gets longer, prioritize and cut the less important parts.**
 
 ## Usage Examples
 
-**Mid-implementation review:**
+**Typical quick check:**
 ```bash
-# After completing Phase 1, before starting Phase 2
-/user:req-review scratch/requirements-csv-import.md
+/user:req-review scratch/requirements-feature.md
 
-# After discovering complexity in Phase 2  
-/user:req-review
-
-# Before final phase to validate remaining work
-/user:req-review scratch/requirements-csv-import.md
+# Output:
+🔍 **Reality Check: CSV Import**
+**Bottom Line:** Authentication approach changed but everything else on track.
+**Key Findings:**
+✅ Core import logic working as specified
+⚠️ Switched from JWT to sessions (simpler)
+📈 Phase 2 nearly complete, no delays
+**Recommendation:** Continue with current approach
+**Next Step:** Finish Phase 2 tasks, then /user:req-next
 ```
 
-**Important Notes:**
-- Most valuable when called mid-implementation, not immediately after req-gather
-- Helps evolve specifications based on implementation discoveries
-- Perfect for identifying scope creep and technical debt
-- Use regularly to keep plans aligned with development reality
+**When ahead of schedule:**
+```bash
+# Output:
+🔍 **Reality Check: Migration Package**
+**Bottom Line:** You're ahead - Phase 2 completed some Phase 3 work.
+**Key Findings:**
+✅ Effectful wrappers simpler than expected (already done)
+✅ Core functionality working perfectly
+📈 Can skip planned Phase 3 tasks
+**Recommendation:** Move to Phase 3, skip "Create Effectful wrappers"
+**Next Step:** /user:req-next (will load updated Phase 3 tasks)
+```
+
+## Error Handling
+
+**No implementation started:**
+```
+⚠️ **No implementation detected**
+Use after starting implementation and making some progress.
+```
+
+**No significant differences:**
+```
+✅ **Implementation matches spec closely**
+**Bottom Line:** Everything proceeding as planned.
+**Next Step:** Continue current phase work.
+```
+
+## Important Notes
+- Designed for quick decision-making, not comprehensive documentation
+- Focus on actionable insights, not detailed comparisons
+- Use when you need to know "should I change course?"
+- Keep output under 10 lines for main insights
