@@ -38,6 +38,12 @@
             desc = "Find files";
           };
         };
+        "<leader>Fa" = {
+          action = "Find_files no_ignore=true";
+          options = {
+            desc = "Find files (include ignored)";
+          };
+        };
 
         "<leader>." = {
           action = "buffers";
@@ -87,15 +93,13 @@
             desc = "Recent files (Global)";
           };
         };
+        "<leader>Fr" = {
+          action = "oldfiles cwd_only=true";
+          options = {
+            desc = "Recent files (CWD)";
+          };
+        };
       };
     };
-
-    keymaps = [{
-      key = "<leader>Fr";
-      action = "<cmd>Telescope oldfiles cwd_only=true<cr>";
-      options = {
-        desc = "Recent files";
-      };
-    }];
   };
 }
