@@ -13,6 +13,26 @@
       default_session = {
         preview_command = "eza --all --git --icons --color=always {}";
       };
+      session = [
+        {
+          name = "Cheatsheets 📝";
+          path = "~/Code/me/cheats";
+          startup_command = "nvim .";
+        }
+        {
+          name = "Downloads 📥";
+          path = "~/Downloads";
+          startup_command = "yazi";
+        }
+        {
+          name = "Home 🏠";
+          path = "~";
+        }
+        { name = "Configs ⚙︎";
+          path = "~/.config/nix-config";
+          startup_command = "tmux split-window -h -d && nvim -c 'Telescope find_files'";
+        }
+      ];
     };
   };
 
@@ -20,7 +40,7 @@
     bind -N "last-session (via sesh) " L run-shell "sesh last"
 
     bind-key "j" run-shell "sesh connect \"$(
-      sesh list --icons | fzf-tmux -p 80%,70% \
+      sesh list --hide-duplicates --icons | fzf-tmux -p 80%,70% \
         --no-sort --ansi --border-label ' sesh ' --prompt '⚡  ' \
         --header '  ^a all ^t tmux ^g configs ^x zoxide ^d tmux kill ^f find' \
         --bind 'tab:down,btab:up' \
