@@ -15,19 +15,16 @@ If $ARGUMENTS is empty, look for the most recent requirements-*.md file with pro
 
 If file not found:
 ```
-❌ **Requirements file not found:** $ARGUMENTS
-
-🔍 **Looking for recent requirements files...**
-[List any requirements-*.md files found in scratch/, tmp/, docs/]
-
+❌ **Requirements file not found**
+💡 **Check filename or find in scratch/, tmp/, docs/**
 📝 **Usage:** /user:req-next [filename]
 ```
 
 If no progress section found:
 ```
-⚠️ **No progress tracking found in:** $ARGUMENTS
-
-💡 **Did you start implementation?** Run: /user:req-start $ARGUMENTS
+❌ **No implementation started**
+💡 **Start implementation first**
+📝 **Run:** /user:req-start [filename]
 ```
 
 ### 2. Check Phase Progression
@@ -247,21 +244,16 @@ Load Phase 5+ AI guidance and update progress tracking with new phase.
 
 **File not found:**
 ```
-❌ **Requirements file not found:** $ARGUMENTS
-
-🔍 **Available requirements files:**
-[List any requirements-*.md files in common locations]
-
+❌ **Requirements file not found**
+💡 **Check filename or location**
 📝 **Usage:** /user:req-next [filename]
 ```
 
 **Invalid user response:**
 ```
-❌ **Please respond with a valid option**
-
-**For normal advancement:** 'yes' or 'no'  
-**For final completion:** 'done', 'continue', or 'phase5'
-**For extended phases:** 'yes', 'no', or 'done'
+❌ **Invalid response**
+💡 **Valid options: yes, no, done, continue, phase5**
+📝 **Type one of the valid options**
 ```
 
 ## Important Reminders

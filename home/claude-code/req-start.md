@@ -13,14 +13,26 @@ If $ARGUMENTS is empty, look for the most recent requirements-*.md file in commo
 
 If file not found:
 ```
-❌ **File not found:** $ARGUMENTS
-🔍 **Looking for recent requirements files...**
-[List any requirements-*.md files found]
-
+❌ **Requirements file not found**
+💡 **Check filename or create new spec**
 📝 **Usage:** /user:req-start [filename]
 ```
 
-### 2. Extract Phase 1 Tasks
+### 2. Check for Existing Implementation
+Check if "Implementation Progress" section exists in the file.
+
+If implementation already started:
+```
+⚠️ **Implementation already in progress**
+**Current Phase:** [phase name]
+**Started:** [start date]
+
+💡 **Resume work instead**
+📝 **Run:** /user:req-resume [filename]
+```
+STOP - Do not proceed with starting new implementation.
+
+### 3. Extract Phase 1 Tasks
 From the "Phase 1: Foundation" section, identify specific, actionable tasks that should be completed first. Look for:
 - Database schema changes
 - Dependency additions  
@@ -28,7 +40,7 @@ From the "Phase 1: Foundation" section, identify specific, actionable tasks that
 - Authentication/permission setup
 - Configuration changes
 
-### 3. Populate Todo List
+### 4. Populate Todo List
 Add the Phase 1 tasks to Claude Code's built-in todo list using clear, actionable language:
 
 ```
@@ -42,7 +54,7 @@ I'm adding these Phase 1 tasks to your todo list:
 Please add these tasks to the todo list so we can track progress on the foundation work.
 ```
 
-### 4. Implementation Guidance
+### 5. Implementation Guidance
 ```
 🚀 **Phase 1: Foundation Started**
 
@@ -80,7 +92,7 @@ During Phase 1 implementation, automatically suggest sub-agents when:
 - When user encounters technical decisions → spawn investigation sub-agent
 - When user reports complexity or uncertainty → offer specialized analysis
 
-### 5. Update Spec File with Progress Tracking
+### 6. Update Spec File with Progress Tracking
 Append a progress tracking section to the requirements file:
 
 ```markdown

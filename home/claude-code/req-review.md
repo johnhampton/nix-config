@@ -15,11 +15,8 @@ If $ARGUMENTS is empty, look for the most recent requirements-*.md file in commo
 
 If file not found:
 ```
-❌ **Requirements file not found:** $ARGUMENTS
-
-🔍 **Available requirements files:**
-[List any requirements-*.md files found]
-
+❌ **Requirements file not found**
+💡 **Check available files or filename**
 📝 **Usage:** /user:req-review [filename]
 ```
 

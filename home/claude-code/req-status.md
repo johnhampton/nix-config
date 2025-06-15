@@ -13,13 +13,9 @@ If $ARGUMENTS is empty, look for the most recent requirements-*.md file with pro
 
 If file not found:
 ```
-❌ **Requirements file not found:** $ARGUMENTS
-
-🔍 **Looking for recent requirements files...**
-[List any requirements-*.md files found in scratch/, tmp/, docs/]
-
+❌ **Requirements file not found**
+💡 **Check filename or location**
 📝 **Usage:** /user:req-status [filename]
-📝 **Example:** /user:req-status scratch/requirements-csv-import.md
 ```
 
 ### 2. Parse Progress Information
@@ -32,10 +28,9 @@ Extract information from the "Implementation Progress" section:
 
 If no progress section found:
 ```
-⚠️ **No progress tracking found in:** $ARGUMENTS
-
-💡 **This spec hasn't been started yet.**
-📝 **To begin implementation:** /user:req-start $ARGUMENTS
+❌ **No implementation started**
+💡 **Start implementation first**
+📝 **Run:** /user:req-start [filename]
 ```
 
 ### 3. Display Status Overview
@@ -74,34 +69,22 @@ Provide contextual tips based on current phase:
 
 **Phase 1 - Foundation:**
 ```
-💡 **Foundation Focus:**
-- Get the basic structure solid before moving forward
-- Architecture decisions made now affect everything later
-- Don't rush dependency setup - it saves time in later phases
+💡 **Focus:** Solid architecture and dependencies
 ```
 
 **Phase 2 - Core Logic:**
 ```
-💡 **Core Logic Focus:**
-- This is typically the most complex phase - break large tasks down
-- Test core functionality thoroughly before adding integrations
-- Business logic bugs are hardest to fix later
+💡 **Focus:** Business logic and data processing
 ```
 
 **Phase 3 - API & Integration:**
 ```
-💡 **Integration Focus:**
-- Security is critical - don't skip authentication/authorization
-- Test API responses and error handling extensively
-- Document API changes as you implement them
+💡 **Focus:** Security and API contracts
 ```
 
 **Phase 4 - Testing & Polish:**
 ```
-💡 **Testing Focus:**
-- Focus on edge cases and error scenarios now
-- Performance issues are easier to catch before deployment
-- Prepare monitoring and deployment considerations early
+💡 **Focus:** Edge cases and performance
 ```
 
 ### 5. Health Check Warnings

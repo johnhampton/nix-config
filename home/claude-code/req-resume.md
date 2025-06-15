@@ -15,20 +15,16 @@ If $ARGUMENTS is empty, look for the most recent requirements-*.md file with pro
 
 If file not found:
 ```
-❌ **Requirements file not found:** $ARGUMENTS
-
-🔍 **Looking for recent requirements files...**
-[List any requirements-*.md files found in scratch/, tmp/, docs/]
-
+❌ **Requirements file not found**
+💡 **Check filename or location**
 📝 **Usage:** /user:req-resume [filename]
 ```
 
 If no progress section found:
 ```
-⚠️ **No progress tracking found in:** $ARGUMENTS
-
-💡 **This spec hasn't been started yet.**
-📝 **To begin implementation:** /user:req-start $ARGUMENTS
+❌ **No implementation started**
+💡 **Start implementation first**
+📝 **Run:** /user:req-start [filename]
 ```
 
 ### 2. Load Current Phase AI Guidance
@@ -96,37 +92,27 @@ Provide brief, actionable guidance for current phase:
 
 **Phase 1 - Foundation:**
 ```
-💡 **Foundation Focus:**
-- Get the basic structure solid before moving forward
-- Architecture decisions made now affect everything later
+💡 **Focus:** Architecture and dependencies
 ```
 
 **Phase 2 - Core Logic:**
 ```
-💡 **Core Logic Focus:**
-- This is typically the most complex phase - break large tasks down
-- Test core functionality thoroughly before adding integrations
+💡 **Focus:** Business logic implementation
 ```
 
 **Phase 3 - API & Integration:**
 ```
-💡 **Integration Focus:**
-- Security is critical - don't skip authentication/authorization
-- Test API responses and error handling extensively
+💡 **Focus:** Security and API design
 ```
 
 **Phase 4 - Testing & Polish:**
 ```
-💡 **Testing Focus:**
-- Focus on edge cases and error scenarios now
-- Performance issues are easier to catch before deployment
+💡 **Focus:** Testing and optimization
 ```
 
 **Phase 5+ - Extended Development:**
 ```
-💡 **Extended Work Focus:**
-- Address issues discovered during implementation
-- Consider long-term maintainability of any new features
+💡 **Focus:** Additional features and fixes
 ```
 
 ## Notes

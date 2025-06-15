@@ -4,8 +4,9 @@ You are conducting an interactive requirements gathering session for: **$ARGUMEN
 
 If $ARGUMENTS is empty, respond with:
 ```
-❌ **Usage:** /user:req-gather "feature description"
-📝 **Example:** /user:req-gather "CSV chapter import"
+❌ **No feature description provided**
+💡 **Provide a feature to gather requirements for**
+📝 **Example:** /user:req-gather "CSV import"
 ```
 
 ## Phase 1: Codebase Analysis
