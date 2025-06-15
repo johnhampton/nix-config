@@ -11,12 +11,13 @@ If $ARGUMENTS is empty, look for the most recent requirements-*.md file with pro
 - Parse the specification and progress sections
 - Extract current status information
 
-If file not found:
-```
-❌ **Requirements file not found**
-💡 **Check filename or location**
-📝 **Usage:** /user:req-status [filename]
-```
+<error-handling>
+  <case condition="file-not-found">
+    ❌ **Requirements file not found**
+    💡 **Check filename or location**
+    📝 **Usage:** /user:req-status [filename]
+  </case>
+</error-handling>
 
 ### 2. Parse Progress Information
 Extract information from the "Implementation Progress" section:
@@ -26,12 +27,13 @@ Extract information from the "Implementation Progress" section:
 - Current todo items
 - Start date and elapsed time
 
-If no progress section found:
-```
-❌ **No implementation started**
-💡 **Start implementation first**
-📝 **Run:** /user:req-start [filename]
-```
+<error-handling>
+  <case condition="no-progress-section">
+    ❌ **No implementation started**
+    💡 **Start implementation first**
+    📝 **Run:** /user:req-start [filename]
+  </case>
+</error-handling>
 
 ### 3. Display Status Overview
 ```

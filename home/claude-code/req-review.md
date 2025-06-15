@@ -13,12 +13,13 @@ If $ARGUMENTS is empty, look for the most recent requirements-*.md file in commo
 - Check implementation progress section
 - Analyze current codebase against spec assumptions
 
-If file not found:
-```
-❌ **Requirements file not found**
-💡 **Check available files or filename**
-📝 **Usage:** /user:req-review [filename]
-```
+<error-handling>
+  <case condition="file-not-found">
+    ❌ **Requirements file not found**
+    💡 **Check available files or filename**
+    📝 **Usage:** /user:req-review [filename]
+  </case>
+</error-handling>
 
 ### 2. Quick Reality Check Analysis
 **Focus on the most important insights only:**

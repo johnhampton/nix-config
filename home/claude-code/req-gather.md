@@ -2,12 +2,13 @@
 
 You are conducting an interactive requirements gathering session for: **$ARGUMENTS**
 
-If $ARGUMENTS is empty, respond with:
-```
-❌ **No feature description provided**
-💡 **Provide a feature to gather requirements for**
-📝 **Example:** /user:req-gather "CSV import"
-```
+<error-handling>
+  <case condition="empty-arguments">
+    ❌ **No feature description provided**
+    💡 **Provide a feature to gather requirements for**
+    📝 **Example:** /user:req-gather "CSV import"
+  </case>
+</error-handling>
 
 ## Phase 1: Codebase Analysis
 
@@ -45,13 +46,22 @@ Generate 4-6 targeted questions based on:
 > **Q[N]:** [Context from codebase] [Specific question]?
 ```
 
-**Question Strategy:**
-- Reference specific models, files, or patterns you found
-- Ask about data mappings and transformations
-- Clarify permissions and access control
-- Address integration with existing workflows
-- Cover error handling and edge cases
-- Consider performance and scalability
+<question-strategy>
+  <focus area="data-mapping">
+    <approach>Reference specific models, files, or patterns you found</approach>
+    <topics>Ask about data mappings and transformations</topics>
+  </focus>
+  
+  <focus area="permissions">
+    <approach>Clarify permissions and access control</approach>
+    <topics>Address integration with existing workflows</topics>
+  </focus>
+  
+  <focus area="error-handling">
+    <approach>Cover error handling and edge cases</approach>
+    <topics>Consider performance and scalability</topics>
+  </focus>
+</question-strategy>
 
 **Example Questions:**
 - "I see your User model has both email and username fields. Which should the CSV use for author lookups?"

@@ -11,26 +11,28 @@ If $ARGUMENTS is empty, look for the most recent requirements-*.md file in commo
 - Parse the specification content
 - Identify the Phase 1 tasks
 
-If file not found:
-```
-❌ **Requirements file not found**
-💡 **Check filename or create new spec**
-📝 **Usage:** /user:req-start [filename]
-```
+<error-handling>
+  <case condition="file-not-found">
+    ❌ **Requirements file not found**
+    💡 **Check filename or create new spec**
+    📝 **Usage:** /user:req-start [filename]
+  </case>
+</error-handling>
 
 ### 2. Check for Existing Implementation
 Check if "Implementation Progress" section exists in the file.
 
-If implementation already started:
-```
-⚠️ **Implementation already in progress**
-**Current Phase:** [phase name]
-**Started:** [start date]
-
-💡 **Resume work instead**
-📝 **Run:** /user:req-resume [filename]
-```
-STOP - Do not proceed with starting new implementation.
+<error-handling>
+  <case condition="implementation-exists">
+    ⚠️ **Implementation already in progress**
+    **Current Phase:** [phase name]
+    **Started:** [start date]
+    
+    💡 **Resume work instead**
+    📝 **Run:** /user:req-resume [filename]
+    <action>STOP - Do not proceed with starting new implementation</action>
+  </case>
+</error-handling>
 
 ### 3. Extract Phase 1 Tasks
 From the "Phase 1: Foundation" section, identify specific, actionable tasks that should be completed first. Look for:

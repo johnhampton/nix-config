@@ -4,12 +4,13 @@ Add a new task to the current implementation phase: $ARGUMENTS
 
 The task will be added to Claude Code's todo list and tracked in the requirements file.
 
-If $ARGUMENTS is empty:
-```
-❌ **No task description provided**
-💡 **Provide a specific task to add**
-📝 **Example:** /user:req-add-task "handle CSV encoding issues"
-```
+<error-handling>
+  <case condition="empty-arguments">
+    ❌ **No task description provided**
+    💡 **Provide a specific task to add**
+    📝 **Example:** /user:req-add-task "handle CSV encoding issues"
+  </case>
+</error-handling>
 
 ## Process
 
@@ -19,24 +20,26 @@ Look for the most recent requirements-*.md file in common directories (scratch/,
 - Use the most recently modified requirements file
 - If multiple files found, use the one with most recent "Last Updated" timestamp
 
-If no requirements file found:
-```
-❌ **No requirements file found**
-💡 **Create a requirements spec first**
-📝 **Run:** /user:req-gather "feature description"
-```
+<error-handling>
+  <case condition="no-requirements-file">
+    ❌ **No requirements file found**
+    💡 **Create a requirements spec first**
+    📝 **Run:** /user:req-gather "feature description"
+  </case>
+</error-handling>
 
 ### 2. Verify Current Phase
 **CRITICAL: This command NEVER modifies phase status - only adds tasks**
 
 Read the "Implementation Progress" section to identify current phase.
 
-If no progress section found:
-```
-❌ **No implementation started**
-💡 **Start implementation first**
-📝 **Run:** /user:req-start [filename]
-```
+<error-handling>
+  <case condition="no-progress-section">
+    ❌ **No implementation started**
+    💡 **Start implementation first**
+    📝 **Run:** /user:req-start [filename]
+  </case>
+</error-handling>
 
 ### 3. Add Task to Claude Code Todo List
 Add the new task(s) to Claude Code's built-in todo list:
@@ -51,12 +54,13 @@ Add the task to the "Current Todo Items" section:
 - Update "Last Updated:" timestamp
 - Save the file
 
-If file update fails:
-```
-❌ **Could not update requirements file**
-💡 **Task added to Claude Code todo list only**
-📝 **Manually add to:** [requirements file path]
-```
+<error-handling>
+  <case condition="file-update-failed">
+    ❌ **Could not update requirements file**
+    💡 **Task added to Claude Code todo list only**
+    📝 **Manually add to:** [requirements file path]
+  </case>
+</error-handling>
 
 ### 5. Confirmation
 ```
@@ -77,18 +81,18 @@ Only if highly relevant, suggest related tasks:
 
 ## Error Handling
 
-**Multiple requirements files found:**
-```
-⚠️ **Multiple requirements files found**
-Using most recent: [filename]
-```
-
-**File modification failed:**
-```
-❌ **Cannot modify requirements file**
-💡 **Task added to todo list only**
-📝 **Add manually to:** [filename]
-```
+<error-handling>
+  <case condition="multiple-files">
+    ⚠️ **Multiple requirements files found**
+    Using most recent: [filename]
+  </case>
+  
+  <case condition="file-modification-failed">
+    ❌ **Cannot modify requirements file**
+    💡 **Task added to todo list only**
+    📝 **Add manually to:** [filename]
+  </case>
+</error-handling>
 
 ## Usage Examples
 

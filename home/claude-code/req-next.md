@@ -13,30 +13,38 @@ If $ARGUMENTS is empty, look for the most recent requirements-*.md file with pro
 - Parse the "Implementation Progress" section
 - Identify current phase and status
 
-If file not found:
-```
-❌ **Requirements file not found**
-💡 **Check filename or find in scratch/, tmp/, docs/**
-📝 **Usage:** /user:req-next [filename]
-```
-
-If no progress section found:
-```
-❌ **No implementation started**
-💡 **Start implementation first**
-📝 **Run:** /user:req-start [filename]
-```
+<error-handling>
+  <case condition="file-not-found">
+    ❌ **Requirements file not found**
+    💡 **Check filename or find in scratch/, tmp/, docs/**
+    📝 **Usage:** /user:req-next [filename]
+  </case>
+  
+  <case condition="no-progress-section">
+    ❌ **No implementation started**
+    💡 **Start implementation first**
+    📝 **Run:** /user:req-start [filename]
+  </case>
+</error-handling>
 
 ### 2. Check Phase Progression
 
-**If current phase is Phase 1-3 (normal advancement):**
-Go to **Section 3: Normal Phase Advancement**
-
-**If current phase is Phase 4 (final phase check):**
-Go to **Section 4: Final Phase Completion**
-
-**If current phase is Phase 5+ (extended phases):**
-Go to **Section 5: Extended Phase Management**
+<phase-routing>
+  <route condition="phase-1-3">
+    <description>Current phase is Phase 1-3 (normal advancement)</description>
+    <action>Go to Section 3: Normal Phase Advancement</action>
+  </route>
+  
+  <route condition="phase-4">
+    <description>Current phase is Phase 4 (final phase check)</description>
+    <action>Go to Section 4: Final Phase Completion</action>
+  </route>
+  
+  <route condition="phase-5+">
+    <description>Current phase is Phase 5+ (extended phases)</description>
+    <action>Go to Section 5: Extended Phase Management</action>
+  </route>
+</phase-routing>
 
 ### 3. Normal Phase Advancement (Phases 1-3)
 
@@ -61,15 +69,19 @@ Go to **Section 5: Extended Phase Management**
 
 **STOP HERE** - Wait for explicit 'yes' or 'no'.
 
-**If 'no':**
-```
-✅ **Staying in current phase**
-
-💡 **To reload current phase guidance:** /user:req-resume [filename]
-```
-**STOP** - Do not proceed.
-
-**If 'yes':** Continue to **Section 6: Execute Phase Advancement**
+<user-response-handler>
+  <response value="no">
+    <output>
+      ✅ **Staying in current phase**
+      💡 **To reload current phase guidance:** /user:req-resume [filename]
+    </output>
+    <action>STOP - Do not proceed</action>
+  </response>
+  
+  <response value="yes">
+    <action>Continue to Section 6: Execute Phase Advancement</action>
+  </response>
+</user-response-handler>
 
 ### 4. Final Phase Completion (Phase 4)
 
@@ -95,18 +107,24 @@ Go to **Section 5: Extended Phase Management**
 
 **STOP HERE** - Wait for 'done', 'continue', or 'phase5'.
 
-**If 'done':** Continue to **Section 7: Mark Implementation Complete**
-
-**If 'continue':** 
-```
-✅ **Continuing Phase 4 Work**
-
-💡 **To reload Phase 4 guidance and add tasks:** /user:req-resume [filename]
-💡 **Then add tasks with:** /user:req-add-task "task description"
-```
-**STOP** - Do not proceed.
-
-**If 'phase5':** Continue to **Section 8: Create Extended Phase**
+<user-response-handler>
+  <response value="done">
+    <action>Continue to Section 7: Mark Implementation Complete</action>
+  </response>
+  
+  <response value="continue">
+    <output>
+      ✅ **Continuing Phase 4 Work**
+      💡 **To reload Phase 4 guidance and add tasks:** /user:req-resume [filename]
+      💡 **Then add tasks with:** /user:req-add-task "task description"
+    </output>
+    <action>STOP - Do not proceed</action>
+  </response>
+  
+  <response value="phase5">
+    <action>Continue to Section 8: Create Extended Phase</action>
+  </response>
+</user-response-handler>
 
 ### 5. Extended Phase Management (Phase 5+)
 
@@ -127,7 +145,23 @@ Go to **Section 5: Extended Phase Management**
 
 **STOP HERE** - Wait for 'yes', 'no', or 'done'.
 
-Handle responses similar to normal advancement or completion.
+<user-response-handler>
+  <response value="yes">
+    <action>Continue to Section 8: Create Extended Phase</action>
+  </response>
+  
+  <response value="no">
+    <output>
+      ✅ **Staying in current phase**
+      💡 **To reload current phase guidance:** /user:req-resume [filename]
+    </output>
+    <action>STOP - Do not proceed</action>
+  </response>
+  
+  <response value="done">
+    <action>Continue to Section 7: Mark Implementation Complete</action>
+  </response>
+</user-response-handler>
 
 ### 6. Execute Phase Advancement
 
@@ -242,19 +276,19 @@ Load Phase 5+ AI guidance and update progress tracking with new phase.
 
 ## Error Handling
 
-**File not found:**
-```
-❌ **Requirements file not found**
-💡 **Check filename or location**
-📝 **Usage:** /user:req-next [filename]
-```
-
-**Invalid user response:**
-```
-❌ **Invalid response**
-💡 **Valid options: yes, no, done, continue, phase5**
-📝 **Type one of the valid options**
-```
+<error-handling>
+  <case condition="file-not-found">
+    ❌ **Requirements file not found**
+    💡 **Check filename or location**
+    📝 **Usage:** /user:req-next [filename]
+  </case>
+  
+  <case condition="invalid-response">
+    ❌ **Invalid response**
+    💡 **Valid options: yes, no, done, continue, phase5**
+    📝 **Type one of the valid options**
+  </case>
+</error-handling>
 
 ## Important Reminders
 - This command only advances phases - never use it to reload current phase guidance
