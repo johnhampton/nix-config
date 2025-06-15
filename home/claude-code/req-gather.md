@@ -10,6 +10,14 @@ You are conducting an interactive requirements gathering session for: **$ARGUMEN
   </case>
 </error-handling>
 
+<thinking>
+Let me analyze what type of project/feature this is to ask the most relevant questions:
+- What technology stack might be involved?
+- What are the key integration points?
+- What security/performance considerations apply?
+- What similar features might exist in the codebase?
+</thinking>
+
 ## Phase 1: Codebase Analysis
 
 Quickly analyze the project structure to understand:
@@ -45,6 +53,19 @@ Generate 4-6 targeted questions based on:
 ```
 > **Q[N]:** [Context from codebase] [Specific question]?
 ```
+
+<examples>
+<example>
+Feature: "user authentication"  
+Q1: I see you're using [Auth Framework]. Will this replace the existing auth or supplement it?
+Q2: What user attributes need to be stored beyond email/password?
+</example>
+<example>
+Feature: "CSV import"
+Q1: I notice you have existing Excel import. Should CSV follow the same validation rules?
+Q2: What's the expected file size and row count we need to handle?
+</example>
+</examples>
 
 <question-strategy>
   <focus area="data-mapping">

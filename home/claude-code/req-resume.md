@@ -88,7 +88,7 @@ Sub-agent suggestions are now active for [Phase N] tasks.
 
 **Estimated Progress:** [X]% complete ([completed phases]/[total phases] phases done)
 
-📝 Remember: Mark completed tasks as [x] in both TodoWrite and [filename]
+📝 Remember: Mark completed tasks as [x] in [filename]
 ```
 
 ### 4. Phase-Specific Focus Tips

@@ -112,10 +112,7 @@ Run `/user:req-next [filename]` to advance or `/user:req-add-task` to add new wo
 - Performance benchmarking
 ```
 
-**Sync Check**: If TodoWrite and requirements file checkboxes don't match:
-- Edit requirements file to match TodoWrite status
-- Change `- [ ]` → `- [x]` for completed tasks
-- Change `- [x]` → `- [ ]` for incomplete tasks
+**Progress Note**: All task progress is tracked directly in the requirements file checkboxes
 
 ### 6. Command Reference
 ```

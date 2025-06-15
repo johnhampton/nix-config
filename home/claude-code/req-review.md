@@ -6,6 +6,15 @@ Provides a concise assessment of how implementation differs from spec and what t
 
 If $ARGUMENTS is empty, look for the most recent requirements-*.md file in common directories.
 
+<thinking>
+Think deeply about implementation vs specification:
+- What assumptions in the spec might prove incorrect?
+- What complexity was likely underestimated?
+- What integration challenges weren't addressed?
+- What can be simplified in the implementation?
+- Are there security or performance concerns not covered?
+</thinking>
+
 ## Process
 
 ### 1. Load Requirements and Current State

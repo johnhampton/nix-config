@@ -165,23 +165,14 @@ If $ARGUMENTS is empty, look for the most recent requirements-*.md file with pro
 
 ### 6. Execute Phase Advancement
 
-**Before advancing**: Verify all completed tasks show as `- [x]` in requirements file. Fix any mismatches first.
+**Before advancing**: Verify all completed tasks show as `- [x]` in requirements file.
 
 **Normal phase advancement process:**
 
 ```
 ✅ **Advancing to Next Phase**
 
-📋 **Phase [N]: [Phase Name]** (adding to todo list)
-
-I'm updating your todo list with Phase [N] tasks:
-
-- [Next phase task 1]
-- [Next phase task 2]
-- [Next phase task 3]
-- [Next phase task 4]
-
-Please add these tasks to the todo list for the next implementation phase.
+📋 **Phase [N]: [Phase Name]**
 ```
 
 **Load Next Phase AI Guidance:**
@@ -269,16 +260,9 @@ Update requirements file to mark as COMPLETED.
 ```
 ✅ **Creating Phase 5: Extended Development**
 
-📋 **Phase 5: Extended Development** (adding to todo list)
+📋 **Phase 5: Extended Development**
 
-I'm creating Phase 5 for additional work beyond the original scope:
-
-- [ ] [Identify specific additional work needed]
-- [ ] [Address discovered issues]
-- [ ] [Implement additional requirements]
-- [ ] [Performance optimization]
-
-Please add these initial Phase 5 tasks to the todo list.
+Adding Phase 5 for additional work beyond the original scope.
 ```
 
 Load Phase 5+ AI guidance and update progress tracking with new phase.

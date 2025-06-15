@@ -42,19 +42,8 @@ From the "Phase 1: Foundation" section, identify specific, actionable tasks that
 - Authentication/permission setup
 - Configuration changes
 
-### 4. Populate Todo List
-Add the Phase 1 tasks to Claude Code's built-in todo list using clear, actionable language:
-
-```
-I'm adding these Phase 1 tasks to your todo list:
-
-- [Specific task 1 from spec]
-- [Specific task 2 from spec]  
-- [Specific task 3 from spec]
-- [Specific task 4 from spec]
-
-Please add these tasks to the todo list so we can track progress on the foundation work.
-```
+### 4. Create Task Checkboxes
+Add Phase 1 tasks as checkboxes directly in the REQUIREMENTS.md file (see step 6 for format).
 
 ### 5. Implementation Guidance
 ```
@@ -70,7 +59,7 @@ Please add these tasks to the todo list so we can track progress on the foundati
 ⏸️ **Phase 4:** Testing & Polish
 
 **Next Steps:**
-1. Work through the todo list tasks
+1. Work through the tasks listed in the requirements file
 2. When Phase 1 is complete, run: /user:req-next [filename]
 3. Use /user:req-add-task "description" to add any discovered tasks
 
@@ -81,7 +70,7 @@ Please add these tasks to the todo list so we can track progress on the foundati
 - **Check progress:** /user:req-status [filename]
 ```
 
-**Checkbox Sync**: When completing tasks, always: 1) Update TodoWrite to "completed" AND 2) Edit requirements file `- [ ]` → `- [x]`
+**Progress Tracking**: Update task checkboxes directly in the requirements file by editing `- [ ]` → `- [x]` as tasks are completed
 
 **AI Implementation Guidance:**
 During Phase 1 implementation, automatically suggest sub-agents when:

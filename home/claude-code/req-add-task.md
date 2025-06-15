@@ -2,7 +2,7 @@
 
 Add a new task to the current implementation phase: $ARGUMENTS
 
-The task will be added to Claude Code's todo list and tracked in the requirements file.
+The task will be added directly to the requirements file for tracking.
 
 <error-handling>
   <case condition="empty-arguments">
@@ -41,14 +41,7 @@ Read the "Implementation Progress" section to identify current phase.
   </case>
 </error-handling>
 
-### 3. Add Task to Claude Code Todo List
-Add the new task(s) to Claude Code's built-in todo list:
-
-```
-📝 Adding to todo list: $ARGUMENTS
-```
-
-### 4. Update Requirements File
+### 3. Update Requirements File
 Add the task to the "Current Todo Items" section:
 - Add new task as: `- [ ] $ARGUMENTS`
 - Update "Last Updated:" timestamp
@@ -57,12 +50,12 @@ Add the task to the "Current Todo Items" section:
 <error-handling>
   <case condition="file-update-failed">
     ❌ **Could not update requirements file**
-    💡 **Task added to Claude Code todo list only**
-    📝 **Manually add to:** [requirements file path]
+    💡 **Task not added - please try again**
+    📝 **Check file permissions for:** [requirements file path]
   </case>
 </error-handling>
 
-### 5. Confirmation
+### 4. Confirmation
 ```
 ✅ **Task Added**
 **File:** [requirements filename]
@@ -72,7 +65,7 @@ Add the task to the "Current Todo Items" section:
 **When done:** /user:req-next [filename]
 ```
 
-### 6. Smart Suggestions (Optional)
+### 5. Smart Suggestions (Optional)
 Only if highly relevant, suggest related tasks:
 
 **Database tasks:** Consider migration testing
