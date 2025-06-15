@@ -29,6 +29,11 @@ If $ARGUMENTS is empty, look for the most recent requirements-*.md file in commo
 - Any major discoveries that change the plan?
 - What should happen next?
 
+<progress-accuracy-check>
+Also check if TodoWrite completion status matches requirements file checkboxes.
+Count mismatches as "progress tracking discrepancies" but only surface if 3+ found.
+</progress-accuracy-check>
+
 ### 3. Concise Report Format
 ```
 🔍 **Reality Check: [Feature Name]**
@@ -39,6 +44,7 @@ If $ARGUMENTS is empty, look for the most recent requirements-*.md file in commo
 ✅ [One major thing going well]
 ⚠️ [One key difference/challenge if any]
 📈 [One insight about progress/schedule]
+📊 [If 3+ checkbox mismatches: Progress tracking: X completed tasks not reflected in spec]
 
 **Recommendation:** [Clear, specific action to take]
 
@@ -93,15 +99,35 @@ If $ARGUMENTS is empty, look for the most recent requirements-*.md file in commo
 **Next Step:** /user:req-add-task "[new work needed]" or consider Phase 5
 ```
 
+**If checkbox sync issues with other changes:**
+```
+**Recommendation:** Update spec to reflect learnings and fix task checkboxes
+**Next Step:** Type 'yes' when prompted to update (will sync checkboxes and apply changes)
+```
+
+**If ONLY checkbox sync issues found:**
+```
+**Recommendation:** Quick sync needed - [X] tasks completed but not marked
+**Next Step:** Run /user:req-status [filename] to verify and fix checkboxes
+```
+
 ### 6. Auto-Update Spec (Only for Major Changes)
-Only offer to update spec if there are **significant** changes:
+Only offer to update spec if there are **significant** changes OR checkbox sync issues:
 
 ```
 🔄 **Update spec with major learnings?** (yes/no)
 
 This will update the requirements file to reflect:
 - [Only list significant changes worth documenting]
+- [If applicable: Synchronize X task checkboxes to match completion status]
 ```
+
+<spec-update-actions>
+When user confirms update:
+<action>Update requirements file with major learnings</action>
+<action>If checkbox mismatches exist: Change all `- [ ]` to `- [x]` for completed tasks</action>
+<action>Update "Last Updated" timestamp</action>
+</spec-update-actions>
 
 **Don't offer update for minor implementation details.**
 **NEVER update phase status or progression - only /user:req-next can advance phases.**
@@ -143,6 +169,20 @@ This will update the requirements file to reflect:
 📈 Can skip planned Phase 3 tasks
 **Recommendation:** Move to Phase 3, skip "Create Effectful wrappers"
 **Next Step:** /user:req-next (will load updated Phase 3 tasks)
+```
+
+**When checkbox sync issues found:**
+```bash
+# Output:
+🔍 **Reality Check: API Integration**
+**Bottom Line:** On track but progress tracking needs sync.
+**Key Findings:**
+✅ Authentication working as designed
+⚠️ Rate limiting more complex than expected
+📈 Phase 2 nearly complete
+📊 Progress tracking: 5 completed tasks not reflected in spec
+**Recommendation:** Update spec to reflect learnings and fix task checkboxes
+**Next Step:** Type 'yes' when prompted to update (will sync checkboxes and apply changes)
 ```
 
 ## Error Handling

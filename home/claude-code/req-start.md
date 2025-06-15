@@ -81,6 +81,8 @@ Please add these tasks to the todo list so we can track progress on the foundati
 - **Check progress:** /user:req-status [filename]
 ```
 
+**Checkbox Sync**: When completing tasks, always: 1) Update TodoWrite to "completed" AND 2) Edit requirements file `- [ ]` → `- [x]`
+
 **AI Implementation Guidance:**
 During Phase 1 implementation, automatically suggest sub-agents when:
 - User creates database schemas or migrations (offer architecture validation sub-agent)

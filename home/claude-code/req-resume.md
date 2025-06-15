@@ -87,6 +87,8 @@ Sub-agent suggestions are now active for [Phase N] tasks.
 - **Review specification:** /user:req-review [filename]
 
 **Estimated Progress:** [X]% complete ([completed phases]/[total phases] phases done)
+
+📝 Remember: Mark completed tasks as [x] in both TodoWrite and [filename]
 ```
 
 ### 4. Phase-Specific Focus Tips

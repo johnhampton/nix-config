@@ -165,6 +165,8 @@ If $ARGUMENTS is empty, look for the most recent requirements-*.md file with pro
 
 ### 6. Execute Phase Advancement
 
+**Before advancing**: Verify all completed tasks show as `- [x]` in requirements file. Fix any mismatches first.
+
 **Normal phase advancement process:**
 
 ```
@@ -205,6 +207,13 @@ Please add these tasks to the todo list for the next implementation phase.
 - Offer deployment readiness checks when user prepares for production
 
 **Update Progress Tracking:**
+
+**When advancing**: Update requirements file:
+- Mark previous phase as completed: `- [x]`
+- Ensure all completed tasks show `- [x]`
+- Add new phase tasks as `- [ ]`
+- Update "Last Updated" timestamp
+
 ```markdown
 ### Phase Status
 - [x] Phase 1: Foundation (COMPLETED)
