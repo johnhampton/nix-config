@@ -104,6 +104,7 @@ This will update the requirements file to reflect:
 ```
 
 **Don't offer update for minor implementation details.**
+**NEVER update phase status or progression - only /user:req-next can advance phases.**
 
 ### 7. Keep It Short
 **Maximum length guidelines:**
@@ -164,3 +165,5 @@ Use after starting implementation and making some progress.
 - Focus on actionable insights, not detailed comparisons
 - Use when you need to know "should I change course?"
 - Keep output under 10 lines for main insights
+- **NEVER modify phase status** - only /user:req-next can advance phases
+- This command provides analysis only, not state changes
