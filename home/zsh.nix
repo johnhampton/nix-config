@@ -33,6 +33,7 @@
       pf-staging = "sudo -E kubefwd svc -n test";
       pf-prod = "sudo -E kubefwd svc -n prod";
       flake-init = "nix flake init -t github:johnhampton/flake-templates#";
+      claude-config = "nvim ~/Library/Application\\ Support/Claude/claude_desktop_config.json";
     };
 
     initContent = lib.mkMerge [
