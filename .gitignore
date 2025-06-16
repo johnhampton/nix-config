@@ -1,6 +1,139 @@
+# Nix build artifacts
 result
+result-*
+/result
+/result-*
+
+# Direnv
 .envrc
 .direnv/
-.aider*
-.claude/settings.local.json
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Editor files
+## Vim
 Session.vim
+*.swp
+*.swo
+*~
+.netrwhist
+tags
+.vim/
+
+## VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+.history/
+
+## JetBrains IDEs
+.idea/
+*.iml
+*.iws
+*.ipr
+
+## Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Claude Code
+.claude/settings.local.json
+.claude/cache/
+.claude/tmp/
+
+# AI Assistants
+.aider*
+.aider.chat.history.md
+.aider.tags.cache.v3/
+
+# Development tools
+## Node.js (for any JS tooling)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.yarn-integrity
+
+## Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv
+.mypy_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Temporary files and directories
+tmp/
+temp/
+*.tmp
+*.temp
+*.log
+*.pid
+*.seed
+*.pid.lock
+
+# Backup files
+*.bak
+*.backup
+*.old
+*.orig
+
+# Cache directories
+.cache/
+*.cache
+
+# Secrets and credentials (extra safety)
+*.pem
+*.key
+*.cert
+*.crt
+*.p12
+*.pfx
+.env
+.env.*
+!.env.example
+
+# Build directories
+build/
+dist/
+out/
+
+# OS generated files
+Thumbs.db
+Desktop.ini
+
+# Nix-specific
+.pre-commit-config.yaml
