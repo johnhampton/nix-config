@@ -46,6 +46,7 @@
     kubectx
     kustomize
     mas
+    neofetch
     nodejs
     patchutils_0_4_2
     pgcli

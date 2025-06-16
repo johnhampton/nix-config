@@ -18,14 +18,6 @@
       share = true;
     };
 
-    plugins = [
-      {
-        name = "fzf-tab";
-        src = pkgs.zsh-fzf-tab;
-        file = "share/fzf-tab/fzf-tab.plugin.zsh";
-      }
-    ];
-
     shellAliases = {
       cloud_sql_proxy_all = "cloud_sql_proxy -projects tan-ng,tan-ng-prod -dir /tmp";
       devenv-init = "nix flake init --template github:cachix/devenv";
@@ -50,14 +42,11 @@
           eval "$(/usr/local/bin/brew shellenv)"
         fi
       '')
+      (lib.mkOrder 600 ''
+        # fzf-tab plugin
+        source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
+      '')
       ''
-        autoload -Uz edit-command-line
-        zle -N edit-command-line
-        bindkey '^X^E' edit-command-line
-
-        bindkey '^p' history-search-backward
-        bindkey '^n' history-search-forward
-
         eval "$(${pkgs.coreutils}/bin/dircolors -b)"
         # disable sort when completing `git checkout`
         zstyle ':completion:*:git-checkout:*' sort false
@@ -67,7 +56,7 @@
         zstyle ':completion:*:descriptions' format '[%d]'
 
 
-        zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+        # zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
         # set list-colors to enable filename colorizing
         zstyle ':completion:*' list-colors "''${(s.:.)LS_COLORS}"
         zstyle ':completion:*' menu no
@@ -82,6 +71,12 @@
         # NOTE: This may lead to unexpected behavior since some flags break this plugin. See Aloxaf/fzf-tab#455.
         # zstyle ':fzf-tab:*' use-fzf-default-opts yes
 
+        bindkey '^p' history-search-backward
+        bindkey '^n' history-search-forward
+
+        autoload -Uz edit-command-line
+        zle -N edit-command-line
+        bindkey '^X^E' edit-command-line
       ''
     ];
 
