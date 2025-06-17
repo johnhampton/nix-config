@@ -152,7 +152,10 @@
       legacyPackages = pkgs;
 
       devShell = pkgs.mkShell {
-        packages = [ agenix.packages.${system}.default ];
+        packages = [
+          agenix.packages.${system}.default
+          pkgs.shellcheck
+        ];
       };
     });
 }
