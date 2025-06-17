@@ -15,6 +15,7 @@
     ./navi.nix
     ./nixvim
     ./postgres
+    ./scripts
     ./ssh.nix
     ./tmux
     ./vscode.nix
