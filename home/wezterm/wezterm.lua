@@ -35,12 +35,17 @@ config.mouse_bindings = {
   },
 }
 
+config.enable_kitty_keyboard = true
 config.keys = {
   -- Disable Alt+Enter default binding to allow pass-through
   {
     key = 'Enter',
     mods = 'ALT',
     action = act.DisableDefaultAssignment,
+  },
+  {
+    key = "Delete",
+    action = wezterm.action.SendKey { key = "Delete" },
   },
   {
     key = 'j',
