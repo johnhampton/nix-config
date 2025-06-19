@@ -49,6 +49,15 @@
           silent = false;
         };
       }
+      {
+        mode = "n";
+        key = "<leader>yP";
+        action = '':let @+ = expand('%:p') | echo "Copied full path to system clipboard: " . @+<CR>'';
+        options = {
+          desc = "Copy full path to system clipboard";
+          silent = false;
+        };
+      }
     ];
 
     plugins = {
