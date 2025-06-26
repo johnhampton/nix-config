@@ -1,4 +1,4 @@
-{ pkgs, age, inputs, lib, ... }:
+{ pkgs, age, inputs, lib, config, ... }:
 
 {
   imports = [
@@ -75,6 +75,7 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     USE_GKE_GCLOUD_AUTH_PLUGIN = "True";
+    CLAUDE_CONFIG_DIR = "${config.xdg.configHome}/claude";
   };
 
   # See ./secrets/npmrc.age for configuration of prefix
