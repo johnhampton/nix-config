@@ -87,6 +87,7 @@
 
       set -g status-left-length 25
 
+      bind-key x kill-pane
       set-option -g detach-on-destroy off
 
       set-option -sg escape-time 10
