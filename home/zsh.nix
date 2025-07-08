@@ -19,13 +19,10 @@
     };
 
     shellAliases = {
-      cloud_sql_proxy_all = "cloud_sql_proxy -projects tan-ng,tan-ng-prod -dir /tmp";
-      devenv-init = "nix flake init --template github:cachix/devenv";
-      pf-argocd = "kubectl port-forward -n argocd svc/argocd-server 8080:80";
-      pf-staging = "sudo -E kubefwd svc -n test";
-      pf-prod = "sudo -E kubefwd svc -n prod";
-      flake-init = "nix flake init -t github:johnhampton/flake-templates#";
       claude-config = "nvim ~/Library/Application\\ Support/Claude/claude_desktop_config.json";
+      cloud_sql_proxy_all = "cloud_sql_proxy -projects tan-ng,tan-ng-prod -dir /tmp";
+      codex = "dotenv -e ~/.env -- codex";
+      pf-argocd = "kubectl port-forward -n argocd svc/argocd-server 8080:80";
     };
 
     initContent = lib.mkMerge [
