@@ -66,6 +66,7 @@
       "Balatro+" = 6502451661;
       "Be Focused Pro - Focus Timer" = 961632517;
       "Bear: Markdown Notes" = 1091189122;
+      Drafts = 1435957248;
       "Evernote" = 406056744;
       LimeChat = 414030210;
       Magnet = 441258766;
