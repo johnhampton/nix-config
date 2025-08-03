@@ -85,7 +85,7 @@
       homeManagerStateVersion = "22.05";
       homeManagerCommonConfig = {
         imports = [
-          inputs.nixvim.homeManagerModules.nixvim
+          inputs.nixvim.homeModules.nixvim
           ./home
           { home.stateVersion = homeManagerStateVersion; }
           (args: {
