@@ -27,6 +27,7 @@
   home.packages = with pkgs; [
     argocd
     argocd-autopilot
+    ast-grep
     chartmuseum
     colima
     darwin.trash
