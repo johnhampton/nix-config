@@ -19,6 +19,7 @@
 
   programs.nixvim = {
     enable = true;
+    vimdiffAlias = true;
 
     opts = {
       cmdheight = 2;
