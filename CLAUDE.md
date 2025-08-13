@@ -45,6 +45,51 @@ The Neovim setup is managed through nixvim and includes:
 
 See `/docs/neovim-keybindings.md` for comprehensive keybinding documentation.
 
+## Nixvim Plugin Configuration
+
+### Plugin Discovery Process
+- **ALWAYS check nixvim's native plugin support first** at https://nix-community.github.io/nixvim/plugins/
+- Most popular neovim plugins have native nixvim support with `plugins.<plugin-name>` syntax
+- Only use `extraPlugins` for plugins without native nixvim support
+
+### Configuration Pattern
+Native plugins use the following structure:
+```nix
+plugins.<plugin-name> = {
+  enable = true;
+  settings = { 
+    # Plugin-specific settings (without prefix)
+    # Settings keys match the plugin's lua configuration
+  };
+  keymaps = [ # Optional - define plugin-specific keymaps
+    { 
+      mode = "n"; 
+      key = "<leader>x"; 
+      action = "<cmd>Command<cr>"; 
+      options.desc = "Description"; 
+    }
+  ];
+};
+```
+
+Example for markdown-preview.nvim:
+```nix
+plugins.markdown-preview = {
+  enable = true;
+  settings = {
+    auto_start = 0;
+    auto_close = 1;
+    theme = "dark";
+  };
+};
+```
+
+### Documentation Updates
+- **ALWAYS update `/docs/neovim-keybindings.md`** when adding or modifying keybindings
+- Keep the documentation organized by functional groups
+- Include new keybinding groups in the appropriate section
+- Verify all keybindings are documented after configuration changes
+
 ## Common Development Tasks
 - Adding a new package to home environment: Edit `/home/default.nix` and add to `home.packages`
 - Adding Homebrew packages: Edit `/darwin/homebrew.nix`
