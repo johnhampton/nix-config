@@ -199,6 +199,13 @@ The mini.surround plugin provides operations for working with surroundings (quot
 | `<leader>A+`    | Add File from Tree to Aider   |
 | `<leader>A-`    | Drop File from Tree from Aider|
 
+## Markdown Preview
+
+| Keybinding      | Description                |
+|-----------------|----------------------------|
+| `<leader>mp`    | Toggle Markdown Preview    |
+| `<leader>ms`    | Stop Markdown Preview      |
+
 ## Haskell-specific
 
 | Keybinding      | Description                             |

@@ -9,6 +9,7 @@
     ./haskell-tools-nvim.nix
     ./lualine.nix
     ./lsp.nix
+    ./markdown-preview.nix
     ./mini.nix
     ./neotest.nix
     ./nvim-aider.nix
@@ -92,6 +93,7 @@
             { __unkeyed-1 = "<leader>F"; group = "+Find"; mode = [ "n" "v" ]; }
             { __unkeyed-1 = "<leader>l"; group = "+LSP"; mode = [ "n" "v" ]; }
             { __unkeyed-1 = "<leader>L"; group = "+LSP Control"; mode = [ "n" "v" ]; }
+            { __unkeyed-1 = "<leader>m"; group = "+Markdown"; mode = [ "n" "v" ]; }
             { __unkeyed-1 = "<leader>y"; group = "+Yank/Copy"; mode = [ "n" "v" ]; }
             { __unkeyed-1 = "gq"; group = "Format"; }
           ];
