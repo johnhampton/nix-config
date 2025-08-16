@@ -20,6 +20,7 @@
 
     shellAliases = {
       claude-config = "nvim ~/Library/Application\\ Support/Claude/claude_desktop_config.json";
+      dangerous-claude = "claude --dangerously-skip-permissions";
       cloud_sql_proxy_all = "cloud_sql_proxy -projects tan-ng,tan-ng-prod -dir /tmp";
       codex = "dotenv -e ~/.env -- codex";
       pf-argocd = "kubectl port-forward -n argocd svc/argocd-server 8080:80";
