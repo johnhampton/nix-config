@@ -75,7 +75,7 @@
 
       # - #S = session name
       # - #T = pane title (~/.zshrc sets this to the last/current command)
-      set-option -g set-titles-string "#S > #T"
+      set-option -g set-titles-string "#S"
 
       # But don't change tmux's own window titles.
       set-option -w -g automatic-rename off
