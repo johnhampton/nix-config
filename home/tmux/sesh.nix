@@ -31,7 +31,7 @@
         }
         { name = "Configs ⚙︎";
           path = "~/.config/nix-config";
-          startup_command = "tmux split-window -h -d && nvim -c 'Telescope find_files'";
+          startup_command = "tmux split-window -h -d && nvim";
         }
       ];
     };
