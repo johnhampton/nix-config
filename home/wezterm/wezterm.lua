@@ -12,8 +12,8 @@ config.font = wezterm.font 'PragmataPro Mono Liga'
 config.font_size = 15.5
 
 config.color_scheme = 'OneNord'
-config.use_fancy_tab_bar = false
-config.window_decorations = 'RESIZE'
+-- config.use_fancy_tab_bar = false
+-- config.window_decorations = 'RESIZE'
 -- config.warn_about_missing_glyphs = false
 
 config.front_end = 'WebGpu'
