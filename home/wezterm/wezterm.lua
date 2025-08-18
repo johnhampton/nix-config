@@ -10,6 +10,10 @@ end
 config.use_cap_height_to_scale_fallback_fonts = true;
 config.font = wezterm.font 'PragmataPro Mono Liga'
 config.font_size = 15.5
+config.window_frame = {
+  font = wezterm.font { family = 'PragmataPro Mono Liga', weight = 'Bold' },
+  font_size = 15.0,
+}
 
 config.color_scheme = 'OneNord'
 -- config.use_fancy_tab_bar = false
@@ -42,6 +46,12 @@ config.keys = {
     key = 'Enter',
     mods = 'ALT',
     action = act.DisableDefaultAssignment,
+  },
+  -- Toggle fullscreen with Hyper+Enter (CMD+SHIFT+CTRL+ALT+Enter)
+  {
+    key = 'Enter',
+    mods = 'CMD|SHIFT|CTRL|ALT',
+    action = act.ToggleFullScreen,
   },
   {
     key = "Delete",
