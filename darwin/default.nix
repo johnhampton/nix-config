@@ -54,6 +54,10 @@
       mru-spaces = false;
     };
 
+    WindowManager = {
+      AppWindowGroupingBehavior = false; # "One at a time" for Stage Manager
+    };
+
     CustomUserPreferences = {
       NSGlobalDomain = {
         AppleSpacesSwitchOnActivate = 0;
