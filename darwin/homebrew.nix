@@ -56,7 +56,7 @@
       "slack"
       "tableplus"
       "tuple"
-      "wezterm"
+      "wezterm@nightly"
       "zoom"
     ];
 
