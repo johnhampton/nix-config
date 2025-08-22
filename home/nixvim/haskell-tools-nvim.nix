@@ -18,6 +18,15 @@
         { __unkeyed-1 = "<leader>hr"; group = "REPL"; }
       ];
     };
+    globals = {
+      haskell_tools = {
+        tools ={
+          tags = {
+            enable = false;
+          };
+        };
+      };
+    };
     files = {
       "after/ftplugin/haskell.lua" = {
         keymaps = [
