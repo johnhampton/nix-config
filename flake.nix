@@ -59,7 +59,10 @@
       inherit (darwin.lib) darwinSystem;
 
       nixpkgsConfig = rec {
-        config = { allowUnfree = true; };
+        config = { 
+          allowUnfree = true;
+          allowBrokenPredicate = pkg: builtins.elem (inputs.nixpkgs-unstable.lib.getName pkg) [ "postgresql-test-hook" ];
+        };
         overlays = [
           # We need to use the gcloud package from master until the following
           # PR gets merged into unstable
