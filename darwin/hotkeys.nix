@@ -66,6 +66,19 @@
         '')
         ["80" "82"];
 
+      # Disable screenshot shortcuts
+      disableScreenshotCommands = builtins.map
+        (key: ''
+          sudo -u john defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add ${key} '<dict><key>enabled</key><false/></dict>'
+        '')
+        [
+          "28"   # Cmd-Shift-3: Save picture of screen as a file
+          "29"   # Ctrl-Cmd-Shift-3: Copy picture of screen to the clipboard
+          "30"   # Cmd-Shift-4: Save picture of selected area as a file
+          "31"   # Ctrl-Cmd-Shift-4: Copy picture of selected area to the clipboard
+          "184"  # Cmd-Shift-5: Screenshot and recording options
+        ];
+
     in
     ''
        echo >&2 "configuring hotkeys..."
@@ -80,6 +93,9 @@
       
       echo >&2 "disabling alternate space navigation shortcuts..."
       ${builtins.concatStringsSep "\n" disableAlternateSpaceCommands}
+      
+      echo >&2 "disabling screenshot shortcuts..."
+      ${builtins.concatStringsSep "\n" disableScreenshotCommands}
       
       # echo >&2 "activating settings..."
       # sudo -u john /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
