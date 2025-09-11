@@ -33,6 +33,10 @@
           path = "~/.config/nix-config";
           startup_command = "tmux split-window -h -d && nvim";
         }
+        {
+          name = "Databases 💾";
+          path = "~/Code/TAN/dbs";
+        }
       ];
     };
   };
