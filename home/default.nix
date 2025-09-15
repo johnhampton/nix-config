@@ -28,6 +28,7 @@
     argocd
     argocd-autopilot
     ast-grep
+    bun
     chartmuseum
     colima
     darwin.trash

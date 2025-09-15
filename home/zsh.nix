@@ -107,7 +107,6 @@
 
   # Smarter cd command
   programs.zoxide.enable = true;
-  programs.zoxide.options = [ "--cmd" "cd" ];
 
   # Starship prompt
   # https://starship.rs/config/
