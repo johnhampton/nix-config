@@ -11,6 +11,12 @@
 
       servers = {
         eslint = { enable = true; };
+
+        gopls = {
+          enable = true;
+          package = null;
+        };
+
         nil_ls = { enable = false; };
         nixd = {
           enable = true;
