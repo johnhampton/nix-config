@@ -414,22 +414,6 @@
         "type": "github"
       }
     },
-    "nvim-aider": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1748584414,
-        "narHash": "sha256-oVqH/IKzMIsPfGkivz8AWZKg1snJtw6/54owMqqcg+Y=",
-        "owner": "GeorgesAlkhouri",
-        "repo": "nvim-aider",
-        "rev": "e15ea121074e774e436eb2223929fde7a01d4f52",
-        "type": "github"
-      },
-      "original": {
-        "owner": "GeorgesAlkhouri",
-        "repo": "nvim-aider",
-        "type": "github"
-      }
-    },
     "pragmata-pro": {
       "inputs": {
         "flake-utils": "flake-utils_4",
@@ -464,7 +448,6 @@
         "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixvim": "nixvim",
-        "nvim-aider": "nvim-aider",
         "pragmata-pro": "pragmata-pro",
         "telescope-hoogle-nvim": "telescope-hoogle-nvim",
         "tmux-continuum": "tmux-continuum",

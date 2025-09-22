@@ -24,7 +24,6 @@ The configuration has multiple keybinding groups organized under leader-based pr
 | Prefix     | Description                  |
 |------------|------------------------------|
 | `<leader>a` | AI-related commands          |
-| `<leader>A` | Aider-related commands       |
 | `<leader>b` | Buffer operations            |
 | `<leader>c` | Code operations              |
 | `<leader>F` | Find operations (Telescope)  |
@@ -183,21 +182,6 @@ The mini.surround plugin provides operations for working with surroundings (quot
 | `<leader>ao`    | AI Optimize                |
 | `<leader>ad`    | AI Documentation           |
 | `<leader>ac`    | AI Generate Commit         |
-
-### Aider Integration
-
-| Keybinding      | Description                   |
-|-----------------|-------------------------------|
-| `<leader>A/`    | Open Aider                    |
-| `<leader>As`    | Send to Aider                 |
-| `<leader>Ac`    | Send Command To Aider         |
-| `<leader>Ab`    | Send Buffer To Aider          |
-| `<leader>A+`    | Add File to Aider             |
-| `<leader>A-`    | Drop File from Aider          |
-| `<leader>Ar`    | Add File as Read-Only         |
-| In NvimTree:    |                               |
-| `<leader>A+`    | Add File from Tree to Aider   |
-| `<leader>A-`    | Drop File from Tree from Aider|
 
 ## Markdown Preview
 

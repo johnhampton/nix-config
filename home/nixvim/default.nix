@@ -12,7 +12,6 @@
     ./markdown-preview.nix
     ./mini.nix
     ./neotest.nix
-    ./nvim-aider.nix
     ./smart-splits.nix
     ./telescope.nix
     ./terraform.nix
@@ -88,7 +87,6 @@
 
           spec = [
             { __unkeyed-1 = "<leader>a"; group = "+AI"; mode = [ "n" "v" ]; }
-            { __unkeyed-1 = "<leader>A"; group = "+Aider"; mode = [ "n" "v" ]; }
             { __unkeyed-1 = "<leader>c"; group = "+Code"; mode = [ "n" "v" ]; }
             { __unkeyed-1 = "<leader>F"; group = "+Find"; mode = [ "n" "v" ]; }
             { __unkeyed-1 = "<leader>l"; group = "+LSP"; mode = [ "n" "v" ]; }
