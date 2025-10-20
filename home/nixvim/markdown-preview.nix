@@ -17,7 +17,7 @@
         auto_start = 0;  # Don't auto-start preview
         auto_close = 1;  # Auto-close when switching buffers
         refresh_slow = 0;  # Real-time refresh
-        theme = "dark";  # Match your dark theme
+        theme = "light";  # Light theme
         echo_preview_url = 1;  # Show URL in command line
         
         preview_options = {
