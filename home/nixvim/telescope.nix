@@ -39,7 +39,7 @@
           };
         };
         "<leader>Fa" = {
-          action = "Find_files no_ignore=true";
+          action = "find_files no_ignore=true hidden=true";
           options = {
             desc = "Find files (include ignored)";
           };
@@ -59,10 +59,24 @@
           };
         };
 
-        "<leader>Fh" = {
+        "<leader>F?" = {
           action = "help_tags";
           options = {
             desc = "Help Tags";
+          };
+        };
+
+        "<leader>Fh" = {
+          action = "find_files hidden=true";
+          options = {
+            desc = "Find hidden files";
+          };
+        };
+
+        "<leader>Fi" = {
+          action = "find_files no_ignore=true";
+          options = {
+            desc = "Find ignored files";
           };
         };
 
