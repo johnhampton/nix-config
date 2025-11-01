@@ -34,6 +34,7 @@
         args = { no_quarantine = true; };
       }
       "claude"
+      "claude-code"
       "discord"
       "dropbox"
       "element"
