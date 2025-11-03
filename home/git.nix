@@ -1,16 +1,28 @@
 { config, ... }: {
-  programs.git.enable = true;
   programs.git = {
-    userName = "John Hampton";
-    userEmail = "john.hampton@stanfordalumni.org";
-    aliases = {
-      fix-commit = "commit --edit --file=.git/COMMIT_EDITMSG";
-      use-tan-email = "config user.email \"john@topagentnetwork.com\"";
-      diff-side-by-side = "-c delta.features=side-by-side diff";
-    };
-    delta.enable = true;
-    delta.options = {
-      features = "chameleon";
+    enable = true;
+    settings = {
+      user = {
+        name = "John Hampton";
+        email = "john.hampton@stanfordalumni.org";
+        signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG4wlxsjNK5Qwk4jSR6p2zQH3/OX9xppmu5FpnmGThzm john.hampton@stanfordalumni.org";
+      };
+      alias = {
+        fix-commit = "commit --edit --file=.git/COMMIT_EDITMSG";
+        use-tan-email = "config user.email \"john@topagentnetwork.com\"";
+        diff-side-by-side = "-c delta.features=side-by-side diff";
+      };
+      credential = { helper = "osxkeychain"; };
+      pull = { ff = "only"; };
+      init = { defaultBranch = "master"; };
+      mergetool = { prompt = false; };
+      merge = { tool = "nvimdiff"; };
+      gpg = {
+        format = "ssh";
+        ssh.allowedSignersFile = "${config.xdg.configHome}/git/allowed_signers";
+      };
+      commit.gpgsign = true;
+      tag.gpgsign = true;
     };
     ignores = [
       # General
@@ -43,18 +55,13 @@
       ".direnv"
       ".devenv"
     ];
-    extraConfig = {
-      credential = { helper = "osxkeychain"; };
-      pull = { ff = "only"; };
-      init = { defaultBranch = "master"; };
-      mergetool = { prompt = false; };
-      merge = { tool = "nvimdiff"; };
+  };
 
-      user.signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG4wlxsjNK5Qwk4jSR6p2zQH3/OX9xppmu5FpnmGThzm john.hampton@stanfordalumni.org";
-      gpg.format = "ssh";
-      gpg.ssh.allowedSignersFile = "${config.xdg.configHome}/git/allowed_signers";
-      commit.gpgsign = true;
-      tag.gpgsign = true;
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+    options = {
+      features = "chameleon";
     };
   };
   xdg.configFile."git/allowed_signers".text = ''

@@ -68,7 +68,7 @@
           # https://github.com/NixOS/nixpkgs/pull/219376
           (final: prev: rec {
             pkgs-master = import inputs.nixpkgs-master {
-              inherit (prev.stdenv) system;
+              system = prev.stdenv.hostPlatform.system;
               inherit config;
             };
 

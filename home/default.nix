@@ -39,7 +39,7 @@
     fd
     (google-cloud-sdk.withExtraComponents (with google-cloud-sdk.components; [ cloud_sql_proxy gke-gcloud-auth-plugin ]))
     graphite-cli
-    inputs.hchart.packages.${pkgs.system}.default
+    inputs.hchart.packages.${pkgs.stdenv.hostPlatform.system}.default
     (wrapHelm kubernetes-helm { plugins = [ kubernetes-helmPlugins.helm-mapkubeapis ]; })
     hurl
     just
