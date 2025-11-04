@@ -34,7 +34,7 @@
         args = { no_quarantine = true; };
       }
       "claude"
-      "claude-code"
+      # "claude-code"
       "discord"
       "dropbox"
       "element"
@@ -68,7 +68,7 @@
       "Be Focused Pro - Focus Timer" = 961632517;
       "Bear: Markdown Notes" = 1091189122;
       Drafts = 1435957248;
-      "Evernote" = 406056744;
+      # "Evernote" = 406056744;
       LimeChat = 414030210;
       Magnet = 441258766;
       "MindNode - Classic" = 1289197285;

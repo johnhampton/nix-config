@@ -8,6 +8,8 @@
         "79" = { keyCode = 123; asciiCode = 65535; }; # ⌘⌥← to move left a space
         "81" = { keyCode = 124; asciiCode = 65535; }; # ⌘⌥→ to move right a space
         "27" = { keyCode = 8; asciiCode = 99; }; # Hyper+C to move focus to next window
+        "32" = { keyCode = 126; asciiCode = 65535; }; # ⌘⌥↑ Mission Control
+        "33" = { keyCode = 125; asciiCode = 65535; }; # ⌘⌥↓ Application Windows
       };
 
       enableHotKeysCommands = builtins.map
