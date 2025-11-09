@@ -17,6 +17,8 @@
       init = { defaultBranch = "master"; };
       mergetool = { prompt = false; };
       merge = { tool = "nvimdiff"; };
+      difftool = { prompt = false; };
+      diff = { tool = "nvimdiff"; };
       gpg = {
         format = "ssh";
         ssh.allowedSignersFile = "${config.xdg.configHome}/git/allowed_signers";
