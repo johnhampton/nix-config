@@ -34,6 +34,19 @@ clean:
     @echo -e "{{ GREEN }}Cleaning up...{{ CLEAR }}"
     rm -rf ./result
 
+# Switch to update-YYYYMMDD branch, creating if needed
+update-branch:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    BRANCH="update-$(date +%Y%m%d)"
+    if git show-ref --verify --quiet "refs/heads/$BRANCH"; then
+        echo -e "{{ GREEN }}Switching to existing branch: $BRANCH{{ CLEAR }}"
+        git checkout "$BRANCH"
+    else
+        echo -e "{{ GREEN }}Creating and switching to new branch: $BRANCH{{ CLEAR }}"
+        git checkout -b "$BRANCH"
+    fi
+
 # Temporarily edit a Nix-managed read-only config file
 edit-config FILE:
     @{{ justfile_directory() }}/scripts/config-edit.sh edit "{{ FILE }}"
