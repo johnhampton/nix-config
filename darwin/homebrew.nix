@@ -45,6 +45,7 @@
       "figma"
       "insomnia"
       "karabiner-elements"
+      "libreoffice"
       "logi-options+"
       "logitune"
       "logseq"
