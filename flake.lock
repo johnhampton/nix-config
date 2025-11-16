@@ -7,7 +7,7 @@
         ],
         "home-manager": "home-manager",
         "nixpkgs": [
-          "nixpkgs-unstable"
+          "nixpkgs"
         ],
         "systems": "systems"
       },
@@ -28,15 +28,15 @@
     "darwin": {
       "inputs": {
         "nixpkgs": [
-          "nixpkgs-unstable"
+          "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1762627886,
-        "narHash": "sha256-/QLk1bzmbcqJt9sU43+y/3tHtXhAy0l8Ck0MoO2+evQ=",
+        "lastModified": 1763136804,
+        "narHash": "sha256-6p2ljK42s0S8zS0UU59EsEqupz0GVCaBYRylpUadeBM=",
         "owner": "LnL7",
         "repo": "nix-darwin",
-        "rev": "5125a3cd414dc98bbe2c528227aa6b62ee61f733",
+        "rev": "973db96394513fd90270ea5a1211a82a4a0ba47f",
         "type": "github"
       },
       "original": {
@@ -154,11 +154,11 @@
     "focus-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1763137563,
-        "narHash": "sha256-/0iiET6POKMQ/MiimrHtPWhG2Itr4EKpBCi+SIIR2ig=",
+        "lastModified": 1763140716,
+        "narHash": "sha256-u5/kP3b3txEyyPPu3MTKpINDXhQPuC3/HK2aqste1sw=",
         "owner": "nvim-focus",
         "repo": "focus.nvim",
-        "rev": "7829587e8c0dd14cb4255fee7fa95c3faf4deda3",
+        "rev": "26a755c363284547196ceb258a83f92608d7979b",
         "type": "github"
       },
       "original": {
@@ -210,15 +210,15 @@
     "home-manager_2": {
       "inputs": {
         "nixpkgs": [
-          "nixpkgs-unstable"
+          "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1762964643,
-        "narHash": "sha256-RYHN8O/Aja59XDji6WSJZPkJpYVUfpSkyH+PEupBJqM=",
+        "lastModified": 1763228015,
+        "narHash": "sha256-1rYieMVUyZ3kK/cBIr8mOusxrOEJ1/+2MsOg0oJ7b3A=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "827f2a23373a774a8805f84ca5344654c31f354b",
+        "rev": "96156a9e86281c4bfc451236bc2ddfe4317e6f39",
         "type": "github"
       },
       "original": {
@@ -258,7 +258,7 @@
     "nix-index-database": {
       "inputs": {
         "nixpkgs": [
-          "nixpkgs-unstable"
+          "nixpkgs"
         ]
       },
       "locked": {
@@ -272,22 +272,6 @@
       "original": {
         "owner": "Mic92",
         "repo": "nix-index-database",
-        "type": "github"
-      }
-    },
-    "nixos-stable": {
-      "locked": {
-        "lastModified": 1685573264,
-        "narHash": "sha256-Zffu01pONhs/pqH07cjlF10NnMDLok8ix5Uk4rhOnZQ=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "380be19fbd2d9079f677978361792cb25e8a3635",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-22.05",
-        "repo": "nixpkgs",
         "type": "github"
       }
     },
@@ -309,43 +293,27 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1763137718,
-        "narHash": "sha256-0sC2xcZfTr29Mk+hfi/oaXY+pVi+T3wECxUXHhPxrPI=",
-        "owner": "nixos",
+        "lastModified": 1763261041,
+        "narHash": "sha256-MdIcR92+je3T3goFrL+pCuHiNdVuJsBjuYLu8MpbQzo=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "15321b1c95c329035dc890e4a9b3ed5a8a0e5d8e",
+        "rev": "5ceef0898289170b9b8609602a530affdca09718",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
+        "owner": "NixOS",
         "ref": "master",
         "repo": "nixpkgs",
         "type": "github"
       }
     },
-    "nixpkgs-stable": {
+    "nixpkgs_2": {
       "locked": {
-        "lastModified": 1685573264,
-        "narHash": "sha256-Zffu01pONhs/pqH07cjlF10NnMDLok8ix5Uk4rhOnZQ=",
+        "lastModified": 1763191728,
+        "narHash": "sha256-esRhOS0APE6k40Hs/jjReXg+rx+J5LkWw7cuWFKlwYA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "380be19fbd2d9079f677978361792cb25e8a3635",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-22.05-darwin",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs-unstable": {
-      "locked": {
-        "lastModified": 1762943920,
-        "narHash": "sha256-ITeH8GBpQTw9457ICZBddQEBjlXMmilML067q0e6vqY=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "91c9a64ce2a84e648d0cf9671274bb9c2fb9ba60",
+        "rev": "1d4c88323ac36805d09657d13a5273aea1b34f0c",
         "type": "github"
       },
       "original": {
@@ -355,7 +323,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1681272286,
         "narHash": "sha256-9X5p+gwYrowgbsRgkf14HFI0fkr6UikuwRIQAMlF1yI=",
@@ -372,17 +340,17 @@
       "inputs": {
         "flake-parts": "flake-parts",
         "nixpkgs": [
-          "nixpkgs-unstable"
+          "nixpkgs"
         ],
         "nuschtosSearch": "nuschtosSearch",
         "systems": "systems_4"
       },
       "locked": {
-        "lastModified": 1763109970,
-        "narHash": "sha256-3azi7sNWVxHiUGMPcEwsd3ErYoMEdLRX/JmgoYEe+os=",
+        "lastModified": 1763212728,
+        "narHash": "sha256-XVK0A+Le5vDSwAiwpNTRLM50HbwjpPVWnYelCUhAkjI=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "6c2ac251d7cfc2416f23257df13c86d84d3eee34",
+        "rev": "074c68468cc4751efa9ac3f65b2e63e4ad409b7a",
         "type": "github"
       },
       "original": {
@@ -417,7 +385,7 @@
     "pragmata-pro": {
       "inputs": {
         "flake-utils": "flake-utils_4",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1725379800,
@@ -443,10 +411,8 @@
         "hchart": "hchart",
         "home-manager": "home-manager_2",
         "nix-index-database": "nix-index-database",
-        "nixos-stable": "nixos-stable",
+        "nixpkgs": "nixpkgs_2",
         "nixpkgs-master": "nixpkgs-master",
-        "nixpkgs-stable": "nixpkgs-stable",
-        "nixpkgs-unstable": "nixpkgs-unstable",
         "nixvim": "nixvim",
         "pragmata-pro": "pragmata-pro",
         "telescope-hoogle-nvim": "telescope-hoogle-nvim",
