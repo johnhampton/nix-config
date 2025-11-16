@@ -6,31 +6,29 @@
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Package sets
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs-master.url = "github:nixos/nixpkgs/master";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixpkgs-22.05-darwin";
-    nixos-stable.url = "github:NixOS/nixpkgs/nixos-22.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
 
     nixvim = {
       url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Environment/system management
     darwin.url = "github:LnL7/nix-darwin";
-    darwin.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # agenix
     agenix.url = "github:ryantm/agenix";
-    agenix.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
     agenix.inputs.darwin.follows = "darwin";
 
     # nix-index
     nix-index-database.url = "github:Mic92/nix-index-database";
-    nix-index-database.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
     flake-compat = { url = "github:edolstra/flake-compat"; flake = false; };
     flake-utils.url = "github:numtide/flake-utils";
@@ -60,7 +58,7 @@
       nixpkgsConfig = rec {
         config = { 
           allowUnfree = true;
-          allowBrokenPredicate = pkg: builtins.elem (inputs.nixpkgs-unstable.lib.getName pkg) [ "postgresql-test-hook" ];
+          allowBrokenPredicate = pkg: builtins.elem (inputs.nixpkgs.lib.getName pkg) [ "postgresql-test-hook" ];
         };
         overlays = [
           # We need to use the gcloud package from master until the following
@@ -73,6 +71,7 @@
             };
 
             inherit (pkgs-master) google-cloud-sdk;
+
           })
           inputs.pragmata-pro.overlays.default
           (import ./overlays/chartmuseum.nix { inherit inputs; })
@@ -81,6 +80,7 @@
           (import ./overlays/tmuxPlugins.nix { inherit inputs; })
           (import ./overlays/vimPlugins.nix { inherit inputs; })
           (import ./overlays/aider.nix { inherit inputs; })
+          (import ./overlays/python-darwin-fix.nix { inherit inputs; })  # Temporary fix for fish
         ];
       };
 
@@ -91,18 +91,18 @@
           ./home
           { home.stateVersion = homeManagerStateVersion; }
           (args: {
-            xdg.configFile."nix/inputs/nixpkgs".source = inputs.nixpkgs-unstable.outPath;
+            xdg.configFile."nix/inputs/nixpkgs".source = inputs.nixpkgs.outPath;
             home.sessionVariables.NIX_PATH = "nixpkgs=${args.config.xdg.configHome}/nix/inputs/nixpkgs$\{NIX_PATH:+:$NIX_PATH}";
-            nix.registry.nixpkgs.flake = inputs.nixpkgs-unstable;
+            nix.registry.nixpkgs.flake = inputs.nixpkgs;
           })
         ];
       };
 
       nixDarwinCommonModules = [
         {
-          environment.etc."nix/inputs/nixpkgs".source = inputs.nixpkgs-unstable.outPath;
+          environment.etc."nix/inputs/nixpkgs".source = inputs.nixpkgs.outPath;
           nix.nixPath = [ "nixpkgs=/etc/nix/inputs/nixpkgs" ];
-          nix.registry.nixpkgs.flake = inputs.nixpkgs-unstable;
+          nix.registry.nixpkgs.flake = inputs.nixpkgs;
         }
         agenix.darwinModules.default
         ./darwin
@@ -148,7 +148,7 @@
     } // flake-utils.lib.eachDefaultSystem (system:
     let
       pkgs =
-        import inputs.nixpkgs-unstable { inherit (nixpkgsConfig) config overlays; inherit system; };
+        import inputs.nixpkgs { inherit (nixpkgsConfig) config overlays; inherit system; };
     in
     {
       legacyPackages = pkgs;

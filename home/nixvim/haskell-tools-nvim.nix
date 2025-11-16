@@ -7,7 +7,7 @@
     ];
     extraPackages = [
       pkgs.haskellPackages.fast-tags
-      # pkgs.haskellPackages.haskell-debug-adapter
+      pkgs.haskellPackages.haskell-debug-adapter
     ];
     plugins = {
       telescope.enabledExtensions = [
