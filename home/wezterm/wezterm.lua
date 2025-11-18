@@ -180,6 +180,14 @@ config.keys = {
       act.SendKey { key = '>' },
     },
   },
+  -- Spawn new tab and run 's' (sesh session manager)
+  {
+    key = 't',
+    mods = 'CMD|SHIFT',
+    action = act.SpawnCommandInNewTab {
+      args = { 'zsh', '-i', '-c', 's' },
+    },
+  },
 }
 
 -- Bell notification handler
