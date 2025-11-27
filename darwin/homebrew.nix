@@ -35,7 +35,7 @@
       }
       "citrix-workspace"
       "claude"
-      # "claude-code"
+      "claude-code"
       "discord"
       "dropbox"
       "element"
