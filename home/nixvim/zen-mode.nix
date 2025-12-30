@@ -7,7 +7,7 @@
       enable = true;
       settings = {
         window = {
-          width = 0.8;
+          width = 0.85;
         };
         plugins = {
           twilight = {
