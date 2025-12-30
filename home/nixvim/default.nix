@@ -15,6 +15,7 @@
     ./smart-splits.nix
     ./telescope.nix
     ./terraform.nix
+    ./zen-mode.nix
   ];
 
   programs.nixvim = {

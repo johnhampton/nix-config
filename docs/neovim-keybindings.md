@@ -190,6 +190,12 @@ The mini.surround plugin provides operations for working with surroundings (quot
 | `<leader>mp`    | Toggle Markdown Preview    |
 | `<leader>ms`    | Stop Markdown Preview      |
 
+## Zen Mode
+
+| Keybinding      | Description                |
+|-----------------|----------------------------|
+| `<leader>z`     | Toggle Zen Mode            |
+
 ## Haskell-specific
 
 | Keybinding      | Description                             |
