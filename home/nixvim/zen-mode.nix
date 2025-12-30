@@ -10,8 +10,15 @@
           width = 0.85;
         };
         plugins = {
+          tmux = {
+            enabled = true;
+          };
           twilight = {
             enabled = true;
+          };
+          wezterm = {
+            enabled = true;
+            font = "+2";
           };
         };
       };
