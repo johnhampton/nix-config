@@ -18,7 +18,7 @@
           };
           wezterm = {
             enabled = true;
-            font = "+1";
+            font = "+0";
           };
         };
       };
