@@ -60,6 +60,7 @@
       "tableplus"
       "tuple"
       "wezterm@nightly"
+      "wispr-flow"
       "zoom"
     ];
 
