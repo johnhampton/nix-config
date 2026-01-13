@@ -27,5 +27,46 @@
     \pset null ∅
     \unset QUIET
   '';
+
+  home.file.".pg_service.conf".text = ''
+    # PostgreSQL Connection Service File
+    # Usage: psql service=<service_name>
+    # Docs: https://www.postgresql.org/docs/current/libpq-pgservice.html
+
+    [prod-account-service]
+    host=/tmp/tan-ng-prod:us-west1:prod-master-database
+    port=5432
+    dbname=account-service
+    user=account-service
+    options=-c default_transaction_read_only=on
+
+    [prod-account-service-write]
+    host=/tmp/tan-ng-prod:us-west1:prod-master-database
+    port=5432
+    dbname=account-service
+    user=account-service
+
+    # Example: Local development database
+    # [local_dev]
+    # host=localhost
+    # port=5432
+    # dbname=myapp_development
+    # user=postgres
+
+    # Example: Remote production (read-only)
+    # [prod_readonly]
+    # host=db.example.com
+    # port=5432
+    # dbname=myapp_production
+    # user=readonly_user
+    # sslmode=require
+
+    # Example: Docker container
+    # [docker_pg]
+    # host=localhost
+    # port=5433
+    # dbname=postgres
+    # user=postgres
+  '';
 }
 
