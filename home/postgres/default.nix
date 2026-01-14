@@ -46,6 +46,13 @@
     dbname=account-service
     user=account-service
 
+    [prod-location-service-v2]
+    host=/tmp/tan-ng-prod:us-west1:prod-master2-database
+    port=5432
+    dbname=location-service-v2
+    user=location-service-v2
+    options=-c default_transaction_read_only=on
+
     # Example: Local development database
     # [local_dev]
     # host=localhost
