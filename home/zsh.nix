@@ -77,6 +77,12 @@
         zle -N edit-command-line
         bindkey '^X^E' edit-command-line
       ''
+      ''
+        # Fix SSH agent socket in tmux sessions
+        fixssh() {
+          eval $(tmux show-env -s SSH_AUTH_SOCK)
+        }
+      ''
     ];
 
     loginExtra = ''
