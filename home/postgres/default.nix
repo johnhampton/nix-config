@@ -40,11 +40,12 @@
     user=account-service
     options=-c default_transaction_read_only=on
 
-    [prod-account-service-write]
+    [prod-chapter-service]
     host=/tmp/tan-ng-prod:us-west1:prod-master-database
     port=5432
-    dbname=account-service
-    user=account-service
+    dbname=chapter-service
+    user=chapter-service
+    options=-c default_transaction_read_only=on
 
     [prod-location-service-v2]
     host=/tmp/tan-ng-prod:us-west1:prod-master2-database
@@ -52,6 +53,20 @@
     dbname=location-service-v2
     user=location-service-v2
     options=-c default_transaction_read_only=on
+
+    [prod-user-service]
+    host=/tmp/tan-ng-prod:us-west1:prod-master-database
+    port=5432
+    dbname=user-service
+    user=user-service
+    options=-c default_transaction_read_only=on
+
+    [prod-account-service-write]
+    host=/tmp/tan-ng-prod:us-west1:prod-master-database
+    port=5432
+    dbname=account-service
+    user=account-service
+
 
     # Example: Local development database
     # [local_dev]
