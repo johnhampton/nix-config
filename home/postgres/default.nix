@@ -40,6 +40,13 @@
     user=account-service
     options=-c default_transaction_read_only=on
 
+    [prod-auth-service]
+    host=/tmp/tan-ng-prod:us-west1:prod-master-database
+    port=5432
+    dbname=auth-service
+    user=auth-service
+    options=-c default_transaction_read_only=on
+
     [prod-chapter-service]
     host=/tmp/tan-ng-prod:us-west1:prod-master-database
     port=5432
@@ -52,6 +59,13 @@
     port=5432
     dbname=client-access-service
     user=client-access-service
+    options=-c default_transaction_read_only=on
+
+    [prod-client-email-notif-gen]
+    host=/tmp/tan-ng-prod:us-west1:prod-master-database
+    port=5432
+    dbname=client-email-notif-gen
+    user=client-email-notif-gen
     options=-c default_transaction_read_only=on
 
     [prod-location-service-v2]
