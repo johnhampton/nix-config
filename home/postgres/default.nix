@@ -47,6 +47,13 @@
     user=chapter-service
     options=-c default_transaction_read_only=on
 
+    [prod-client-access-service]
+    host=/tmp/tan-ng-prod:us-west1:prod-master-database
+    port=5432
+    dbname=client-access-service
+    user=client-access-service
+    options=-c default_transaction_read_only=on
+
     [prod-location-service-v2]
     host=/tmp/tan-ng-prod:us-west1:prod-master2-database
     port=5432
