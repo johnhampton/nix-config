@@ -318,11 +318,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1725379800,
-        "narHash": "sha256-P+e4Q5jRgyylkQz5q02CiKaMmWNguCd7fx0jVVagVJ0=",
+        "lastModified": 1770417814,
+        "narHash": "sha256-KxndnaALC/H50y7RojtX4wdvZ7Msu2OXUqKf8Q6gV8M=",
         "owner": "johnhampton",
         "repo": "pragmata-pro",
-        "rev": "b6fe09ba84c7eb33981832182a263d8df281a556",
+        "rev": "3df1d3053ec4c054403ea7b53016d7b5a92790d9",
         "type": "github"
       },
       "original": {
