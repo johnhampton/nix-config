@@ -11,6 +11,10 @@ config.use_cap_height_to_scale_fallback_fonts = true;
 config.font = wezterm.font 'PragmataPro Mono Liga'
 config.font_size = 14.0
 
+config.window_frame = { 
+  font_size = 14.0,
+}
+
 config.color_scheme = 'OneNord'
 -- config.use_fancy_tab_bar = false
 -- config.window_decorations = 'RESIZE'
