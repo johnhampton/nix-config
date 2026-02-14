@@ -8,6 +8,7 @@
     pkgs.ghc
     pkgs.ghcid
     pkgs.haskell-language-server
+    pkgs.stack
   ];
 }
 
