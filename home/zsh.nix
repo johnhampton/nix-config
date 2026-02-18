@@ -83,6 +83,14 @@
           eval $(tmux show-env -s SSH_AUTH_SOCK)
         }
       ''
+      ''
+        # Load secrets from ~/.env (managed by agenix, dotenv format)
+        if [ -f "$HOME/.env" ]; then
+          set -a
+          source "$HOME/.env"
+          set +a
+        fi
+      ''
     ];
 
     loginExtra = ''
