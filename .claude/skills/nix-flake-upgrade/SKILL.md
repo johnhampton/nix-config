@@ -15,6 +15,11 @@ Orchestrate an end-to-end nix flake input upgrade: stash any working changes, cr
 
 ## Workflow
 
+### Step 0: Prepare Environment
+
+1. Run `mkdir -p /tmp/claude` to ensure the sandbox temp directory exists (`just` writes temp files here and fails if it's missing).
+2. All `just` and `nix` commands in this workflow **must** use `dangerouslyDisableSandbox: true` — nix requires write access to `~/.cache/nix/` for its SQLite fetcher cache and store operations.
+
 ### Step 1: Record Starting Branch and Stash Working Changes
 
 1. Record the current branch name (`git branch --show-current`). This is the **starting branch** — it may or may not be `master`.
