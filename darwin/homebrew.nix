@@ -58,6 +58,7 @@
       "skype"
       "slack"
       "tableplus"
+      "tailscale-app"
       "tuple"
       "wezterm@nightly"
       "wispr-flow"
@@ -81,7 +82,6 @@
       "Raycast Companion" = 6738274497;
       "Save to Raindrop.io" = 1549370672;
       "Session - Pomodoro Focus Timer" = 1521432881;
-      Tailscale = 1475387142;
       "TickTick:To-Do List, Calendar" = 966085870;
       "Todoist: To-Do List & Tasks" = 585829637;
       Xcode = 497799835;
