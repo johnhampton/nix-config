@@ -77,6 +77,8 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     USE_GKE_GCLOUD_AUTH_PLUGIN = "True";
+    LANG = "en_US.UTF-8";
+    LC_CTYPE = "en_US.UTF-8";
   };
 
   # See ./secrets/npmrc.age for configuration of prefix
