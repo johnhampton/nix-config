@@ -40,6 +40,13 @@
     user=account-service
     options=-c default_transaction_read_only=on
 
+    [prod-account-service-v2]
+    host=/tmp/tan-ng-prod:us-west1:prod-master2-database
+    port=5432
+    dbname=account-service-v2
+    user=account-service-v2
+    options=-c default_transaction_read_only=on
+
     [prod-auth-service]
     host=/tmp/tan-ng-prod:us-west1:prod-master-database
     port=5432
