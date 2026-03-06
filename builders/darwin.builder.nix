@@ -11,7 +11,7 @@
 
       config = {
         virtualisation.darwin-builder.memorySize = 8192;
-        virtualisation.darwin-builder.diskSize = 10240;
+        virtualisation.darwin-builder.diskSize = 20480;
       };
     };
   };
