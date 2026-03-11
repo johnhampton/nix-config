@@ -8,6 +8,7 @@
     ./aider.nix
     ./alacritty.nix
     ./amethyst.nix
+    ./btop.nix
     ./cachix
     ./git.nix
     ./haskell.nix
