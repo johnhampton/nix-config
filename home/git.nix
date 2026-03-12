@@ -1,4 +1,8 @@
-{ config, ... }: {
+{ config, pkgs, ... }: {
+  home.packages = [ pkgs.git-machete ];
+
+  programs.zsh.shellAliases.g = "git";
+
   programs.git = {
     enable = true;
     settings = {
@@ -11,6 +15,7 @@
         fix-commit = "commit --edit --file=.git/COMMIT_EDITMSG";
         use-tan-email = "config user.email \"john@topagentnetwork.com\"";
         diff-side-by-side = "-c delta.features=side-by-side diff";
+        m = "machete";
       };
       credential = { helper = "osxkeychain"; };
       pull = { ff = "only"; };
