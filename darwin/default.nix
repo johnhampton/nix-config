@@ -74,6 +74,9 @@
     description = "John Hampton";
     home = "/Users/john";
     shell = pkgs.zsh;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG4wlxsjNK5Qwk4jSR6p2zQH3/OX9xppmu5FpnmGThzm john.hampton@stanfordalumni.org"
+    ];
   };
   age.secrets = {
     access_token = {
