@@ -188,6 +188,18 @@ config.keys = {
       args = { 'zsh', '-i', '-c', 's' },
     },
   },
+  -- Cycle to next WezTerm window
+  {
+    key = '`',
+    mods = 'CMD',
+    action = act.ActivateWindowRelative(1),
+  },
+  -- Cycle to previous WezTerm window
+  {
+    key = '`',
+    mods = 'CMD|SHIFT',
+    action = act.ActivateWindowRelative(-1),
+  },
 }
 
 -- Zen mode integration (increases font size when entering zen mode in neovim)
