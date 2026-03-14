@@ -21,6 +21,7 @@
     ./tmux
     ./vscode.nix
     ./wezterm
+    ./worktrunk.nix
     ./yazi.nix
     ./zsh.nix
   ];
