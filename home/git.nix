@@ -30,6 +30,10 @@
       };
       commit.gpgsign = true;
       tag.gpgsign = true;
+
+      machete = {
+        traverse.whenBranchNotCheckedOutInAnyWorktree = "stay-in-the-current-worktree";
+      };
     };
     ignores = [
       # General
