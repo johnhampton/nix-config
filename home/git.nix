@@ -32,7 +32,6 @@
       tag.gpgsign = true;
 
       machete = {
-        traverse.whenBranchNotCheckedOutInAnyWorktree = "stay-in-the-current-worktree";
       };
     };
     ignores = [
