@@ -81,6 +81,7 @@
           (import ./overlays/vimPlugins.nix { inherit inputs; })
           (import ./overlays/aider.nix { inherit inputs; })
           (import ./overlays/python-darwin-fix.nix { inherit inputs; })  # Temporary fix for fish
+          (import ./overlays/folly-darwin-fix.nix { inherit inputs; })
         ];
       };
 
