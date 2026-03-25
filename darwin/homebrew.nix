@@ -1,4 +1,7 @@
-{ ... }:
+{ pkgs, lib, ... }:
+let
+  isAarch64 = pkgs.stdenv.hostPlatform.isAarch64;
+in
 {
   homebrew.enable = true;
   homebrew = {
@@ -29,11 +32,6 @@
       "backblaze"
       "brave-browser"
       "capacities"
-      "chatgpt"
-      {
-        name = "chromium";
-        args = { no_quarantine = true; };
-      }
       "citrix-workspace"
       "claude"
       "claude-code"
@@ -55,7 +53,6 @@
       "parallels"
       "raindropio"
       "raycast"
-      "skype"
       "slack"
       "tableplus"
       "tailscale-app"
@@ -63,6 +60,9 @@
       "wezterm@nightly"
       "wispr-flow"
       "zoom"
+    ]
+    ++ lib.optionals isAarch64 [
+      "chatgpt"
     ];
 
     masApps = {
