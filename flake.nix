@@ -122,6 +122,7 @@
             # `home-manager` config
             users.users.${primaryUser}.home = "/Users/${primaryUser}";
             home-manager.useGlobalPkgs = true;
+            home-manager.backupFileExtension = "hm-backup";
             home-manager.users.${primaryUser} = homeManagerCommonConfig;
             home-manager.extraSpecialArgs = {
               inherit (config) age;

@@ -69,7 +69,9 @@
   programs.fish.enable = true;
   programs.zsh.enable = true;
 
+  users.knownUsers = [ "john" ];
   users.users.john = {
+    uid = 501;
     name = "john";
     description = "John Hampton";
     home = "/Users/john";
