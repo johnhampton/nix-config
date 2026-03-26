@@ -20,7 +20,14 @@
     };
     globals = {
       haskell_tools = {
-        tools ={
+        hls = {
+          settings = {
+            haskell = {
+              sessionLoading = "multipleComponents";
+            };
+          };
+        };
+        tools = {
           tags = {
             enable = false;
           };
