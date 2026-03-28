@@ -12,7 +12,6 @@
     ./cachix
     ./git.nix
     ./haskell.nix
-    ./karabiner
     ./navi.nix
     ./nixvim
     ./postgres

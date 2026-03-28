@@ -42,7 +42,6 @@ in
       "google-drive"
       "figma"
       "insomnia"
-      "karabiner-elements"
       "libreoffice"
       "logi-options+"
       "logitune"
