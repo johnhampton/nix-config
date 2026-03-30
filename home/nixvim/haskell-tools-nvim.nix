@@ -22,9 +22,20 @@
       haskell_tools = {
         hls = {
           settings = {
-            haskell = {
-              sessionLoading = "multipleComponents";
-            };
+            __raw = ''
+              function(project_root)
+                local ht = require('haskell-tools')
+                local defaults = ht.lsp.load_hls_settings(nil)
+                local my_overrides = { haskell = { sessionLoading = 'multipleComponents' } }
+
+                if project_root and vim.fn.filereadable(project_root .. '/hls.json') == 1 then
+                  local hls_json = ht.lsp.load_hls_settings(project_root)
+                  return vim.tbl_deep_extend('force', defaults, my_overrides, hls_json)
+                else
+                  return vim.tbl_deep_extend('force', defaults, my_overrides)
+                end
+              end
+            '';
           };
         };
         tools = {
