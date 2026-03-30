@@ -15,12 +15,8 @@ in
       autoUpdate = false;
     };
 
-    taps = [
-      "txn2/tap"
-    ];
-
     brews = [
-      "txn2/tap/kubefwd"
+      "kubefwd"
     ];
 
     casks = [
