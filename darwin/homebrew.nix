@@ -30,7 +30,7 @@ in
       "capacities"
       "citrix-workspace"
       "claude"
-      "claude-code"
+      "claude-code@latest"
       "discord"
       "dropbox"
       "element"
