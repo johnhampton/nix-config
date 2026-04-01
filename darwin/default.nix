@@ -56,6 +56,12 @@
       AppWindowGroupingBehavior = false; # "One at a time" for Stage Manager
     };
 
+    CustomSystemPreferences = {
+      "/Library/Preferences/.GlobalPreferences" = {
+        "com.apple.autologout.AutoLogOutDelay" = 0;
+      };
+    };
+
     CustomUserPreferences = {
       NSGlobalDomain = {
         AppleSpacesSwitchOnActivate = 0;
