@@ -20,6 +20,7 @@ config.color_scheme = 'OneNord'
 -- config.window_decorations = 'RESIZE'
 -- config.warn_about_missing_glyphs = false
 
+config.term = 'wezterm'
 config.front_end = 'WebGpu'
 
 config.hide_tab_bar_if_only_one_tab = true
