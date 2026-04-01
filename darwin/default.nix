@@ -37,6 +37,13 @@
 
   nix.optimise.automatic = true;
 
+  services.openssh = {
+    enable = true;
+    extraConfig = ''
+      PasswordAuthentication no
+    '';
+  };
+
   services.lorri.enable = false;
   services.lorri.logFile = "/var/tmp/lorri.log";
 
