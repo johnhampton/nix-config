@@ -90,7 +90,7 @@
   home.packages = with pkgs; [
     black
     pgformatter
-    nodePackages.prettier
+    prettier
     prettierd
     stylua
     yamlfmt
