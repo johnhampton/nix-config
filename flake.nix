@@ -70,7 +70,7 @@
               inherit config;
             };
 
-            inherit (pkgs-master) google-cloud-sdk;
+            inherit (pkgs-master) google-cloud-sdk vscode;
 
           })
           inputs.pragmata-pro.overlays.default
