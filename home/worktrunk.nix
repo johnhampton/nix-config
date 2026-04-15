@@ -8,6 +8,9 @@
   xdg.configFile."worktrunk/config.toml".text = ''
     skip-shell-integration-prompt = true
     worktree-path = "{{ repo_path }}/../{{ branch | sanitize }}"
+
+    [commit.generation]
+    command = "CLAUDECODE= MAX_THINKING_TOKENS=0 claude -p --no-session-persistence --model=haiku --tools=''' --disable-slash-commands --setting-sources=''' --system-prompt='''"
   '';
 
   programs.zsh.initContent = lib.mkAfter ''
