@@ -61,6 +61,12 @@
           silent = false;
         };
       }
+      {
+        mode = "n";
+        key = "<leader>uw";
+        action = "<cmd>set wrap!<cr>";
+        options.desc = "Toggle line wrap";
+      }
     ];
 
     plugins = {
@@ -94,6 +100,7 @@
             { __unkeyed-1 = "<leader>l"; group = "+LSP"; mode = [ "n" "v" ]; }
             { __unkeyed-1 = "<leader>L"; group = "+LSP Control"; mode = [ "n" "v" ]; }
             { __unkeyed-1 = "<leader>m"; group = "+Markdown"; mode = [ "n" "v" ]; }
+            { __unkeyed-1 = "<leader>u"; group = "+UI"; mode = [ "n" "v" ]; }
             { __unkeyed-1 = "<leader>y"; group = "+Yank/Copy"; mode = [ "n" "v" ]; }
             { __unkeyed-1 = "gq"; group = "Format"; }
           ];
