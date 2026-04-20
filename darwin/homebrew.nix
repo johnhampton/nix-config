@@ -74,6 +74,7 @@ in
       "MindNode - Classic" = 1289197285;
       "NordVPN: VPN Fast & Secure" = 905953485;
       "Notion Web Clipper" = 1559269364;
+      "Obsidian Web Clipper" = 6720708363;
       "Raycast Companion" = 6738274497;
       "Save to Raindrop.io" = 1549370672;
       "Session - Pomodoro Focus Timer" = 1521432881;
