@@ -10,6 +10,7 @@
     ./lualine.nix
     ./lsp.nix
     ./markdown-preview.nix
+    ./markview.nix
     ./mini.nix
     ./neotest.nix
     ./smart-splits.nix
