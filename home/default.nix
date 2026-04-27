@@ -61,6 +61,7 @@
     ripgrep
     terraform-ls
     uv
+    viddy
     watchman
     yq-go
   ];
