@@ -34,7 +34,7 @@ in
       "capacities"
       "citrix-workspace"
       "claude"
-      "johnhampton/downgrades/claude-code@2.1.119"
+      "claude-code@latest"
       "codex"
       "discord"
       "dropbox"
