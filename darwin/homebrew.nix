@@ -15,6 +15,10 @@ in
       autoUpdate = false;
     };
 
+    taps = [
+      "johnhampton/downgrades"
+    ];
+
     brews = [
       "kubefwd"
     ];
@@ -30,7 +34,7 @@ in
       "capacities"
       "citrix-workspace"
       "claude"
-      "claude-code@latest"
+      "johnhampton/downgrades/claude-code@2.1.119"
       "codex"
       "discord"
       "dropbox"
