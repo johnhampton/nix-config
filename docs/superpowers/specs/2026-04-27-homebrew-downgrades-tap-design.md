@@ -92,9 +92,10 @@ bin/add-downgrade visual-studio-code 1.95.0
 2. **Resolve cask file path.** `Casks/<first-letter-of-cask>/<cask>.rb`. URL-encode `@` as `%40` for the GitHub API query.
 3. **Find commit SHA.** Query `https://api.github.com/repos/Homebrew/homebrew-cask/commits?path=Casks/<letter>/<encoded-cask>.rb&per_page=50` via `gh api --jq` (or curl + minimal JSON extraction). The matching commit is the one whose message is exactly `<cask> <version>`. Fail if not found.
 4. **Fetch the raw `.rb`.** `curl -fsSL https://raw.githubusercontent.com/Homebrew/homebrew-cask/<sha>/Casks/<letter>/<cask>.rb`. Fail loudly on non-2xx.
-5. **Rename the cask.** `sed 's/cask "<cask>"/cask "<cask>@<version>"/'`.
-6. **Write to the tap.** Output path: `<repo-root>/Casks/<letter>/<cask>@<version>.rb`. Repo root is computed relative to the script's own location (so it works regardless of cwd).
-7. **Print next steps.** Suggested `git add` / `git commit` message / `git push`, plus the line to paste into `darwin/homebrew.nix` (e.g., `"johnhampton/downgrades/<cask>@<version>"`).
+5. **Compute base name.** Strip any `@`-suffix from the cask name: `<base>` is everything before the first `@`, or the full cask name if no `@`. Example: `claude-code@latest` → `claude-code`; `visual-studio-code` → `visual-studio-code`.
+6. **Rename the cask.** `sed 's/cask "<cask>"/cask "<base>@<version>"/'`. So `cask "claude-code@latest"` → `cask "claude-code@2.1.119"`, and `cask "visual-studio-code"` → `cask "visual-studio-code@1.95.0"`.
+7. **Write to the tap.** Output path: `<repo-root>/Casks/<letter>/<base>@<version>.rb`. Repo root is computed relative to the script's own location (so it works regardless of cwd).
+8. **Print next steps.** Suggested `git add` / `git commit` message / `git push`, plus the line to paste into `darwin/homebrew.nix` (e.g., `"johnhampton/downgrades/<base>@<version>"`).
 
 ### Non-behavior
 
