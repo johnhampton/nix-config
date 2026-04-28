@@ -25,7 +25,7 @@ In scope:
 - Create the public GitHub repo `johnhampton/homebrew-downgrades`.
 - Commit a `bin/add-downgrade` helper script and `README.md`.
 - Use the helper to generate the first cask file: `claude-code@2.1.119.rb`.
-- Swap the local install: uninstall `claude-code@latest`, install the pinned `@2.1.119`.
+- Wire the new tap and pinned cask into `darwin/homebrew.nix` so nix-darwin manages the swap on `just switch`.
 
 Out of scope:
 
@@ -33,6 +33,7 @@ Out of scope:
 - CI / GitHub Actions on the tap.
 - Multi-cask migration of any other currently-installed software.
 - Auto-commit / auto-push from the helper script.
+- Manual `brew install` / `brew uninstall` — Homebrew state on this machine is declared in `darwin/homebrew.nix`; `homebrew.onActivation.cleanup = "uninstall"` removes anything not in the cask list, so the swap is purely a nix-darwin config edit.
 
 ## Architecture
 
@@ -93,7 +94,7 @@ bin/add-downgrade visual-studio-code 1.95.0
 4. **Fetch the raw `.rb`.** `curl -fsSL https://raw.githubusercontent.com/Homebrew/homebrew-cask/<sha>/Casks/<letter>/<cask>.rb`. Fail loudly on non-2xx.
 5. **Rename the cask.** `sed 's/cask "<cask>"/cask "<cask>@<version>"/'`.
 6. **Write to the tap.** Output path: `<repo-root>/Casks/<letter>/<cask>@<version>.rb`. Repo root is computed relative to the script's own location (so it works regardless of cwd).
-7. **Print next steps.** Suggested `git add` / `git commit` message / `brew install` command.
+7. **Print next steps.** Suggested `git add` / `git commit` message / `git push`, plus the line to paste into `darwin/homebrew.nix` (e.g., `"johnhampton/downgrades/<cask>@<version>"`).
 
 ### Non-behavior
 
@@ -114,30 +115,50 @@ bash, curl, sed, and `gh` (already authenticated on this machine — used for `g
 
 ### Testing
 
-Manual verification: run the script, inspect the generated `.rb`, install the cask, launch the app. No automated tests — the script is short, single-user, and any breakage is caught by the install step.
+Manual verification: run the script, inspect the generated `.rb`, then go through the nix-darwin path (edit `darwin/homebrew.nix`, `just switch`, launch the app). No automated tests — the script is short, single-user, and any breakage is caught by the activation step.
+
+## nix-darwin integration
+
+Homebrew on this machine is declared in `darwin/homebrew.nix`. Two changes there per downgrade:
+
+1. **Add the tap** (one-time, on first downgrade) to `homebrew.taps`:
+   ```nix
+   homebrew.taps = [
+     "johnhampton/downgrades"
+   ];
+   ```
+2. **Replace the cask entry** in `homebrew.casks` with the fully-qualified, version-suffixed name. Example for the first downgrade:
+   ```nix
+   # before
+   "claude-code@latest"
+   # after
+   "johnhampton/downgrades/claude-code@2.1.119"
+   ```
+
+`homebrew.onActivation.cleanup = "uninstall"` (already set) removes the old `claude-code@latest` install on the next `just switch`, and the new line installs the pinned cask. No manual `brew install` / `brew uninstall`.
+
+To roll forward to a newer version later: either swap the entry to a different `johnhampton/downgrades/<cask>@<version>` line, or revert to the bare `<cask>` to reinstall from the official tap.
 
 ## Bootstrap (one-time)
 
 1. `gh repo create johnhampton/homebrew-downgrades --public --description "Personal Homebrew tap for pinning casks to specific older versions"`
 2. `brew tap-new johnhampton/downgrades` — scaffolds the tap at `/opt/homebrew/Library/Taps/johnhampton/homebrew-downgrades` with a basic structure.
 3. Add `bin/add-downgrade` (executable) and `README.md` in the tap directory.
-4. Run `bin/add-downgrade claude-code@latest 2.1.119` to generate the first cask file.
-5. Inspect the generated `Casks/c/claude-code@2.1.119.rb`.
-6. `git remote add origin git@github.com:johnhampton/homebrew-downgrades.git` (or https — use whatever `gh` is configured for).
-7. Commit (one or more conventional commits — at minimum "initial commit" and "add claude-code@2.1.119") and push.
-8. Swap the local install:
-   ```
-   brew uninstall --cask claude-code@latest
-   brew install --cask johnhampton/downgrades/claude-code@2.1.119
-   ```
-9. Verify: `brew list --cask --versions | grep claude-code` shows `2.1.119`, and the Claude Code app launches.
+4. Run `bin/add-downgrade claude-code@latest 2.1.119` to generate `Casks/c/claude-code@2.1.119.rb`.
+5. Inspect the generated cask file.
+6. `git remote add origin https://github.com/johnhampton/homebrew-downgrades.git`
+7. Commit (one or more conventional commits — at minimum "initial commit" and "add claude-code@2.1.119") and push to `main`.
+8. In `darwin/homebrew.nix`, add `homebrew.taps = [ "johnhampton/downgrades" ];` and replace `"claude-code@latest"` with `"johnhampton/downgrades/claude-code@2.1.119"`.
+9. `just switch` — nix-darwin taps the new repo, uninstalls `claude-code@latest`, installs the pinned cask.
+10. Verify: `brew list --cask --versions | grep claude-code` shows `2.1.119`, the Claude Code CLI reports `2.1.119`.
 
 ## Per-downgrade workflow (going forward)
 
 1. `cd "$(brew --repo johnhampton/downgrades)"`
 2. `bin/add-downgrade <cask-name> <version>`
 3. Review the generated `.rb`, `git add`, `git commit -m "add <cask>@<version>"`, `git push`.
-4. `brew uninstall --cask <cask-name> && brew install --cask johnhampton/downgrades/<cask-name>@<version>`.
+4. In `darwin/homebrew.nix`, replace the cask entry with `"johnhampton/downgrades/<cask-name>@<version>"`.
+5. `just switch`.
 
 ## README contents
 
@@ -149,8 +170,10 @@ Manual verification: run the script, inspect the generated `.rb`, install the ca
 
 ## Decisions and tradeoffs
 
-- **Working copy is the tap directory itself.** Rejected: separate clone + push + `brew tap` mirror. The mirror approach has no benefit for a personal tap and adds a sync step.
+- **Install/uninstall goes through nix-darwin, not the brew CLI.** Homebrew state on this machine is declared in `darwin/homebrew.nix`. A manual `brew install` would be silently undone the next time `just switch` ran (`cleanup = "uninstall"` removes anything not in the cask list).
+- **Working copy is the tap directory itself.** Rejected: separate clone + push + `brew tap` mirror. The mirror approach has no benefit for a personal tap and adds a sync step. Push must happen before `just switch` so the tap clone nix-darwin manages can resolve the new cask file.
 - **No auto-commit in `add-downgrade`.** Rejected: auto-commit + auto-push. Accepted small friction (typing one commit message) in exchange for a guaranteed review before publishing.
 - **`bin/add-downgrade` lives in the tap repo, not in nix-config.** The script operates on the tap; co-locating reduces context switching. A public repo with a working script is also more useful to anyone who finds it than one without.
 - **Uses `gh api` rather than raw curl + grep.** `gh` is already authenticated on the machine, avoids rate limits, and supports `--jq` for clean JSON extraction without requiring a `jq` install.
+- **HTTPS remote, not SSH.** Matches existing convention on this machine.
 - **No CI on the tap.** GitHub Actions on a personal tap with three commits a year would be ceremony for ceremony's sake. Add later if usage grows.
