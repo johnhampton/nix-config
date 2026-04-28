@@ -97,7 +97,7 @@ ls -la "$TAP"
 git -C "$TAP" status
 ```
 
-Expected: `$TAP` resolves to `/opt/homebrew/Library/Taps/johnhampton/homebrew-downgrades`. `git status` shows a clean (or staged-from-tap-new) working tree on a branch (`main` or `master`).
+Expected: `$TAP` resolves to `/opt/homebrew/Library/Taps/johnhampton/homebrew-downgrades`. `git status` shows a clean (or staged-from-tap-new) working tree on a branch named `master` (per local git config). If `brew tap-new` created `main` instead, Step 6 will rename it.
 
 - [ ] **Step 4: Remove any GitHub Actions templates `brew tap-new` generated**
 
@@ -117,16 +117,16 @@ TAP="$(brew --repo johnhampton/downgrades)"
 rm -f "$TAP/README.md"
 ```
 
-- [ ] **Step 6: Ensure the local branch is named `main`**
+- [ ] **Step 6: Ensure the local branch is named `master`**
 
-GitHub default is `main`; some `brew` versions create `master`. Force-rename to `main` for consistency with the GitHub default.
+This user uses `master` as their main branch convention. `brew tap-new` typically respects local `init.defaultBranch`, but force-rename to `master` to be safe.
 
 ```bash
 TAP="$(brew --repo johnhampton/downgrades)"
-git -C "$TAP" branch -M main
+git -C "$TAP" branch -M master
 ```
 
-Expected: no output. `git -C "$TAP" branch --show-current` should print `main`.
+Expected: no output. `git -C "$TAP" branch --show-current` should print `master`.
 
 - [ ] **Step 7: Add the GitHub HTTPS remote**
 
@@ -445,16 +445,16 @@ git -C "$TAP" log --oneline
 git -C "$TAP" branch --show-current
 ```
 
-Expected: branch is `main`. Log shows the three (or four if the scaffold-cleanup commit landed in Task 2) commits in order: scaffold (optional), `feat: add add-downgrade helper script`, `docs: add README`, `add claude-code@2.1.119`.
+Expected: branch is `master`. Log shows the three (or four if the scaffold-cleanup commit landed in Task 2) commits in order: scaffold (optional), `feat: add add-downgrade helper script`, `docs: add README`, `add claude-code@2.1.119`.
 
 - [ ] **Step 2: Push and set upstream**
 
 ```bash
 TAP="$(brew --repo johnhampton/downgrades)"
-git -C "$TAP" push -u origin main
+git -C "$TAP" push -u origin master
 ```
 
-Expected: standard push output, branch tracking `origin/main`.
+Expected: standard push output, branch tracking `origin/master`.
 
 - [ ] **Step 3: Verify the push landed**
 
@@ -464,7 +464,7 @@ gh api '/repos/johnhampton/homebrew-downgrades/contents/Casks/c/claude-code%402.
   --jq '.name'
 ```
 
-Expected: first command shows the repo metadata with `defaultBranchRef.name == "main"`. Second command prints `claude-code@2.1.119.rb` (the `%40` URL-encodes the `@` for the API path).
+Expected: first command shows the repo metadata with `defaultBranchRef.name == "master"`. Second command prints `claude-code@2.1.119.rb` (the `%40` URL-encodes the `@` for the API path).
 
 ---
 
@@ -560,7 +560,7 @@ git -C ~/.config/nix-config commit -m "feat(homebrew): pin claude-code to 2.1.11
 cd ~/.config/nix-config && just switch
 ```
 
-Expected: nix-darwin runs `brew tap johnhampton/downgrades` (no-op since the tap directory is already present locally; brew will sync to origin/main, which matches local), uninstalls `claude-code@latest`, installs `johnhampton/downgrades/claude-code@2.1.119`. Exits 0.
+Expected: nix-darwin runs `brew tap johnhampton/downgrades` (no-op since the tap directory is already present locally; brew will sync to origin/master, which matches local), uninstalls `claude-code@latest`, installs `johnhampton/downgrades/claude-code@2.1.119`. Exits 0.
 
 - [ ] **Step 2: Verify the cask version**
 
