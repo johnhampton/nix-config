@@ -31,6 +31,7 @@ in
       "citrix-workspace"
       "claude"
       "claude-code@latest"
+      "codex"
       "discord"
       "dropbox"
       "element"
