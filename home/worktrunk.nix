@@ -11,6 +11,9 @@
 
     [commit.generation]
     command = "CLAUDECODE= MAX_THINKING_TOKENS=0 claude -p --no-session-persistence --model=haiku --tools=''' --disable-slash-commands --setting-sources=''' --system-prompt='''"
+
+    [projects."github.com/johnhampton/nix-config"]
+    worktree-path = "~/Code/me/nix-config/{{ branch | sanitize }}"
   '';
 
   programs.zsh.initContent = lib.mkAfter ''
