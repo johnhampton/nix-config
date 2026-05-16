@@ -9,6 +9,7 @@
     ./alacritty.nix
     ./amethyst.nix
     ./btop.nix
+    ./bun.nix
     ./cachix
     ./git.nix
     ./haskell.nix
@@ -23,6 +24,7 @@
     ./vscode.nix
     ./wezterm
     ./worktrunk.nix
+    ./yarn.nix
     ./yazi.nix
     ./zsh.nix
   ];
