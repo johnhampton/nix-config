@@ -15,7 +15,6 @@
     ./haskell.nix
     ./navi.nix
     ./nixvim
-    ./npm.nix
     ./pnpm.nix
     ./postgres
     ./scripts
