@@ -19,6 +19,7 @@
     ./postgres
     ./scripts
     ./ssh.nix
+    ./starship.nix
     ./tmux
     ./vscode.nix
     ./wezterm

@@ -147,17 +147,4 @@
 
   # Smarter cd command
   programs.zoxide.enable = true;
-
-  # Starship prompt
-  # https://starship.rs/config/
-  programs.starship.enable = true;
-  programs.starship = {
-    enableZshIntegration = true;
-    settings = {
-      command_timeout = 2000;
-      aws = {
-        disabled = true;
-      };
-    };
-  };
 }
