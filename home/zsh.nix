@@ -59,8 +59,33 @@
         # set list-colors to enable filename colorizing
         zstyle ':completion:*' list-colors "''${(s.:.)LS_COLORS}"
         zstyle ':completion:*' menu no
-        zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
-        zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza -1 --color=always $realpath'
+        # Defend against system hangs from enumerating huge Nix store directories.
+        # /nix/store/.links has millions of entries; eza/ls on it saturates kernel
+        # filesystem locks and hangs the system within seconds.
+        _safe_eza_preview() {
+          local p="$1"
+          case "$p" in
+            /nix/store|/nix/store/*) echo "(preview suppressed for Nix store paths)" ;;
+            *) eza -1 --color=always "$p" 2>/dev/null | head -200 ;;
+          esac
+        }
+        zstyle ':fzf-tab:complete:cd:*' fzf-preview '_safe_eza_preview $realpath'
+        zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview '_safe_eza_preview $realpath'
+
+        # Don't pollute zoxide's index with one-off store paths
+        export _ZO_EXCLUDE_DIRS="/nix/store:/nix/store/*:''${_ZO_EXCLUDE_DIRS}"
+
+        # Hard refusal: /nix/store/.links is a system-hang trap
+        autoload -Uz add-zsh-hook
+        chpwd_block_nix_links() {
+          case "$PWD" in
+            /nix/store/.links|/nix/store/.links/*)
+              print -u2 "Refusing to stay in /nix/store/.links (~3M-entry flat dir will hang the system)."
+              cd - >/dev/null
+              ;;
+          esac
+        }
+        add-zsh-hook chpwd chpwd_block_nix_links
 
         # custom fzf flags
         # NOTE: fzf-tab does not follow FZF_DEFAULT_OPTS by default
