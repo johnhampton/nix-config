@@ -9,6 +9,11 @@ in
       autoUpdate = false;
       cleanup = "uninstall";
       upgrade = true;
+      # Homebrew 5.1+ requires an explicit confirmation flag for `--cleanup`
+      # (it uninstalls packages not in the Brewfile). `--force-cleanup` runs
+      # it non-interactively during activation. Mirrors upstream nix-darwin
+      # PR #1789 (fixes issue #1787); drop once that lands and inputs update.
+      extraFlags = [ "--force-cleanup" ];
     };
 
     global = {
