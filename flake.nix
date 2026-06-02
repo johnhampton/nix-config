@@ -92,6 +92,10 @@
           inputs.nixvim.homeModules.nixvim
           ./home
           { home.stateVersion = homeManagerStateVersion; }
+          # Nixvim's `nixpkgs.source` default is derived from its (followed)
+          # flake input, which triggers a warning. Set it explicitly to our
+          # nixpkgs to silence it without changing the resolved value.
+          { programs.nixvim.nixpkgs.source = inputs.nixpkgs; }
           (args: {
             xdg.configFile."nix/inputs/nixpkgs".source = inputs.nixpkgs.outPath;
             home.sessionVariables.NIX_PATH = "nixpkgs=${args.config.xdg.configHome}/nix/inputs/nixpkgs$\{NIX_PATH:+:$NIX_PATH}";
