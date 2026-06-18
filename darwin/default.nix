@@ -31,7 +31,7 @@
   };
 
   nix.gc = {
-    automatic = true;
+    automatic = false;
     interval = { Weekday = 7; Hour = 3; Minute = 0; }; # Sunday at 3:00 AM
     options = "--delete-older-than 30d";
   };
