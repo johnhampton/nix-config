@@ -1,0 +1,74 @@
+/* Syntax highlighting for markdown-preview.nvim code blocks.
+ *
+ * highlight.js class theme tuned to match the warm, low-contrast
+ * prose palette in markdown.css. Light background, muted accents.
+ */
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  color: #2b2b2b;
+  background: #f1efe9;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #9a9483;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-built_in,
+.hljs-name,
+.hljs-tag {
+  color: #7d4e57;
+}
+
+.hljs-string,
+.hljs-title,
+.hljs-section,
+.hljs-attribute,
+.hljs-literal,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-addition {
+  color: #4f7a4a;
+}
+
+.hljs-deletion,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-meta {
+  color: #b05c41;
+}
+
+.hljs-doctag,
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-class .hljs-title,
+.hljs-function .hljs-title {
+  color: #2f6f8f;
+}
+
+.hljs-number,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link,
+.hljs-regexp {
+  color: #b08d57;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: 700;
+}
+
+.hljs-link {
+  text-decoration: underline;
+}

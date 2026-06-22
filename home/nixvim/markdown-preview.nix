@@ -19,6 +19,11 @@
         refresh_slow = 0;  # Real-time refresh
         theme = "light";  # Light theme
         echo_preview_url = 1;  # Show URL in command line
+
+        # Typora-like prose theme (see ./css/). Replaces the stock
+        # github-markdown styling with a serif, book-style reading layout.
+        markdown_css = "${./css/markdown.css}";
+        highlight_css = "${./css/highlight.css}";
         
         preview_options = {
           disable_sync_scroll = 0;  # Enable sync scroll
