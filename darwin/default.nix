@@ -9,7 +9,7 @@
   ];
 
   nix.enable = true;
-  nix.package = pkgs.nixVersions.nix_2_28;
+  nix.package = pkgs.nixVersions.stable;
   nix.settings = {
     download-buffer-size = 1073741824; # 1024MB
     trusted-users = [
