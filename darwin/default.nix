@@ -8,6 +8,18 @@
     ./yabai.nix
   ];
 
+  # WORKAROUND(2026-07-06): nix-darwin a1fa429's HTML manual builder calls
+  # `nixos-render-docs manual html --toc-depth`, but the updated nixpkgs removed
+  # that flag (renamed to `--sidebar-depth`), so `darwin-manual-html` fails to
+  # build. Two references pull it in, both suppressed here:
+  #   1. our own config's HTML manual -> documentation.doc.enable = false
+  #      (manpages stay enabled; the manpage builder doesn't use --toc-depth)
+  #   2. darwin-uninstaller builds an internal default-config system (docs on)
+  #      that we can't reconfigure -> system.tools.darwin-uninstaller.enable = false
+  # Remove both once nix-darwin renames the flag. See docs/nix-workarounds.md.
+  documentation.doc.enable = false;
+  system.tools.darwin-uninstaller.enable = false;
+
   nix.enable = true;
   nix.package = pkgs.nixVersions.stable;
   nix.settings = {
