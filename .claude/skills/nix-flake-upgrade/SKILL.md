@@ -26,7 +26,7 @@ Orchestrate an end-to-end nix flake input upgrade: stash any working changes, cr
 2. Check for a dirty working tree (`git status`). If there are uncommitted changes:
    - Generate a descriptive stash message: `pre-upgrade-YYYYMMDD: <brief description of changes>`
    - Run `git stash push -u -m "<message>"` — include `-u` to capture meaningful untracked files
-   - Record that a stash was created (to restore in Step 5)
+   - Record that a stash was created (to restore in Step 6)
 3. If the tree is clean, skip stashing and record that no restore is needed.
 
 ### Step 2: Switch to Master and Create Upgrade Branch
@@ -43,16 +43,42 @@ Run `just upgrade` (executes `nix flake update --commit-lock-file`).
 
 This creates an auto-generated commit with the lock file changes. **Do not amend, rewrite, or alter this commit in any way.** Preserve the auto-generated commit message as-is.
 
-### Step 4: Build to Verify
+### Step 4: Review Workarounds for Removal
+
+Read `docs/nix-workarounds.md`. It tracks temporary patches added to work around
+upstream breakage — each is a candidate for removal once upstream ships a fix,
+and an upgrade is exactly when upstream may have fixed it.
+
+For each active workaround:
+
+1. Temporarily revert the workaround (comment out or remove the override/option
+   named in the entry).
+2. Let Step 5's build test it — if the build still succeeds without the
+   workaround, upstream is fixed: delete the workaround entirely (code site
+   **and** its entry in `docs/nix-workarounds.md`), staging the changed files.
+3. If the build fails without it, restore the workaround and leave the entry.
+
+Reverting several workarounds at once is fine — if the build fails, bisect to
+find which are still needed. Keep the auto-generated lock-file commit from Step 3
+untouched; commit workaround removals separately with the `commit-message-writer`
+skill.
+
+If `docs/nix-workarounds.md` has no active workarounds, skip this step.
+
+### Step 5: Build to Verify
 
 Run `just build` to compile the configuration with updated inputs.
 
-- On **success**: proceed to Step 5
+- On **success**: proceed to Step 6
 - On **failure**: enter the Failure Recovery procedure below
 
 **CRITICAL:** Never run `just switch` — only `just build`. Activation is the user's decision.
 
-### Step 5: Merge, Return to Starting Branch, and Finalize
+**Note on build time:** a full rebuild with fresh inputs can exceed 10 minutes
+(nixvim, treesitter grammars, etc.). Run `just build` in the background and poll
+its log rather than letting a foreground call time out.
+
+### Step 6: Merge, Return to Starting Branch, and Finalize
 
 1. `git checkout master`
 2. `git merge --ff-only update-YYYYMMDD`
@@ -71,8 +97,9 @@ When `just build` fails:
    - Adjusting module options for renamed/removed settings
    - Adding missing inputs or overrides
 3. **Stage and commit fixes** — Stage specific files by name, then use the `commit-message-writer` skill to create the fix commit. Ensure all referenced files are staged or committed before rebuilding (nix flake rule).
-4. **Rebuild** — Run `just build` again. Repeat fix-rebuild cycles as needed.
-5. **If unresolvable** — Report to the user with:
+4. **Record the workaround** — If the fix is a *temporary* patch/override for upstream breakage (not a permanent config change), add an entry to `docs/nix-workarounds.md` and leave a `WORKAROUND(YYYY-MM-DD):` comment at the code site pointing back to it. This is what lets a future upgrade know to try removing it.
+5. **Rebuild** — Run `just build` again. Repeat fix-rebuild cycles as needed.
+6. **If unresolvable** — Report to the user with:
    - The exact error output
    - What was attempted
    - Recommendations for manual resolution
