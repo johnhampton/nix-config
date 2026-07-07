@@ -181,12 +181,12 @@ config.keys = {
       act.SendKey { key = '>' },
     },
   },
-  -- Spawn new tab and run 's' (sesh session manager)
+  -- Spawn new tab and run the sesh session manager (inlined 's' alias)
   {
     key = 't',
     mods = 'CMD|SHIFT',
     action = act.SpawnCommandInNewTab {
-      args = { 'zsh', '-i', '-c', 's' },
+      args = { 'zsh', '-i', '-c', 'sesh connect $(sesh list --icons | fzf --ansi)' },
     },
   },
   -- Cycle to next WezTerm window
