@@ -96,7 +96,19 @@
           # Nixvim's `nixpkgs.source` default is derived from its (followed)
           # flake input, which triggers a warning. Set it explicitly to our
           # nixpkgs to silence it without changing the resolved value.
-          { programs.nixvim.nixpkgs.source = inputs.nixpkgs; }
+          #
+          # Nixvim imports its OWN pkgs from `source` and does not inherit the
+          # flake's overlays, so plugin overrides (e.g. the bumped mermaid in
+          # markdown-preview) must be re-applied here to reach nixvim's native
+          # plugin modules. Kept narrow on purpose: folding in the full
+          # vimPlugins overlay would also apply the CopilotChat pin, which
+          # nixvim's copilot-chat module rejects.
+          {
+            programs.nixvim.nixpkgs.source = inputs.nixpkgs;
+            programs.nixvim.nixpkgs.overlays = [
+              (import ./overlays/markdown-preview-mermaid.nix { inherit inputs; })
+            ];
+          }
           (args: {
             xdg.configFile."nix/inputs/nixpkgs".source = inputs.nixpkgs.outPath;
             home.sessionVariables.NIX_PATH = "nixpkgs=${args.config.xdg.configHome}/nix/inputs/nixpkgs$\{NIX_PATH:+:$NIX_PATH}";
