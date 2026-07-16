@@ -102,7 +102,7 @@
   programs.bat.enable = true;
   programs.bat = {
     config = {
-      theme = "Nord";
+      theme = "Catppuccin Mocha";
     };
   };
 

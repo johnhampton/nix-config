@@ -15,7 +15,7 @@ config.window_frame = {
   font_size = 14.0,
 }
 
-config.color_scheme = 'OneNord'
+config.color_scheme = 'Catppuccin Mocha'
 -- config.use_fancy_tab_bar = false
 -- config.window_decorations = 'RESIZE'
 -- config.warn_about_missing_glyphs = false

@@ -23,12 +23,12 @@
                     end
                     return ""
                   end,
-                  -- OneNord blue
-                  color = { fg = "#81A1C1" },
-                  -- Alternative OneNord colors:
-                  -- color = { fg = "#88C0D0" }, -- cyan
-                  -- color = { fg = "#B988B0" }, -- purple  
-                  -- color = { fg = "#4C566A" }, -- subtle gray
+                  -- Catppuccin Mocha blue
+                  color = { fg = "#89b4fa" },
+                  -- Alternative Catppuccin Mocha colors:
+                  -- color = { fg = "#89dceb" }, -- sky
+                  -- color = { fg = "#cba6f7" }, -- mauve
+                  -- color = { fg = "#9399b2" }, -- subtle gray (overlay2)
                 }
               '';
             }
