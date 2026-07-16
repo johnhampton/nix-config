@@ -40,6 +40,19 @@
         elif [ -e /usr/local/bin/brew ]; then
           eval "$(/usr/local/bin/brew shellenv)"
         fi
+
+        # `brew shellenv` prepends Homebrew's bin dirs unconditionally, which
+        # shadows nix-managed tools whenever Homebrew pulls the same formula in
+        # as a cask dependency (e.g. ripgrep, required by the codex cask).
+        # Re-prepend the nix profiles so declared packages win. `typeset -U`
+        # dedupes, keeping the leftmost occurrence.
+        typeset -U path PATH
+        path=(
+          "$HOME/.nix-profile/bin"
+          /run/current-system/sw/bin
+          $path
+        )
+        export PATH
       '')
       (lib.mkOrder 600 ''
         # fzf-tab plugin
