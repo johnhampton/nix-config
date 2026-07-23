@@ -83,6 +83,7 @@
           (import ./overlays/python-darwin-fix.nix { inherit inputs; })  # Temporary fix for fish
           (import ./overlays/folly-darwin-fix.nix { inherit inputs; })
           (import ./overlays/repomix-fix.nix { inherit inputs; })
+          (import ./overlays/worktrunk-0.68.nix { inherit inputs; })
         ];
       };
 
