@@ -97,13 +97,19 @@
           # nixpkgs to silence it without changing the resolved value.
           #
           # Nixvim imports its OWN pkgs from `source` and does not inherit the
-          # flake's overlays, so plugin overrides (e.g. the bumped mermaid in
-          # markdown-preview) must be re-applied here to reach nixvim's native
-          # plugin modules. Kept narrow on purpose: folding in the full
+          # flake's overlays or config, so both must be re-applied here to reach
+          # nixvim's native plugin modules.
+          #
+          # The overlay list is kept narrow on purpose: folding in the full
           # vimPlugins overlay would also apply the CopilotChat pin, which
           # nixvim's copilot-chat module rejects.
+          #
+          # The config must carry `allowUnfree` — nixvim's copilot-lua module
+          # pulls in `vimPlugins.copilot-lsp`, which depends on the unfree
+          # `copilot-language-server`.
           {
             programs.nixvim.nixpkgs.source = inputs.nixpkgs;
+            programs.nixvim.nixpkgs.config = nixpkgsConfig.config;
             programs.nixvim.nixpkgs.overlays = [
               (import ./overlays/markdown-preview-mermaid.nix { inherit inputs; })
             ];
