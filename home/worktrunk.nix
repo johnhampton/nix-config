@@ -15,6 +15,12 @@
     [projects."github.com/johnhampton/nix-config"]
     worktree-path = "~/Code/me/nix-config/{{ branch | sanitize }}"
 
+    # jh-cc-plugins uses the .bare + per-branch worktree layout, so the global
+    # template's {{ repo }} resolves to ".bare". Place worktrees beside the
+    # primary one instead: ~/Code/me/jh-cc-plugins/<branch>
+    [projects."github.com/johnhampton/jh-cc-plugins"]
+    worktree-path = "{{ repo_path }}/../{{ branch | sanitize }}"
+
     # auth-service-hs-client uses the .bare + per-branch worktree layout.
     # Symlink the local-only Claude config from the primary worktree so every
     # worktree shares one copy instead of drifting. Targets may not exist yet
