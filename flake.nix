@@ -74,6 +74,7 @@
 
           })
           inputs.pragmata-pro.overlays.default
+          (import ./overlays/shinzui-tools.nix)
           (import ./overlays/chartmuseum.nix { inherit inputs; })
           (import ./overlays/helm-mapkubeapis.nix { inherit inputs; })
           (import ./overlays/lsp-zero.nix { inherit inputs; })

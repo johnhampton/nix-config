@@ -15,9 +15,11 @@
     ./haskell.nix
     ./navi.nix
     ./nixvim
+    ./okf.nix
     ./pnpm.nix
     ./postgres
     ./scripts
+    ./seihou.nix
     ./ssh.nix
     ./starship.nix
     ./tmux

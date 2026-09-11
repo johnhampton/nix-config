@@ -28,6 +28,10 @@
     };
 
     initContent = lib.mkMerge [
+      (lib.mkOrder 550 ''
+        # Load per-tool completions before compinit.
+        fpath=("$HOME/.zfunc" $fpath)
+      '')
       (lib.mkBefore ''
         # nix
         if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
