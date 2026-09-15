@@ -43,7 +43,6 @@ let
       # WORKAROUND(2026-09-10): the suite requires a key and makes live API calls.
       # Drop once upstream provides offline tests. See docs/nix-workarounds.md.
       openai = dontCheck (hackage "openai" "2.5.4" "sha256-DN++TyDWVP3AU8QGzan+g4eTIioYZGjGLFuvi1Z4mZA=");
-      okf-core = hackage "okf-core" "0.8.0.0" "sha256-ADugvEouY5r+o1W0K09M7IX0GTVuZ1OXvA+Vem/QnBI=";
     };
   tools = versions: base.override {
     overrides = prev.lib.composeExtensions shared (hfinal: hprev:
@@ -95,7 +94,8 @@ let
           "rei-kit.json decodes"
           "seihou-kit.json decodes"
         ] (withGitTests (hackage "baikai-kit" versions.baikai-kit.version versions.baikai-kit.hash));
-        okf-cli = withGitTests (hackage "okf-cli" "0.8.0.0" "sha256-n6hBnelrC8FA97eD83MWn53SKdXABbvljJplgRZL+po=");
+        okf-core = hackage "okf-core" versions.okf-core.version versions.okf-core.hash;
+        okf-cli = withGitTests (hackage "okf-cli" "0.9.0.0" "sha256-rX2/8F7XbazrwJ9myQBUXWYBolECPU6VRevIN4a30p0=");
         # WORKAROUND(2026-09-10): these tests read an omitted JSON fixture.
         # Drop once the sdist includes it. See docs/nix-workarounds.md.
         seihou-cli = skipTests [
@@ -112,14 +112,16 @@ let
         seihou-core = dontCheck (hackage "seihou-core" "0.8.0.0" "sha256-nJg60IyzCnif4Nsy9lck+DWhAaVHc2QDUg6oEv1nUqQ=");
       });
   };
-  # The releases require different Baikai API versions; do not relax their bounds.
+  # The releases require different Baikai and okf-core APIs; keep their bounds.
   okfPackages = tools {
+    okf-core = { version = "0.9.0.0"; hash = "sha256-a34kTE5G3o+6Q+Kv/TVRpbGVzfTiaoPvKxsMZmeqYcE="; };
     baikai = { version = "0.5.0.0"; hash = "sha256-JSTgBTgChhomZytfXPd0zOI8fs6vGHFCaiCehqSEW/4="; };
     baikai-claude = { version = "0.5.0.0"; hash = "sha256-LifIO9TeTFw/RbN2+QGozbpiexEyC0boym3c4YdXldU="; };
     baikai-openai = { version = "0.5.0.0"; hash = "sha256-PTEUvqU8NPWq2jDzGxrb26Y1j948JpC00UgtjnwP9Ys="; };
     baikai-kit = { version = "0.1.0.4"; hash = "sha256-4SDR2DXZIbGCv+jJY5uU77xS1v8jdHssV1Htg0JWVro="; };
   };
   seihouPackages = tools {
+    okf-core = { version = "0.8.0.0"; hash = "sha256-ADugvEouY5r+o1W0K09M7IX0GTVuZ1OXvA+Vem/QnBI="; };
     baikai = { version = "0.4.1.0"; hash = "sha256-OXuxc3ZUz2WoHSR2J4NHKhfojdEpF4UffWVPltl9Cu0="; };
     baikai-claude = { version = "0.4.0.1"; hash = "sha256-EMcDesp6RPxmQ81NVwPnMVzvG7VqB8cOd12Eli404Es="; };
     baikai-openai = { version = "0.4.0.0"; hash = "sha256-nrujXC2D5eE6cxCRUQDXDoLW2q1epdrLUOdfdnerC/4="; };
