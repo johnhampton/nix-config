@@ -17,8 +17,8 @@ Orchestrate an end-to-end nix flake input upgrade: stash any working changes, cr
 
 ### Step 0: Prepare Environment
 
-1. Run `mkdir -p /tmp/claude` to ensure the sandbox temp directory exists (`just` writes temp files here and fails if it's missing).
-2. All `just` and `nix` commands in this workflow **must** use `dangerouslyDisableSandbox: true` — nix requires write access to `~/.cache/nix/` for its SQLite fetcher cache and store operations.
+1. Run `mkdir -p "${TMPDIR:-/tmp}"` to ensure the current environment's temporary directory exists (`just` needs it for temporary files).
+2. Nix needs write access to `~/.cache/nix/` and access to the Nix store. If the sandbox blocks a `just` or `nix` command, use the current agent's permission mechanism to request the required access. Follow the active environment's approval rules.
 
 ### Step 1: Record Starting Branch and Stash Working Changes
 
