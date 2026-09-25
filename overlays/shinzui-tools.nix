@@ -1,6 +1,6 @@
 final: prev:
 let
-  inherit (prev.haskell.lib) dontCheck dontHaddock justStaticExecutables;
+  inherit (prev.haskell.lib) doJailbreak dontCheck dontHaddock justStaticExecutables;
   inherit (prev.haskell.lib.compose) overrideCabal;
   # Keep the application compiler separate from the interactive Haskell environment.
   base = prev.haskell.packages.ghc9124;
@@ -62,7 +62,7 @@ let
       {
         # WORKAROUND(2026-09-10): sdists omit fixtures used by these tests.
         # Retain the rest of both suites. See docs/nix-workarounds.md.
-        baikai = skipTests [
+        baikai = skipTests ([
           "regenerating from data"
           "OpenAI normalization filters, curates, and maps fields"
           "tool_call: false model is excluded"
@@ -84,7 +84,8 @@ let
           "the projection keeps the configuration it is supposed to"
           "the commitment digest does see the content"
           "an opted-out call's trace bytes match the golden fixture"
-        ] (hackage "baikai" versions.baikai.version versions.baikai.hash);
+        ] ++ versions.baikai.skipTests or [ ]) ((if versions.baikai.jailbreak or false then doJailbreak else (x: x))
+          (hackage "baikai" versions.baikai.version versions.baikai.hash));
         baikai-claude = hackage "baikai-claude" versions.baikai-claude.version versions.baikai-claude.hash;
         baikai-openai = hackage "baikai-openai" versions.baikai-openai.version versions.baikai-openai.hash;
         # WORKAROUND(2026-09-10): the kit sdists omit three manifest fixtures.
@@ -95,6 +96,12 @@ let
           "seihou-kit.json decodes"
         ] (withGitTests (hackage "baikai-kit" versions.baikai-kit.version versions.baikai-kit.hash));
         okf-core = hackage "okf-core" versions.okf-core.version versions.okf-core.hash;
+        # WORKAROUND(2026-09-24): nixpkgs ships claude 1.4.0; baikai-claude 0.7 needs ^>=1.5.
+        # Its suite needs ANTHROPIC_KEY and calls the live API, so skip it.
+        # Drop once nixpkgs ships claude >=1.5. See docs/nix-workarounds.md.
+        claude = if versions ? claude
+          then dontCheck (hackage "claude" versions.claude.version versions.claude.hash)
+          else hprev.claude;
         okf-cli = withGitTests (hackage "okf-cli" "0.9.0.0" "sha256-rX2/8F7XbazrwJ9myQBUXWYBolECPU6VRevIN4a30p0=");
         # WORKAROUND(2026-09-10): these tests read an omitted JSON fixture.
         # Drop once the sdist includes it. See docs/nix-workarounds.md.
@@ -105,12 +112,12 @@ let
           "preserves every field it does not convert"
           "produces a document the ordinary manifest decoder accepts"
           "reports each artifact once even though it appears in three records"
-        ] (withGitTests (hackage "seihou-cli" "0.8.0.0" "sha256-MoZesrs5T3Ib01GkqVxA+MOp+6ZED9ATX0LAIZES4nA="));
-        seihou-okf-extension = withGitTests (hackage "seihou-okf-extension" "0.8.0.0" "sha256-6BLAduWZ9kYebUMrEwogEmVvsr0zv8gBr4FPW0zyZ60=");
+        ] (withGitTests (hackage "seihou-cli" "0.9.0.0" "sha256-1LEYRvJ6SOfJtrMkWPDxWm1Kf/NhAXeBU4OaJjFTWvc="));
+        seihou-okf-extension = withGitTests (hackage "seihou-okf-extension" "0.9.0.0" "sha256-c3eDLyd2sMhU++/EhacbMBbMBrU4oiFHQI/rUczff1A=");
         # WORKAROUND(2026-09-10): the sdist omits test/fixtures and schema.
         # Drop dontCheck once the release includes both. See docs/nix-workarounds.md.
-        seihou-core = dontCheck (hackage "seihou-core" "0.8.0.0" "sha256-nJg60IyzCnif4Nsy9lck+DWhAaVHc2QDUg6oEv1nUqQ=");
-      });
+        seihou-core = dontCheck (hackage "seihou-core" "0.9.0.0" "sha256-GtAdPjqK9JSGAYAxHTk5Jz9gKYjLY4vZ5wntCmbJ9Pg=");
+      } // prev.lib.mapAttrs (name: v: hackage name v.version v.hash) (versions.pins or { }));
   };
   # The releases require different Baikai and okf-core APIs; keep their bounds.
   okfPackages = tools {
@@ -122,18 +129,51 @@ let
   };
   seihouPackages = tools {
     okf-core = { version = "0.8.0.0"; hash = "sha256-ADugvEouY5r+o1W0K09M7IX0GTVuZ1OXvA+Vem/QnBI="; };
-    baikai = { version = "0.4.1.0"; hash = "sha256-OXuxc3ZUz2WoHSR2J4NHKhfojdEpF4UffWVPltl9Cu0="; };
-    baikai-claude = { version = "0.4.0.1"; hash = "sha256-EMcDesp6RPxmQ81NVwPnMVzvG7VqB8cOd12Eli404Es="; };
-    baikai-openai = { version = "0.4.0.0"; hash = "sha256-nrujXC2D5eE6cxCRUQDXDoLW2q1epdrLUOdfdnerC/4="; };
-    baikai-kit = { version = "0.1.0.3"; hash = "sha256-6Nu22t0NQho2GQ+xlgdUsHODNKALUFlqdXnxXTZjqFg="; };
+    # WORKAROUND(2026-09-24): baikai 0.7 bounds tls >=2.2 but compiles against nixpkgs' 2.1.8.
+    # Drop jailbreak once nixpkgs ships tls >=2.2. See docs/nix-workarounds.md.
+    baikai = {
+      version = "0.7.0.0";
+      hash = "sha256-bJb6IyoUSmgxIg/XnQ9eWUmyxFmUDngv2xmrW8nugTs=";
+      jailbreak = true;
+      # These FetchModels cases were added in Baikai 0.7 and read the omitted sample.
+      skipTests = [
+        "per-model API and Responses compat survive normalization and rendering"
+        "refresh preserves Astra endpoint restrictions despite upstream tool support"
+        "fast rates and capability survive fetch and generator on exactly two curated models"
+        "curated pricing survives fetch rendering and generator parsing"
+        "Anthropic normalization carries the curated generation facts"
+        "the generation facts render as a per-model compat block"
+        "an OpenAI model renders no compat block"
+      ];
+    };
+    baikai-claude = { version = "0.7.0.0"; hash = "sha256-GSOzULFgbJae4Wf6vwdr2xR+83CwhrCuWMxuZJG6NZA="; };
+    baikai-openai = { version = "0.7.0.0"; hash = "sha256-FVYkPkL8hzzaNY0YprnmRFVswJKHyqEk15hcPauyYkI="; };
+    baikai-kit = { version = "0.2.0.1"; hash = "sha256-91jm9Jn5VgzotuUUnMX0qrTO+XxfXfK8ijpCKqA9scI="; };
+    claude = { version = "1.5.0"; hash = "sha256-Jng3pCOl9d9XqXbHomBJNiXDMViKZYymj9AKTWwHhvY="; };
+    # WORKAROUND(2026-09-24): seihou-core 0.9 needs effectful-core >=2.7.1.1; nixpkgs has 2.6.1.0.
+    # Drop once nixpkgs ships effectful-core >=2.7.1.1. See docs/nix-workarounds.md.
+    pins = {
+      effectful-core = { version = "2.7.1.2"; hash = "sha256-OZhGk0UY3BMWF+oUAQnCvF3hnzscBCm0Cz+nz8p2XM8="; };
+      strict-mutable-base = { version = "2.0.0.0"; hash = "sha256-3o2PMN8l56X7ULqyNNJrJQZ8xgqqOsxhjm0jfULQt+k="; };
+    };
   };
 in
 {
   okf = justStaticExecutables okfPackages.okf-cli;
   seihou = prev.symlinkJoin {
-    name = "seihou-0.8.0.0";
+    name = "seihou-0.9.0.0";
     paths = [
-      (justStaticExecutables seihouPackages.seihou-cli)
+      # WORKAROUND(2026-09-24): Baikai 0.7 packages read Paths_*.version, which links
+      # their store paths into the binary and, through them, GHC.
+      # Drop once they stop using Paths_. See docs/nix-workarounds.md.
+      (overrideCabal (drv: {
+        buildTools = (drv.buildTools or [ ]) ++ [ prev.removeReferencesTo ];
+        postFixup = (drv.postFixup or "") + ''
+          for dep in ${seihouPackages.baikai} ${seihouPackages.baikai-claude} ${seihouPackages.baikai-openai}; do
+            remove-references-to -t "$dep" $out/bin/seihou
+          done
+        '';
+      }) (justStaticExecutables seihouPackages.seihou-cli))
       (justStaticExecutables seihouPackages.seihou-okf-extension)
     ];
   };
