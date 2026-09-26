@@ -136,8 +136,11 @@
     ];
 
     loginExtra = ''
-      # ssh keychain
-      ssh-add --apple-load-keychain -q
+      # Load macOS keychain keys only for local logins with an agent available.
+      # SSH logins may have no agent, or may use a forwarded client agent.
+      if [[ -z "$SSH_CONNECTION" && -S "$SSH_AUTH_SOCK" ]]; then
+        ssh-add --apple-load-keychain -q
+      fi
     '';
   };
 
