@@ -88,13 +88,16 @@ let
           (hackage "baikai" versions.baikai.version versions.baikai.hash));
         baikai-claude = hackage "baikai-claude" versions.baikai-claude.version versions.baikai-claude.hash;
         baikai-openai = hackage "baikai-openai" versions.baikai-openai.version versions.baikai-openai.hash;
-        # WORKAROUND(2026-09-10): the kit sdists omit three manifest fixtures.
-        # Drop when the fixtures ship. See docs/nix-workarounds.md.
-        baikai-kit = skipTests [
-          "mori-kit.json decodes"
-          "rei-kit.json decodes"
-          "seihou-kit.json decodes"
-        ] (withGitTests (hackage "baikai-kit" versions.baikai-kit.version versions.baikai-kit.hash));
+        baikai-kit =
+          (if versions.baikai-kit.skipTests or false then
+            skipTests [
+              "mori-kit.json decodes"
+              "rei-kit.json decodes"
+              "seihou-kit.json decodes"
+            ]
+          else
+            x: x)
+          (withGitTests (hackage "baikai-kit" versions.baikai-kit.version versions.baikai-kit.hash));
         okf-core = hackage "okf-core" versions.okf-core.version versions.okf-core.hash;
         # WORKAROUND(2026-09-24): nixpkgs ships claude 1.4.0; baikai-claude 0.7 needs ^>=1.5.
         # Its suite needs ANTHROPIC_KEY and calls the live API, so skip it.
@@ -102,7 +105,7 @@ let
         claude = if versions ? claude
           then dontCheck (hackage "claude" versions.claude.version versions.claude.hash)
           else hprev.claude;
-        okf-cli = withGitTests (hackage "okf-cli" "0.9.0.0" "sha256-rX2/8F7XbazrwJ9myQBUXWYBolECPU6VRevIN4a30p0=");
+        okf-cli = withGitTests (hackage "okf-cli" "0.10.0.0" "sha256-sAIGsGCcRiZSG2PjfaikApdxbjPS6DqijItIQ6FZZGc=");
         # WORKAROUND(2026-09-10): these tests read an omitted JSON fixture.
         # Drop once the sdist includes it. See docs/nix-workarounds.md.
         seihou-cli = skipTests [
@@ -121,11 +124,31 @@ let
   };
   # The releases require different Baikai and okf-core APIs; keep their bounds.
   okfPackages = tools {
-    okf-core = { version = "0.9.0.0"; hash = "sha256-a34kTE5G3o+6Q+Kv/TVRpbGVzfTiaoPvKxsMZmeqYcE="; };
-    baikai = { version = "0.5.0.0"; hash = "sha256-JSTgBTgChhomZytfXPd0zOI8fs6vGHFCaiCehqSEW/4="; };
-    baikai-claude = { version = "0.5.0.0"; hash = "sha256-LifIO9TeTFw/RbN2+QGozbpiexEyC0boym3c4YdXldU="; };
-    baikai-openai = { version = "0.5.0.0"; hash = "sha256-PTEUvqU8NPWq2jDzGxrb26Y1j948JpC00UgtjnwP9Ys="; };
-    baikai-kit = { version = "0.1.0.4"; hash = "sha256-4SDR2DXZIbGCv+jJY5uU77xS1v8jdHssV1Htg0JWVro="; };
+    okf-core = { version = "0.10.0.0"; hash = "sha256-SnxlWd8d4MJrcIXv+tMF6xqUzi6L3POcbGg8BbLbd4M="; };
+    # WORKAROUND(2026-10-13): Baikai 0.7.2 bounds tls >=2.2; nixpkgs has 2.1.8.
+    # Drop once nixpkgs ships tls >=2.2. See docs/nix-workarounds.md.
+    baikai = {
+      version = "0.7.2.0";
+      hash = "sha256-YF6BEQvWqegthAJSjNa+yOSpexuENpSzFZehN/+2DjQ=";
+      jailbreak = true;
+      # WORKAROUND(2026-10-13): the Hackage sdist omits models-dev-sample.json.
+      # Drop these exclusions when the fixture ships. See docs/nix-workarounds.md.
+      skipTests = [
+        "per-model API and Responses compat survive normalization and rendering"
+        "refresh preserves Astra endpoint restrictions despite upstream tool support"
+        "fast rates and capability survive fetch and generator on curated models"
+        "curated pricing survives fetch rendering and generator parsing"
+        "Anthropic normalization carries the curated generation facts"
+        "the generation facts render as a per-model compat block"
+        "an OpenAI model renders no compat block"
+      ];
+    };
+    baikai-claude = { version = "0.7.1.0"; hash = "sha256-HskzJuUC3ZTYcQQcTLbV/IJ030fvCm5oDEEddNdH46M="; };
+    baikai-openai = { version = "0.7.1.0"; hash = "sha256-2d/u91NmFK+Na+/3T2JxfsgbYGTH5GZXa4oXDL4eslM="; };
+    baikai-kit = { version = "0.4.0.0"; hash = "sha256-k3Njva+Rb/K8G1fzN7UXUsNvTu/T7UoWEYyxnJh50fw="; };
+    # WORKAROUND(2026-10-13): nixpkgs has claude 1.4; Baikai Claude 0.7.1 needs >=1.5.
+    # Drop once nixpkgs ships claude >=1.5. See docs/nix-workarounds.md.
+    claude = { version = "1.5.0"; hash = "sha256-Jng3pCOl9d9XqXbHomBJNiXDMViKZYymj9AKTWwHhvY="; };
   };
   seihouPackages = tools {
     okf-core = { version = "0.8.0.0"; hash = "sha256-ADugvEouY5r+o1W0K09M7IX0GTVuZ1OXvA+Vem/QnBI="; };
@@ -148,7 +171,9 @@ let
     };
     baikai-claude = { version = "0.7.0.0"; hash = "sha256-GSOzULFgbJae4Wf6vwdr2xR+83CwhrCuWMxuZJG6NZA="; };
     baikai-openai = { version = "0.7.0.0"; hash = "sha256-FVYkPkL8hzzaNY0YprnmRFVswJKHyqEk15hcPauyYkI="; };
-    baikai-kit = { version = "0.2.0.1"; hash = "sha256-91jm9Jn5VgzotuUUnMX0qrTO+XxfXfK8ijpCKqA9scI="; };
+    # WORKAROUND(2026-09-10): the 0.2 sdist omits three manifest fixtures.
+    # Drop when Seihou accepts a kit release with fixtures. See docs/nix-workarounds.md.
+    baikai-kit = { version = "0.2.0.1"; hash = "sha256-91jm9Jn5VgzotuUUnMX0qrTO+XxfXfK8ijpCKqA9scI="; skipTests = true; };
     claude = { version = "1.5.0"; hash = "sha256-Jng3pCOl9d9XqXbHomBJNiXDMViKZYymj9AKTWwHhvY="; };
     # WORKAROUND(2026-09-24): seihou-core 0.9 needs effectful-core >=2.7.1.1; nixpkgs has 2.6.1.0.
     # Drop once nixpkgs ships effectful-core >=2.7.1.1. See docs/nix-workarounds.md.
