@@ -60,44 +60,44 @@ let
         });
       in
       {
-        # WORKAROUND(2026-09-10): sdists omit fixtures used by these tests.
-        # Retain the rest of both suites. See docs/nix-workarounds.md.
-        baikai = skipTests ([
-          "regenerating from data"
-          "OpenAI normalization filters, curates, and maps fields"
-          "tool_call: false model is excluded"
-          "Responses-API-only id is excluded by curation"
-          "pdf modality is dropped"
-          "missing cache costs default to 0.0 in rendered output"
-          "whole-number costs render with a trailing .0"
-          "Anthropic curation keeps exactly the one fixture model"
-          "suffix is stripped from display names"
-          "override corrects a deliberately-wrong upstream cache price"
-          # These fixture-based tests were added in Baikai 0.5.
-          "a recorded run yields its text, thread id, and token counts"
-          "a recorded run reports no model, rather than the requested one"
-          "a recorded run yields its text, session id, model, usage, and cost"
-          "a digest is sha256: plus 64 lowercase hex characters"
-          "the request commitment matches the golden value"
-          "the configuration digest matches the golden value"
-          "the configuration projection drops all content"
-          "the projection keeps the configuration it is supposed to"
-          "the commitment digest does see the content"
-          "an opted-out call's trace bytes match the golden fixture"
-        ] ++ versions.baikai.skipTests or [ ]) ((if versions.baikai.jailbreak or false then doJailbreak else (x: x))
-          (hackage "baikai" versions.baikai.version versions.baikai.hash));
-        baikai-claude = hackage "baikai-claude" versions.baikai-claude.version versions.baikai-claude.hash;
-        baikai-openai = hackage "baikai-openai" versions.baikai-openai.version versions.baikai-openai.hash;
-        baikai-kit =
-          (if versions.baikai-kit.skipTests or false then
-            skipTests [
-              "mori-kit.json decodes"
-              "rei-kit.json decodes"
-              "seihou-kit.json decodes"
-            ]
-          else
-            x: x)
-          (withGitTests (hackage "baikai-kit" versions.baikai-kit.version versions.baikai-kit.hash));
+        # WORKAROUND(2026-09-10): older sdists omit fixtures used by these tests.
+        # Baikai 0.8 includes them. See docs/nix-workarounds.md.
+        baikai = overrideCabal (drv: {
+          testFlags = (drv.testFlags or [ ]) ++ (versions.baikai.extraTestFlags or [ ]);
+        }) ((if versions.baikai.fixturesIncluded or false then
+          skipTests (versions.baikai.sandboxTests or [ ])
+        else
+          skipTests ([
+            "regenerating from data"
+            "OpenAI normalization filters, curates, and maps fields"
+            "tool_call: false model is excluded"
+            "Responses-API-only id is excluded by curation"
+            "pdf modality is dropped"
+            "missing cache costs default to 0.0 in rendered output"
+            "whole-number costs render with a trailing .0"
+            "Anthropic curation keeps exactly the one fixture model"
+            "suffix is stripped from display names"
+            "override corrects a deliberately-wrong upstream cache price"
+            # These fixture-based tests were added in Baikai 0.5.
+            "a recorded run yields its text, thread id, and token counts"
+            "a recorded run reports no model, rather than the requested one"
+            "a recorded run yields its text, session id, model, usage, and cost"
+            "a digest is sha256: plus 64 lowercase hex characters"
+            "the request commitment matches the golden value"
+            "the configuration digest matches the golden value"
+            "the configuration projection drops all content"
+            "the projection keeps the configuration it is supposed to"
+            "the commitment digest does see the content"
+            "an opted-out call's trace bytes match the golden fixture"
+          ] ++ versions.baikai.skipTests or [ ])) ((if versions.baikai.jailbreak or false then doJailbreak else (x: x))
+          (hackage "baikai" versions.baikai.version versions.baikai.hash)));
+        baikai-claude = (if versions.baikai-claude ? sandboxTests
+          then skipTests versions.baikai-claude.sandboxTests
+          else (x: x)) (hackage "baikai-claude" versions.baikai-claude.version versions.baikai-claude.hash);
+        baikai-openai = (if versions.baikai-openai ? sandboxTests
+          then skipTests versions.baikai-openai.sandboxTests
+          else (x: x)) (hackage "baikai-openai" versions.baikai-openai.version versions.baikai-openai.hash);
+        baikai-kit = withGitTests (hackage "baikai-kit" versions.baikai-kit.version versions.baikai-kit.hash);
         okf-core = hackage "okf-core" versions.okf-core.version versions.okf-core.hash;
         # WORKAROUND(2026-09-24): nixpkgs ships claude 1.4.0; baikai-claude 0.7 needs ^>=1.5.
         # Its suite needs ANTHROPIC_KEY and calls the live API, so skip it.
@@ -107,22 +107,36 @@ let
           else hprev.claude;
         okf-cli = withGitTests (hackage "okf-cli" "0.10.0.0" "sha256-sAIGsGCcRiZSG2PjfaikApdxbjPS6DqijItIQ6FZZGc=");
         # WORKAROUND(2026-09-10): these tests read an omitted JSON fixture.
-        # Drop once the sdist includes it. See docs/nix-workarounds.md.
+        # WORKAROUND(2026-10-19): CLI agent fixtures need /bin/ps, and sync
+        # fixtures need the omitted schema directory. See docs/nix-workarounds.md.
         seihou-cli = skipTests [
           "finds every legacy reference in a schema-5 manifest, in document order"
-          "replaces every recorded path with its origin and bumps the schema version"
+          "replaces every recorded path with its origin and stamps schema 6"
           "leaves no machine-specific path anywhere in the document"
           "preserves every field it does not convert"
           "produces a document the ordinary manifest decoder accepts"
           "reports each artifact once even though it appears in three records"
-        ] (withGitTests (hackage "seihou-cli" "0.9.0.0" "sha256-1LEYRvJ6SOfJtrMkWPDxWm1Kf/NhAXeBU4OaJjFTWvc="));
-        seihou-okf-extension = withGitTests (hackage "seihou-okf-extension" "0.9.0.0" "sha256-c3eDLyd2sMhU++/EhacbMBbMBrU4oiFHQI/rUczff1A=");
+          "blocks a schema-5 conversion it cannot verify before any later step runs"
+          "chains 5 through the current schema in order on a dry run and writes nothing"
+          "stops a schema-5 conversion at --to 6"
+          "manifest-only checkout sync"
+          "enables Seihou's tool-only Codex skills in interactive and batch launches"
+          "automatically uses the batch CLI provider when stdin is not a terminal"
+          "applies a blueprint-declared model and effort to the launched agent"
+          "lets a --model flag override the blueprint declaration"
+          "proceeds under --allow-downgrade and prints what it overrode"
+          "creates no trace file when tracing is not configured"
+          "writes a correlated start"
+          "lets --trace off override a configured file trace"
+          "sends --trace stderr to stderr, leaving stdout clean"
+        ] (withGitTests (hackage "seihou-cli" "0.10.1.0" "sha256-fy8G6pOtRHV2Y4r9Cks4TQxOByofDHxf/Ud3ZGfoP2k="));
+        seihou-okf-extension = withGitTests (hackage "seihou-okf-extension" "0.10.1.0" "sha256-WZgJ2EkjVEWUYy8kLSs94IWIor7Vz+HFSDb/ZgaxpbI=");
         # WORKAROUND(2026-09-10): the sdist omits test/fixtures and schema.
         # Drop dontCheck once the release includes both. See docs/nix-workarounds.md.
-        seihou-core = dontCheck (hackage "seihou-core" "0.9.0.0" "sha256-GtAdPjqK9JSGAYAxHTk5Jz9gKYjLY4vZ5wntCmbJ9Pg=");
+        seihou-core = dontCheck (hackage "seihou-core" "0.10.1.0" "sha256-GIZ4LpUUgRUQ9Sn1k3hpVYEFvImIM+FRx20AaX2fwk4=");
       } // prev.lib.mapAttrs (name: v: hackage name v.version v.hash) (versions.pins or { }));
   };
-  # The releases require different Baikai and okf-core APIs; keep their bounds.
+  # OKF and Seihou require different Baikai releases; keep their bounds separate.
   okfPackages = tools {
     okf-core = { version = "0.10.0.0"; hash = "sha256-SnxlWd8d4MJrcIXv+tMF6xqUzi6L3POcbGg8BbLbd4M="; };
     # WORKAROUND(2026-10-13): Baikai 0.7.2 bounds tls >=2.2; nixpkgs has 2.1.8.
@@ -151,31 +165,51 @@ let
     claude = { version = "1.5.0"; hash = "sha256-Jng3pCOl9d9XqXbHomBJNiXDMViKZYymj9AKTWwHhvY="; };
   };
   seihouPackages = tools {
-    okf-core = { version = "0.8.0.0"; hash = "sha256-ADugvEouY5r+o1W0K09M7IX0GTVuZ1OXvA+Vem/QnBI="; };
-    # WORKAROUND(2026-09-24): baikai 0.7 bounds tls >=2.2 but compiles against nixpkgs' 2.1.8.
+    okf-core = { version = "0.10.0.0"; hash = "sha256-SnxlWd8d4MJrcIXv+tMF6xqUzi6L3POcbGg8BbLbd4M="; };
+    # WORKAROUND(2026-09-24): baikai 0.8 bounds tls >=2.2 but compiles against nixpkgs' 2.1.8.
     # Drop jailbreak once nixpkgs ships tls >=2.2. See docs/nix-workarounds.md.
     baikai = {
-      version = "0.7.0.0";
-      hash = "sha256-bJb6IyoUSmgxIg/XnQ9eWUmyxFmUDngv2xmrW8nugTs=";
+      version = "0.8.0.0";
+      hash = "sha256-9taJUqln85cHFlEu4GMDf1PmKn8VnGvrCnjBOYiNuvo=";
       jailbreak = true;
-      # These FetchModels cases were added in Baikai 0.7 and read the omitted sample.
-      skipTests = [
-        "per-model API and Responses compat survive normalization and rendering"
-        "refresh preserves Astra endpoint restrictions despite upstream tool support"
-        "fast rates and capability survive fetch and generator on exactly two curated models"
-        "curated pricing survives fetch rendering and generator parsing"
-        "Anthropic normalization carries the curated generation facts"
-        "the generation facts render as a per-model compat block"
-        "an OpenAI model renders no compat block"
+      fixturesIncluded = true;
+      # WORKAROUND(2026-10-19): these subprocess tests call /bin/ps or /bin/sh,
+      # which Nix's Darwin sandbox denies. See docs/nix-workarounds.md.
+      sandboxTests = [
+        "CliProcessSpec: shared owned process scopes"
+        "a resolvable tool reports its path and its --version line"
+      ];
+      # WORKAROUND(2026-10-19): tests that set OPENAI_API_KEY race in parallel.
+      # Keep every selected test, but run them serially. See docs/nix-workarounds.md.
+      extraTestFlags = [ "--num-threads=1" ];
+    };
+    baikai-claude = {
+      version = "0.7.1.1";
+      hash = "sha256-ZKqRqMd67GmhbpNts4/qbE0pPy3kdy6Z5pKy0JQC3fw=";
+      # WORKAROUND(2026-10-19): CLI fixtures call /bin/ps inside Nix's sandbox.
+      # Keep the API and pure tests. See docs/nix-workarounds.md.
+      sandboxTests = [
+        "claude batch provider survives a 1MiB stderr flood without deadlock"
+        "CliCancellationSpec: Claude owned batch cancellation"
+        "CliEvidenceSpec: Claude CLI model-call evidence"
+        "fake claude process"
       ];
     };
-    baikai-claude = { version = "0.7.0.0"; hash = "sha256-GSOzULFgbJae4Wf6vwdr2xR+83CwhrCuWMxuZJG6NZA="; };
-    baikai-openai = { version = "0.7.0.0"; hash = "sha256-FVYkPkL8hzzaNY0YprnmRFVswJKHyqEk15hcPauyYkI="; };
-    # WORKAROUND(2026-09-10): the 0.2 sdist omits three manifest fixtures.
-    # Drop when Seihou accepts a kit release with fixtures. See docs/nix-workarounds.md.
-    baikai-kit = { version = "0.2.0.1"; hash = "sha256-91jm9Jn5VgzotuUUnMX0qrTO+XxfXfK8ijpCKqA9scI="; skipTests = true; };
+    baikai-openai = {
+      version = "0.7.1.1";
+      hash = "sha256-GVh0bpTJRqwdzqWIHpSqVjESa9wCJ9ZXavklv44i22s=";
+      # WORKAROUND(2026-10-19): CLI fixtures call /bin/ps inside Nix's sandbox.
+      # Keep the API and pure tests. See docs/nix-workarounds.md.
+      sandboxTests = [
+        "codex batch provider survives a 1MiB stderr flood without deadlock"
+        "CliCancellationSpec: Codex owned batch cancellation"
+        "CliEvidenceSpec: Codex CLI model-call evidence"
+        "fake codex process"
+      ];
+    };
+    baikai-kit = { version = "0.4.0.1"; hash = "sha256-BE9N/zS/JpmTp7sr4Rg8SjW0wdWg7K2Bpq0jSPDl7gw="; };
     claude = { version = "1.5.0"; hash = "sha256-Jng3pCOl9d9XqXbHomBJNiXDMViKZYymj9AKTWwHhvY="; };
-    # WORKAROUND(2026-09-24): seihou-core 0.9 needs effectful-core >=2.7.1.1; nixpkgs has 2.6.1.0.
+    # WORKAROUND(2026-09-24): seihou-core 0.10.1 needs effectful-core >=2.7.1.1; nixpkgs has 2.6.1.0.
     # Drop once nixpkgs ships effectful-core >=2.7.1.1. See docs/nix-workarounds.md.
     pins = {
       effectful-core = { version = "2.7.1.2"; hash = "sha256-OZhGk0UY3BMWF+oUAQnCvF3hnzscBCm0Cz+nz8p2XM8="; };
@@ -186,9 +220,9 @@ in
 {
   okf = justStaticExecutables okfPackages.okf-cli;
   seihou = prev.symlinkJoin {
-    name = "seihou-0.9.0.0";
+    name = "seihou-0.10.1.0";
     paths = [
-      # WORKAROUND(2026-09-24): Baikai 0.7 packages read Paths_*.version, which links
+      # WORKAROUND(2026-09-24): Baikai packages read Paths_*.version, which links
       # their store paths into the binary and, through them, GHC.
       # Drop once they stop using Paths_. See docs/nix-workarounds.md.
       (overrideCabal (drv: {
