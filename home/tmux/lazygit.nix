@@ -14,14 +14,14 @@
     settings = {
       gui.sidePanelWidth = 0.2;
 
-      git.pagers = [
+      git.diffRenderers = [
         {
           # Uses chameleon theme from programs.delta
-          pager = "delta --paging=never --side-by-side";
+          command = "delta --paging=never --side-by-side";
         }
         {
           # Unified view fallback - press | to toggle
-          pager = "delta --paging=never";
+          command = "delta --paging=never";
         }
       ];
     };
