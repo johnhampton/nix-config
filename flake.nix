@@ -82,7 +82,6 @@
           (import ./overlays/tmuxPlugins.nix { inherit inputs; })
           (import ./overlays/vimPlugins.nix { inherit inputs; })
           (import ./overlays/aider.nix { inherit inputs; })
-          (import ./overlays/python-darwin-fix.nix { inherit inputs; })  # Temporary fix for fish
           (import ./overlays/folly-darwin-fix.nix { inherit inputs; })
           (import ./overlays/repomix-fix.nix { inherit inputs; })
         ];
