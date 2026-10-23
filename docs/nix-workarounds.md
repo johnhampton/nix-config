@@ -22,14 +22,6 @@ remove both.
 
 ## Active workarounds
 
-### Worktrunk: pinned nixpkgs predates required version
-
-- **Added:** 2026-09-24
-- **Root cause:** The locked nixpkgs supplies Worktrunk 0.74.0, below the required 0.79.0 release.
-- **Workaround:** Override Worktrunk's source and Cargo dependency hashes to build 0.79.0, retaining nixpkgs packaging and checks.
-- **Files:** overlays/worktrunk.nix, wired in flake.nix.
-- **Remove when:** nixpkgs supplies Worktrunk >=0.79.0. Remove the overlay and its import, run `just build`, and confirm `nix eval --raw .#legacyPackages.aarch64-darwin.worktrunk.version` reports >=0.79.0.
-
 ### seihou-core: missing Hackage test assets
 
 - **Added:** 2026-09-10

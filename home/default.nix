@@ -44,7 +44,7 @@
     dotenv-cli
     duckdb
     fd
-    (google-cloud-sdk.withExtraComponents (with google-cloud-sdk.components; [ cloud_sql_proxy cloud-sql-proxy gke-gcloud-auth-plugin ]))
+    (google-cloud-sdk.withExtraComponents (with google-cloud-sdk.components; [ cloud-sql-proxy gke-gcloud-auth-plugin ]))
     graphite-cli
     inputs.hchart.packages.${pkgs.stdenv.hostPlatform.system}.default
     (wrapHelm kubernetes-helm { plugins = [ kubernetes-helmPlugins.helm-mapkubeapis ]; })
