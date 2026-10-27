@@ -53,6 +53,7 @@ in
       "logseq"
       "mimestream"
       "notion"
+      "nuphyio"
       "obsidian"
       "parallels"
       "raindropio"
