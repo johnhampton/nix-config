@@ -137,3 +137,7 @@ Desktop.ini
 
 # Nix-specific
 .pre-commit-config.yaml
+.claude/
+.agents/
+.codex/
+CLAUDE.local.md
