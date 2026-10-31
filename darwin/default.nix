@@ -93,6 +93,13 @@
     ];
   };
   age.secrets = {
+    altinity-acm-header = {
+      file = ../secrets/altinity-acm-header.age;
+      path = "/Users/john/.config/altinity/acm-header";
+      mode = "600";
+      owner = "john";
+      group = "staff";
+    };
     access_token = {
       file = ../secrets/access_tokens.conf.age;
       mode = "700";

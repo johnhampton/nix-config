@@ -5,6 +5,7 @@ let
 in
 {
   "access_tokens.conf.age".publicKeys = [ john ava mbp ];
+  "altinity-acm-header.age".publicKeys = [ john ava mbp ];
   "cachix-authtoken.dhall.age".publicKeys = [ john ava mbp ];
   "hosts.yml.age".publicKeys = [ john ava mbp ];
   "id_ed25519.age".publicKeys = [ john ava mbp ];
