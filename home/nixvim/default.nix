@@ -5,7 +5,7 @@
     ./conform.nix
     ./copilot.nix
     ./cmp.nix
-    ./catppuccin.nix
+    ./github-theme.nix
     ./haskell-tools-nvim.nix
     ./lualine.nix
     ./lsp.nix
