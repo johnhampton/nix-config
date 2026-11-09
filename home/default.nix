@@ -18,6 +18,7 @@
     ./okf.nix
     ./pnpm.nix
     ./postgres
+    ./rex.nix
     ./scripts
     ./seihou.nix
     ./ssh.nix
