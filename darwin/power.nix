@@ -1,7 +1,7 @@
 # Power management overrides applied via pmset.
 #
-# We bypass nix-darwin's `power.sleep.*` module because it sets both AC and
-# battery profiles together, and our overrides need per-source control.
+# We use pmset because nix-darwin's `power.sleep.*` module uses systemsetup
+# without power-source selection, and our overrides need per-source control.
 #
 # Context: this machine has been hitting two macOS Tahoe (26.4.1) panic
 # families during unattended periods:
@@ -14,7 +14,7 @@
 #      the Tahoe-26 launchd/libsystem fault family, correlated with rising
 #      swap usage across long unattended uptimes.
 #
-# The three overrides below target the wake / unattended-uptime triggers:
+# Power Nap and wake-on-network overrides target the dark-wake triggers:
 #
 #   pmset -a powernap 0
 #     Disable Power Nap on both profiles. Removes scheduled maintenance
@@ -27,11 +27,11 @@
 #     so network packets and Bonjour announcements can no longer initiate
 #     a dark wake. Already off on battery by macOS default.
 #
-#   pmset -c sleep 30
-#     Allow system sleep on AC after 30 minutes idle. Was 0 (never). Caps
-#     the uninterrupted unattended uptime so memory leaks can't accumulate
-#     indefinitely; full sleep transitions also appear more stable on
-#     Tahoe than long-running dark-wake cycles.
+#   pmset -c sleep 0
+#     Prevent automatic system sleep on power adapter while allowing the
+#     display to sleep. Battery sleep is unchanged. Replaces the previous
+#     30-minute AC sleep workaround for unattended uptime.
+#     System Settings may need to be reopened to show the updated toggle.
 #
 # All other knobs are left at macOS defaults. The defaults observed on
 # this machine (M2 Max MacBook Pro `Mac14,6`, macOS 26.4.1 / 25E253),
@@ -47,7 +47,7 @@
 #     displaysleep            2          displaysleep           10
 #     womp                    0          womp                    1   ← override → 0
 #     networkoversleep        0          networkoversleep        0
-#     sleep                   1          sleep                   0   ← override → 30
+#     sleep                   1          sleep                   0
 #     lessbright              1
 #     tcpkeepalive            1          tcpkeepalive            1
 #     disksleep              10          disksleep              10
@@ -61,6 +61,6 @@
     echo "Applying pmset overrides..." >&2
     /usr/bin/pmset -a powernap 0
     /usr/bin/pmset -c womp 0
-    /usr/bin/pmset -c sleep 30
+    /usr/bin/pmset -c sleep 0
   '';
 }
