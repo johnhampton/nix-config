@@ -22,46 +22,29 @@ remove both.
 
 ## Active workarounds
 
-### seihou-core: missing Hackage test assets
-
-- **Added:** 2026-09-10
-- **Root cause:** seihou-core 0.8.0.0, 0.9.0.0, and 0.10.1.0 omit test/fixtures and schema from their Hackage archives; ScaffoldSpec loads schema/package.dhall and other suites load fixtures.
-- **Workaround:** Disable only seihou-core tests; keep other package tests and verify the installed CLIs separately.
-- **Files:** overlays/shinzui-tools.nix, wired in flake.nix.
-- **Remove when:** A Hackage release includes both test/fixtures and schema/package.dhall. Remove its dontCheck wrapper and run `nix build .#legacyPackages.aarch64-darwin.seihou` followed by `just build`.
-
-
 ### claude: nixpkgs version too old for Seihou and OKF
 
 - **Added:** 2026-09-24
-- **Root cause:** The locked nixpkgs supplies the Haskell claude package 1.4.0; baikai-claude 0.7.1.0 and 0.7.1.1 need claude ^>=1.5.
-- **Workaround:** Pin Hackage claude 1.5.0 in the Seihou and OKF tool sets. Its only test suite reads ANTHROPIC_KEY and calls the live API, so the pin also disables its tests. Extended to OKF on 2026-10-13.
+- **Root cause:** The locked nixpkgs supplies the Haskell claude package 1.4.0; baikai-claude 0.7.3.0 need claude ^>=1.5.
+- **Workaround:** Pin Hackage claude 1.5.0 in the shared Seihou and OKF package set. Its only test suite reads ANTHROPIC_KEY and calls the live API, so the pin also disables its tests. Extended to OKF on 2026-10-13.
 - **Files:** overlays/shinzui-tools.nix, wired in flake.nix.
-- **Remove when:** nixpkgs supplies claude >=1.5 for the chosen GHC. Remove the `claude` entries from both tool sets and their override, then run `nix build .#legacyPackages.aarch64-darwin.seihou` followed by `just build`. If nixpkgs' claude runs the same live suite, keep a `dontCheck` wrapper with its own entry.
+- **Remove when:** nixpkgs supplies claude >=1.5 for the chosen GHC. Remove the `claude` override, then run `nix build .#legacyPackages.aarch64-darwin.seihou` followed by `just build`. If nixpkgs' claude runs the same live suite, keep a `dontCheck` wrapper with its own entry.
 
 ### effectful-core: nixpkgs version too old for Seihou
 
 - **Added:** 2026-09-24
-- **Root cause:** seihou-core 0.10.1.0 needs effectful-core >=2.7.1.1; the locked nixpkgs supplies 2.6.1.0. effectful-core 2.7 in turn needs strict-mutable-base >=2.0, and nixpkgs supplies 1.1.0.0.
-- **Workaround:** Pin Hackage effectful-core 2.7.1.2 and strict-mutable-base 2.0.0.0 through `pins` in the Seihou tool set only.
+- **Root cause:** seihou-core 0.16.0.0 needs effectful-core >=2.7.1.1; the locked nixpkgs supplies 2.6.1.0. effectful-core 2.7 in turn needs strict-mutable-base >=2.0, and nixpkgs supplies 1.1.0.0.
+- **Workaround:** Pin Hackage effectful-core 2.7.1.2, strict-mutable-base 2.0.0.0, and effectful 2.7.1.0 in the shared package set. Seihou 0.16.0.0 also requires effectful >=2.7.1.0; extended on 2026-11-15.
 - **Files:** overlays/shinzui-tools.nix, wired in flake.nix.
-- **Remove when:** nixpkgs supplies effectful-core >=2.7.1.1. Remove `pins` from `seihouPackages`, then run `nix build .#legacyPackages.aarch64-darwin.seihou` followed by `just build`.
+- **Remove when:** nixpkgs supplies effectful-core >=2.7.1.1 and effectful >=2.7.1.0. Remove the effectful, effectful-core, and strict-mutable-base overrides, then run `nix build .#legacyPackages.aarch64-darwin.seihou` followed by `just build`.
 
 ### baikai: tls bound excludes nixpkgs' tls
 
 - **Added:** 2026-09-24
-- **Root cause:** baikai 0.7.2.0 and 0.8.0.0 bound tls >=2.2 && <2.5; the locked nixpkgs supplies tls 2.1.8. Baikai only matches TLSException constructors, all present in 2.1.8. Pinning tls 2.2+ would also need newer crypton-x509, hpke, and ech-config.
-- **Workaround:** Jailbreak baikai in the Seihou and OKF tool sets (`jailbreak = true` on their version entries); TransportClassifySpec checks the constructors at build time. Extended to OKF on 2026-10-13.
+- **Root cause:** baikai 0.10.1.1 bounds tls >=2.2 && <2.5; the locked nixpkgs supplies tls 2.1.8. Baikai only matches TLSException constructors, all present in 2.1.8. Pinning tls 2.2+ would also need newer crypton-x509, hpke, and ech-config.
+- **Workaround:** Jailbreak baikai in the shared Seihou and OKF package set; TransportClassifySpec checks the constructors at build time. Extended to OKF on 2026-10-13.
 - **Files:** overlays/shinzui-tools.nix, wired in flake.nix.
-- **Remove when:** nixpkgs supplies tls >=2.2. Remove both `jailbreak = true` entries, then run `nix build .#legacyPackages.aarch64-darwin.seihou` followed by `just build`.
-
-### Baikai: Paths modules leak GHC into Seihou
-
-- **Added:** 2026-09-24
-- **Root cause:** baikai 0.8.0.0, baikai-claude 0.7.1.1, and baikai-openai 0.7.1.1 import their Paths_ modules for their versions. The linked modules keep each package's install directories as strings in the static `seihou` binary, and those library outputs reference GHC, so justStaticExecutables' disallowGhcReference check fails.
-- **Workaround:** Run `remove-references-to` on `bin/seihou` for the three Baikai store paths after fixup. Only `version` is read at runtime; the directory strings are unused.
-- **Files:** overlays/shinzui-tools.nix, wired in flake.nix.
-- **Remove when:** The Baikai packages no longer use their Paths_ modules, or nixpkgs strips such references itself. Remove the overrideCabal wrapper around seihou-cli, then run `nix build .#legacyPackages.aarch64-darwin.seihou` followed by `just build`.
+- **Remove when:** nixpkgs supplies tls >=2.2. Remove the `doJailbreak` wrapper, then run `nix build .#legacyPackages.aarch64-darwin.seihou` followed by `just build`.
 
 ### cradle: stale broken marker
 
@@ -75,7 +58,7 @@ remove both.
 
 - **Added:** 2026-09-10
 - **Root cause:** unicode-data 0.6.0's Unicode 15.1 case-conversion tests fail against GHC 9.12's Unicode 16.0 tables (toUpper/toTitle on U+019B).
-- **Workaround:** Pin Hackage unicode-data 0.7.0, which updates to Unicode 16.0, in the two tool sets; retain tests.
+- **Workaround:** Pin Hackage unicode-data 0.7.0, which updates to Unicode 16.0, in the shared package set; retain tests.
 - **Files:** overlays/shinzui-tools.nix, wired in flake.nix.
 - **Remove when:** nixpkgs supplies unicode-data >=0.7 with tables matching the chosen GHC. Remove the pin and build both tools followed by `just build`.
 
@@ -83,38 +66,30 @@ remove both.
 
 - **Added:** 2026-09-10
 - **Root cause:** openai 2.5.4's only test suite reads OPENAI_KEY and performs live API operations, including paid generation and remote resource creation; it cannot run in a reproducible Nix sandbox. The actual build failed on the missing key after successful compilation.
-- **Workaround:** Disable only openai's tests in the tool sets; retain adapter and application tests.
+- **Workaround:** Disable only openai's tests in the shared package set; retain adapter and application tests.
 - **Files:** overlays/shinzui-tools.nix, wired in flake.nix.
 - **Remove when:** An upstream release separates offline tests from live integration tests. Enable the offline suite and build both tools followed by `just build`.
 
-### Baikai and Seihou CLI: omitted test fixtures
+### Seihou: Hackage archives omit test fixtures and schema
 
-- **Added:** 2026-09-10
-- **Root cause:** Baikai 0.7.2.0 omits test/fixtures and data/models from its sdist. The catalog-regeneration test also requires data/models. FetchModelsSpec needs models-dev-sample.json, evidence-request.json, codex-events.jsonl, claude-cli-result.json, and trace-opt-out.jsonl. Seihou CLI 0.10.1.0 omits legacy-manifest-v5.json, read by nine manifest and migration cases, and the `schema` directory, read by eleven checkout sync cases. Baikai 0.8.0.0 now includes its fixtures and model data.
-- **Workaround:** Exclude the fixture-dependent Baikai cases only in the OKF package set, the nine Seihou manifest cases, and the checkout sync group. Keep all other tests, including the full Baikai suite in the Seihou package set. Extended to OKF on 2026-10-13; narrowed for Seihou on 2026-10-19.
+- **Added:** 2026-11-15
+- **Root cause:** Seihou core and CLI 0.16.0.0 omit test/fixtures and the schema submodule from their Hackage archives. Their tests import those files from the package and its parent directory.
+- **Workaround:** Supply test fixtures from the exact v0.16.0.0 Git commit and schema from its recorded submodule revision; include Git, Python, and Gitleaks for integration tests. This replaces the older disabled core suite and fixture exclusions.
 - **Files:** overlays/shinzui-tools.nix, wired in flake.nix.
-- **Remove when:** The corresponding Hackage releases include those fixtures and data/models. Remove their skipTests wrappers and build both tools followed by `just build`.
+- **Remove when:** Both Hackage archives contain their fixtures and provide the schema at the paths the tests use. Remove `withSeihouAssets`, `seihouSource`, and `seihouSchema`, then build both tools followed by `just build`.
 
-### Baikai: subprocess tests cannot inspect processes in the Darwin sandbox
+### Baikai: hardcoded process tools in the Darwin sandbox
 
-- **Added:** 2026-10-19
-- **Root cause:** Baikai 0.8.0.0's `CliProcessSpec` calls macOS `/bin/ps` to inspect child processes, which Nix's Darwin sandbox denies. Its executable-identity fixture also runs a `/bin/sh` script that cannot return a version in that sandbox. Baikai Claude and Baikai OpenAI 0.7.1.1 have CLI fixtures with the same process dependency. Twelve of 812 Baikai tests and 14 of 430 Baikai Claude tests fail for these reasons.
-- **Workaround:** Exclude the `CliProcessSpec` group and the single executable-identity case from Baikai; exclude the affected CLI fixture groups and stderr flood cases from both adapters in the Seihou package set. Run the other tests, including the formerly skipped fixture tests.
+- **Added:** 2026-11-15
+- **Root cause:** Baikai 0.10.1.1 and the 0.7.3 adapters use /bin/ps and /bin/sh in runtime process handling and test fixtures. System ps cannot inspect processes in the Nix Darwin sandbox; packaged Darwin ps emits a blank state when privileged thread state is unavailable.
+- **Workaround:** Use Nix's shell and packaged ps, applying Seihou v0.16.0.0's ps patch to emit an unknown state. Apply the paths to the runtime handler and test fixtures. This replaces process-related test exclusions.
 - **Files:** overlays/shinzui-tools.nix, wired in flake.nix.
-- **Remove when:** Baikai and both adapters supply sandbox-compatible subprocess fixtures or the Nix Darwin sandbox permits those process observations. Remove `sandboxTests` and build Seihou followed by `just build`.
+- **Remove when:** Baikai and adapters use declared process tools and sandbox-compatible fixtures. Remove `withProcessTools` and `processTools`, build both tools with their tests, then run `just build`.
 
-### Baikai: environment-mutating tests race in parallel
+### Baikai: Paths modules leak GHC into Seihou
 
-- **Added:** 2026-10-19
-- **Root cause:** Baikai 0.8.0.0 tests set and unset `OPENAI_API_KEY` around individual cases while Tasty runs cases in parallel. The default OpenAI key resolution case intermittently sees an empty value.
-- **Workaround:** Pass `--num-threads=1` to the Baikai test suite in the Seihou package set, retaining every selected case.
+- **Added:** 2026-09-24
+- **Root cause:** Baikai 0.10.1.1, Baikai Claude 0.7.3.0, Baikai OpenAI 0.7.3.1, and Baikai TypeSafe 0.1.0.1 import their generated Paths modules for version strings. Those modules retain library installation paths, which transitively reference GHC. Seihou 0.16.0.0 passes all 1,009 CLI tests but fails justStaticExecutables' disallowGhcReference check without this fix.
+- **Workaround:** Remove references to those four library paths from bin/seihou after fixup. Only their version values are used at runtime; the installation directories are unused. Extended to the TypeSafe adapter on 2026-11-15.
 - **Files:** overlays/shinzui-tools.nix, wired in flake.nix.
-- **Remove when:** Upstream serializes environment-mutating cases or isolates their environments. Remove `extraTestFlags` and run the Seihou build repeatedly before `just build`.
-
-### Seihou CLI: agent subprocess tests cannot inspect processes in the Darwin sandbox
-
-- **Added:** 2026-10-19
-- **Root cause:** Nine Seihou CLI agent integration cases launch fake providers through Baikai's owned process handler, which calls macOS `/bin/ps`. Nix's Darwin sandbox denies that process observation, so the cases fail before their assertions.
-- **Workaround:** Exclude those nine cases by Tasty test name in the Seihou CLI package set; keep the other CLI tests enabled.
-- **Files:** overlays/shinzui-tools.nix, wired in flake.nix.
-- **Remove when:** The provider process handler and fixtures can run inside Nix's Darwin sandbox. Remove the nine exclusions and build Seihou followed by `just build`.
+- **Remove when:** Baikai packages no longer retain these Paths directories, or nixpkgs strips them. Remove the overrideCabal wrapper around seihou-cli, then build Seihou followed by `just build`.
